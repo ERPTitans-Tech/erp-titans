@@ -16,7 +16,7 @@ export default function PrivacyPolicyPage() {
             <Shield className="text-[#003D82]" size={32} strokeWidth={1.5} />
           </div>
           <div>
-            <h1 className="text-3xl md:text-[36px] font-extrabold text-[#0F172A] mb-4 tracking-tight">
+            <h1 className="text-3xl md:text-[36px] font-extrabold text-[#003D82] mb-4 tracking-tight">
               Privacy Policy
             </h1>
             <p className="text-[#475569] text-sm">
@@ -29,7 +29,7 @@ export default function PrivacyPolicyPage() {
         <div className="space-y-12">
           {/* Section 1 */}
           <section>
-            <h2 className="text-2xl font-bold text-[#0F172A] mb-4">1. Introduction</h2>
+            <h2 className="text-2xl font-bold text-[#003D82] mb-4">1. Introduction</h2>
             <p className="text-[#475569] leading-relaxed">
               At ERP Titans, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our services. We are committed to protecting your personal data and your right to privacy in accordance with Canadian and international data protection standards.
             </p>
@@ -37,7 +37,7 @@ export default function PrivacyPolicyPage() {
 
           {/* Section 2 */}
           <section>
-            <h2 className="text-2xl font-bold text-[#0F172A] mb-4">2. Information We Collect</h2>
+            <h2 className="text-2xl font-bold text-[#003D82] mb-4">2. Information We Collect</h2>
             <p className="text-[#475569] leading-relaxed mb-4">
               We collect information that you provide directly to us when you:
             </p>
@@ -66,7 +66,7 @@ export default function PrivacyPolicyPage() {
 
           {/* Section 3 */}
           <section>
-            <h2 className="text-2xl font-bold text-[#0F172A] mb-4">3. How We Use Your Information</h2>
+            <h2 className="text-2xl font-bold text-[#003D82] mb-4">3. How We Use Your Information</h2>
             <p className="text-[#475569] leading-relaxed mb-4">
               We use the information we collect to:
             </p>
@@ -96,7 +96,7 @@ export default function PrivacyPolicyPage() {
 
           {/* Section 4 */}
           <section>
-            <h2 className="text-2xl font-bold text-[#0F172A] mb-4">4. Data Security</h2>
+            <h2 className="text-2xl font-bold text-[#003D82] mb-4">4. Data Security</h2>
             <p className="text-[#475569] leading-relaxed">
               We implement appropriate technical and organizational security measures to protect the security of any personal information we process. However, please also remember that we cannot guarantee that the internet itself is 100% secure. Although we will do our best to protect your personal information, transmission of personal information to and from our website is at your own risk.
             </p>
@@ -104,7 +104,7 @@ export default function PrivacyPolicyPage() {
 
           {/* Section 5 */}
           <section>
-            <h2 className="text-2xl font-bold text-[#0F172A] mb-4">5. Third-Party Services</h2>
+            <h2 className="text-2xl font-bold text-[#003D82] mb-4">5. Third-Party Services</h2>
             <p className="text-[#475569] leading-relaxed">
               We do not sell, trade, or otherwise transfer your personal information to outside parties except for trusted third parties who assist us in operating our website and conducting our business (such as Microsoft 365 for email and calendar services), so long as those parties agree to keep this information confidential.
             </p>
@@ -112,7 +112,7 @@ export default function PrivacyPolicyPage() {
 
           {/* Section 6 */}
           <section>
-            <h2 className="text-2xl font-bold text-[#0F172A] mb-4">6. Contact Us</h2>
+            <h2 className="text-2xl font-bold text-[#003D82] mb-4">6. Contact Us</h2>
             <p className="text-[#475569] leading-relaxed mb-4">
               If you have questions or comments about this policy, you may email us at:
             </p>
