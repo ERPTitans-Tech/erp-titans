@@ -38,7 +38,7 @@ export default function AboutIntro() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl font-extrabold text-[#0F172A] mb-6 tracking-tight leading-tight"
+            className="text-4xl md:text-5xl font-extrabold text-[#003D82] mb-6 tracking-tight leading-tight"
           >
             We Are ERP Recovery <br className="hidden md:block" /> Specialists
           </motion.h1>

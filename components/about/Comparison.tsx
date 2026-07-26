@@ -25,7 +25,7 @@ export default function Comparison() {
         {/* Section Header */}
         <div className="text-center mb-10 max-w-3xl mx-auto">
 
-          <h2 className="text-3xl md:text-4xl font-extrabold text-[#0F172A] mb-3 tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] mb-3 tracking-tight">
             How We&apos;re Different
           </h2>
           <p className="text-base md:text-lg text-[#64748B] leading-relaxed">

@@ -45,7 +45,7 @@ export default function WhoWeServe() {
         {/* Section Header */}
         <div className="text-center mb-16 max-w-3xl mx-auto">
 
-          <h2 className="text-3xl md:text-5xl font-extrabold text-[#0F172A] mb-6 tracking-tight">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-[#003D82] mb-6 tracking-tight">
             Who We Serve Best
           </h2>
           <p className="text-lg md:text-xl text-[#64748B] leading-relaxed">
