@@ -36,9 +36,9 @@ export default function Navbar() {
         { name: "Cannabis", href: "/industries/cannabis" },
       ]
     },
-//    { name: "Case Studies", href: "/case-studies" },
+    { name: "Case Studies", href: "/case-studies" },
     { name: "About", href: "/about" },
-//    { name: "Odoo", href: "/odoo" },
+    { name: "Odoo", href: "/odoo" },
     { name: "Contact", href: "/contact" },
   ];
 
