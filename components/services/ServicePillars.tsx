@@ -85,7 +85,7 @@ export default function ServicePillars() {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-10">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-[#0F172A] tracking-tight mb-3">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] tracking-tight mb-3">
             The 10 Core Service Pillars
           </h2>
           <p className="text-lg text-[#475569] leading-relaxed">

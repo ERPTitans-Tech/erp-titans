@@ -60,7 +60,7 @@ export default function WhyERP() {
           >
             <motion.div variants={itemVariants}>
 
-              <h2 className="text-3xl md:text-4xl font-extrabold text-[#0F172A] mb-4 tracking-tight">
+              <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] mb-4 tracking-tight">
                 Why ERP Titans?
               </h2>
               <p className="text-lg text-[#475569] leading-relaxed mb-8 max-w-xl">

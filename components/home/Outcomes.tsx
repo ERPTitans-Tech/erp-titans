@@ -26,7 +26,7 @@ export default function Outcomes() {
             className="max-w-xl"
           >
 
-            <h2 className="text-4xl md:text-5xl font-extrabold text-[#0F172A] mb-6 tracking-tight">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-[#003D82] mb-6 tracking-tight">
               What A Successful Recovery Looks Like
             </h2>
             <p className="text-xl text-[#475569] leading-relaxed mb-8">

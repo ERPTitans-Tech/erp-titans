@@ -64,7 +64,7 @@ export default function Challenges() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-3xl md:text-4xl font-extrabold text-[#0F172A] mb-4 tracking-tight"
+            className="text-3xl md:text-4xl font-extrabold text-[#003D82] mb-4 tracking-tight"
           >
             Is Your ERP Showing These Signs?
           </motion.h2>

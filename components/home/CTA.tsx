@@ -3,7 +3,23 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-export default function CTA() {
+interface CTAProps {
+  heading?: React.ReactNode;
+  description?: React.ReactNode;
+  primaryButtonText?: string;
+  primaryButtonLink?: string;
+  secondaryButtonText?: string;
+  secondaryButtonLink?: string;
+}
+
+export default function CTA({
+  heading = "Ready to Optimize Your Operations?",
+  description = "Whether you need a new implementation or a rescue mission, our team is ready to deliver.",
+  primaryButtonText = "Book a Consultation",
+  primaryButtonLink = "/contact",
+  secondaryButtonText = "Schedule ERP Audit",
+  secondaryButtonLink = "/contact",
+}: CTAProps) {
   return (
     <section className="relative py-12 md:py-16 lg:py-20 bg-[#0F172A] overflow-hidden" id="audit">
       {/* Subtle Premium Background Glow */}
@@ -18,19 +34,21 @@ export default function CTA() {
           className="max-w-3xl mx-auto"
         >
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 text-white">
-            Ready to Optimize Your Operations?
+            {heading}
           </h2>
           <p className="text-lg md:text-xl text-[#94A3B8] mb-8 leading-relaxed">
-            Whether you need a new implementation or a rescue mission, our team is ready to deliver.
+            {description}
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact" className="bg-[#003D82] text-white hover:bg-[#003D82] px-8 py-4 rounded-sm font-medium transition-colors shadow-lg text-center">
-              Book a Consultation
+            <Link href={primaryButtonLink} className="bg-[#003D82] text-white hover:bg-[#003D82]/90 px-8 py-4 rounded-sm font-medium transition-colors shadow-lg text-center">
+              {primaryButtonText}
             </Link>
-            <Link href="/contact" className="bg-transparent border border-[#334155] text-white hover:bg-[#003D82] px-8 py-4 rounded-sm font-medium transition-colors text-center">
-              Schedule ERP Audit
-            </Link>
+            {secondaryButtonText && secondaryButtonLink && (
+              <Link href={secondaryButtonLink} className="bg-transparent border border-[#334155] text-white hover:bg-[#003D82]/50 px-8 py-4 rounded-sm font-medium transition-colors text-center">
+                {secondaryButtonText}
+              </Link>
+            )}
           </div>
         </motion.div>
       </div>

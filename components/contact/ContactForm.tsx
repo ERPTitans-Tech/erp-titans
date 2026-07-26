@@ -73,7 +73,7 @@ export default function ContactForm() {
         
         {/* HEADER SECTION */}
         <div className="text-center max-w-3xl mx-auto mb-10">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-[#0F172A] tracking-tight mb-4">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-[#003D82] tracking-tight mb-4">
             How Can We Help?
           </h1>
           <p className="text-lg text-[#64748B] leading-relaxed mb-8">

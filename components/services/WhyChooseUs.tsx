@@ -62,7 +62,7 @@ export default function WhyChooseUs() {
 
           
           {/* Large Heading */}
-          <h2 className="text-3xl md:text-4xl font-extrabold text-[#0F172A] tracking-tight mb-3">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] tracking-tight mb-3">
             Why Clients Choose ERP Titans
           </h2>
           

@@ -58,7 +58,7 @@ export default function RecoveryProcess() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl font-extrabold text-[#0F172A] mb-6 tracking-tight"
+            className="text-4xl md:text-5xl font-extrabold text-[#003D82] mb-6 tracking-tight"
           >
             The Path to Recovery
           </motion.h2>

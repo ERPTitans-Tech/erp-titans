@@ -19,7 +19,7 @@ export default function ServicesHero() {
           <div className="max-w-2xl">
 
             
-            <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-extrabold text-[#0F172A] tracking-tight leading-[1.15] mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-extrabold text-[#003D82] tracking-tight leading-[1.15] mb-6">
               Comprehensive ERP <br className="hidden sm:block" />
               <span className="text-[#003D82]">Lifecycle Support</span>
             </h1>
