@@ -2,6 +2,7 @@
 
 import { ArrowRight, Check, CheckCircle2, Zap } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function OdooHero() {
   return (
@@ -11,6 +12,15 @@ export default function OdooHero() {
           
           {/* Left Content */}
           <div className="text-left">
+            <div className="mb-6">
+  <Image
+    src="/odoo-ready-partner.svg"
+    alt="Odoo Ready Partner"
+    width={160}
+    height={80}
+    className="h-16 w-auto"
+  />
+</div>
 
             <h1 className="text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] mb-8 text-[#003D82]">
               Your Trusted Odoo Partner <br />
