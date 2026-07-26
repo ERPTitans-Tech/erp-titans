@@ -62,9 +62,18 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-brand-text-muted text-sm text-center md:text-left">
-            &copy; 2026 ERP Titans. All rights reserved.
-          </p>
+          <div className="flex items-center gap-4">
+  <Image
+    src="/odoo-ready-partner.svg"
+    alt="Odoo Ready Partner"
+    width={120}
+    height={60}
+    className="h-10 w-auto"
+  />
+  <p className="text-brand-text-muted text-sm text-center md:text-left">
+    &copy; 2026 ERP Titans. All rights reserved.
+  </p>
+</div>
           <div className="flex items-center gap-6">
             <Link href="/privacy-policy" className="text-[#003D82] hover:text-[#003D82]/80 text-sm transition-colors">Privacy Policy</Link>
             <Link href="/terms-of-service" className="text-[#003D82] hover:text-[#003D82]/80 text-sm transition-colors">Terms of Service</Link>
