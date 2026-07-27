@@ -75,7 +75,7 @@ export default function Challenges() {
             transition={{ delay: 0.2 }}
             className="text-lg text-[#475569] leading-relaxed"
           >
-            Most ERP problems don&apos;t start with the software—they start with misaligned processes and poor implementation.
+            Most ERP problems don&apos;t start with the software, they start with misaligned processes and poor implementation.
           </motion.p>
         </div>
 
