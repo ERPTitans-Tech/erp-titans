@@ -32,7 +32,7 @@ export default function OdooHero() {
                 As an official Odoo Partner, ERP Titans brings its proven expertise in ERP recovery and optimization to the world&apos;s most comprehensive suite of business applications.
               </p>
               <p>
-                We empower small and medium-sized enterprises (SMEs) to streamline their processes, enhance decision-making, and unlock unprecedented ROI.
+                We empower organizations to streamline their processes, enhance decision-making, and unlock unprecedented ROI.
               </p>
             </div>
 
