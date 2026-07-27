@@ -64,7 +64,7 @@ export default function AboutIntro() {
           >
             <div className="flex items-center gap-3 mb-8">
               <BookOpen className="text-[#003D82]" size={26} strokeWidth={2.5} />
-              <h2 className="text-2xl font-bold text-[#0F172A]">Our Story</h2>
+              <h2 className="text-2xl font-bold text-[#003D82]">Our Story</h2>
             </div>
             
             <div className="space-y-6 text-[#64748B] text-[15px] leading-relaxed flex-grow">
@@ -87,7 +87,7 @@ export default function AboutIntro() {
             viewport={{ once: true }}
             className="lg:w-[60%] flex flex-col"
           >
-            <h2 className="text-2xl font-bold text-[#0F172A] mb-8 text-center lg:text-left">Our Core Values</h2>
+            <h2 className="text-2xl font-bold text-[#003D82] mb-8 text-center lg:text-left">Our Core Values</h2>
             
             <div className="grid sm:grid-cols-2 gap-6 flex-grow">
               {values.map((val, idx) => (
