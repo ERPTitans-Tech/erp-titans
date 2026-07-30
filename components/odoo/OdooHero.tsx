@@ -11,8 +11,6 @@ export default function OdooHero() {
         <div className="grid lg:grid-cols-[2fr_1fr] gap-12 lg:gap-16 items-center">
 
           <div className="text-left w-full">
-
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 md:gap-8 mb-10 w-full">
               <h1 className="text-3xl lg:text-4xl font-extrabold tracking-tight leading-[1.15] text-[#003D82]">
                 Your Trusted{" "}
                 <Image
@@ -25,23 +23,6 @@ export default function OdooHero() {
                 Partner <br />
                 <span className="text-[#003D82]">for Business Transformation</span>
               </h1>
-              <div className="flex items-center gap-4 md:gap-6 shrink-0">
-                <Image
-                  src="/logo.png"
-                  alt="ERP Titans"
-                  width={160}
-                  height={80}
-                  className="h-14 md:h-20 w-auto"
-                />
-                <span className="text-3xl lg:text-4xl font-extrabold leading-none text-[#003D82]">+</span>
-                <Image
-                  src="/odoo-ready-partner.svg"
-                  alt="Odoo Ready Partner"
-                  width={220}
-                  height={110}
-                  className="h-14 md:h-20 w-auto"
-                />
-              </div>
             </div>
 
             <div className="mb-10 text-lg text-[#475569] leading-relaxed font-medium w-full max-w-3xl space-y-4">
