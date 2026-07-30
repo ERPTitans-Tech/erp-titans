@@ -12,7 +12,7 @@ export default function OdooHero() {
 
           <div className="text-left w-full">
 
-            <h1 className="text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.0] text-[#003D82] mb-10">
+            <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.0] text-[#003D82] mb-10">
               Your Trusted{" "}
               <Image
                 src="/odoo-icon.svg"
