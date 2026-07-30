@@ -20,7 +20,7 @@ export default function OdooHero() {
     alt="Odoo"
     width={100}
     height={54}
-    className="inline-block h-12 md:h-14 w-auto align-middle mx-1"
+    className="inline-block h-14 md:h-16 w-auto align-middle mx-1"
   />{" "}
   Partner <br />
   <span className="text-[#003D82]">for Business Transformation</span>
