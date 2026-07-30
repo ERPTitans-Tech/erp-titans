@@ -43,8 +43,7 @@ export default function OdooHero() {
               />
             </div>
           </div>
-
-          <div className="mb-10 text-xl text-[#475569] leading-relaxed w-full max-w-3xl space-y-4">
+            <div className="mb-10 text-lg text-[#475569] leading-relaxed font-medium w-full max-w-3xl space-y-4">
             <p>
               As an official Odoo Partner, ERP Titans brings its proven expertise in ERP recovery and optimization to the world&apos;s most comprehensive suite of business applications.
             </p>
