@@ -64,7 +64,7 @@ export default function OdooHero() {
               alt="Odoo Ready Partner"
               width={200}
               height={100}
-              className="h-24 w-auto"
+              className="h-28 w-auto"
             />
             <span className="text-4xl font-extrabold text-[#003D82] leading-none">+</span>
             <Image
@@ -72,7 +72,7 @@ export default function OdooHero() {
               alt="ERP Titans"
               width={200}
               height={100}
-              className="h-20 w-auto"
+              className="h-24 w-auto"
             />
           </div>
 
