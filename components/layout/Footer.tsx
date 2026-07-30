@@ -18,6 +18,13 @@ export default function Footer() {
                 className="h-[55px] md:h-[70px] w-auto object-contain"
               />
             </Link>
+            <Image
+                src="/odoo-ready-partner.svg"
+                alt="Odoo Ready Partner"
+                width={110}
+                height={55}
+                className="h-[40px] md:h-[50px] w-auto"
+              />
             <p className="text-brand-text-muted text-sm leading-relaxed">
               Helping global SMEs recover from failed ERP implementations and unlock true business potential through expert optimization and recovery services.
             </p>
