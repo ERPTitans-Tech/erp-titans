@@ -14,14 +14,14 @@ export default function OdooHero() {
           {/* Headline + partner logo lockup, left aligned, spanning full width */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 md:gap-8 mb-10 w-full">
 <h1 className="text-3xl lg:text-4xl font-extrabold tracking-tight leading-[1.15] text-[#003D82]">
-  Your Trusted{" "}
+  Your Trusted
   <Image
     src="/odoo-icon.svg"
     alt="Odoo"
     width={100}
     height={54}
     className="inline-block h-16 md:h-18 w-auto align-middle mx-1"
-  />{" "}
+  />
   Partner <br />
   <span className="text-[#003D82]">for Business Transformation</span>
 </h1>
