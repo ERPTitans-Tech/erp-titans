@@ -60,7 +60,7 @@ export default function OdooHero() {
 
           <div className="hidden lg:flex flex-col items-center justify-center gap-6 bg-white border border-[#E2E8F0] rounded-2xl shadow-lg p-10">
             <Image
-              src="/odoo-ready-partner.svg"
+              src="/odoo-icon.svg"
               alt="Odoo Ready Partner"
               width={200}
               height={100}
