@@ -16,8 +16,8 @@ export default function OdooHero() {
   <Image
     src="/odoo-ready-partner.svg"
     alt="Odoo Ready Partner"
-    width={160}
-    height={80}
+    width={300}
+    height={150}
     className="h-16 w-auto"
   />
 </div>
