@@ -24,7 +24,7 @@ export default function Footer() {
                 alt="Odoo Ready Partner"
                 width={110}
                 height={55}
-                className="h-[40px] md:h-[50px] w-auto"
+                className="h-[55px] md:h-[70px] w-auto"
               />
             </div>
             <p className="text-brand-text-muted text-sm leading-relaxed">
