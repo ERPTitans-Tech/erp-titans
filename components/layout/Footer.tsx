@@ -7,28 +7,26 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
           
-          {/* Column 1 */}
+{/* Column 1 */}
           <div className="lg:col-span-1">
-            <Link href="/" className="inline-block mb-4">
+            <div className="flex items-center gap-3 mb-4">
+              <Link href="/" className="inline-block">
+                <Image
+                  src="/logo.png"
+                  alt="ERP Titans"
+                  width={140}
+                  height={70}
+                  className="h-[55px] md:h-[70px] w-auto object-contain"
+                />
+              </Link>
               <Image
-                src="/logo.png"
-                alt="ERP Titans"
-                width={140}
-                height={70}
-                className="h-[55px] md:h-[70px] w-auto object-contain"
-              />
-            </Link>
-            <Image
                 src="/odoo-ready-partner.svg"
                 alt="Odoo Ready Partner"
                 width={110}
                 height={55}
                 className="h-[40px] md:h-[50px] w-auto"
               />
-            <p className="text-brand-text-muted text-sm leading-relaxed">
-              Helping global SMEs recover from failed ERP implementations and unlock true business potential through expert optimization and recovery services.
-            </p>
-          </div>
+            </div>
 
           {/* Column 2 */}
           <div>
