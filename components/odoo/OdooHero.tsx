@@ -9,10 +9,10 @@ export default function OdooHero() {
     <section className="relative pt-24 pb-10 md:pt-28 md:pb-14 bg-[#F8FAFC]" id="home">
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
+        <div className="text-left w-full">
 
-          {/* Headline + Odoo badge, side by side, centered as a group */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-8 mb-10">
+          {/* Headline + Odoo badge, left aligned, spanning full width */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 md:gap-8 mb-10 w-full">
             <h1 className="text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] text-[#003D82]">
               Your Trusted Odoo Partner <br />
               <span className="text-[#003D82]">for Business Transformation</span>
@@ -26,7 +26,7 @@ export default function OdooHero() {
             />
           </div>
 
-          <div className="mb-10 text-xl text-[#475569] leading-relaxed max-w-2xl space-y-4">
+          <div className="mb-10 text-xl text-[#475569] leading-relaxed w-full max-w-3xl space-y-4">
             <p>
               As an official Odoo Partner, ERP Titans brings its proven expertise in ERP recovery and optimization to the world&apos;s most comprehensive suite of business applications.
             </p>
@@ -35,7 +35,7 @@ export default function OdooHero() {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+          <div className="flex flex-col sm:flex-row gap-4 justify-start mb-10">
             <Link href="/contact" className="bg-[#003D82] hover:bg-[#003D82]/90 text-white px-8 py-4 rounded-sm font-medium transition-colors flex items-center justify-center gap-2 shadow-md text-center">
               Book Odoo Consultation <ArrowRight size={18} />
             </Link>
@@ -44,7 +44,7 @@ export default function OdooHero() {
             </Link>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-sm font-semibold text-[#475569]">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 text-sm font-semibold text-[#475569]">
             <div className="flex items-center gap-2">
               <Check size={18} className="text-[#003D82]" strokeWidth={3} />
               <span>Official Odoo Partner</span>
