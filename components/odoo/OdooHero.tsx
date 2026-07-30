@@ -13,15 +13,7 @@ export default function OdooHero() {
           <div className="text-left w-full">
 
             <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.0] text-[#003D82] mb-10">
-              Your Trusted{" "}
-              <Image
-                src="/odoo-icon.svg"
-                alt="Odoo"
-                width={100}
-                height={54}
-                className="inline-block h-10 md:h-12 w-auto align-middle mx-1"
-              />{" "}
-              Partner for Business Transformation
+              Your Trusted Odoo Partner for Business Transformation
             </h1>
 
             <div className="mb-10 text-lg text-[#475569] leading-relaxed font-medium w-full max-w-3xl space-y-4">
