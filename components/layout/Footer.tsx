@@ -27,7 +27,7 @@ export default function Footer() {
                 className="h-[40px] md:h-[50px] w-auto"
               />
             </div>
-
+ <p className="text-brand-text-muted text-sm leading-relaxed">
           {/* Column 2 */}
           <div>
             <h4 className="font-semibold text-brand-text mb-6">Company</h4>
