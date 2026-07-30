@@ -13,8 +13,8 @@ export default function OdooPartnerPage() {
     <main className="flex min-h-screen flex-col">
       <OdooHero />
       <PowerOfOdoo />
-      <OdooServices />
       <WhyChooseOdoo />
+      <OdooServices />
       <OdooCTA 
         heading={
           <>
