@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
           
-{/* Column 1 */}
+          {/* Column 1 */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-4">
               <Link href="/" className="inline-block">
@@ -27,7 +27,11 @@ export default function Footer() {
                 className="h-[40px] md:h-[50px] w-auto"
               />
             </div>
- <p className="text-brand-text-muted text-sm leading-relaxed">
+            <p className="text-brand-text-muted text-sm leading-relaxed">
+              Helping global SMEs recover from failed ERP implementations and unlock true business potential through expert optimization and recovery services.
+            </p>
+          </div>
+
           {/* Column 2 */}
           <div>
             <h4 className="font-semibold text-brand-text mb-6">Company</h4>
@@ -67,18 +71,9 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex items-center gap-4">
-  <Image
-    src="/odoo-ready-partner.svg"
-    alt="Odoo Ready Partner"
-    width={120}
-    height={60}
-    className="h-10 w-auto"
-  />
-  <p className="text-brand-text-muted text-sm text-center md:text-left">
-    &copy; 2026 ERP Titans. All rights reserved.
-  </p>
-</div>
+          <p className="text-brand-text-muted text-sm text-center md:text-left">
+            &copy; 2026 ERP Titans. All rights reserved.
+          </p>
           <div className="flex items-center gap-6">
             <Link href="/privacy-policy" className="text-[#003D82] hover:text-[#003D82]/80 text-sm transition-colors">Privacy Policy</Link>
             <Link href="/terms-of-service" className="text-[#003D82] hover:text-[#003D82]/80 text-sm transition-colors">Terms of Service</Link>
