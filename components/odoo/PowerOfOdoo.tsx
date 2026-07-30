@@ -7,7 +7,7 @@ export default function PowerOfOdoo() {
     { name: "Inventory", icon: "/odoo-icons/inventory.png" },
     { name: "Manufacturing", icon: "/odoo-icons/manufacturing.png" },
     { name: "Accounting", icon: "/odoo-icons/accounting.png" },
-    { name: "HR", icon: "/odoo-icons/hr.png" },
+    { name: "Purchase", icon: "/odoo-icons/purchase.png" },
     { name: "Projects", icon: "/odoo-icons/projects.png" },
     { name: "POS", icon: "/odoo-icons/pos.png" },
     { name: "eCommerce", icon: "/odoo-icons/ecommerce.png" },
