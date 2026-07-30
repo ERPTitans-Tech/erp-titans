@@ -49,22 +49,21 @@ export default function OdooHero() {
               </div>
             </div>
           </div>
-
-         <div className="hidden lg:flex flex-col items-center justify-center gap-2 bg-white border border-[#E2E8F0] rounded-2xl shadow-lg p-10">
+<div className="hidden lg:flex flex-col items-center justify-center gap-6 bg-white border border-[#E2E8F0] rounded-2xl shadow-lg p-10">
   <Image
-    src="/odoo-icon.svg"
+    src="/odoo-ready-partner.svg"
     alt="Odoo Ready Partner"
     width={200}
     height={100}
-    className="h-24 w-auto -mb-2"
+    className="h-28 w-auto"
   />
-  <span className="text-4xl font-extrabold text-[#003D82] leading-none">+</span>
+  <span className="text-6xl font-extrabold text-[#003D82] leading-none">+</span>
   <Image
     src="/logo.png"
     alt="ERP Titans"
     width={200}
     height={100}
-    className="h-20 w-auto -mt-2"
+    className="h-24 w-auto"
   />
 </div>
 
