@@ -13,13 +13,13 @@ export default function OdooHero() {
           {/* Left Content */}
           <div className="text-left">
             <div className="mb-6">
-  <Image
-    src="/odoo-ready-partner.svg"
-    alt="Odoo Ready Partner"
-    width={300}
-    height={150}
-    className="h-16 w-auto"
-  />
+ <Image
+  src="/odoo-ready-partner.svg"
+  alt="Odoo Ready Partner"
+  width={160}
+  height={80}
+  className="h-16 md:h-24 w-auto shrink-0"
+/>
 </div>
 
             <h1 className="text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] mb-8 text-[#003D82]">
