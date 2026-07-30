@@ -21,8 +21,7 @@ export default function OdooHero() {
                 height={54}
                 className="inline-block h-10 md:h-12 w-auto align-middle mx-1"
               />{" "}
-              Partner <br />
-              <span className="text-[#003D82]">for Business Transformation</span>
+              Partner for Business Transformation
             </h1>
 
             <div className="mb-10 text-lg text-[#475569] leading-relaxed font-medium w-full max-w-3xl space-y-4">
