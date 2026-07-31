@@ -25,7 +25,7 @@ export default function ServicesHero() {
             </h1>
             
             <p className="text-xl text-[#475569] leading-relaxed mb-8 font-medium">
-              From Strategy to Recovery to Scale — We own the entire ERP journey for SMEs globally.
+              From Strategy to Recovery to Scale; We own the entire ERP journey for SMEs globally.
             </p>
 
             <div className="bg-white/80 backdrop-blur-md border-l-4 border-[#003D82] p-6 rounded-r-2xl mb-10 shadow-sm">
