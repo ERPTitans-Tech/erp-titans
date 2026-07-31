@@ -75,7 +75,7 @@ export default function AboutIntro() {
                 We&apos;ve seen too many companies burnt by generic ERP implementers who promised the world but delivered systems that didn&apos;t match their business needs.
               </p>
               <p>
-                We decided to do things differently. We focus exclusively on ERP recovery—fixing broken implementations and helping companies scale.
+                We decided to do things differently. We focus exclusively on ERP recovery, fixing broken implementations and helping companies scale.
               </p>
             </div>
           </motion.div>
