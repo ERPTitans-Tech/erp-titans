@@ -120,7 +120,7 @@ export default function Hero({ isCA = false }: { isCA?: boolean }) {
             </div>
 
             <div className="mt-9 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-[#475569]">
-              {["ERP Recovery Specialists", "Global Delivery", isCA ? "Canadian Based" : "Offices in Canada & the US"].map((f) => (
+              {["ERP Recovery Specialists", "Global Delivery", isCA ? "Canadian Based" : "Canada & USA Delivery"].map((f) => (
                 <span key={f} className="inline-flex items-center gap-2">
                   <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#003D82]/10">
                     <Check size={12} strokeWidth={3} className="text-[#003D82]" />

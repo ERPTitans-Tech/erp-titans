@@ -68,7 +68,7 @@ export default async function Footer() {
                 <a href="mailto:sales@erptitans.com" className="text-brand-text hover:text-brand-primary transition-colors text-sm font-medium">sales@erptitans.com</a>
               </li>
               <li>
-                <span className="block text-xs font-medium text-gray-500 uppercase tracking-wider mb-1">{offices.footer.length > 1 ? "Offices" : "Location"}</span>
+                <span className="block text-xs font-medium text-gray-500 uppercase tracking-wider mb-1">{offices.footer.length > 1 ? "Locations" : "Location"}</span>
                 <span className="text-brand-text-muted text-sm">
                   {offices.footer.map((o) => (
                     <span key={o.label} className="mb-1 flex items-center gap-2">

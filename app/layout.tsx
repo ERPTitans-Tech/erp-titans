@@ -24,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     description: site.isCA
       ? "ERP Titans is an official Odoo Ready Partner based in Calgary, Alberta. Odoo ERP implementation, migration, customization, support and ERP recovery for manufacturers, distributors and SMEs across Canada and the USA."
-      : "ERP Titans is an official Odoo Ready Partner with offices in Calgary, Alberta and Austin, Texas. Odoo ERP implementation, migration, customization, support and ERP recovery for manufacturers, distributors and SMEs across the USA and Canada.",
+      : "ERP Titans is an official Odoo Ready Partner based in Calgary, Alberta, serving the USA and Canada. Odoo ERP implementation, migration, customization, support and ERP recovery for manufacturers, distributors and SMEs.",
     applicationName: "ERP Titans",
     keywords: [
       "Odoo partner",

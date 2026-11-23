@@ -42,7 +42,7 @@ export default function AboutIntro({ isCA = false }: { isCA?: boolean }) {
                 broken implementations and build scalable foundations for SME growth.
               </p>
               <p className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#475569]">
-                <MapPin size={16} className="text-[#003D82]" /> {isCA ? "Based in Calgary, Alberta · Serving Canada, the USA and beyond" : "Offices in Calgary, Alberta and Austin, Texas · Serving the USA, Canada and beyond"}
+                <MapPin size={16} className="text-[#003D82]" /> {isCA ? "Based in Calgary, Alberta · Serving Canada, the USA and beyond" : "Based in Calgary, Alberta · Serving clients across the USA, Canada and beyond"}
               </p>
             </m.div>
 
