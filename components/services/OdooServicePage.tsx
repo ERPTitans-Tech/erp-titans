@@ -53,7 +53,7 @@ export default async function OdooServicePage({ s }: { s: OdooService }) {
 
       {/* Intro + who it's for */}
       <section className="border-t border-[#E2E8F0] bg-white py-16 md:py-20">
-        <div className="max-w-[85rem] mx-auto grid gap-12 px-4 sm:px-6 lg:grid-cols-[1.2fr_1fr] lg:gap-16 lg:px-8">
+        <div className="max-w-[85rem] mx-auto grid grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-[1.2fr_1fr] lg:gap-16 lg:px-8">
           <div className="space-y-5 text-lg leading-relaxed text-[#475569]">
             {s.intro.map((p) => (
               <p key={p.slice(0, 40)}>{p}</p>
@@ -71,7 +71,7 @@ export default async function OdooServicePage({ s }: { s: OdooService }) {
               ))}
             </ul>
             {s.odooApps && (
-              <div className="mt-6 flex items-center gap-2 border-t border-[#E2E8F0] pt-5">
+              <div className="mt-6 flex flex-wrap items-center gap-2 border-t border-[#E2E8F0] pt-5">
                 <span className="mr-1 text-xs font-bold uppercase tracking-[0.14em] text-[#94A3B8]">Odoo apps</span>
                 {s.odooApps.map((a) => (
                   <span key={a} className="flex h-9 w-9 items-center justify-center rounded-xl bg-white ring-1 ring-[#E2E8F0]">
@@ -88,7 +88,7 @@ export default async function OdooServicePage({ s }: { s: OdooService }) {
       <section className="border-t border-[#E2E8F0] bg-[#F8FAFC] py-16 md:py-20">
         <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader n={1} label="What's included" title={`${s.name}: scope of work`} />
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {s.includes.map((i) => (
               <div key={i.title} className="rounded-[20px] bg-white p-6 ring-1 ring-[#E2E8F0]">
                 <div className="mb-3 h-1 w-10 rounded-full bg-gradient-to-r from-[#003D82] to-[#0EA5E9]" />
@@ -104,7 +104,7 @@ export default async function OdooServicePage({ s }: { s: OdooService }) {
       <section className="border-t border-[#E2E8F0] bg-white py-16 md:py-20">
         <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader n={2} label="How it works" title="Our process" />
-          <ol className={`grid gap-5 sm:grid-cols-2 ${s.process.length === 5 ? "lg:grid-cols-5" : "lg:grid-cols-4"}`}>
+          <ol className={`grid grid-cols-1 gap-5 sm:grid-cols-2 ${s.process.length === 5 ?"lg:grid-cols-5" : "lg:grid-cols-4"}`}>
             {s.process.map((p, i) => (
               <li key={p.title} className="relative rounded-[20px] bg-[#F8FAFC] p-6 ring-1 ring-[#E2E8F0]">
                 <span className="mb-4 flex h-9 w-9 items-center justify-center rounded-full bg-[#003D82] text-sm font-bold text-white">{i + 1}</span>

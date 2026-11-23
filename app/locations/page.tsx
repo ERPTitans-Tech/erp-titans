@@ -34,7 +34,7 @@ export default function LocationsPage() {
           {groups.map((g) => (
             <div key={g.title}>
               <h2 className="text-2xl font-extrabold text-[#003D82] mb-6">{g.title}</h2>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {g.items.map((l) => (
                   <Link
                     key={l.slug}

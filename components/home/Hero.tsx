@@ -75,7 +75,7 @@ export default function Hero({ isCA = false }: { isCA?: boolean }) {
       </div>
 
       <div className="relative mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
           {/* Copy */}
           <m.div initial={false} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <p className="mb-5 inline-flex flex-wrap items-center gap-x-3 gap-y-1.5 rounded-2xl sm:gap-x-2 sm:rounded-full bg-white px-4 py-1.5 text-xs font-semibold sm:text-sm text-[#003D82] shadow-sm ring-1 ring-[#003D82]/10">
@@ -190,7 +190,7 @@ export default function Hero({ isCA = false }: { isCA?: boolean }) {
             </div>
 
             {/* Gauge + bars */}
-            <div className="mt-7 grid items-center gap-7 sm:grid-cols-[150px_1fr]">
+            <div className="mt-7 grid grid-cols-1 items-center gap-7 sm:grid-cols-[150px_1fr]">
               <div className="relative mx-auto h-[150px] w-[150px]">
                 <svg viewBox="0 0 140 140" className="h-full w-full -rotate-90">
                   <circle cx="70" cy="70" r={R} fill="none" stroke="#F1F5F9" strokeWidth="12" />
@@ -271,7 +271,7 @@ export default function Hero({ isCA = false }: { isCA?: boolean }) {
           initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.35 }}
-          className="mt-14 grid items-center gap-6 rounded-[24px] bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] ring-1 ring-[#E2E8F0] lg:grid-cols-[auto_1fr_auto] lg:gap-10 md:px-8"
+          className="mt-14 grid grid-cols-1 items-center gap-6 rounded-[24px] bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] ring-1 ring-[#E2E8F0] lg:grid-cols-[auto_1fr_auto] lg:gap-10 md:px-8"
         >
           <Image src="/odoo-ready-partner-tight.svg" alt="Odoo Ready Partner" width={416} height={202} className="h-14 w-auto" />
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm font-semibold text-[#475569] lg:border-l lg:border-[#E2E8F0] lg:pl-10">
@@ -290,7 +290,7 @@ export default function Hero({ isCA = false }: { isCA?: boolean }) {
             href="/case-studies/top-tier-cannabis-brand"
             className="group inline-flex items-center gap-2 rounded-full bg-[#EFF6FF] px-5 py-2.5 text-sm font-semibold text-[#003D82] transition-colors hover:bg-[#003D82] hover:text-white"
           >
-            <span className="rounded-full bg-[#003D82] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white group-hover:bg-white group-hover:text-[#003D82]">
+            <span className="rounded-full bg-[#003D82] px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider text-white group-hover:bg-white group-hover:text-[#003D82]">
               New
             </span>
             Odoo go-live case study

@@ -8,7 +8,7 @@ export default function OdooHero() {
   return (
     <section className="relative pt-24 pb-10 md:pt-28 md:pb-14 bg-[#F8FAFC]" id="home">
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-[2fr_1fr] gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-12 lg:gap-16 items-center">
 
           <div className="text-left w-full">
 

@@ -21,7 +21,7 @@ export default function WhyChooseUs() {
           text="Deep ERP expertise, measurable outcomes, and long-term business partnerships."
           align="center"
         />
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {reasons.map((r, i) => {
             const Icon = r.icon;
             return (

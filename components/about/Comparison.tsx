@@ -30,7 +30,7 @@ export default function Comparison() {
           align="center"
         />
 
-        <div className="mx-auto grid max-w-5xl items-stretch gap-6 md:grid-cols-2">
+        <div className="mx-auto grid grid-cols-1 max-w-5xl items-stretch gap-6 md:grid-cols-2">
           <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

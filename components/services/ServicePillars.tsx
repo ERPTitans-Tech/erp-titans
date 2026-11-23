@@ -40,7 +40,7 @@ export default function ServicePillars() {
           text="Each pillar represents deep expertise and proven delivery excellence across every stage of your ERP evolution."
         />
 
-        <div className="grid gap-5 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
           {servicePillars.map((p, i) => {
             const Icon = p.icon;
             return (

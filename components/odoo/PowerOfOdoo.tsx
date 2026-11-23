@@ -23,7 +23,7 @@ export default function PowerOfOdoo() {
       </div>
 
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           
           {/* Left Content */}
           <div className="max-w-2xl">

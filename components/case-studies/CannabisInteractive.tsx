@@ -113,7 +113,7 @@ export function HeroDataGraph() {
           </div>
         </div>
         <div
-          className="absolute -translate-x-1/2 whitespace-nowrap rounded-full bg-white px-2.5 py-0.5 text-center text-[10.5px] font-semibold text-[#003D82] shadow-sm ring-1 ring-[#003D82]/10"
+          className="absolute -translate-x-1/2 whitespace-nowrap rounded-full bg-white px-2.5 py-0.5 text-center text-[11px] font-semibold text-[#003D82] sm:text-xs shadow-sm ring-1 ring-[#003D82]/10"
           style={{ left: `${HUB.x}%`, top: `calc(${HUB.y}% + 46px)` }}
         >
           One system of record
@@ -370,7 +370,7 @@ export function DataFlowStepper() {
   }, [active, paused, inView]);
 
   return (
-    <div ref={ref} className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+    <div ref={ref} className="grid grid-cols-1 gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
       <ol className="space-y-2">
         {steps.map((s, i) => {
           const Icon = s.icon;

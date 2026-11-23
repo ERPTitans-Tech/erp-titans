@@ -37,7 +37,7 @@ export default function IndustryPage({ industry }: { industry: IndustryKey }) {
             <span className="text-[#0F172A]">{d.name}</span>
           </nav>
 
-          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <m.div initial={false} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
               <span className="mb-5 inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-[#003D82] shadow-sm ring-1 ring-[#003D82]/10">
                 <span className="h-2 w-2 rounded-full bg-[#21B799]" />
@@ -108,7 +108,7 @@ export default function IndustryPage({ industry }: { industry: IndustryKey }) {
       <section className="border-t border-[#E2E8F0] bg-white py-20 lg:py-24">
         <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader n={1} label="The challenge" title={d.challenges.heading} text={d.challenges.text} />
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {d.challenges.items.map((c, i) => {
               const Icon = c.icon;
               return (
@@ -137,7 +137,7 @@ export default function IndustryPage({ industry }: { industry: IndustryKey }) {
           <SectionHeader n={2} label="How we fix it" title={d.solution.heading} text={d.solution.text} />
 
           {d.solution.cards && (
-            <div className={`grid gap-6 sm:grid-cols-2 ${d.solution.cards.length === 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"}`}>
+            <div className={`grid grid-cols-1 gap-6 sm:grid-cols-2 ${d.solution.cards.length === 4 ?"lg:grid-cols-4" : "lg:grid-cols-3"}`}>
               {d.solution.cards.map((c, i) => (
                 <m.div
                   key={c.title}
@@ -160,7 +160,7 @@ export default function IndustryPage({ industry }: { industry: IndustryKey }) {
           )}
 
           {(d.solution.pillars || d.solution.checklist) && (
-            <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
+            <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-2 lg:gap-16">
               <div>
                 {d.solution.pillars && (
                   <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
@@ -196,7 +196,7 @@ export default function IndustryPage({ industry }: { industry: IndustryKey }) {
           {d.solution.highlights.length > 0 && (
             <div className="mt-10">
               {d.solution.highlightsHeading && <h3 className="mb-5 text-xl font-extrabold text-[#0F172A]">{d.solution.highlightsHeading}</h3>}
-              <div className={`grid gap-6 ${d.solution.highlights.length > 1 ? "md:grid-cols-2" : ""}`}>
+              <div className={`grid grid-cols-1 gap-6 ${d.solution.highlights.length > 1 ?"md:grid-cols-2" : ""}`}>
                 {d.solution.highlights.map((h) => {
                   const Icon = h.icon;
                   return (
@@ -226,7 +226,7 @@ export default function IndustryPage({ industry }: { industry: IndustryKey }) {
             title={`The Odoo apps behind ${d.name.toLowerCase()} ERP`}
             text="As an official Odoo Ready Partner, we configure these apps around how your business actually runs, then extend them only where it adds real value."
           />
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {d.odooApps.map((a, i) => (
               <m.div
                 key={a.name}

@@ -41,7 +41,7 @@ export default function WhyChooseOdoo() {
     <section className="pt-10 lg:pt-14 pb-10 lg:pb-14 bg-[#F8FAFC] relative">
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
           {/* Left Column: Introduction */}
           <div className="lg:col-span-4 sticky top-32 pb-10 lg:pb-0">
@@ -90,7 +90,7 @@ export default function WhyChooseOdoo() {
 
           {/* Right Column: Grid of Feature Cards */}
           <div className="lg:col-span-8">
-            <div className="grid sm:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {reasons.map((reason, idx) => (
                 <div 
                   key={idx}

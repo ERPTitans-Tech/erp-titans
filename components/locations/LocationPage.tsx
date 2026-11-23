@@ -53,7 +53,7 @@ export default async function LocationPage({ loc }: { loc: Location }) {
 
       {/* Intro + local context */}
       <section className="py-16 md:py-20 bg-white">
-        <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16">
+        <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16">
           <div className="space-y-5 text-[#475569] text-lg leading-relaxed">
             {loc.intro.map((p) => (
               <p key={p.slice(0, 40)}>{p}</p>
@@ -77,7 +77,7 @@ export default async function LocationPage({ loc }: { loc: Location }) {
           <p className="text-lg text-[#64748B] mb-8 max-w-3xl">
             Every implementation starts with your processes, but these are the {loc.country === "Canada" ? "Canadian" : "US"} and local requirements we build in from day one.
           </p>
-          <ul className="grid md:grid-cols-2 gap-4">
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {loc.odooSetup.map((s) => (
               <li key={s} className="flex gap-3 rounded-2xl bg-white border border-[#E2E8F0] p-5 text-[15px] text-[#334155] leading-relaxed">
                 <CheckCircle2 size={20} className="text-[#16A34A] shrink-0 mt-0.5" />
@@ -92,7 +92,7 @@ export default async function LocationPage({ loc }: { loc: Location }) {
       <section className="py-16 md:py-20 bg-white">
         <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl md:text-3xl font-extrabold text-[#003D82] mb-8">Industries we serve in {loc.place}</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-14">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-14">
             {loc.industries.map((i) => (
               <Link
                 key={i.name}

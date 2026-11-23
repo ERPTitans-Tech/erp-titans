@@ -104,7 +104,7 @@ export default function RecoveryProcess() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -14 }}
               transition={{ duration: 0.3 }}
-              className="grid gap-8 rounded-[28px] bg-[#F8FAFC] p-7 ring-1 ring-[#E2E8F0] sm:p-10 md:grid-cols-[1.2fr_1fr]"
+              className="grid grid-cols-1 gap-8 rounded-[28px] bg-[#F8FAFC] p-7 ring-1 ring-[#E2E8F0] sm:p-10 md:grid-cols-[1.2fr_1fr]"
             >
               <div>
                 <div className="mb-4 flex items-center gap-3">

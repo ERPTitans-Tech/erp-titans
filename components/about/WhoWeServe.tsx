@@ -21,7 +21,7 @@ export default function WhoWeServe() {
           text="We work with SMEs globally that value precision and long-term stability."
           align="center"
         />
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {audiences.map((a, i) => {
             const Icon = a.icon;
             return (

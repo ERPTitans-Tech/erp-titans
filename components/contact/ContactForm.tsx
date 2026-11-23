@@ -111,7 +111,7 @@ export default function ContactForm() {
         </div>
 
         {/* MAIN LAYOUT */}
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
           {/* LEFT SIDEBAR (30%) */}
           <ContactSidebar activeTab={activeTab} />

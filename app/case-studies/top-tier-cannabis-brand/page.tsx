@@ -265,7 +265,7 @@ export default function TopTierCannabisCaseStudyPage() {
             <span className="text-[#0F172A]">Top-Tier Cannabis Brand</span>
           </nav>
 
-          <div className="grid lg:grid-cols-[1.35fr_1fr] gap-12 lg:gap-14 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.35fr_1fr] gap-12 lg:gap-14 items-start">
             <div>
               <div className="flex flex-wrap gap-2 mb-6">
                 <span className="inline-flex items-center rounded-full bg-green-50 text-[#16A34A] px-3 py-1 text-xs font-bold uppercase tracking-wider">
@@ -351,7 +351,7 @@ export default function TopTierCannabisCaseStudyPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {challenges.map((c) => (
               <div key={c.title} className="rounded-[20px] bg-[#F8FAFC] border border-gray-100 p-7">
                 <h3 className="text-lg font-bold text-[#0F172A] mb-2">{c.title}</h3>
@@ -377,7 +377,7 @@ export default function TopTierCannabisCaseStudyPage() {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-20">
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <span className="w-11 h-11 rounded-xl bg-[#003D82] text-white flex items-center justify-center">
@@ -402,7 +402,7 @@ export default function TopTierCannabisCaseStudyPage() {
             <CoaLiveCheck />
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div className="lg:order-2">
               <div className="flex items-center gap-3 mb-4">
                 <span className="w-11 h-11 rounded-xl bg-[#003D82] text-white flex items-center justify-center">
@@ -482,7 +482,7 @@ export default function TopTierCannabisCaseStudyPage() {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {solution.map(({ icon, app, title, points }) => (
               <div
                 key={title}
@@ -517,7 +517,7 @@ export default function TopTierCannabisCaseStudyPage() {
           <SectionLabel n="5">Integrations &amp; analytics</SectionLabel>
 
           {/* Row 1: integrations | Power BI + reports delivered */}
-          <div className="mt-6 grid items-stretch gap-8 lg:grid-cols-2 lg:gap-10">
+          <div className="mt-6 grid grid-cols-1 items-stretch gap-8 lg:grid-cols-2 lg:gap-10">
             <div className="flex flex-col rounded-[24px] bg-[#F8FAFC] p-7 ring-1 ring-[#E2E8F0] sm:p-8">
               <div className="mb-3 flex items-center gap-3">
                 <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#003D82] text-white">
@@ -554,7 +554,7 @@ export default function TopTierCannabisCaseStudyPage() {
                 <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#003D82]">Reports &amp; dashboards delivered</span>
                 <span className="rounded-full bg-white px-2.5 py-0.5 text-[12px] font-bold text-[#003D82] ring-1 ring-[#E2E8F0]">{reports.length}</span>
               </div>
-              <div className="grid flex-1 content-between gap-2.5 sm:grid-cols-2">
+              <div className="grid grid-cols-1 flex-1 content-between gap-2.5 sm:grid-cols-2">
                 {reports.map((r) => (
                   <div key={r} className="flex items-start gap-2.5 rounded-[12px] bg-white px-3.5 py-2.5 ring-1 ring-[#E2E8F0]">
                     <CheckCircle2 size={15} className="mt-0.5 shrink-0 text-[#16A34A]" />
@@ -566,7 +566,7 @@ export default function TopTierCannabisCaseStudyPage() {
           </div>
 
           {/* Row 2: the two interactive charts side by side */}
-          <div className="mt-8 grid items-stretch gap-8 lg:mt-10 lg:grid-cols-2 lg:gap-10">
+          <div className="mt-8 grid grid-cols-1 items-stretch gap-8 lg:mt-10 lg:grid-cols-2 lg:gap-10">
             <DashboardTabs className="h-full" />
             <ProductionMix className="h-full" />
           </div>
@@ -603,7 +603,7 @@ export default function TopTierCannabisCaseStudyPage() {
             ))}
           </ol>
 
-          <div className="mt-14 grid md:grid-cols-3 gap-6">
+          <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               { t: "Role-based training", d: "Hands-on workshops tailored to inventory, production, sales and accounting users." },
               { t: "Documentation handover", d: "Role-specific user manuals, configuration guides and a video library." },
@@ -621,7 +621,7 @@ export default function TopTierCannabisCaseStudyPage() {
       {/* ───────── Outcomes ───────── */}
       <section className="py-20 lg:py-24 bg-white border-t border-[#E2E8F0]">
         <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-[1fr_1.3fr] gap-12 lg:gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-12 lg:gap-16 items-start">
             <div>
               <SectionLabel n="7">The result</SectionLabel>
               <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] leading-tight mb-5">
@@ -634,7 +634,7 @@ export default function TopTierCannabisCaseStudyPage() {
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {outcomes.map((o) => (
                 <div key={o} className="flex gap-3 items-start rounded-[16px] bg-[#F8FAFC] border border-gray-100 p-5">
                   <CheckCircle2 size={20} className="text-[#003D82] shrink-0 mt-0.5" />

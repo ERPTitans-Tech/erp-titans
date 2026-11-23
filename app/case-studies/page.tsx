@@ -33,14 +33,14 @@ export default function CaseStudiesPage() {
       {/* Case study cards */}
       <section className="pb-20 lg:pb-24 bg-[#F8FAFC]">
         <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-8">
+          <div className="grid grid-cols-1 gap-8">
             {caseStudies.map((cs) => (
               <Link
                 key={cs.slug}
                 href={`/case-studies/${cs.slug}`}
                 className="group block bg-white rounded-[24px] border border-gray-100 border-l-4 border-l-[#003D82] shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] hover:-translate-y-0.5 transition-all duration-300 p-8 md:p-10"
               >
-                <div className="grid lg:grid-cols-[1fr_auto] gap-8 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-center">
                   <div>
                     <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-semibold text-[#64748B] mb-4">
                       <span className="inline-flex items-center rounded-full bg-green-50 text-[#16A34A] px-3 py-1 text-xs font-bold uppercase tracking-wider">

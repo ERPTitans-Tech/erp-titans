@@ -30,7 +30,7 @@ export default function Outcomes() {
           text="We don't measure success by technical milestones or software installed. We measure it by the tangible business outcomes that drive your growth."
         />
 
-        <div className="grid gap-6 lg:grid-cols-[1.25fr_1fr]">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.25fr_1fr]">
           {/* Before / after chart */}
           <m.div
             initial={{ opacity: 0, y: 20 }}
@@ -150,7 +150,7 @@ export default function Outcomes() {
               <p className="mt-3 text-[15px] leading-relaxed text-[#64748B]">
                 One system of record across sister brands, from production to compliance reporting and leadership dashboards.
               </p>
-              <ul className="mt-5 grid gap-2.5 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+              <ul className="mt-5 grid grid-cols-1 gap-2.5 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
                 {[
                   { icon: FileCheck2, label: "COA tracking" },
                   { icon: FlaskConical, label: "CTLS reporting" },

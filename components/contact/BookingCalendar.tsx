@@ -153,7 +153,7 @@ export default function BookingCalendar({ selectedDate, onSelectDate }: BookingC
                       disabled={past}
                       className={containerClass}
                     >
-                      <span className={`text-[9px] font-bold mb-1 uppercase tracking-widest ${isSelected ? 'text-white' : past ? 'text-[#CBD5E1]' : 'text-[#94A3B8]'}`}>
+                      <span className={`text-[10px] sm:text-[11px] font-bold mb-1 uppercase tracking-wider ${isSelected ? 'text-white' : past ? 'text-[#CBD5E1]' : 'text-[#94A3B8]'}`}>
                         {format(dayObj, 'EEE')}
                       </span>
                       <span className={`text-lg font-bold leading-none ${isSelected ? 'text-white' : past ? 'text-[#CBD5E1]' : 'text-[#003D82]'}`}>

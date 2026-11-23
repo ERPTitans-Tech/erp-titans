@@ -90,7 +90,7 @@ export default function CostOfInaction() {
           text="A broken ERP doesn't just stay broken; it drains your resources every single day you ignore it."
         />
 
-        <div className="grid gap-6 lg:grid-cols-[1.05fr_1fr]">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.05fr_1fr]">
           {/* Calculator */}
           <m.div
             initial={{ opacity: 0, y: 20 }}
@@ -141,7 +141,7 @@ export default function CostOfInaction() {
           </m.div>
 
           {/* Cost cards */}
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {costs.map((c, i) => {
               const Icon = c.icon;
               return (

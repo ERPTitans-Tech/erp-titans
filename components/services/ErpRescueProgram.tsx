@@ -20,7 +20,7 @@ export default function ErpRescueProgram() {
       <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader n={3} label="Flagship program" title="When an ERP project needs rescuing" />
 
-        <div className="grid items-stretch gap-8 lg:grid-cols-2">
+        <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-2">
           {/* Rescue program */}
           <m.div
             initial={{ opacity: 0, y: 20 }}
@@ -59,7 +59,7 @@ export default function ErpRescueProgram() {
               Most ERP failures aren&apos;t software problems. They&apos;re execution problems. We combine deep technical knowledge of Odoo and
               other platforms with senior-level business process expertise.
             </p>
-            <div className="grid flex-1 gap-4 sm:grid-cols-2">
+            <div className="grid grid-cols-1 flex-1 gap-4 sm:grid-cols-2">
               {differentiators.map((c, i) => {
                 const Icon = c.icon;
                 return (

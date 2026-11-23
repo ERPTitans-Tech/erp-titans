@@ -32,9 +32,9 @@ export default function WhyERP() {
           text="We're specialists, not generic implementers. We understand the nuances of ERP recovery on a global scale."
         />
 
-        <div className="grid gap-6 lg:grid-cols-[1fr_1.1fr]">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1.1fr]">
           {/* Feature cards */}
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {features.map((f, i) => {
               const Icon = f.icon;
               return (

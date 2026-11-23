@@ -60,9 +60,9 @@ export default function Challenges() {
           align="center"
         />
 
-        <div className="grid gap-6 lg:grid-cols-[1fr_360px]">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_360px]">
           {/* Symptom cards */}
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {symptoms.map((s, i) => {
               const Icon = s.icon;
               const on = picked.includes(i);
