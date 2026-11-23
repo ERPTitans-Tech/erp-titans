@@ -78,19 +78,19 @@ export default function Hero({ isCA = false }: { isCA?: boolean }) {
         <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
           {/* Copy */}
           <m.div initial={false} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <p className="mb-5 inline-flex flex-wrap items-center gap-x-2 gap-y-1 rounded-full bg-white px-4 py-1.5 text-xs font-semibold sm:text-sm text-[#003D82] shadow-sm ring-1 ring-[#003D82]/10">
+            <p className="mb-5 inline-flex flex-wrap items-center gap-x-3 gap-y-1.5 rounded-2xl sm:gap-x-2 sm:rounded-full bg-white px-4 py-1.5 text-xs font-semibold sm:text-sm text-[#003D82] shadow-sm ring-1 ring-[#003D82]/10">
               <span className="h-2 w-2 shrink-0 rounded-full bg-[#21B799]" />
               <span>Official Odoo Ready Partner</span>
               {offices.pill.map((o) => (
                 <span key={o.label} className="inline-flex items-center gap-1.5 whitespace-nowrap">
-                  <span className="text-[#CBD5E1]">·</span>
+                  <span className="hidden text-[#CBD5E1] sm:inline">·</span>
                   <Flag country={o.country} />
                   {o.label}
                 </span>
               ))}
               {offices.serving && (
                 <span className="whitespace-nowrap">
-                  <span className="mr-1.5 text-[#CBD5E1]">·</span>
+                  <span className="mr-1.5 hidden text-[#CBD5E1] sm:inline">·</span>
                   {offices.serving}
                 </span>
               )}
@@ -99,7 +99,7 @@ export default function Hero({ isCA = false }: { isCA?: boolean }) {
               Fix Your Broken ERP. <br />
               Scale Your Business.
             </h1>
-            <p className="mt-6 max-w-xl text-xl leading-relaxed text-[#475569]">
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-[#475569] sm:text-xl">
               Your ERP implementation didn&apos;t go as planned. We help SMEs globally recover from failed systems, fix broken
               processes, and finally unlock the ROI you were promised.
             </p>
