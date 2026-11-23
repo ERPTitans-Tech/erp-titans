@@ -1,115 +1,177 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Stethoscope, Search, Map, TrendingUp } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Stethoscope, Search, Map, TrendingUp, Check, ArrowRight, ArrowLeft } from "lucide-react";
+import SectionHeader from "@/components/ui/SectionHeader";
+
+const steps = [
+  {
+    title: "ERP Health Audit",
+    description: "A comprehensive diagnostic of your current system, processes, and alignment gaps. Low risk, high value.",
+    icon: Stethoscope,
+    deliverables: ["System and process diagnostic", "Prioritised list of issues", "Risks and quick wins summary"],
+  },
+  {
+    title: "Root Cause Analysis",
+    description: "We don't just patch symptoms. We dig deep to identify exactly why the implementation failed.",
+    icon: Search,
+    deliverables: ["Root cause behind each issue", "Data quality review", "Configuration and customization review"],
+  },
+  {
+    title: "Recovery Roadmap",
+    description: "A pragmatic, phased action plan to stabilize operations and recover lost value without massive disruption.",
+    icon: Map,
+    deliverables: ["Phased recovery plan", "Priority and effort per phase", "Plan to keep operations running"],
+  },
+  {
+    title: "Optimization & Scale",
+    description: "Once stabilized, we optimize workflows, reporting, and adoption to finally achieve the promised ROI.",
+    icon: TrendingUp,
+    deliverables: ["Workflow and automation fixes", "Reporting your team trusts", "Training and adoption support"],
+  },
+];
 
 export default function RecoveryProcess() {
-  const containerVariants = {
-    hidden: { opacity: 1 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 1, y: 0 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
-  };
-
-  const steps = [
-    {
-      step: "01",
-      title: "ERP Health Audit",
-      description: "A comprehensive diagnostic of your current system, processes, and alignment gaps. Low risk, high value.",
-      icon: <Stethoscope size={24} strokeWidth={2} />,
-    },
-    {
-      step: "02",
-      title: "Root Cause Analysis",
-      description: "We don't just patch symptoms. We dig deep to identify exactly why the implementation failed.",
-      icon: <Search size={24} strokeWidth={2} />,
-    },
-    {
-      step: "03",
-      title: "Recovery Roadmap",
-      description: "A pragmatic, phased action plan to stabilize operations and recover lost value without massive disruption.",
-      icon: <Map size={24} strokeWidth={2} />,
-    },
-    {
-      step: "04",
-      title: "Optimization & Scale",
-      description: "Once stabilized, we optimize workflows, reporting, and adoption to finally achieve the promised ROI.",
-      icon: <TrendingUp size={24} strokeWidth={2} />,
-    },
-  ];
+  const [active, setActive] = useState(0);
+  const step = steps[active];
+  const Icon = step.icon;
 
   return (
-    <section className="py-24 md:py-32 bg-[#F8FAFC] relative overflow-hidden" id="process">
-      <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Section Header */}
-        <div className="mb-16 md:mb-24 text-center max-w-3xl mx-auto">
+    <section className="border-t border-[#E2E8F0] bg-white py-20 lg:py-24" id="process">
+      <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
+        <SectionHeader
+          n={3}
+          label="Our process"
+          title="The Path to Recovery"
+          text="We use a structured, predictable framework to turn failing systems into growth engines."
+          align="center"
+        />
 
-          <motion.h2 
-            initial={{ opacity: 1, y: 0 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl font-extrabold text-[#003D82] mb-6 tracking-tight"
-          >
-            The Path to Recovery
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 1, y: 0 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-xl text-[#475569] leading-relaxed"
-          >
-            We use a structured, predictable framework to turn failing systems into growth engines.
-          </motion.p>
+        {/* Stepper */}
+        <div className="relative mx-auto max-w-5xl">
+          <div className="absolute left-[12.5%] right-[12.5%] top-8 hidden h-[3px] rounded-full bg-[#E2E8F0] md:block" aria-hidden="true">
+            <motion.div
+              className="h-full rounded-full bg-gradient-to-r from-[#003D82] via-[#0EA5E9] to-[#16A34A]"
+              animate={{ width: `${(active / (steps.length - 1)) * 100}%` }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            />
+          </div>
+          <div className="relative grid grid-cols-2 gap-6 md:grid-cols-4" role="tablist" aria-label="Recovery steps">
+            {steps.map((s, i) => {
+              const StepIcon = s.icon;
+              const on = i === active;
+              const done = i < active;
+              return (
+                <button
+                  key={s.title}
+                  role="tab"
+                  aria-selected={on}
+                  onClick={() => setActive(i)}
+                  className="group flex flex-col items-center text-center"
+                >
+                  <span
+                    className={`relative flex h-16 w-16 items-center justify-center rounded-2xl ring-4 ring-white transition-all duration-300 ${
+                      on
+                        ? "scale-110 bg-[#003D82] text-white shadow-[0_10px_25px_rgba(0,61,130,0.35)]"
+                        : done
+                        ? "bg-[#EFF6FF] text-[#003D82]"
+                        : "bg-[#F8FAFC] text-[#94A3B8] group-hover:text-[#003D82]"
+                    }`}
+                  >
+                    <StepIcon size={24} />
+                    <span
+                      className={`absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full text-[11px] font-bold ring-2 ring-white ${
+                        on || done ? "bg-[#003D82] text-white" : "bg-[#E2E8F0] text-[#64748B]"
+                      }`}
+                    >
+                      {done ? <Check size={12} strokeWidth={3} /> : i + 1}
+                    </span>
+                  </span>
+                  <span className={`mt-4 text-[15px] font-bold transition-colors ${on ? "text-[#003D82]" : "text-[#0F172A]"}`}>{s.title}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
-        {/* Process Steps */}
-        <motion.div 
-          className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          {/* Connector Line (Desktop Only) */}
-          <div className="hidden lg:block absolute top-[3rem] left-[10%] right-[10%] h-[2px] bg-gradient-to-r from-[#003D82]/10 via-[#003D82]/40 to-[#003D82]/10 z-0"></div>
-
-          {steps.map((step, index) => (
-            <motion.div 
-              key={index}
-              variants={itemVariants}
-              className="relative z-10 flex flex-col items-center text-center"
+        {/* Detail panel */}
+        <div className="mx-auto mt-12 max-w-5xl">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={step.title}
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -14 }}
+              transition={{ duration: 0.3 }}
+              className="grid gap-8 rounded-[28px] bg-[#F8FAFC] p-7 ring-1 ring-[#E2E8F0] sm:p-10 md:grid-cols-[1.2fr_1fr]"
             >
-              {/* Step Icon / Number */}
-              <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mb-6 shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-[#E2E8F0] relative group transition-transform duration-300 hover:scale-105 hover:border-[#003D82]">
-                <div className="absolute top-0 right-0 -mr-2 -mt-2 w-8 h-8 rounded-full bg-[#0F172A] text-white flex items-center justify-center text-xs font-bold shadow-md">
-                  {step.step}
+              <div>
+                <div className="mb-4 flex items-center gap-3">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#003D82] text-white">
+                    <Icon size={20} />
+                  </span>
+                  <span className="text-sm font-bold uppercase tracking-[0.14em] text-[#003D82]">
+                    Step {String(active + 1).padStart(2, "0")} of {String(steps.length).padStart(2, "0")}
+                  </span>
                 </div>
-                <div className="text-[#003D82] group-hover:scale-110 transition-transform duration-300">
-                  {step.icon}
+                <h3 className="text-2xl font-extrabold tracking-tight text-[#0F172A] md:text-3xl">{step.title}</h3>
+                <p className="mt-4 text-lg leading-relaxed text-[#475569]">{step.description}</p>
+                <div className="mt-7 flex gap-3">
+                  <button
+                    onClick={() => setActive((a) => Math.max(0, a - 1))}
+                    disabled={active === 0}
+                    aria-label="Previous step"
+                    className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-[#003D82] ring-1 ring-[#E2E8F0] transition-all hover:ring-[#003D82]/40 disabled:opacity-40"
+                  >
+                    <ArrowLeft size={18} />
+                  </button>
+                  <button
+                    onClick={() => setActive((a) => Math.min(steps.length - 1, a + 1))}
+                    disabled={active === steps.length - 1}
+                    className="inline-flex items-center gap-2 rounded-full bg-[#003D82] px-6 text-sm font-semibold text-white transition-all hover:bg-[#003D82]/90 disabled:opacity-40"
+                  >
+                    Next step <ArrowRight size={16} />
+                  </button>
                 </div>
               </div>
 
-              <h3 className="text-xl font-bold text-[#0F172A] mb-3">
-                {step.title}
-              </h3>
-              <p className="text-[#475569] leading-relaxed">
-                {step.description}
-              </p>
+              <div className="rounded-2xl bg-white p-6 ring-1 ring-[#E2E8F0]">
+                <span className="text-xs font-bold uppercase tracking-[0.14em] text-[#94A3B8]">What you get</span>
+                <ul className="mt-4 space-y-3">
+                  {step.deliverables.map((d, i) => (
+                    <motion.li
+                      key={d}
+                      initial={{ opacity: 0, x: 10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 + i * 0.08 }}
+                      className="flex items-start gap-3 text-[15px] font-medium text-[#0F172A]"
+                    >
+                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#16A34A]/10">
+                        <Check size={12} strokeWidth={3} className="text-[#16A34A]" />
+                      </span>
+                      {d}
+                    </motion.li>
+                  ))}
+                </ul>
+                <div className="mt-6 border-t border-[#F1F5F9] pt-5">
+                  <div className="mb-2 flex justify-between text-xs font-bold uppercase tracking-wider text-[#94A3B8]">
+                    <span>Recovery progress</span>
+                    <span className="text-[#003D82]">{((active + 1) / steps.length) * 100}%</span>
+                  </div>
+                  <div className="h-2 overflow-hidden rounded-full bg-[#F1F5F9]">
+                    <motion.div
+                      className="h-full rounded-full bg-[#003D82]"
+                      initial={false}
+                      animate={{ width: `${((active + 1) / steps.length) * 100}%` }}
+                      transition={{ duration: 0.6 }}
+                    />
+                  </div>
+                </div>
+              </div>
             </motion.div>
-          ))}
-        </motion.div>
-
+          </AnimatePresence>
+        </div>
       </div>
     </section>
   );

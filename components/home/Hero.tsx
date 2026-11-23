@@ -1,141 +1,287 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, Check, Search, Wrench, Zap, TrendingUp, Info } from "lucide-react";
 import { officesFor } from "@/lib/offices";
 
-import { ArrowRight, Check, Search, Wrench, Zap, TrendingUp, Activity, BarChart3 } from "lucide-react";
-import Link from "next/link";
+const NAVY = "#003D82";
+const SKY = "#0EA5E9";
+const GREEN = "#16A34A";
+
+// Illustrative ERP health journey across the four recovery stages.
+const stages = [
+  {
+    key: "Diagnose",
+    icon: Search,
+    text: "Identify ERP bottlenecks and implementation failures.",
+    score: 38,
+    bars: { "Data accuracy": 46, "User adoption": 35, "Automation": 22 },
+  },
+  {
+    key: "Recover",
+    icon: Wrench,
+    text: "Fix broken workflows and system inefficiencies.",
+    score: 61,
+    bars: { "Data accuracy": 72, "User adoption": 58, "Automation": 41 },
+  },
+  {
+    key: "Optimize",
+    icon: Zap,
+    text: "Improve reporting, automation, and data integrity.",
+    score: 82,
+    bars: { "Data accuracy": 90, "User adoption": 78, "Automation": 74 },
+  },
+  {
+    key: "Scale",
+    icon: TrendingUp,
+    text: "Build a stable foundation for future growth.",
+    score: 94,
+    bars: { "Data accuracy": 97, "User adoption": 92, "Automation": 90 },
+  },
+] as const;
+
+const R = 54;
+const C = 2 * Math.PI * R;
+
+function scoreColor(score: number) {
+  if (score >= 80) return GREEN;
+  if (score >= 55) return SKY;
+  return "#F59E0B";
+}
 
 export default function Hero({ isCA = false }: { isCA?: boolean }) {
   const offices = officesFor(isCA);
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (paused) return;
+    const id = setInterval(() => setActive((a) => (a + 1) % stages.length), 3200);
+    return () => clearInterval(id);
+  }, [paused]);
+
+  const stage = stages[active];
+  const color = scoreColor(stage.score);
+
   return (
-    <section className="relative pt-24 pb-10 md:pt-28 md:pb-12 bg-[#F8FAFC]" id="home">
-      <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          
-          {/* Left Content */}
-          <div className="text-left">
+    <section className="relative overflow-hidden bg-[#F8FAFC] pt-32 pb-16 lg:pt-36 lg:pb-20" id="home">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -top-[20%] -left-[10%] h-[50%] w-[50%] rounded-full bg-sky-100/50 blur-[120px]" />
+        <div className="absolute top-[30%] -right-[10%] h-[40%] w-[40%] rounded-full bg-blue-50/70 blur-[100px]" />
+      </div>
 
-
+      <div className="relative mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
+          {/* Copy */}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <p className="mb-5 inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-[#003D82] shadow-sm ring-1 ring-[#003D82]/10">
               <span className="h-2 w-2 rounded-full bg-[#21B799]" />
               Official Odoo Ready Partner · {offices.short} · {offices.serving}
             </p>
-            <h1 className="text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] mb-8 text-[#003D82]">
+            <h1 className="text-4xl font-extrabold leading-[1.1] tracking-tight text-[#003D82] sm:text-5xl lg:text-[58px]">
               Fix Your Broken ERP. <br />
-              <span className="text-[#003D82]">Scale Your Business.</span>
+              Scale Your Business.
             </h1>
-
-            <p className="text-xl text-[#475569] mb-10 leading-relaxed max-w-lg">
-              Your ERP implementation didn&apos;t go as planned. We help SMEs globally recover from failed systems, fix broken processes, and finally unlock the ROI you were promised.
+            <p className="mt-6 max-w-xl text-xl leading-relaxed text-[#475569]">
+              Your ERP implementation didn&apos;t go as planned. We help SMEs globally recover from failed systems, fix broken
+              processes, and finally unlock the ROI you were promised.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-start mb-10">
-              <Link href="/contact" className="bg-[#0F172A] hover:bg-[#003D82] text-white px-8 py-4 rounded-sm font-medium transition-colors flex items-center justify-center gap-2 shadow-md">
-                Get ERP Health Audit <ArrowRight size={18} />
+            <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#003D82] px-8 py-3.5 text-[15px] font-semibold text-white shadow-[0_4px_14px_0_rgba(0,61,130,0.39)] transition-all hover:bg-[#003D82]/90"
+              >
+                Get ERP Health Audit <ArrowRight size={17} />
               </Link>
-              <a href="#process" className="bg-white border-2 border-[#CBD5E1] hover:border-[#94A3B8] text-[#0F172A] px-8 py-4 rounded-sm font-medium transition-colors flex items-center justify-center">
+              <a
+                href="#process"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-gray-200 bg-white px-8 py-3.5 text-[15px] font-semibold text-[#0F172A] shadow-sm transition-all hover:bg-gray-50"
+              >
                 Learn Our Process
               </a>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 text-sm font-semibold text-[#475569]">
-              <div className="flex items-center gap-2">
-                <Check size={18} className="text-[#003D82]" strokeWidth={3} />
-                <span>ERP Recovery Specialists</span>
+            <div className="mt-9 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-[#475569]">
+              {["ERP Recovery Specialists", "Global Delivery", isCA ? "Canadian Based" : "Offices in Canada & the US"].map((f) => (
+                <span key={f} className="inline-flex items-center gap-2">
+                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#003D82]/10">
+                    <Check size={12} strokeWidth={3} className="text-[#003D82]" />
+                  </span>
+                  {f}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Interactive recovery framework */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            className="rounded-[28px] bg-white p-7 shadow-[0_20px_50px_rgba(0,61,130,0.10)] ring-1 ring-[#E2E8F0] sm:p-8"
+          >
+            <div className="mb-6 flex items-start justify-between gap-4">
+              <div>
+                <span className="text-sm font-bold uppercase tracking-[0.14em] text-[#003D82]">ERP Recovery Framework</span>
+                <p className="mt-1 text-sm text-[#64748B]">Our proven methodology for system optimization</p>
               </div>
-              <div className="flex items-center gap-2">
-                <Check size={18} className="text-[#003D82]" strokeWidth={3} />
-                <span>Global Delivery</span>
+              <span className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border border-dashed border-[#003D82]/30 bg-[#EFF6FF] px-2.5 py-1 text-[11px] font-semibold text-[#003D82]">
+                <Info size={12} /> Illustrative
+              </span>
+            </div>
+
+            {/* Stage tabs */}
+            <div className="grid grid-cols-4 gap-2" role="tablist" aria-label="Recovery stages">
+              {stages.map((s, i) => {
+                const Icon = s.icon;
+                const on = i === active;
+                const done = i < active;
+                return (
+                  <button
+                    key={s.key}
+                    role="tab"
+                    aria-selected={on}
+                    onClick={() => {
+                      setActive(i);
+                      setPaused(true);
+                    }}
+                    className={`group flex flex-col items-center gap-2 rounded-2xl px-1 py-3 text-xs font-bold transition-all ${
+                      on ? "bg-[#003D82] text-white shadow-md" : "bg-[#F8FAFC] text-[#475569] ring-1 ring-[#E2E8F0] hover:ring-[#003D82]/30"
+                    }`}
+                  >
+                    <span
+                      className={`flex h-9 w-9 items-center justify-center rounded-xl ${
+                        on ? "bg-white/15" : done ? "bg-[#003D82]/10 text-[#003D82]" : "bg-white text-[#94A3B8] ring-1 ring-[#E2E8F0]"
+                      }`}
+                    >
+                      <Icon size={17} />
+                    </span>
+                    {s.key}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Progress line */}
+            <div className="mt-4 h-1 w-full overflow-hidden rounded-full bg-[#F1F5F9]">
+              <motion.div
+                className="h-full rounded-full bg-gradient-to-r from-[#003D82] via-[#0EA5E9] to-[#16A34A]"
+                animate={{ width: `${((active + 1) / stages.length) * 100}%` }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+              />
+            </div>
+
+            {/* Gauge + bars */}
+            <div className="mt-7 grid items-center gap-7 sm:grid-cols-[150px_1fr]">
+              <div className="relative mx-auto h-[150px] w-[150px]">
+                <svg viewBox="0 0 140 140" className="h-full w-full -rotate-90">
+                  <circle cx="70" cy="70" r={R} fill="none" stroke="#F1F5F9" strokeWidth="12" />
+                  <motion.circle
+                    cx="70"
+                    cy="70"
+                    r={R}
+                    fill="none"
+                    stroke={color}
+                    strokeWidth="12"
+                    strokeLinecap="round"
+                    strokeDasharray={C}
+                    animate={{ strokeDashoffset: C * (1 - stage.score / 100), stroke: color }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                  />
+                </svg>
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={stage.score}
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -6 }}
+                      className="text-4xl font-extrabold tracking-tight text-[#0F172A]"
+                    >
+                      {stage.score}
+                    </motion.span>
+                  </AnimatePresence>
+                  <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#94A3B8]">ERP health</span>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <Check size={18} className="text-[#003D82]" strokeWidth={3} />
-                <span>Canadian Based</span>
+
+              <div className="space-y-4">
+                {Object.entries(stage.bars).map(([label, v]) => (
+                  <div key={label}>
+                    <div className="mb-1.5 flex justify-between text-[13px] font-semibold">
+                      <span className="text-[#475569]">{label}</span>
+                      <span className="text-[#0F172A]">{v}%</span>
+                    </div>
+                    <div className="h-2 overflow-hidden rounded-full bg-[#F1F5F9]">
+                      <motion.div
+                        className="h-full rounded-full"
+                        style={{ backgroundColor: NAVY }}
+                        animate={{ width: `${v}%` }}
+                        transition={{ duration: 0.7, ease: "easeOut" }}
+                      />
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
 
-          {/* Right Visual - ERP Recovery Framework Card */}
-          <div className="relative w-full hidden lg:block">
-            {/* Soft background shadow/glow to separate from background */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[#003D82]/5 blur-[100px] rounded-full pointer-events-none"></div>
-
-            <div className="relative bg-white border border-[#E2E8F0] p-8 lg:p-10 rounded-xl shadow-2xl z-10">
-              <div className="flex items-center justify-between border-b border-[#F1F5F9] pb-6 mb-6">
-                <div>
-                  <h3 className="text-[#0F172A] font-bold text-xl tracking-tight">ERP Recovery Framework</h3>
-                  <p className="text-[#64748B] text-sm mt-1">Our proven methodology for system optimization</p>
-                </div>
-                <div className="p-2 bg-[#003D82] rounded-lg text-white">
-                  <Activity size={24} />
-                </div>
-              </div>
-
-              <div className="space-y-6">
-                {/* Step 1 */}
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[#003D82] text-white flex items-center justify-center border border-[#003D82]">
-                    <Search size={18} strokeWidth={2.5} />
-                  </div>
-                  <div>
-                    <h4 className="text-[#0F172A] font-semibold text-[15px] mb-1">Diagnose</h4>
-                    <p className="text-[#475569] text-sm leading-relaxed">Identify ERP bottlenecks and implementation failures.</p>
-                  </div>
-                </div>
-
-                {/* Step 2 */}
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[#003D82] text-white flex items-center justify-center border border-[#003D82]">
-                    <Wrench size={18} strokeWidth={2.5} />
-                  </div>
-                  <div>
-                    <h4 className="text-[#0F172A] font-semibold text-[15px] mb-1">Recover</h4>
-                    <p className="text-[#475569] text-sm leading-relaxed">Fix broken workflows and system inefficiencies.</p>
-                  </div>
-                </div>
-
-                {/* Step 3 */}
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[#003D82] text-white flex items-center justify-center border border-[#003D82]">
-                    <Zap size={18} strokeWidth={2.5} />
-                  </div>
-                  <div>
-                    <h4 className="text-[#0F172A] font-semibold text-[15px] mb-1">Optimize</h4>
-                    <p className="text-[#475569] text-sm leading-relaxed">Improve reporting, automation, and data integrity.</p>
-                  </div>
-                </div>
-
-                {/* Step 4 */}
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[#003D82] text-white flex items-center justify-center border border-[#003D82]">
-                    <TrendingUp size={18} strokeWidth={2.5} />
-                  </div>
-                  <div>
-                    <h4 className="text-[#0F172A] font-semibold text-[15px] mb-1">Scale</h4>
-                    <p className="text-[#475569] text-sm leading-relaxed">Build a stable foundation for future growth.</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Bottom Metrics */}
-              <div className="mt-8 pt-6 border-t border-[#F1F5F9] grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="bg-[#F8FAFC] rounded-lg p-4 border border-[#E2E8F0]">
-                  <p className="text-[#64748B] text-xs font-semibold uppercase tracking-wider mb-1">System Health</p>
-                  <p className="text-2xl font-bold text-[#0F172A]">99.8% <span className="text-sm font-medium text-[#003D82]">Optimized</span></p>
-                </div>
-                <div className="bg-[#0F172A] rounded-lg p-4 border border-[#0F172A] text-white">
-                  <div className="flex justify-between items-start">
-                    <p className="text-[#94A3B8] text-xs font-semibold uppercase tracking-wider mb-1">Average ROI</p>
-                    <BarChart3 size={16} className="text-[#003D82]" />
-                  </div>
-                  <p className="text-2xl font-bold">4.8x</p>
-                </div>
-              </div>
-
-            </div>
-          </div>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={stage.key}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.3 }}
+                className="mt-7 flex items-center gap-3 rounded-2xl bg-[#F8FAFC] p-4 ring-1 ring-[#E2E8F0]"
+              >
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#003D82] text-xs font-bold text-white">
+                  {String(active + 1).padStart(2, "0")}
+                </span>
+                <p className="text-sm leading-relaxed text-[#475569]">
+                  <span className="font-bold text-[#0F172A]">{stage.key}: </span>
+                  {stage.text}
+                </p>
+              </motion.div>
+            </AnimatePresence>
+          </motion.div>
         </div>
+
+        {/* Proof strip */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.35 }}
+          className="mt-14 grid items-center gap-6 rounded-[24px] bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] ring-1 ring-[#E2E8F0] md:grid-cols-[auto_1fr_auto] md:gap-10 md:px-8"
+        >
+          <Image src="/odoo-ready-partner-tight.svg" alt="Odoo Ready Partner" width={416} height={202} className="h-14 w-auto" />
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm font-semibold text-[#475569] md:border-l md:border-[#E2E8F0] md:pl-10">
+            <span className="text-xs font-bold uppercase tracking-[0.14em] text-[#94A3B8]">Industries</span>
+            {[
+              ["Manufacturing", "/industries/manufacturing"],
+              ["Distribution", "/industries/distribution"],
+              ["Cannabis", "/industries/cannabis"],
+            ].map(([label, href]) => (
+              <Link key={href} href={href} className="transition-colors hover:text-[#003D82]">
+                {label}
+              </Link>
+            ))}
+          </div>
+          <Link
+            href="/case-studies/top-tier-cannabis-brand"
+            className="group inline-flex items-center gap-2 rounded-full bg-[#EFF6FF] px-5 py-2.5 text-sm font-semibold text-[#003D82] transition-colors hover:bg-[#003D82] hover:text-white"
+          >
+            <span className="rounded-full bg-[#003D82] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white group-hover:bg-white group-hover:text-[#003D82]">
+              New
+            </span>
+            Odoo go-live case study
+            <ArrowRight size={15} />
+          </Link>
+        </motion.div>
       </div>
     </section>
   );
 }
-
