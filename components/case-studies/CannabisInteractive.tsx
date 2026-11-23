@@ -13,7 +13,7 @@ import { CheckCircle2, FlaskConical, Lock, Unlock, Truck, FileSpreadsheet, GitMe
 export function IllustrativeBadge({ dark = false, className = "" }: { dark?: boolean; className?: string }) {
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-md px-2 py-1 font-mono text-[10.5px] font-semibold uppercase tracking-[0.12em] ${
+      className={`inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-md px-2 py-1 font-mono text-[10.5px] font-semibold uppercase tracking-[0.12em] ${
         dark
           ? "bg-amber-400/15 text-amber-300 ring-1 ring-amber-300/30"
           : "bg-amber-50 text-amber-700 ring-1 ring-amber-200"
@@ -54,10 +54,10 @@ function useCountUp(target: number, run: boolean, duration = 1400) {
 /* ───────────────────────── 1. Hero data graph ───────────────────────── */
 
 const graphNodes = [
-  { id: "vendor", label: "Vendor lots", sub: "biomass receipts", x: 70, y: 62 },
-  { id: "lab", label: "Lab COA", sub: "potency · contaminants", x: 330, y: 62 },
-  { id: "floor", label: "Shop floor", sub: "1 g · 0.4 g lines", x: 40, y: 178 },
-  { id: "dist", label: "Distributors", sub: "provincial orders", x: 360, y: 178 },
+  { id: "vendor", label: "Vendor lots", sub: "biomass receipts", x: 88, y: 62 },
+  { id: "lab", label: "Lab COA", sub: "potency · contaminants", x: 312, y: 62 },
+  { id: "floor", label: "Shop floor", sub: "1 g · 0.4 g lines", x: 66, y: 178 },
+  { id: "dist", label: "Distributors", sub: "provincial orders", x: 334, y: 178 },
   { id: "fin", label: "Finance", sub: "excise · valuation", x: 110, y: 282 },
   { id: "ctls", label: "Health Canada", sub: "CTLS monthly", x: 290, y: 282 },
 ];
@@ -87,12 +87,11 @@ export function HeroDataGraph() {
       />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_55%,rgba(22,163,74,0.20),transparent_60%)]" />
 
-      <div className="relative flex items-center justify-between px-5 pt-4">
-        <span className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-slate-400">
+      <div className="relative px-5 pt-4">
+        <span className="whitespace-nowrap font-mono text-[10.5px] uppercase tracking-[0.18em] text-slate-400">
           <span className="mr-1.5 inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-[#22C55E] align-middle" />
           Operations graph
         </span>
-        <IllustrativeBadge dark />
       </div>
 
       <svg viewBox="0 0 400 330" className="relative block w-full h-auto" role="img" aria-label="Illustration of data sources flowing into Odoo">
@@ -135,6 +134,9 @@ export function HeroDataGraph() {
           </g>
         ))}
       </svg>
+      <div className="relative flex justify-end px-4 pb-4 -mt-2">
+        <IllustrativeBadge dark />
+      </div>
     </div>
   );
 }
@@ -644,6 +646,10 @@ export function ProductionMix() {
         ))}
       </div>
 
+      <div className="mb-2 flex gap-4 font-mono text-[11px] text-[#64748B]">
+        <span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm bg-[#003D82]" /> 1 g</span>
+        <span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm bg-[#16A34A]" /> 0.4 g</span>
+      </div>
       <svg viewBox={`0 0 ${weeks.length * 52} ${H + 24}`} className="h-auto w-full" role="img" aria-label="Illustrative production trend by pre-roll format">
         {[0.33, 0.66, 1].map((g) => (
           <line key={g} x1="0" x2={weeks.length * 52} y1={H - g * H} y2={H - g * H} stroke="#E2E8F0" strokeDasharray="3 4" />
@@ -696,7 +702,9 @@ export function DashboardTabs() {
   const d = dashTabs[tab];
   const W = 360;
   const H = 130;
-  const pts = d.data.map((v, i) => [i * (W / (d.data.length - 1)), H - (v / 100) * H] as const);
+  const lo = Math.min(...d.data) - 8;
+  const hi = Math.max(...d.data) + 8;
+  const pts = d.data.map((v, i) => [i * (W / (d.data.length - 1)), H - ((v - lo) / (hi - lo)) * H] as const);
   const line = pts.map(([x, y], i) => `${i ? "L" : "M"}${x.toFixed(1)},${y.toFixed(1)}`).join(" ");
   const area = `${line} L${W},${H} L0,${H} Z`;
 
