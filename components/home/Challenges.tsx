@@ -17,7 +17,7 @@ const symptoms = [
 
 function verdict(n: number) {
   if (n === 0)
-    return { label: "Select the signs you recognise", color: "#94A3B8", text: "Tap the signs you recognise. We'll show where your ERP stands and the right next step.", href: "", cta: "" };
+    return { label: "Select the signs you recognise", color: "#64748B", text: "Tap the signs you recognise. We'll show where your ERP stands and the right next step.", href: "", cta: "" };
   if (n <= 2)
     return {
       label: "Early warning",
@@ -104,14 +104,14 @@ export default function Challenges() {
             <div className="rounded-[28px] bg-white p-7 shadow-[0_20px_50px_rgba(0,61,130,0.10)] ring-1 ring-[#E2E8F0]">
               <div className="mb-6 flex items-center justify-between">
                 <span className="text-sm font-bold uppercase tracking-[0.14em] text-[#003D82]">Your result</span>
-                <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#94A3B8]">
+                <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#64748B]">
                   <MousePointerClick size={14} /> Interactive
                 </span>
               </div>
 
               <div className="flex items-end gap-2">
                 <span className="text-6xl font-extrabold tracking-tight text-[#0F172A]">{picked.length}</span>
-                <span className="mb-2 text-lg font-semibold text-[#94A3B8]">/ {symptoms.length} signs</span>
+                <span className="mb-2 text-lg font-semibold text-[#64748B]">/ {symptoms.length} signs</span>
               </div>
 
               {/* Segmented meter */}
@@ -125,7 +125,7 @@ export default function Challenges() {
                   />
                 ))}
               </div>
-              <div className="mt-2 flex justify-between text-[11px] font-semibold uppercase tracking-wider text-[#94A3B8]">
+              <div className="mt-2 flex justify-between text-[11px] font-semibold uppercase tracking-wider text-[#64748B]">
                 <span>Healthy</span>
                 <span>Critical</span>
               </div>

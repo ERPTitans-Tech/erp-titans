@@ -83,7 +83,7 @@ export default function WhyERP() {
                     onMouseLeave={() => setHover(null)}
                     className={`rounded-2xl p-1.5 transition-colors ${on ? "bg-[#EFF6FF]" : ""}`}
                   >
-                    <div className="mb-1.5 px-2 text-[11px] font-bold uppercase tracking-[0.12em] text-[#94A3B8]">{row.topic}</div>
+                    <div className="mb-1.5 px-2 text-[11px] font-bold uppercase tracking-[0.12em] text-[#64748B]">{row.topic}</div>
                     <div className="grid grid-cols-2 gap-3">
                       <div className="flex items-center gap-2.5 rounded-xl bg-[#F8FAFC] px-4 py-3.5 ring-1 ring-[#E2E8F0]">
                         <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#FEF2F2]">

@@ -130,11 +130,11 @@ export default function CostOfInaction() {
                   >
                     {o.value}
                   </m.div>
-                  <div className="mt-1 text-[11px] font-bold uppercase tracking-wider text-[#94A3B8]">{o.label}</div>
+                  <div className="mt-1 text-[11px] font-bold uppercase tracking-wider text-[#64748B]">{o.label}</div>
                 </div>
               ))}
             </div>
-            <p className="mt-4 text-xs leading-relaxed text-[#94A3B8]">
+            <p className="mt-4 text-xs leading-relaxed text-[#64748B]">
               Based on {WORK_WEEKS} working weeks and {FTE_HOURS.toLocaleString("en-US")} hours per full-time role. Workaround time only;
               excludes licence, error and opportunity costs.
             </p>

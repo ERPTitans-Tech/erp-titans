@@ -40,7 +40,7 @@ export default async function Footer() {
 
           {/* Column 2 */}
           <div>
-            <h4 className="font-semibold text-brand-text mb-6">Company</h4>
+            <h2 className="text-base font-semibold text-brand-text mb-6">Company</h2>
             <ul className="space-y-4">
               <li><Link href="/" className="text-brand-text-muted hover:text-brand-primary transition-colors text-sm">Home</Link></li>
               <li><Link href="/services" className="text-brand-text-muted hover:text-brand-primary transition-colors text-sm">Services</Link></li>
@@ -51,7 +51,7 @@ export default async function Footer() {
 
           {/* Column 3 */}
           <div>
-            <h4 className="font-semibold text-brand-text mb-6">Industries</h4>
+            <h2 className="text-base font-semibold text-brand-text mb-6">Industries</h2>
             <ul className="space-y-4">
               <li><Link href="/industries/manufacturing" className="text-brand-text-muted hover:text-brand-primary transition-colors text-sm">Manufacturing Solutions</Link></li>
               <li><Link href="/industries/distribution" className="text-brand-text-muted hover:text-brand-primary transition-colors text-sm">Distribution & Logistics</Link></li>
@@ -61,14 +61,14 @@ export default async function Footer() {
 
           {/* Column 4 */}
           <div>
-            <h4 className="font-semibold text-brand-text mb-6">Contact</h4>
+            <h2 className="text-base font-semibold text-brand-text mb-6">Contact</h2>
             <ul className="space-y-4">
               <li>
-                <span className="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1">Email Support</span>
+                <span className="block text-xs font-medium text-gray-500 uppercase tracking-wider mb-1">Email Support</span>
                 <a href="mailto:sales@erptitans.com" className="text-brand-text hover:text-brand-primary transition-colors text-sm font-medium">sales@erptitans.com</a>
               </li>
               <li>
-                <span className="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1">{offices.footer.length > 1 ? "Offices" : "Location"}</span>
+                <span className="block text-xs font-medium text-gray-500 uppercase tracking-wider mb-1">{offices.footer.length > 1 ? "Offices" : "Location"}</span>
                 <span className="text-brand-text-muted text-sm">
                   {offices.footer.map((o) => (
                     <span key={o.label} className="mb-1 flex items-center gap-2">
@@ -85,7 +85,7 @@ export default async function Footer() {
 
         {/* Locations */}
         <div className="pb-8 mb-8 border-b border-gray-100">
-          <h4 className="font-semibold text-brand-text mb-4 text-sm">Odoo Services</h4>
+          <h2 className="font-semibold text-brand-text mb-4 text-sm">Odoo Services</h2>
           <div className="flex flex-wrap gap-x-6 gap-y-2 mb-8">
             {odooServices.map((o) => (
               <Link key={o.slug} href={`/${o.slug}`} className="text-brand-text-muted hover:text-brand-primary transition-colors text-sm">
@@ -93,7 +93,7 @@ export default async function Footer() {
               </Link>
             ))}
           </div>
-          <h4 className="font-semibold text-brand-text mb-4 text-sm">Odoo Partner Locations</h4>
+          <h2 className="font-semibold text-brand-text mb-4 text-sm">Odoo Partner Locations</h2>
           <div className="flex flex-wrap gap-x-6 gap-y-2">
             {locations.map((l) => (
               <Link key={l.slug} href={`/${l.slug}`} className="text-brand-text-muted hover:text-brand-primary transition-colors text-sm">

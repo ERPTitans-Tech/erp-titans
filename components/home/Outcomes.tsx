@@ -85,7 +85,7 @@ export default function Outcomes() {
                     <div className="mb-2 flex items-baseline justify-between gap-3">
                       <span className="text-sm font-semibold text-[#475569]">
                         {row.label}
-                        <span className="ml-1.5 text-xs font-medium text-[#94A3B8]">{row.lowerIsBetter ? "(lower is better)" : ""}</span>
+                        <span className="ml-1.5 text-xs font-medium text-[#64748B]">{row.lowerIsBetter ? "(lower is better)" : ""}</span>
                       </span>
                       <span className="flex items-center gap-2">
                         {after && improved && (

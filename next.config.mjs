@@ -2,6 +2,10 @@
 // Next.js would need to load a TypeScript config.
 /** @type {import("next").NextConfig} */
 const nextConfig = {
+  // Put the (small) stylesheet inside the HTML so the first paint doesn't wait for a separate CSS request.
+  experimental: {
+    inlineCss: true,
+  },
   // Earlier URLs of the cannabis case study, kept working for old links and cached menus.
   async redirects() {
     return [

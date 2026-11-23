@@ -76,7 +76,7 @@ export default function RecoveryProcess() {
                         ? "scale-110 bg-[#003D82] text-white shadow-[0_10px_25px_rgba(0,61,130,0.35)]"
                         : done
                         ? "bg-[#EFF6FF] text-[#003D82]"
-                        : "bg-[#F8FAFC] text-[#94A3B8] group-hover:text-[#003D82]"
+                        : "bg-[#F8FAFC] text-[#64748B] group-hover:text-[#003D82]"
                     }`}
                   >
                     <StepIcon size={24} />
@@ -137,7 +137,7 @@ export default function RecoveryProcess() {
               </div>
 
               <div className="rounded-2xl bg-white p-6 ring-1 ring-[#E2E8F0]">
-                <span className="text-xs font-bold uppercase tracking-[0.14em] text-[#94A3B8]">What you get</span>
+                <span className="text-xs font-bold uppercase tracking-[0.14em] text-[#64748B]">What you get</span>
                 <ul className="mt-4 space-y-3">
                   {step.deliverables.map((d, i) => (
                     <m.li
@@ -155,7 +155,7 @@ export default function RecoveryProcess() {
                   ))}
                 </ul>
                 <div className="mt-6 border-t border-[#F1F5F9] pt-5">
-                  <div className="mb-2 flex justify-between text-xs font-bold uppercase tracking-wider text-[#94A3B8]">
+                  <div className="mb-2 flex justify-between text-xs font-bold uppercase tracking-wider text-[#64748B]">
                     <span>Recovery progress</span>
                     <span className="text-[#003D82]">{((active + 1) / steps.length) * 100}%</span>
                   </div>

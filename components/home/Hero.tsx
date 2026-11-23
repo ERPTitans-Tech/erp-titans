@@ -169,7 +169,7 @@ export default function Hero({ isCA = false }: { isCA?: boolean }) {
                   >
                     <span
                       className={`flex h-9 w-9 items-center justify-center rounded-xl ${
-                        on ? "bg-white/15" : done ? "bg-[#003D82]/10 text-[#003D82]" : "bg-white text-[#94A3B8] ring-1 ring-[#E2E8F0]"
+                        on ? "bg-white/15" : done ? "bg-[#003D82]/10 text-[#003D82]" : "bg-white text-[#64748B] ring-1 ring-[#E2E8F0]"
                       }`}
                     >
                       <Icon size={17} />
@@ -219,7 +219,7 @@ export default function Hero({ isCA = false }: { isCA?: boolean }) {
                       {stage.score}
                     </m.span>
                   </AnimatePresence>
-                  <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#94A3B8]">ERP health</span>
+                  <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#64748B]">ERP health</span>
                 </div>
               </div>
 
@@ -243,6 +243,7 @@ export default function Hero({ isCA = false }: { isCA?: boolean }) {
               </div>
             </div>
 
+            <div className="mt-7 min-h-[88px]">
             <AnimatePresence mode="wait" initial={false}>
               <m.div
                 key={stage.key}
@@ -250,7 +251,7 @@ export default function Hero({ isCA = false }: { isCA?: boolean }) {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.3 }}
-                className="mt-7 flex items-center gap-3 rounded-2xl bg-[#F8FAFC] p-4 ring-1 ring-[#E2E8F0]"
+                className="flex min-h-[88px] items-center gap-3 rounded-2xl bg-[#F8FAFC] p-4 ring-1 ring-[#E2E8F0]"
               >
                 <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#003D82] text-xs font-bold text-white">
                   {String(active + 1).padStart(2, "0")}
@@ -261,6 +262,7 @@ export default function Hero({ isCA = false }: { isCA?: boolean }) {
                 </p>
               </m.div>
             </AnimatePresence>
+            </div>
           </m.div>
         </div>
 
@@ -273,7 +275,7 @@ export default function Hero({ isCA = false }: { isCA?: boolean }) {
         >
           <Image src="/odoo-ready-partner-tight.svg" alt="Odoo Ready Partner" width={416} height={202} className="h-14 w-auto" />
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm font-semibold text-[#475569] lg:border-l lg:border-[#E2E8F0] lg:pl-10">
-            <span className="w-full text-xs font-bold uppercase tracking-[0.14em] text-[#94A3B8] sm:w-auto">Industries</span>
+            <span className="w-full text-xs font-bold uppercase tracking-[0.14em] text-[#64748B] sm:w-auto">Industries</span>
             {[
               ["Manufacturing", "/industries/manufacturing"],
               ["Distribution", "/industries/distribution"],
