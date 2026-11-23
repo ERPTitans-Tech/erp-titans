@@ -1,6 +1,7 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+// Plain JavaScript on purpose: Hostinger's build server can't run the native compiler
+// Next.js would need to load a TypeScript config.
+/** @type {import("next").NextConfig} */
+const nextConfig = {
   // Earlier URLs of the cannabis case study, kept working for old links and cached menus.
   async redirects() {
     return [
