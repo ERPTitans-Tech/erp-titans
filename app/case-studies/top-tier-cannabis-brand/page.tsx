@@ -17,16 +17,17 @@ import CTA from "@/components/home/CTA";
 import { CoaMockup, CtlsMockup, GenealogyFlow, DashboardMockup } from "@/components/case-studies/CannabisCaseStudyVisuals";
 
 export const metadata = {
-  title: "Case Study: Odoo ERP for a Multi-Brand Licensed Cannabis Producer | ERP Titans",
+  title: "Case Study: Odoo ERP for a Top-Tier Cannabis Brand | ERP Titans",
   description:
-    "How ERP Titans delivered a full-cycle Odoo ERP for a multi-brand licensed cannabis producer in Canada, covering seed-to-sale traceability, COA management, CTLS reporting, manufacturing, sales, accounting and Power BI.",
-  alternates: { canonical: "https://erptitans.com/case-studies/multi-brand-cannabis-producer" },
+    "How ERP Titans delivered a full-cycle Odoo ERP for a top-tier Canadian cannabis brand leading in 1 g and 0.4 g pre-rolls, covering seed-to-sale traceability, COA management, CTLS reporting, manufacturing, sales, accounting and Power BI.",
+  alternates: { canonical: "https://erptitans.com/case-studies/top-tier-cannabis-brand" },
 };
 
 const facts = [
-  { label: "Client", value: "Multi-brand licensed cannabis producer (confidential)" },
+  { label: "Client", value: "Top-tier cannabis brand (name confidential)" },
+  { label: "Known for", value: "Leading 1 g and 0.4 g pre-rolls" },
   { label: "Structure", value: "Parent company with a portfolio of consumer brands" },
-  { label: "Industry", value: "Licensed cannabis producer: dried flower & pre-rolls" },
+  { label: "Industry", value: "Licensed cannabis producer: pre-rolls & dried flower" },
   { label: "Headquarters", value: "Alberta, Canada" },
   { label: "Markets", value: "Multi-province distribution across Canada" },
   { label: "Platform", value: "Odoo on Odoo.sh + Power BI" },
@@ -235,7 +236,7 @@ function Eyebrow({ children }: { children: string }) {
   return <p className="text-sm font-bold uppercase tracking-[0.15em] text-[#16A34A] mb-3">{children}</p>;
 }
 
-export default function MultiBrandCannabisCaseStudyPage() {
+export default function TopTierCannabisCaseStudyPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* ───────── Hero ───────── */}
@@ -251,7 +252,7 @@ export default function MultiBrandCannabisCaseStudyPage() {
               Case Studies
             </Link>
             <ChevronRight size={14} />
-            <span className="text-[#0F172A]">Multi-Brand Cannabis Producer</span>
+            <span className="text-[#0F172A]">Top-Tier Cannabis Brand</span>
           </nav>
 
           <div className="grid lg:grid-cols-[1.35fr_1fr] gap-12 lg:gap-14 items-start">
@@ -268,11 +269,11 @@ export default function MultiBrandCannabisCaseStudyPage() {
                 </span>
               </div>
               <h1 className="text-[36px] md:text-[52px] font-[800] text-[#003D82] tracking-tight leading-[1.08] mb-6">
-                One Odoo ERP for a Multi-Brand Licensed Cannabis Producer
+                One Odoo ERP for a Top-Tier Cannabis Brand
               </h1>
               <p className="text-lg md:text-xl text-[#475569] leading-relaxed font-medium max-w-2xl mb-6">
-                Our client is a Canadian licensed producer and the parent company behind a portfolio of cannabis
-                brands. The project began as an Odoo implementation for one of those brands and grew into the
+                Our client is a top-tier Canadian cannabis brand, a leader in 1 g and 0.4 g pre-rolls, operating
+                alongside sister brands under one parent company. The project began as an Odoo implementation for one of those brands and grew into the
                 operational backbone for the whole group once the brands came together under one parent company.
               </p>
               <p className="text-[17px] text-[#64748B] leading-relaxed max-w-2xl">
@@ -290,8 +291,8 @@ export default function MultiBrandCannabisCaseStudyPage() {
                 <span className="relative w-20 h-20 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center mb-4">
                   <Leaf size={40} className="text-[#86EFAC]" />
                 </span>
-                <div className="relative text-xl font-extrabold text-white">Licensed Cannabis Producer</div>
-                <div className="relative text-sm font-medium text-white/70 mt-1">Multi-brand · Multi-province · Canada</div>
+                <div className="relative text-xl font-extrabold text-white">Top-Tier Cannabis Brand</div>
+                <div className="relative text-sm font-medium text-white/70 mt-1">Leading 1 g &amp; 0.4 g pre-rolls · Canada</div>
               </div>
               <div className="bg-white p-7">
                 <h2 className="text-sm font-bold uppercase tracking-[0.15em] text-[#64748B] mb-5">At a Glance</h2>

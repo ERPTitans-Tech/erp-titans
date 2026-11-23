@@ -45,8 +45,8 @@ export default function Navbar() {
       dropdown: [
         { name: "All Case Studies", href: "/case-studies" },
         {
-          name: "Multi-Brand Cannabis Producer",
-          href: "/case-studies/multi-brand-cannabis-producer",
+          name: "Top-Tier Cannabis Brand",
+          href: "/case-studies/top-tier-cannabis-brand",
           description: "Odoo ERP, COA & CTLS compliance",
           featured: true,
         },
