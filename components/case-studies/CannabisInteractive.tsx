@@ -632,7 +632,7 @@ const mix = {
 };
 type MixKey = keyof typeof mix;
 
-export function ProductionMix() {
+export function ProductionMix({ className = "" }: { className?: string }) {
   const [show, setShow] = useState<"both" | MixKey>("both");
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.4 });
@@ -643,7 +643,7 @@ export function ProductionMix() {
   ];
 
   return (
-    <div ref={ref} className="rounded-[24px] bg-white p-6 shadow-[0_20px_50px_rgba(0,61,130,0.10)] ring-1 ring-[#E2E8F0]">
+    <div ref={ref} className={`flex flex-col rounded-[24px] bg-white p-6 shadow-[0_20px_50px_rgba(0,61,130,0.10)] ring-1 ring-[#E2E8F0] ${className}`}>
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
           <Image src="/odoo-icons/svg/mrp.svg" alt="" width={50} height={50} className="h-8 w-8" />
@@ -673,7 +673,7 @@ export function ProductionMix() {
         <span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full" style={{ background: SKY }} /> 0.4 g</span>
       </div>
 
-      <svg viewBox={`0 0 ${weeks.length * 52} ${H + 24}`} className="h-auto w-full" role="img" aria-label="Illustrative production trend by pre-roll format">
+      <svg viewBox={`0 0 ${weeks.length * 52} ${H + 24}`} className="mt-auto h-auto w-full" role="img" aria-label="Illustrative production trend by pre-roll format">
         {[0.33, 0.66, 1].map((g) => (
           <line key={g} x1="0" x2={weeks.length * 52} y1={H - g * H} y2={H - g * H} stroke="#EEF2F7" />
         ))}
@@ -720,7 +720,7 @@ const dashTabs = {
 };
 type DashKey = keyof typeof dashTabs;
 
-export function DashboardTabs() {
+export function DashboardTabs({ className = "" }: { className?: string }) {
   const [tab, setTab] = useState<DashKey>("OEE");
   const d = dashTabs[tab];
   const W = 360;
@@ -732,7 +732,7 @@ export function DashboardTabs() {
   const area = `${line} L${W},${H} L0,${H} Z`;
 
   return (
-    <div className="rounded-[24px] bg-white p-5 shadow-[0_20px_50px_rgba(0,61,130,0.10)] ring-1 ring-[#E2E8F0]">
+    <div className={`flex flex-col rounded-[24px] bg-white p-5 shadow-[0_12px_30px_rgba(0,61,130,0.08)] ring-1 ring-[#E2E8F0] ${className}`}>
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <div className="inline-flex rounded-full bg-[#F1F5F9] p-1">
           {(Object.keys(dashTabs) as DashKey[]).map((k) => (
@@ -752,7 +752,7 @@ export function DashboardTabs() {
         <span className="text-sm font-semibold text-[#0F172A]">{d.note}</span>
         <span className="text-[12px] font-medium text-[#94A3B8]">{d.unit}</span>
       </div>
-      <svg viewBox={`-4 -6 ${W + 8} ${H + 12}`} className="h-auto w-full" role="img" aria-label={`Illustrative ${tab} trend`}>
+      <svg viewBox={`-4 -6 ${W + 8} ${H + 12}`} className="mt-auto h-auto w-full" role="img" aria-label={`Illustrative ${tab} trend`}>
         <defs>
           <linearGradient id="dashFill" x1="0" x2="0" y1="0" y2="1">
             <stop offset="0%" stopColor={SKY} stopOpacity="0.25" />

@@ -514,52 +514,65 @@ export default function TopTierCannabisCaseStudyPage() {
       <section className="py-20 lg:py-24 bg-white border-t border-[#E2E8F0]">
         <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
           <SectionLabel n="5">Integrations &amp; analytics</SectionLabel>
-        </div>
-        <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 lg:gap-16">
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <Plug className="text-[#003D82]" size={26} />
-              <h2 className="text-2xl md:text-3xl font-extrabold text-[#003D82]">Integrations</h2>
+
+          {/* Row 1: integrations | Power BI intro + dashboard */}
+          <div className="mt-6 grid items-stretch gap-8 lg:grid-cols-2 lg:gap-10">
+            <div className="flex flex-col rounded-[24px] bg-[#F8FAFC] p-7 ring-1 ring-[#E2E8F0] sm:p-8">
+              <div className="mb-3 flex items-center gap-3">
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#003D82] text-white">
+                  <Plug size={20} />
+                </span>
+                <h2 className="text-2xl md:text-[28px] font-extrabold text-[#003D82]">Integrations</h2>
+              </div>
+              <p className="mb-6 text-[#64748B] leading-relaxed">
+                Odoo was connected to the logistics, banking, communication and analytics tools the team already relied
+                on, so data moves automatically instead of being re-keyed.
+              </p>
+              <div className="flex flex-1 flex-col justify-between gap-3">
+                {integrations.map((i) => (
+                  <div key={i.name} className="flex items-center gap-4 rounded-[16px] bg-white p-4 ring-1 ring-[#E2E8F0]">
+                    <div className="min-w-[120px] font-bold text-[#003D82]">{i.name}</div>
+                    <div className="text-[14.5px] leading-snug text-[#475569]">{i.text}</div>
+                  </div>
+                ))}
+              </div>
             </div>
-            <p className="text-[#64748B] leading-relaxed mb-8">
-              Odoo was connected to the logistics, banking, communication and analytics tools the team already relied
-              on, so data moves automatically instead of being re-keyed.
-            </p>
-            <div className="space-y-4 mb-10">
-              {integrations.map((i) => (
-                <div key={i.name} className="flex gap-4 rounded-[16px] border border-gray-100 bg-[#F8FAFC] p-5">
-                  <div className="font-bold text-[#003D82] min-w-[120px]">{i.name}</div>
-                  <div className="text-[15px] text-[#475569] leading-relaxed">{i.text}</div>
-                </div>
-              ))}
+
+            <div className="flex flex-col rounded-[24px] bg-[#F8FAFC] p-7 ring-1 ring-[#E2E8F0] sm:p-8">
+              <div className="mb-3 flex items-center gap-3">
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#003D82] text-white">
+                  <BarChart3 size={20} />
+                </span>
+                <h2 className="text-2xl md:text-[28px] font-extrabold text-[#003D82]">Power BI Analytics</h2>
+              </div>
+              <p className="mb-6 text-[#64748B] leading-relaxed">
+                A dedicated analytics layer connected directly to the Odoo.sh database gives leadership decision-ready
+                reporting across manufacturing, finance, compliance and sales.
+              </p>
+              <DashboardTabs className="flex-1" />
             </div>
           </div>
 
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <BarChart3 className="text-[#003D82]" size={26} />
-              <h2 className="text-2xl md:text-3xl font-extrabold text-[#003D82]">Power BI Analytics</h2>
-            </div>
-            <p className="text-[#64748B] leading-relaxed mb-8">
-              A dedicated analytics layer connected directly to the Odoo.sh database gives leadership decision-ready
-              reporting across manufacturing, finance, compliance and sales.
-            </p>
-            <div className="mb-6">
-              <DashboardTabs />
-            </div>
-            <div className="mb-8">
-              <ProductionMix />
-            </div>
-            <div className="grid sm:grid-cols-2 gap-3">
-              {reports.map((r) => (
-                <div
-                  key={r}
-                  className="flex items-start gap-2.5 rounded-[12px] border border-gray-100 bg-white px-4 py-3 shadow-[0_2px_8px_rgba(0,0,0,0.02)]"
-                >
-                  <CheckCircle2 size={16} className="text-[#16A34A] shrink-0 mt-0.5" />
-                  <span className="text-sm font-medium text-[#334155] leading-snug">{r}</span>
+          {/* Row 2: production mix | reports delivered */}
+          <div className="mt-8 grid items-stretch gap-8 lg:mt-10 lg:grid-cols-2 lg:gap-10">
+            <ProductionMix className="h-full" />
+
+            <div className="flex flex-col rounded-[24px] bg-white p-6 shadow-[0_20px_50px_rgba(0,61,130,0.10)] ring-1 ring-[#E2E8F0]">
+              <div className="mb-4 flex items-center justify-between gap-3">
+                <div>
+                  <div className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#003D82]">Delivered in Power BI</div>
+                  <div className="font-bold text-[#0F172A]">13 reports &amp; dashboards</div>
                 </div>
-              ))}
+                <span className="rounded-full bg-[#EFF6FF] px-3 py-1 text-[12px] font-bold text-[#003D82]">{reports.length}</span>
+              </div>
+              <div className="grid flex-1 content-between gap-2.5 sm:grid-cols-2">
+                {reports.map((r) => (
+                  <div key={r} className="flex items-start gap-2.5 rounded-[12px] bg-[#F8FAFC] px-3.5 py-2.5 ring-1 ring-[#E2E8F0]">
+                    <CheckCircle2 size={15} className="mt-0.5 shrink-0 text-[#16A34A]" />
+                    <span className="text-[13.5px] font-medium leading-snug text-[#334155]">{r}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
