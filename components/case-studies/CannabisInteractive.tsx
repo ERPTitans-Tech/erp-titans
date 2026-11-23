@@ -9,7 +9,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { CheckCircle2, FlaskConical, Lock, Unlock, Truck, FileSpreadsheet, GitMerge, Factory, PackageCheck, RotateCcw, Info } from "lucide-react";
+import { CheckCircle2, FlaskConical, Lock, Unlock, Truck, FileSpreadsheet, GitMerge, Factory, PackageCheck, RotateCcw, Info, BarChart3 } from "lucide-react";
 
 const NAVY = "#003D82";
 const SKY = "#0EA5E9";
@@ -673,7 +673,7 @@ export function ProductionMix({ className = "" }: { className?: string }) {
         <span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full" style={{ background: SKY }} /> 0.4 g</span>
       </div>
 
-      <svg viewBox={`0 0 ${weeks.length * 52} ${H + 24}`} className="mt-auto h-auto w-full" role="img" aria-label="Illustrative production trend by pre-roll format">
+      <svg viewBox={`0 0 ${weeks.length * 52} ${H + 24}`} className="my-auto h-auto w-full" role="img" aria-label="Illustrative production trend by pre-roll format">
         {[0.33, 0.66, 1].map((g) => (
           <line key={g} x1="0" x2={weeks.length * 52} y1={H - g * H} y2={H - g * H} stroke="#EEF2F7" />
         ))}
@@ -732,8 +732,20 @@ export function DashboardTabs({ className = "" }: { className?: string }) {
   const area = `${line} L${W},${H} L0,${H} Z`;
 
   return (
-    <div className={`flex flex-col rounded-[24px] bg-white p-5 shadow-[0_12px_30px_rgba(0,61,130,0.08)] ring-1 ring-[#E2E8F0] ${className}`}>
+    <div className={`flex flex-col rounded-[24px] bg-white p-6 shadow-[0_20px_50px_rgba(0,61,130,0.10)] ring-1 ring-[#E2E8F0] ${className}`}>
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+        <div className="flex items-center gap-3">
+          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#003D82] text-white">
+            <BarChart3 size={17} />
+          </span>
+          <div>
+            <Eyebrow>Power BI · Operations</Eyebrow>
+            <div className="font-bold text-[#0F172A]">Leadership dashboard</div>
+          </div>
+        </div>
+        <IllustrativeBadge />
+      </div>
+      <div className="mb-3">
         <div className="inline-flex rounded-full bg-[#F1F5F9] p-1">
           {(Object.keys(dashTabs) as DashKey[]).map((k) => (
             <button
@@ -746,13 +758,12 @@ export function DashboardTabs({ className = "" }: { className?: string }) {
             </button>
           ))}
         </div>
-        <IllustrativeBadge />
       </div>
       <div className="mb-2 flex items-baseline justify-between">
         <span className="text-sm font-semibold text-[#0F172A]">{d.note}</span>
         <span className="text-[12px] font-medium text-[#94A3B8]">{d.unit}</span>
       </div>
-      <svg viewBox={`-4 -6 ${W + 8} ${H + 12}`} className="mt-auto h-auto w-full" role="img" aria-label={`Illustrative ${tab} trend`}>
+      <svg viewBox={`-4 -6 ${W + 8} ${H + 12}`} className="my-auto h-auto w-full" role="img" aria-label={`Illustrative ${tab} trend`}>
         <defs>
           <linearGradient id="dashFill" x1="0" x2="0" y1="0" y2="1">
             <stop offset="0%" stopColor={SKY} stopOpacity="0.25" />

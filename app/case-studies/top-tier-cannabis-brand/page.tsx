@@ -515,7 +515,7 @@ export default function TopTierCannabisCaseStudyPage() {
         <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
           <SectionLabel n="5">Integrations &amp; analytics</SectionLabel>
 
-          {/* Row 1: integrations | Power BI intro + dashboard */}
+          {/* Row 1: integrations | Power BI + reports delivered */}
           <div className="mt-6 grid items-stretch gap-8 lg:grid-cols-2 lg:gap-10">
             <div className="flex flex-col rounded-[24px] bg-[#F8FAFC] p-7 ring-1 ring-[#E2E8F0] sm:p-8">
               <div className="mb-3 flex items-center gap-3">
@@ -549,31 +549,25 @@ export default function TopTierCannabisCaseStudyPage() {
                 A dedicated analytics layer connected directly to the Odoo.sh database gives leadership decision-ready
                 reporting across manufacturing, finance, compliance and sales.
               </p>
-              <DashboardTabs className="flex-1" />
-            </div>
-          </div>
-
-          {/* Row 2: production mix | reports delivered */}
-          <div className="mt-8 grid items-stretch gap-8 lg:mt-10 lg:grid-cols-2 lg:gap-10">
-            <ProductionMix className="h-full" />
-
-            <div className="flex flex-col rounded-[24px] bg-white p-6 shadow-[0_20px_50px_rgba(0,61,130,0.10)] ring-1 ring-[#E2E8F0]">
-              <div className="mb-4 flex items-center justify-between gap-3">
-                <div>
-                  <div className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#003D82]">Delivered in Power BI</div>
-                  <div className="font-bold text-[#0F172A]">13 reports &amp; dashboards</div>
-                </div>
-                <span className="rounded-full bg-[#EFF6FF] px-3 py-1 text-[12px] font-bold text-[#003D82]">{reports.length}</span>
+              <div className="mb-3 flex items-center justify-between">
+                <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#003D82]">Reports &amp; dashboards delivered</span>
+                <span className="rounded-full bg-white px-2.5 py-0.5 text-[12px] font-bold text-[#003D82] ring-1 ring-[#E2E8F0]">{reports.length}</span>
               </div>
               <div className="grid flex-1 content-between gap-2.5 sm:grid-cols-2">
                 {reports.map((r) => (
-                  <div key={r} className="flex items-start gap-2.5 rounded-[12px] bg-[#F8FAFC] px-3.5 py-2.5 ring-1 ring-[#E2E8F0]">
+                  <div key={r} className="flex items-start gap-2.5 rounded-[12px] bg-white px-3.5 py-2.5 ring-1 ring-[#E2E8F0]">
                     <CheckCircle2 size={15} className="mt-0.5 shrink-0 text-[#16A34A]" />
                     <span className="text-[13.5px] font-medium leading-snug text-[#334155]">{r}</span>
                   </div>
                 ))}
               </div>
             </div>
+          </div>
+
+          {/* Row 2: the two interactive charts side by side */}
+          <div className="mt-8 grid items-stretch gap-8 lg:mt-10 lg:grid-cols-2 lg:gap-10">
+            <DashboardTabs className="h-full" />
+            <ProductionMix className="h-full" />
           </div>
         </div>
       </section>
