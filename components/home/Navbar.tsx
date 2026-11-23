@@ -80,7 +80,7 @@ export default function Navbar() {
             </Link>
           </div>
 
-          <nav className="hidden items-center space-x-8 md:flex">
+          <nav className="hidden items-center space-x-7 xl:space-x-8 lg:flex">
             {navLinks.map((link) => {
               const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href + "/"));
               
@@ -180,7 +180,7 @@ export default function Navbar() {
             })}
           </nav>
 
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <Link
               href="/contact"
               className="rounded-full bg-[#003D82] px-6 py-2.5 text-sm font-medium text-white shadow-md transition-colors hover:bg-[#003D82]"
@@ -189,7 +189,7 @@ export default function Navbar() {
             </Link>
           </div>
 
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 text-[#0F172A] focus:outline-none"

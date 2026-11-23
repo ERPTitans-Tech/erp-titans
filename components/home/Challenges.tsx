@@ -17,7 +17,7 @@ const symptoms = [
 
 function verdict(n: number) {
   if (n === 0)
-    return { label: "Select the signs you recognise", color: "#94A3B8", text: "Tap any card on the left. We'll show where your ERP stands and the right next step.", href: "", cta: "" };
+    return { label: "Select the signs you recognise", color: "#94A3B8", text: "Tap the signs you recognise. We'll show where your ERP stands and the right next step.", href: "", cta: "" };
   if (n <= 2)
     return {
       label: "Early warning",

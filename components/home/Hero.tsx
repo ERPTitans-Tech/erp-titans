@@ -269,11 +269,11 @@ export default function Hero({ isCA = false }: { isCA?: boolean }) {
           initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.35 }}
-          className="mt-14 grid items-center gap-6 rounded-[24px] bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] ring-1 ring-[#E2E8F0] md:grid-cols-[auto_1fr_auto] md:gap-10 md:px-8"
+          className="mt-14 grid items-center gap-6 rounded-[24px] bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] ring-1 ring-[#E2E8F0] lg:grid-cols-[auto_1fr_auto] lg:gap-10 md:px-8"
         >
           <Image src="/odoo-ready-partner-tight.svg" alt="Odoo Ready Partner" width={416} height={202} className="h-14 w-auto" />
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm font-semibold text-[#475569] md:border-l md:border-[#E2E8F0] md:pl-10">
-            <span className="w-full text-xs font-bold uppercase tracking-[0.14em] text-[#94A3B8] md:w-auto">Industries</span>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm font-semibold text-[#475569] lg:border-l lg:border-[#E2E8F0] lg:pl-10">
+            <span className="w-full text-xs font-bold uppercase tracking-[0.14em] text-[#94A3B8] sm:w-auto">Industries</span>
             {[
               ["Manufacturing", "/industries/manufacturing"],
               ["Distribution", "/industries/distribution"],
