@@ -10,8 +10,8 @@ import Image from "next/image";
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [desktopIndustriesOpen, setDesktopIndustriesOpen] = useState(false);
-  const [mobileIndustriesOpen, setMobileIndustriesOpen] = useState(false);
+  const [desktopOpen, setDesktopOpen] = useState<string | null>(null);
+  const [mobileOpen, setMobileOpen] = useState<string | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -24,7 +24,10 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
+  type SubLink = { name: string; href: string; logo?: string; description?: string };
+  type NavLink = { name: string; href: string; dropdown?: SubLink[] };
+
+  const navLinks: NavLink[] = [
     { name: "Home", href: "/" },
     { name: "Services", href: "/services" },
     { 
@@ -36,7 +39,19 @@ export default function Navbar() {
         { name: "Cannabis", href: "/industries/cannabis" },
       ]
     },
-    { name: "Case Studies", href: "/case-studies" },
+    {
+      name: "Case Studies",
+      href: "/case-studies",
+      dropdown: [
+        { name: "All Case Studies", href: "/case-studies" },
+        {
+          name: "Laniakea Brands",
+          href: "/case-studies/laniakea-brands",
+          logo: "/case-studies/laniakea/logo-dark.png",
+          description: "Odoo ERP for a licensed cannabis producer",
+        },
+      ]
+    },
     { name: "About", href: "/about" },
     { name: "Odoo", href: "/odoo" },
     { name: "Contact", href: "/contact" },
@@ -74,8 +89,8 @@ export default function Navbar() {
                   <div 
                     key={link.name} 
                     className="relative py-1.5"
-                    onMouseEnter={() => setDesktopIndustriesOpen(true)}
-                    onMouseLeave={() => setDesktopIndustriesOpen(false)}
+                    onMouseEnter={() => setDesktopOpen(link.name)}
+                    onMouseLeave={() => setDesktopOpen(null)}
                   >
                     <button
                       className={`flex items-center gap-1.5 relative text-sm transition-colors ${
@@ -85,7 +100,7 @@ export default function Navbar() {
                       }`}
                     >
                       {link.name}
-                      <ChevronDown size={14} className={`transition-transform duration-300 ${desktopIndustriesOpen ? 'rotate-180' : ''}`} />
+                      <ChevronDown size={14} className={`transition-transform duration-300 ${desktopOpen === link.name ? 'rotate-180' : ''}`} />
                       {isActive && (
                         <motion.div
                           layoutId="desktop-navbar-underline"
@@ -96,7 +111,7 @@ export default function Navbar() {
                     </button>
                     
                     <AnimatePresence>
-                      {desktopIndustriesOpen && (
+                      {desktopOpen === link.name && (
                         <motion.div
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
@@ -106,13 +121,33 @@ export default function Navbar() {
                         >
                           <div className="bg-white rounded-[24px] p-6 shadow-xl border border-gray-100 flex flex-col gap-2">
                             {link.dropdown.map((sublink) => (
-                              <Link
-                                key={sublink.name}
-                                href={sublink.href}
-                                className="block px-4 py-3 rounded-xl hover:bg-[#003D82] text-[#475569] hover:text-white font-medium transition-all duration-200 hover:translate-x-1 whitespace-nowrap"
-                              >
-                                {sublink.name}
-                              </Link>
+                              sublink.logo ? (
+                                <Link
+                                  key={sublink.name}
+                                  href={sublink.href}
+                                  onClick={() => setDesktopOpen(null)}
+                                  className="group flex items-center gap-4 px-4 py-3 rounded-xl border border-gray-100 hover:border-[#003D82]/30 hover:bg-[#F8FAFC] transition-all duration-200 hover:translate-x-1"
+                                >
+                                  <span className="w-16 h-12 shrink-0 rounded-lg bg-white flex items-center justify-center">
+                                    <Image src={sublink.logo} alt="" width={64} height={47} className="h-11 w-auto object-contain" />
+                                  </span>
+                                  <span className="flex flex-col">
+                                    <span className="font-semibold text-[#0F172A] group-hover:text-[#003D82] whitespace-nowrap">{sublink.name}</span>
+                                    {sublink.description && (
+                                      <span className="text-xs text-[#64748B] whitespace-nowrap">{sublink.description}</span>
+                                    )}
+                                  </span>
+                                </Link>
+                              ) : (
+                                <Link
+                                  key={sublink.name}
+                                  href={sublink.href}
+                                  onClick={() => setDesktopOpen(null)}
+                                  className="block px-4 py-3 rounded-xl hover:bg-[#003D82] text-[#475569] hover:text-white font-medium transition-all duration-200 hover:translate-x-1 whitespace-nowrap"
+                                >
+                                  {sublink.name}
+                                </Link>
+                              )
                             ))}
                           </div>
                         </motion.div>
@@ -181,7 +216,7 @@ export default function Navbar() {
                     return (
                       <div key={link.name} className="flex flex-col">
                         <button
-                          onClick={() => setMobileIndustriesOpen(!mobileIndustriesOpen)}
+                          onClick={() => setMobileOpen(mobileOpen === link.name ? null : link.name)}
                           className={`relative rounded-xl px-4 py-3 transition-colors flex items-center justify-between ${
                             isActive
                               ? "bg-[#003D82] text-white font-semibold"
@@ -189,7 +224,7 @@ export default function Navbar() {
                           }`}
                         >
                           <span className="flex items-center">{link.name}</span>
-                          <ChevronDown size={18} className={`transition-transform duration-300 ${mobileIndustriesOpen ? 'rotate-180' : ''}`} />
+                          <ChevronDown size={18} className={`transition-transform duration-300 ${mobileOpen === link.name ? 'rotate-180' : ''}`} />
                           {isActive && (
                             <motion.div
                               layoutId="mobile-navbar-indicator"
@@ -200,7 +235,7 @@ export default function Navbar() {
                         </button>
                         
                         <AnimatePresence>
-                          {mobileIndustriesOpen && (
+                          {mobileOpen === link.name && (
                             <motion.div
                               initial={{ height: 0, opacity: 0 }}
                               animate={{ height: "auto", opacity: 1 }}
@@ -212,9 +247,14 @@ export default function Navbar() {
                                   <Link
                                     key={sublink.name}
                                     href={sublink.href}
-                                    className="block px-4 py-3 rounded-xl hover:bg-[#003D82] text-[#475569] hover:text-white font-medium transition-all duration-200"
+                                    className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-[#003D82] text-[#475569] hover:text-white font-medium transition-all duration-200"
                                     onClick={() => setMobileMenuOpen(false)}
                                   >
+                                    {sublink.logo && (
+                                      <span className="w-10 h-8 shrink-0 rounded-md bg-white flex items-center justify-center">
+                                        <Image src={sublink.logo} alt="" width={40} height={29} className="h-7 w-auto object-contain" />
+                                      </span>
+                                    )}
                                     {sublink.name}
                                   </Link>
                                 ))}

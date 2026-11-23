@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight,
   ChevronRight,
@@ -13,57 +14,78 @@ import {
   Plug,
   ShieldCheck,
   Target,
+  FileCheck2,
+  FileSpreadsheet,
+  GitBranch,
 } from "lucide-react";
 import CTA from "@/components/home/CTA";
+import { CoaMockup, CtlsMockup, GenealogyFlow, DashboardMockup } from "@/components/case-studies/LaniakeaVisuals";
 
 export const metadata = {
-  title: "Case Study: Laniakea Brands (formerly Space Race Cannabis) Odoo ERP | ERP Titans",
+  title: "Case Study: Laniakea Brands Odoo ERP Implementation | ERP Titans",
   description:
-    "How ERP Titans delivered a full-cycle Odoo ERP implementation for Laniakea Brands, a multi-province licensed cannabis producer, covering procurement, seed-to-sale traceability, manufacturing, sales, CRM, accounting, and Power BI analytics.",
+    "How ERP Titans delivered a full-cycle Odoo ERP for Laniakea Brands, parent company of Space Race Cannabis, Beach Bum, Violet Tourist and Shoe String, covering seed-to-sale traceability, COA management, CTLS reporting, manufacturing, sales, accounting and Power BI.",
   alternates: { canonical: "https://erptitans.com/case-studies/laniakea-brands" },
 };
 
+const brands = ["Space Race Cannabis", "Beach Bum", "Violet Tourist", "Shoe String"];
+
 const facts = [
-  { label: "Client", value: "Laniakea Brands (formerly Space Race Cannabis)" },
+  { label: "Client", value: "Laniakea Brands" },
+  { label: "Brands", value: "Space Race Cannabis, Beach Bum, Violet Tourist, Shoe String" },
   { label: "Industry", value: "Licensed cannabis producer: dried flower & pre-rolls" },
   { label: "Headquarters", value: "Alberta, Canada" },
   { label: "Markets", value: "Multi-province distribution across Canada" },
   { label: "Platform", value: "Odoo on Odoo.sh + Power BI" },
-  { label: "Engagement", value: "Full-cycle implementation, kickoff to hypercare" },
+  { label: "Go-live", value: "November 1, 2026" },
 ];
 
 const stats = [
   { value: "6", label: "Core business areas unified" },
   { value: "11", label: "Agile delivery sprints" },
   { value: "13", label: "Power BI reports & dashboards" },
-  { value: "~4.5", label: "Months, kickoff to go-live" },
+  { value: "Nov 1", label: "Live in production, 2026" },
 ];
 
 const challenges = [
   {
+    title: "Four brands, one operation",
+    text: "Space Race Cannabis, Beach Bum, Violet Tourist and Shoe String share facilities, people and compliance obligations, but each carries its own products, SKUs and market presence.",
+  },
+  {
     title: "Seed-to-sale traceability",
-    text: "Every lot, tote, and blend had to be traceable from vendor receipt through production to the customer, with recall readiness and Health Canada reporting in mind.",
+    text: "Every lot, tote and blend had to be traceable from vendor receipt through production to the customer, with recall readiness built in.",
+  },
+  {
+    title: "Lab results that gate the business",
+    text: "No lot moves to sale until its Certificate of Analysis is in and approved, so COA handling had to be a controlled workflow rather than a folder of PDFs.",
+  },
+  {
+    title: "Monthly federal reporting",
+    text: "Health Canada's CTLS report has to reconcile production, inventory, sales and destruction every month. Without a system of record, that means spreadsheets and late nights.",
   },
   {
     title: "Multi-province complexity",
-    text: "Each province brings its own SKUs, pricing, packaging, excise stamps, labeling, and fulfillment rules, from full shipments to staged and partial deliveries.",
-  },
-  {
-    title: "Consignment & external inventory",
-    text: "Stock sits in company warehouses, 3PL facilities, and provincial distribution centres under different ownership models, and all of it needs to be visible and correctly accounted for.",
-  },
-  {
-    title: "Production discipline",
-    text: "Blending, pre-roll manufacturing, and packaging needed controlled work-order sequencing, QC checkpoints, weight/loss tracking, and labor visibility per work center.",
+    text: "Each province brings its own SKUs, pricing, packaging, excise stamps, labeling and fulfillment rules, plus consignment stock sitting at provincial distribution centres.",
   },
   {
     title: "Regulated finance",
-    text: "Cannabis excise duty, multi-province taxation, inventory valuation, and audit-ready financial trails had to be built in, not bolted on.",
+    text: "Cannabis excise duty, multi-province taxation, inventory valuation and audit-ready financial trails had to be built in, not bolted on.",
   },
-  {
-    title: "Decision-ready reporting",
-    text: "Leadership needed reliable views of COGS, WIP, revenue recognition, efficiency, and sales by SKU, channel, and province, all drawn from one source of truth.",
-  },
+];
+
+const coaPoints = [
+  "A COA is linked to every received and produced lot, with results captured as structured data, not just an attached PDF",
+  "Testing covers potency (THC, THCA, CBD, CBDA) and contaminants such as microbial, pesticides, heavy metals and mycotoxins",
+  "Lots stay in quarantine until QC reviews and approves the COA, so nothing untested can be picked, blended or shipped",
+  "Approved potency values carry through to compliance labels, and each COA is ready to accompany the lot to provincial distributors",
+];
+
+const ctlsPoints = [
+  "Every inventory movement (receipts, production, sales, returns, destruction) is classified the way CTLS reports it",
+  "Opening and closing inventory, additions, reductions and book value come straight from posted Odoo transactions",
+  "Destruction logs, write-offs and sales to provincial distributors reconcile to the same numbers finance sees",
+  "The monthly report is ready well ahead of the 15th-of-the-month deadline, formatted for CTLS upload",
 ];
 
 const solution = [
@@ -72,9 +94,9 @@ const solution = [
     title: "Procure-to-Pay",
     points: [
       "Vendor onboarding with licensing and regulatory document governance",
-      "RFQ, purchase order, and multi-level approval workflows",
-      "Certificate of Analysis (COA) capture, review, and traceability",
-      "QC-gated receiving with lot capture, quarantine, and rejection routing",
+      "RFQ, purchase order and multi-level approval workflows",
+      "Certificate of Analysis capture, review and lot-level traceability",
+      "QC-gated receiving with lot capture, quarantine and rejection routing",
       "Inventory-driven reordering and vendor price comparison",
     ],
   },
@@ -82,11 +104,11 @@ const solution = [
     icon: Boxes,
     title: "Inventory & Traceability",
     points: [
-      "Lot, batch, and tote tracking with parent-child blend genealogy",
-      "Multi-location visibility across warehouses, 3PLs, and consignment",
+      "Lot, batch and tote tracking with parent-child blend genealogy",
+      "Multi-location visibility across warehouses, 3PLs and consignment",
       "Barcode scanning for movements between zones and work stations",
-      "Compliance labels for master cases, totes, and units",
-      "Cycle counts, waste & destruction logs, and quarantine/hold controls",
+      "Compliance labels for master cases, totes and units",
+      "Cycle counts, waste & destruction logs and quarantine/hold controls",
     ],
   },
   {
@@ -94,10 +116,10 @@ const solution = [
     title: "Manufacturing",
     points: [
       "Multi-level BOMs with province-specific packaging and stamp handling",
-      "Work centers, employee mapping, and controlled work-order sequencing",
+      "Work centers, employee mapping and controlled work-order sequencing",
       "Blend-lot production with full input-to-output traceability",
-      "Stage-level QC, weight & loss tracking, WIP, and sample retention",
-      "Labor and work center efficiency tracking, plus subcontracting readiness",
+      "Stage-level QC, weight & loss tracking, WIP and sample retention",
+      "Labor and work center efficiency tracking",
     ],
   },
   {
@@ -105,9 +127,9 @@ const solution = [
     title: "Sales & Fulfillment",
     points: [
       "Order intake from provincial distributors and authorized channels",
-      "Province-specific SKUs, pricing, and fulfillment rules",
+      "Province-specific SKUs, pricing and fulfillment rules across all four brands",
       "Consignment and ownership-based sales with depletion reporting",
-      "Allocation, partial shipments, and backorder management",
+      "Allocation, partial shipments and backorder management",
       "Lot-level traceability through the customer network for recalls",
     ],
   },
@@ -115,10 +137,10 @@ const solution = [
     icon: Users,
     title: "CRM & Field Sales",
     points: [
-      "Store visit planning, reminders, and standardized visit checklists",
+      "Store visit planning, reminders and standardized visit checklists",
       "Visit prioritization based on frequency and inactivity",
       "Store master data with licensing attributes and status",
-      "Promotional / care-package tracking with photo evidence",
+      "Promotional and care-package tracking with photo evidence",
       "Rep performance dashboards with role-based security",
     ],
   },
@@ -126,11 +148,11 @@ const solution = [
     icon: Landmark,
     title: "Accounting & Finance",
     points: [
-      "Chart of accounts, fiscal structure, and automated operational postings",
-      "Cannabis excise calculation, reconciliation, and submission readiness",
+      "Chart of accounts, fiscal structure and automated operational postings",
+      "Cannabis excise calculation, reconciliation and submission readiness",
       "Multi-province tax frameworks and multi-currency handling",
       "Inventory valuation and costing aligned to physical flows",
-      "Bank feeds and reconciliation, fixed assets, accruals, and a full audit trail",
+      "Bank feeds and reconciliation, fixed assets, accruals and a full audit trail",
     ],
   },
 ];
@@ -146,8 +168,8 @@ const integrations = [
 const reports = [
   "OEE, capacity, waste % & scheduled vs. actual",
   "Employee-level labor productivity",
-  "Machine & work center efficiency (UPH, utilization)",
-  "Pre-roll format, case & vault movement productivity",
+  "Machine & work center efficiency",
+  "Pre-roll format, case & vault movement",
   "Manufacturing sample analytics",
   "Revenue recognition",
   "Cost of goods sold (COGS)",
@@ -155,20 +177,20 @@ const reports = [
   "Batch / lot traceability",
   "Destruction log & write-offs",
   "Sales by SKU, channel & province (retail)",
-  "Sales by SKU, channel & province (distributor B2B)",
-  "Procurement & biomass inventory views",
+  "Sales by SKU, channel & province (B2B)",
+  "Procurement & biomass inventory",
 ];
 
 const phases = [
   {
     when: "May 2026",
     title: "Solution Finalization",
-    text: "Discovery, solution design walkthrough, and formal solution sign-off before any configuration began.",
+    text: "Discovery, solution design walkthrough and formal solution sign-off before any configuration began.",
   },
   {
     when: "Jun 2026",
     title: "Procurement & Inventory Foundation",
-    text: "Product, vendor, and procurement master data; receiving, QC, and COA tracking; lot, tote, and biomass traceability.",
+    text: "Product, vendor and procurement master data; receiving, QC and COA workflows; lot, tote and biomass traceability.",
   },
   {
     when: "Jul – Aug 2026",
@@ -176,27 +198,31 @@ const phases = [
     text: "Manufacturing architecture and BOM validation, consignment workflows, and sales ordering with pick-pack-ship execution.",
   },
   {
-    when: "Sep 2026",
-    title: "CRM, Accounting, Analytics & Testing",
-    text: "CRM, labeling, ShipStation, core accounting and compliance logic, Power BI delivery, then system integration testing and UAT sign-off.",
+    when: "Sep – Oct 2026",
+    title: "CRM, Accounting, Compliance Reporting & Testing",
+    text: "CRM, labeling, ShipStation, accounting and excise logic, CTLS reporting and Power BI, followed by integration testing and a thorough UAT cycle. We extended this phase so every workflow was validated end to end before cutover.",
   },
   {
-    when: "Go-Live",
-    title: "Cutover & Hypercare",
-    text: "Open-transaction and GL balance migration, a controlled production go-live, and a dedicated hypercare period with extended accounting support.",
+    when: "Nov 1, 2026",
+    title: "Go-Live & Hypercare",
+    text: "Open-transaction and GL balance migration, a controlled production go-live, and a dedicated hypercare period with extended accounting support through the first month-end close.",
   },
 ];
 
 const outcomes = [
-  "One integrated system of record from vendor receipt to customer delivery",
-  "End-to-end lot genealogy, making recall investigations a lookup instead of a manual hunt",
-  "Province-specific products, packaging, and fulfillment handled natively",
-  "Full visibility of company-owned, consignment, and 3PL inventory",
-  "Excise, tax, and inventory valuation flowing automatically into the books",
-  "Production efficiency, COGS, and WIP visible to leadership in Power BI",
-  "Field sales activity and store coverage tracked in the same platform",
-  "Role-based access and audit trails across every regulated workflow",
+  "One integrated system of record for all four brands, from vendor receipt to customer delivery",
+  "Every lot tied to its Certificate of Analysis, with nothing released before QC approval",
+  "CTLS monthly reporting generated from real transactions instead of spreadsheets",
+  "End-to-end lot genealogy, so a recall investigation is a lookup instead of a manual hunt",
+  "Province-specific products, packaging and fulfillment handled natively",
+  "Full visibility of company-owned, consignment and 3PL inventory",
+  "Excise, tax and inventory valuation flowing automatically into the books",
+  "Production efficiency, COGS and WIP visible to leadership in Power BI",
 ];
+
+function Eyebrow({ children }: { children: string }) {
+  return <p className="text-sm font-bold uppercase tracking-[0.15em] text-[#16A34A] mb-3">{children}</p>;
+}
 
 export default function LaniakeaBrandsCaseStudyPage() {
   return (
@@ -204,7 +230,7 @@ export default function LaniakeaBrandsCaseStudyPage() {
       {/* ───────── Hero ───────── */}
       <section className="relative pt-32 lg:pt-36 pb-16 lg:pb-20 bg-[#F8FAFC] overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-          <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-green-100/50 blur-[120px]" />
+          <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-amber-100/40 blur-[120px]" />
           <div className="absolute top-[20%] -right-[10%] w-[40%] h-[40%] rounded-full bg-blue-50/60 blur-[100px]" />
         </div>
 
@@ -217,7 +243,7 @@ export default function LaniakeaBrandsCaseStudyPage() {
             <span className="text-[#0F172A]">Laniakea Brands</span>
           </nav>
 
-          <div className="grid lg:grid-cols-[1.4fr_1fr] gap-12 lg:gap-16 items-start">
+          <div className="grid lg:grid-cols-[1.35fr_1fr] gap-12 lg:gap-14 items-start">
             <div>
               <div className="flex flex-wrap gap-2 mb-6">
                 <span className="inline-flex items-center rounded-full bg-green-50 text-[#16A34A] px-3 py-1 text-xs font-bold uppercase tracking-wider">
@@ -226,27 +252,63 @@ export default function LaniakeaBrandsCaseStudyPage() {
                 <span className="inline-flex items-center rounded-full bg-blue-50 text-[#003D82] px-3 py-1 text-xs font-bold uppercase tracking-wider">
                   Odoo Implementation
                 </span>
+                <span className="inline-flex items-center rounded-full bg-amber-50 text-amber-700 px-3 py-1 text-xs font-bold uppercase tracking-wider">
+                  Live since Nov 2026
+                </span>
               </div>
               <h1 className="text-[36px] md:text-[52px] font-[800] text-[#003D82] tracking-tight leading-[1.08] mb-6">
-                One Odoo ERP for a Multi-Province Licensed Cannabis Producer
+                One Odoo ERP for a Multi-Brand Licensed Cannabis Producer
               </h1>
-              <p className="text-lg md:text-xl text-[#475569] leading-relaxed font-medium max-w-2xl">
-                Laniakea Brands (formerly Space Race Cannabis) partnered with ERP Titans to implement a fully
-                integrated Odoo ERP spanning procurement, seed-to-sale traceability, manufacturing, consignment
-                sales, field CRM, and cannabis-compliant accounting, with a Power BI analytics layer on top.
+              <p className="text-lg md:text-xl text-[#475569] leading-relaxed font-medium max-w-2xl mb-6">
+                Laniakea Brands is the parent company behind four Canadian cannabis brands. The project began as an
+                Odoo implementation for Space Race Cannabis and grew into the operational backbone for the whole
+                Laniakea Brands family once the brands came together under one umbrella.
               </p>
+              <p className="text-[17px] text-[#64748B] leading-relaxed max-w-2xl">
+                It covers procurement, seed-to-sale traceability, Certificate of Analysis management, manufacturing,
+                consignment sales, field CRM, cannabis-compliant accounting and Health Canada CTLS reporting, with a
+                Power BI analytics layer on top.
+              </p>
+
+              <div className="mt-8">
+                <div className="text-xs font-bold uppercase tracking-[0.15em] text-[#94A3B8] mb-3">The Laniakea Brands family</div>
+                <div className="flex flex-wrap gap-2">
+                  {brands.map((b) => (
+                    <span
+                      key={b}
+                      className="rounded-full bg-white border border-[#E2E8F0] px-4 py-1.5 text-sm font-semibold text-[#334155] shadow-[0_2px_8px_rgba(0,0,0,0.03)]"
+                    >
+                      {b}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
 
-            <div className="bg-white rounded-[24px] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-gray-100 border-t-4 border-t-[#003D82]">
-              <h2 className="text-sm font-bold uppercase tracking-[0.15em] text-[#64748B] mb-5">At a Glance</h2>
-              <dl className="space-y-4">
-                {facts.map((f) => (
-                  <div key={f.label} className="grid grid-cols-[110px_1fr] gap-3 text-[15px]">
-                    <dt className="font-semibold text-[#64748B]">{f.label}</dt>
-                    <dd className="font-semibold text-[#0F172A]">{f.value}</dd>
-                  </div>
-                ))}
-              </dl>
+            {/* Client card */}
+            <div className="rounded-[24px] overflow-hidden shadow-[0_20px_50px_rgba(15,23,42,0.18)] border border-gray-100">
+              <div className="relative bg-gradient-to-br from-[#0B1220] via-[#14213D] to-[#1F2937] px-8 py-8 flex items-center justify-center">
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_40%,rgba(251,191,36,0.18),transparent_60%)]" />
+                <Image
+                  src="/case-studies/laniakea/logo-light.png"
+                  alt="Laniakea Brands logo"
+                  width={720}
+                  height={524}
+                  priority
+                  className="relative h-40 w-auto"
+                />
+              </div>
+              <div className="bg-white p-7">
+                <h2 className="text-sm font-bold uppercase tracking-[0.15em] text-[#64748B] mb-5">At a Glance</h2>
+                <dl className="space-y-3.5">
+                  {facts.map((f) => (
+                    <div key={f.label} className="grid grid-cols-[105px_1fr] gap-3 text-[14.5px]">
+                      <dt className="font-semibold text-[#64748B]">{f.label}</dt>
+                      <dd className="font-semibold text-[#0F172A]">{f.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
             </div>
           </div>
 
@@ -271,14 +333,14 @@ export default function LaniakeaBrandsCaseStudyPage() {
       <section className="py-20 lg:py-24 bg-white border-t border-[#E2E8F0]">
         <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-12">
-            <p className="text-sm font-bold uppercase tracking-[0.15em] text-[#16A34A] mb-3">The Challenge</p>
+            <Eyebrow>The Challenge</Eyebrow>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] leading-tight mb-5">
-              Regulated, multi-province, and operationally complex
+              Regulated, multi-brand and multi-province
             </h2>
             <p className="text-lg text-[#64748B] leading-relaxed">
-              As a licensed producer selling flower and pre-rolls into several provincial markets, the business
-              needed a single platform that could carry strict regulatory traceability without slowing down day-to-day
-              operations across purchasing, production, distribution, and finance.
+              As a licensed producer selling flower and pre-rolls under four brands into several provincial markets,
+              the business needed one platform that could carry strict regulatory traceability and reporting without
+              slowing down purchasing, production, distribution or finance.
             </p>
           </div>
 
@@ -293,17 +355,110 @@ export default function LaniakeaBrandsCaseStudyPage() {
         </div>
       </section>
 
+      {/* ───────── Compliance spotlight: COA ───────── */}
+      <section className="py-20 lg:py-24 bg-[#F8FAFC]">
+        <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mb-14">
+            <div className="flex items-center gap-2 mb-3">
+              <ShieldCheck className="text-[#16A34A]" size={20} />
+              <p className="text-sm font-bold uppercase tracking-[0.15em] text-[#16A34A]">Compliance, Built In</p>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] leading-tight mb-5">
+              Where cannabis ERP projects are won or lost
+            </h2>
+            <p className="text-lg text-[#64748B] leading-relaxed">
+              Configuring modules is the easy part. What makes an ERP work for a licensed producer is whether lab
+              results and federal reporting live inside the system or around it. Here, both were designed into the
+              workflows from the first sprint rather than left for spreadsheets after go-live.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-20">
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <span className="w-11 h-11 rounded-xl bg-[#003D82] text-white flex items-center justify-center">
+                  <FileCheck2 size={22} />
+                </span>
+                <h3 className="text-2xl md:text-[28px] font-extrabold text-[#0F172A]">Certificate of Analysis (COA)</h3>
+              </div>
+              <p className="text-[16px] text-[#64748B] leading-relaxed mb-6">
+                Under the Cannabis Regulations, every lot or batch must be tested by a licensed lab before it is sold,
+                and the COA is the proof. It records potency and contaminant results against a specific lot number.
+                Provincial distributors such as AGLC rely on it to confirm a product meets its specification.
+              </p>
+              <ul className="space-y-3.5">
+                {coaPoints.map((p) => (
+                  <li key={p} className="flex gap-3 text-[15px] text-[#334155] leading-relaxed">
+                    <CheckCircle2 size={20} className="text-[#16A34A] shrink-0 mt-0.5" />
+                    <span>{p}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <CoaMockup />
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div className="lg:order-2">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="w-11 h-11 rounded-xl bg-[#003D82] text-white flex items-center justify-center">
+                  <FileSpreadsheet size={22} />
+                </span>
+                <h3 className="text-2xl md:text-[28px] font-extrabold text-[#0F172A]">CTLS Monthly Reporting</h3>
+              </div>
+              <p className="text-[16px] text-[#64748B] leading-relaxed mb-6">
+                Federal licence holders must report to Health Canada through the Cannabis Tracking and Licensing System
+                by the 15th of every month. The report covers inventory additions and reductions, along with the book
+                value of closing inventory and of sales to provincial distributors. If the ERP can&apos;t produce it,
+                someone rebuilds it by hand every month.
+              </p>
+              <ul className="space-y-3.5">
+                {ctlsPoints.map((p) => (
+                  <li key={p} className="flex gap-3 text-[15px] text-[#334155] leading-relaxed">
+                    <CheckCircle2 size={20} className="text-[#16A34A] shrink-0 mt-0.5" />
+                    <span>{p}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="lg:order-1">
+              <CtlsMockup />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ───────── Traceability ───────── */}
+      <section className="py-20 lg:py-24 bg-white border-t border-[#E2E8F0]">
+        <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mb-10">
+            <div className="flex items-center gap-2 mb-3">
+              <GitBranch className="text-[#16A34A]" size={20} />
+              <p className="text-sm font-bold uppercase tracking-[0.15em] text-[#16A34A]">Seed-to-Sale</p>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] leading-tight mb-5">
+              Lot by lot, from vendor to distributor
+            </h2>
+            <p className="text-lg text-[#64748B] leading-relaxed">
+              Every movement carries its lot identity forward, including blends, so the full genealogy of any unit on
+              a provincial shelf is always one lookup away.
+            </p>
+          </div>
+          <GenealogyFlow />
+        </div>
+      </section>
+
       {/* ───────── Solution ───────── */}
       <section className="py-20 lg:py-24 bg-[#F8FAFC]">
         <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-12">
-            <p className="text-sm font-bold uppercase tracking-[0.15em] text-[#16A34A] mb-3">What We Built</p>
+            <Eyebrow>What We Built</Eyebrow>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] leading-tight mb-5">
               Six business areas on one integrated platform
             </h2>
             <p className="text-lg text-[#64748B] leading-relaxed">
-              Each area was configured and extended around how the business actually operates, with traceability
-              and compliance designed into every workflow from day one.
+              Each area was configured and extended around how the business actually operates, with traceability and
+              compliance designed into every workflow from day one.
             </p>
           </div>
 
@@ -340,10 +495,10 @@ export default function LaniakeaBrandsCaseStudyPage() {
               <h2 className="text-2xl md:text-3xl font-extrabold text-[#003D82]">Integrations</h2>
             </div>
             <p className="text-[#64748B] leading-relaxed mb-8">
-              Odoo was connected to the logistics, banking, communication, and analytics tools the team already
-              relied on, so data moves automatically instead of being re-keyed.
+              Odoo was connected to the logistics, banking, communication and analytics tools the team already relied
+              on, so data moves automatically instead of being re-keyed.
             </p>
-            <div className="space-y-4">
+            <div className="space-y-4 mb-10">
               {integrations.map((i) => (
                 <div key={i.name} className="flex gap-4 rounded-[16px] border border-gray-100 bg-[#F8FAFC] p-5">
                   <div className="font-bold text-[#003D82] min-w-[120px]">{i.name}</div>
@@ -359,9 +514,12 @@ export default function LaniakeaBrandsCaseStudyPage() {
               <h2 className="text-2xl md:text-3xl font-extrabold text-[#003D82]">Power BI Analytics</h2>
             </div>
             <p className="text-[#64748B] leading-relaxed mb-8">
-              A dedicated analytics layer connected directly to the Odoo.sh database gives leadership
-              decision-ready reporting across manufacturing, finance, compliance, and sales.
+              A dedicated analytics layer connected directly to the Odoo.sh database gives leadership decision-ready
+              reporting across manufacturing, finance, compliance and sales.
             </p>
+            <div className="mb-8">
+              <DashboardMockup />
+            </div>
             <div className="grid sm:grid-cols-2 gap-3">
               {reports.map((r) => (
                 <div
@@ -381,21 +539,25 @@ export default function LaniakeaBrandsCaseStudyPage() {
       <section className="py-20 lg:py-24 bg-[#F8FAFC]">
         <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-12">
-            <p className="text-sm font-bold uppercase tracking-[0.15em] text-[#16A34A] mb-3">How We Delivered</p>
+            <Eyebrow>How We Delivered</Eyebrow>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] leading-tight mb-5">
-              Fast-track agile delivery in 11 sprints
+              11 agile sprints, live on November 1
             </h2>
             <p className="text-lg text-[#64748B] leading-relaxed">
-              Every sprint ended with a live demo, business-user validation, and formal sign-off. Weekly governance
-              calls, a maintained risk register, and a structured change-request process kept scope and timeline
-              under control.
+              Every sprint ended with a live demo, business-user validation and formal sign-off. Weekly governance
+              calls, a maintained risk register and a structured change-request process kept scope under control,
+              and we gave final testing the time it needed rather than rushing cutover.
             </p>
           </div>
 
           <ol className="relative border-l-2 border-[#CBD5E1] ml-3 space-y-10">
-            {phases.map((p) => (
+            {phases.map((p, i) => (
               <li key={p.title} className="pl-8 relative">
-                <span className="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-[#003D82] ring-4 ring-[#F8FAFC]" />
+                <span
+                  className={`absolute -left-[11px] top-1 w-5 h-5 rounded-full ring-4 ring-[#F8FAFC] ${
+                    i === phases.length - 1 ? "bg-[#16A34A]" : "bg-[#003D82]"
+                  }`}
+                />
                 <div className="text-xs font-bold uppercase tracking-[0.15em] text-[#16A34A] mb-1">{p.when}</div>
                 <h3 className="text-xl font-bold text-[#0F172A] mb-2">{p.title}</h3>
                 <p className="text-[15px] text-[#64748B] leading-relaxed max-w-3xl">{p.text}</p>
@@ -405,9 +567,9 @@ export default function LaniakeaBrandsCaseStudyPage() {
 
           <div className="mt-14 grid md:grid-cols-3 gap-6">
             {[
-              { t: "Role-based training", d: "Hands-on workshops tailored to inventory, production, sales, and accounting users." },
-              { t: "Documentation handover", d: "Role-specific user manuals, configuration guides, and a video library." },
-              { t: "Hypercare", d: "Intensified post-go-live support, plus extended accounting SME coverage through the first close." },
+              { t: "Role-based training", d: "Hands-on workshops tailored to inventory, production, sales and accounting users." },
+              { t: "Documentation handover", d: "Role-specific user manuals, configuration guides and a video library." },
+              { t: "Hypercare", d: "Intensified post-go-live support, plus extended accounting coverage through the first close." },
             ].map((x) => (
               <div key={x.t} className="bg-white rounded-[20px] border border-gray-100 p-7">
                 <h3 className="font-bold text-[#003D82] mb-2">{x.t}</h3>
@@ -418,68 +580,40 @@ export default function LaniakeaBrandsCaseStudyPage() {
         </div>
       </section>
 
-      {/* ───────── Compliance ───────── */}
-      <section className="py-20 lg:py-24 bg-white border-t border-[#E2E8F0]">
-        <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <ShieldCheck className="text-[#16A34A]" size={28} />
-              <p className="text-sm font-bold uppercase tracking-[0.15em] text-[#16A34A]">Compliance by Design</p>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] leading-tight mb-5">
-              Built for Health Canada, provincial regulators, and the auditor
-            </h2>
-            <p className="text-lg text-[#64748B] leading-relaxed">
-              Traceability, quality control, and financial controls are embedded in each transaction rather than
-              rebuilt after the fact in spreadsheets, so the ERP stands as the source of truth when regulators ask.
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-2 gap-4">
-            {[
-              "Lot & blend genealogy",
-              "Recall readiness",
-              "COA & QC checkpoints",
-              "Quarantine & hold",
-              "Waste & destruction logs",
-              "Excise & tax reporting",
-              "Role-based access",
-              "Full audit trail",
-            ].map((c) => (
-              <div
-                key={c}
-                className="bg-green-50/70 border-l-4 border-[#16A34A] rounded-r-[14px] px-5 py-4 text-[15px] font-bold text-[#0F172A]"
-              >
-                {c}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ───────── Outcomes ───────── */}
-      <section className="py-20 lg:py-24 bg-[#F8FAFC]">
+      <section className="py-20 lg:py-24 bg-white border-t border-[#E2E8F0]">
         <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-12">
-            <div className="flex items-center gap-3 mb-3">
-              <Target className="text-[#16A34A]" size={22} />
-              <p className="text-sm font-bold uppercase tracking-[0.15em] text-[#16A34A]">The Result</p>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] leading-tight mb-5">
-              Live on Odoo, with one source of truth
-            </h2>
-            <p className="text-lg text-[#64748B] leading-relaxed">
-              Laniakea Brands now runs purchasing, production, distribution, field sales, and finance on a single
-              integrated platform built to scale with new products, provinces, and channels.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-x-10 gap-y-4">
-            {outcomes.map((o) => (
-              <div key={o} className="flex gap-3 items-start">
-                <CheckCircle2 size={22} className="text-[#003D82] shrink-0 mt-0.5" />
-                <span className="text-[16px] font-medium text-[#334155] leading-relaxed">{o}</span>
+          <div className="grid lg:grid-cols-[1fr_1.3fr] gap-12 lg:gap-16 items-start">
+            <div>
+              <div className="flex items-center gap-3 mb-3">
+                <Target className="text-[#16A34A]" size={22} />
+                <p className="text-sm font-bold uppercase tracking-[0.15em] text-[#16A34A]">The Result</p>
               </div>
-            ))}
+              <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] leading-tight mb-5">
+                Four brands, one source of truth
+              </h2>
+              <p className="text-lg text-[#64748B] leading-relaxed mb-8">
+                Since November 1, 2026, Laniakea Brands has run purchasing, production, distribution, field sales,
+                finance and compliance reporting for all four brands on a single integrated platform built to scale
+                with new products, provinces and channels.
+              </p>
+              <Image
+                src="/case-studies/laniakea/logo-dark.png"
+                alt="Laniakea Brands"
+                width={720}
+                height={524}
+                className="h-28 w-auto"
+              />
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-4">
+              {outcomes.map((o) => (
+                <div key={o} className="flex gap-3 items-start rounded-[16px] bg-[#F8FAFC] border border-gray-100 p-5">
+                  <CheckCircle2 size={20} className="text-[#003D82] shrink-0 mt-0.5" />
+                  <span className="text-[15px] font-medium text-[#334155] leading-relaxed">{o}</span>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/*
@@ -511,7 +645,7 @@ export default function LaniakeaBrandsCaseStudyPage() {
 
       <CTA
         heading="Planning an ERP for a Regulated Operation?"
-        description="Book a free consultation and see what an Odoo implementation built around your compliance and production realities would look like."
+        description="Book a free consultation and see what an Odoo implementation built around your compliance, COA and reporting realities would look like."
       />
     </div>
   );

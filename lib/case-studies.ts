@@ -5,7 +5,8 @@
 export type CaseStudySummary = {
   slug: string;
   client: string;
-  formerName?: string;
+  brands?: string[];
+  logo?: string;
   industry: string;
   location: string;
   engagement: string;
@@ -19,14 +20,15 @@ export const caseStudies: CaseStudySummary[] = [
   {
     slug: "laniakea-brands",
     client: "Laniakea Brands",
-    formerName: "Space Race Cannabis",
+    brands: ["Space Race Cannabis", "Beach Bum", "Violet Tourist", "Shoe String"],
+    logo: "/case-studies/laniakea/logo-dark.png",
     industry: "Cannabis",
     location: "Alberta, Canada",
     engagement: "Full-Cycle Odoo Implementation",
-    headline: "End-to-end Odoo ERP for a multi-province licensed cannabis producer",
+    headline: "End-to-end Odoo ERP for a multi-brand, multi-province licensed cannabis producer",
     summary:
-      "We designed and delivered a fully integrated Odoo ERP covering procurement, seed-to-sale inventory traceability, manufacturing, consignment sales, field CRM, and cannabis-compliant accounting, backed by a Power BI analytics layer, from kickoff to go-live in about four and a half months.",
-    tags: ["Odoo", "Cannabis", "Manufacturing", "Lot Traceability", "Power BI", "ShipStation"],
+      "A fully integrated Odoo ERP for the parent company of four cannabis brands, covering procurement, seed-to-sale traceability, Certificate of Analysis management, manufacturing, consignment sales, field CRM, cannabis-compliant accounting and Health Canada CTLS reporting, with Power BI analytics on top. Live since November 1, 2026.",
+    tags: ["Odoo", "Cannabis", "COA Management", "CTLS Reporting", "Lot Traceability", "Power BI"],
     stats: [
       { value: "6", label: "Core business areas" },
       { value: "11", label: "Agile sprints" },
