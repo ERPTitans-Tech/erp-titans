@@ -6,9 +6,10 @@ import WhyERP from "@/components/home/WhyERP";
 import Outcomes from "@/components/home/Outcomes";
 import CTA from "@/components/home/CTA";
 
+import { alternatesFor } from "@/lib/site";
 export const metadata = {
   title: { absolute: "Odoo Partner in Calgary, Canada & USA | ERP Titans" },
-  alternates: { canonical: "/" },
+  alternates: alternatesFor("/"),
 };
 
 export default function Home() {

@@ -3,11 +3,13 @@ import { CheckCircle2, MapPin, ChevronDown, ArrowRight } from "lucide-react";
 import LocationHero from "@/components/locations/LocationHero";
 import CTA from "@/components/home/CTA";
 import JsonLd from "@/components/seo/JsonLd";
-import { SITE_URL, ORG_ID } from "@/lib/seo";
+import { ORG_ID } from "@/lib/seo";
+import { getSite } from "@/lib/site";
 import { locations, type Location } from "@/lib/locations";
 import { odooServices } from "@/lib/odoo-services";
 
-export default function LocationPage({ loc }: { loc: Location }) {
+export default async function LocationPage({ loc }: { loc: Location }) {
+  const SITE_URL = (await getSite()).base;
   const url = `${SITE_URL}/${loc.slug}`;
   const related = locations.filter((l) => l.slug !== loc.slug && (l.country === loc.country || l.kind === "Country")).slice(0, 6);
 

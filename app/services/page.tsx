@@ -4,11 +4,12 @@ import WhyChooseUs from "@/components/services/WhyChooseUs";
 import ErpRescueProgram from "@/components/services/ErpRescueProgram";
 import CTA from "@/components/home/CTA";
 
+import { alternatesFor } from "@/lib/site";
 export const metadata = {
   title: "Odoo & ERP Services | Implementation, Rescue, Integration & Support",
   description:
     "End-to-end Odoo and ERP services: strategy, Odoo implementation, ERP rescue and recovery, customization, integrations, BI and analytics, AI, managed support, cloud and digital commerce.",
-  alternates: { canonical: "/services" },
+  alternates: alternatesFor("/services"),
 };
 
 export default function ServicesPage() {

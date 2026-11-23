@@ -5,10 +5,12 @@ import LocationHero from "@/components/locations/LocationHero";
 import CTA from "@/components/home/CTA";
 import JsonLd from "@/components/seo/JsonLd";
 import SectionHeader from "@/components/ui/SectionHeader";
-import { SITE_URL, ORG_ID } from "@/lib/seo";
+import { ORG_ID } from "@/lib/seo";
+import { getSite } from "@/lib/site";
 import { odooServices, type OdooService } from "@/lib/odoo-services";
 
-export default function OdooServicePage({ s }: { s: OdooService }) {
+export default async function OdooServicePage({ s }: { s: OdooService }) {
+  const SITE_URL = (await getSite()).base;
   const url = `${SITE_URL}/${s.slug}`;
   const related = odooServices.filter((x) => x.slug !== s.slug);
 

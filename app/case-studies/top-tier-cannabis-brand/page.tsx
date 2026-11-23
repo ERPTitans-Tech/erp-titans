@@ -10,6 +10,7 @@ import {
   FileSpreadsheet,
 } from "lucide-react";
 import CTA from "@/components/home/CTA";
+import { alternatesFor } from "@/lib/site";
 import {
   HeroDataGraph,
   DataFlowStepper,
@@ -24,7 +25,7 @@ export const metadata = {
   title: "Case Study: Odoo ERP for a Top-Tier Cannabis Brand",
   description:
     "How ERP Titans delivered a full-cycle Odoo ERP for a top-tier Canadian cannabis brand leading in 1 g and 0.4 g pre-rolls, covering seed-to-sale traceability, COA management, CTLS reporting, manufacturing, sales, accounting and Power BI.",
-  alternates: { canonical: "/case-studies/top-tier-cannabis-brand" },
+  alternates: alternatesFor("/case-studies/top-tier-cannabis-brand"),
 };
 
 const facts = [

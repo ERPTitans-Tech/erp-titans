@@ -3,11 +3,12 @@ import { ArrowRight, MapPin, Briefcase } from "lucide-react";
 import CTA from "@/components/home/CTA";
 import { caseStudies } from "@/lib/case-studies";
 
+import { alternatesFor } from "@/lib/site";
 export const metadata = {
   title: "Odoo Implementation Case Studies",
   description:
     "Real Odoo implementation and ERP recovery projects delivered by ERP Titans. See the scope, approach and capabilities behind our client engagements.",
-  alternates: { canonical: "/case-studies" },
+  alternates: alternatesFor("/case-studies"),
 };
 
 export default function CaseStudiesPage() {

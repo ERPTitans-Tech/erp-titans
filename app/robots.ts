@@ -1,10 +1,12 @@
 import type { MetadataRoute } from "next";
-import { SITE_URL } from "@/lib/seo";
+import { getSite } from "@/lib/site";
 
-export default function robots(): MetadataRoute.Robots {
+// Each domain points crawlers at its own sitemap.
+export default async function robots(): Promise<MetadataRoute.Robots> {
+  const { base } = await getSite();
   return {
     rules: [{ userAgent: "*", allow: "/", disallow: ["/api/"] }],
-    sitemap: `${SITE_URL}/sitemap.xml`,
-    host: SITE_URL,
+    sitemap: `${base}/sitemap.xml`,
+    host: base,
   };
 }

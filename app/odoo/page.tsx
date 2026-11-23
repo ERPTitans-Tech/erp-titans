@@ -3,11 +3,12 @@ import OdooServices from "@/components/odoo/OdooServices";
 import WhyChooseOdoo from "@/components/odoo/WhyChooseOdoo";
 import PowerOfOdoo from "@/components/odoo/PowerOfOdoo";
 import OdooCTA from "@/components/odoo/OdooCTA";
+import { alternatesFor } from "@/lib/site";
 export const metadata = {
   title: "Official Odoo Ready Partner | Odoo Implementation, Migration & Support",
   description:
     "ERP Titans is an official Odoo Ready Partner based in Calgary, Alberta. Odoo ERP implementation, migration, customization, integration and support for businesses across Canada and the USA.",
-  alternates: { canonical: "/odoo" },
+  alternates: alternatesFor("/odoo"),
 };
 
 export default function OdooPartnerPage() {

@@ -1,15 +1,18 @@
 import type { MetadataRoute } from "next";
-import { SITE_URL } from "@/lib/seo";
+import { getSite, CA_URL, COM_URL } from "@/lib/site";
 import { locations } from "@/lib/locations";
 import { caseStudies } from "@/lib/case-studies";
 import { odooServices } from "@/lib/odoo-services";
 
-// Generated at build time, so new pages and case studies are always included.
-export default function sitemap(): MetadataRoute.Sitemap {
+// Generated per domain: erptitans.ca lists .ca URLs, erptitans.com lists .com URLs,
+// each with the other domain as an hreflang alternate.
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const { base } = await getSite();
   const now = new Date();
   const page = (path: string, priority: number, changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"] = "monthly") => ({
-    url: `${SITE_URL}${path}`,
+    url: `${base}${path}`,
     lastModified: now,
+    alternates: { languages: { "en-CA": `${CA_URL}${path}`, "en-US": `${COM_URL}${path}`, "x-default": `${COM_URL}${path}` } },
     changeFrequency,
     priority,
   });

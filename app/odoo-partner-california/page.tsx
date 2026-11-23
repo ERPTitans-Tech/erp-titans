@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import LocationPage from "@/components/locations/LocationPage";
 import { getLocation } from "@/lib/locations";
 
+import { alternatesFor } from "@/lib/site";
 const loc = getLocation("odoo-partner-california");
 
 export const metadata: Metadata = {
   title: loc.title,
   description: loc.description,
-  alternates: { canonical: "/odoo-partner-california" },
+  alternates: alternatesFor("/odoo-partner-california"),
   openGraph: { title: loc.title, description: loc.description, url: "/odoo-partner-california", images: ["/opengraph-image"] },
 };
 

@@ -4,11 +4,12 @@ import { ArrowRight, MapPin } from "lucide-react";
 import CTA from "@/components/home/CTA";
 import { locations } from "@/lib/locations";
 
+import { alternatesFor } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Odoo Partner Locations | Canada & USA",
   description:
     "ERP Titans is a Calgary-based official Odoo Ready Partner serving Calgary, Alberta, British Columbia and all of Canada, plus Texas, California, New York, Florida, Arizona, Montana and businesses across the USA.",
-  alternates: { canonical: "/locations" },
+  alternates: alternatesFor("/locations"),
 };
 
 export default function LocationsPage() {

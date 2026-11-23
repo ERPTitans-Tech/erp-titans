@@ -3,11 +3,12 @@ import Comparison from "@/components/about/Comparison";
 import WhoWeServe from "@/components/about/WhoWeServe";
 import AboutCTA from "@/components/about/AboutCTA";
 
+import { alternatesFor } from "@/lib/site";
 export const metadata = {
   title: "About Us | Calgary-Based Odoo Partner & ERP Recovery Specialists",
   description:
     "ERP Titans is a Calgary-based official Odoo Ready Partner and ERP recovery specialist helping SMEs across Canada and the USA implement, fix and scale their ERP systems.",
-  alternates: { canonical: "/about" },
+  alternates: alternatesFor("/about"),
 };
 
 export default function AboutPage() {
