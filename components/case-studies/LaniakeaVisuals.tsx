@@ -78,7 +78,7 @@ export function CoaMockup() {
 const ctlsRows = [
   { cat: "Dried cannabis", open: "4,820", add: "+2,140", red: "−2,615", close: "4,345" },
   { cat: "Pre-rolls", open: "11,300", add: "+6,900", red: "−7,450", close: "10,750" },
-  { cat: "Unpackaged (kg)", open: "212.4", add: "+96.0", red: "−104.8", close: "203.6" },
+  { cat: "Bulk (kg)", open: "212.4", add: "+96.0", red: "−104.8", close: "203.6" },
 ];
 
 export function CtlsMockup() {
@@ -96,24 +96,24 @@ export function CtlsMockup() {
         </div>
 
         <div className="overflow-x-auto">
-          <table className="w-full text-[13px]">
+          <table className="w-full text-[12.5px]">
             <thead>
               <tr className="bg-[#F8FAFC] text-[11px] uppercase tracking-wider text-[#64748B]">
-                <th className="text-left font-semibold px-5 py-3">Category</th>
-                <th className="text-right font-semibold px-3 py-3">Opening</th>
-                <th className="text-right font-semibold px-3 py-3">Additions</th>
-                <th className="text-right font-semibold px-3 py-3">Reductions</th>
-                <th className="text-right font-semibold px-5 py-3">Closing</th>
+                <th className="text-left font-semibold pl-5 pr-2 py-3">Category</th>
+                <th className="text-right font-semibold px-2 py-3">Open</th>
+                <th className="text-right font-semibold px-2 py-3">Add</th>
+                <th className="text-right font-semibold px-2 py-3">Reduce</th>
+                <th className="text-right font-semibold pl-2 pr-5 py-3">Close</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               {ctlsRows.map((r) => (
                 <tr key={r.cat}>
-                  <td className="px-5 py-3 font-semibold text-[#0F172A]">{r.cat}</td>
-                  <td className="px-3 py-3 text-right text-[#475569] tabular-nums">{r.open}</td>
-                  <td className="px-3 py-3 text-right text-[#16A34A] font-medium tabular-nums">{r.add}</td>
-                  <td className="px-3 py-3 text-right text-[#B45309] font-medium tabular-nums">{r.red}</td>
-                  <td className="px-5 py-3 text-right font-bold text-[#003D82] tabular-nums">{r.close}</td>
+                  <td className="pl-5 pr-2 py-3 font-semibold text-[#0F172A]">{r.cat}</td>
+                  <td className="px-2 py-3 text-right text-[#475569] tabular-nums whitespace-nowrap">{r.open}</td>
+                  <td className="px-2 py-3 text-right text-[#16A34A] font-medium tabular-nums whitespace-nowrap">{r.add}</td>
+                  <td className="px-2 py-3 text-right text-[#B45309] font-medium tabular-nums whitespace-nowrap">{r.red}</td>
+                  <td className="pl-2 pr-5 py-3 text-right font-bold text-[#003D82] tabular-nums whitespace-nowrap">{r.close}</td>
                 </tr>
               ))}
             </tbody>
@@ -128,9 +128,9 @@ export function CtlsMockup() {
           ))}
         </div>
 
-        <div className="flex items-center justify-between px-6 py-4 bg-[#F8FAFC]">
-          <span className="text-sm font-medium text-[#64748B]">Generated from posted Odoo transactions</span>
-          <span className="inline-flex items-center gap-2 rounded-lg bg-[#003D82] text-white text-xs font-semibold px-3.5 py-2">
+        <div className="flex items-center justify-between gap-3 px-6 py-4 bg-[#F8FAFC]">
+          <span className="text-[13px] font-medium text-[#64748B]">Generated from posted Odoo transactions</span>
+          <span className="inline-flex items-center gap-2 rounded-lg bg-[#003D82] text-white text-xs font-semibold px-3.5 py-2 whitespace-nowrap shrink-0">
             <Download size={14} /> Export CTLS CSV
           </span>
         </div>
