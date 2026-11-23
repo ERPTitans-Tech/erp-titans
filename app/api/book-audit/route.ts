@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { sendAuditBookingEmail } from "@/services/emailService";
-// import { createTeamsMeeting } from "@/lib/graphClient";
 
 export async function POST(req: Request) {
   try {
@@ -88,6 +87,8 @@ export async function POST(req: Request) {
     // 2. Create the Real Microsoft Teams Meeting
     // ------------------------------------------------------------------------------------------------
     // TODO: RE-ENABLE MICROSOFT GRAPH INTEGRATION ONCE "APPLICATION ACCESS POLICY" IS CONFIGURED
+    // (lib/graphClient.ts was removed Nov 2026 to drop unused, vulnerable dependencies; restore it from git
+    // history and install a current @azure/msal-node + @microsoft/microsoft-graph-client when needed.)
     // Once the Office 365 Administrator has granted the `OnlineMeetings.ReadWrite.All` policy to this 
     // App Registration using Teams PowerShell, uncomment the block below to restore dynamic Teams meeting generation.
     // ------------------------------------------------------------------------------------------------

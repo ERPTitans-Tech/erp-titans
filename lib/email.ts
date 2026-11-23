@@ -1,7 +1,8 @@
 import nodemailer from 'nodemailer';
 
 // Cache the transporter so it's not recreated on every request
-let transporter: nodemailer.Transporter | null = null;
+type Transporter = ReturnType<typeof nodemailer.createTransport>;
+let transporter: Transporter | null = null;
 
 const getTransporter = () => {
   if (transporter) return transporter;
@@ -48,7 +49,7 @@ export async function sendEmail({
 
   const transporter = getTransporter();
 
-  const mailOptions: nodemailer.SendMailOptions = {
+  const mailOptions: Parameters<Transporter["sendMail"]>[0] = {
     from: `"ERP Titans" <${user}>`,
     to: to,
     subject: subject,
