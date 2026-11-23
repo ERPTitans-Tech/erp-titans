@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { Compass, Rocket, LifeBuoy, Code2, Plug, BarChart3, BrainCircuit, Headphones, Cloud, ShoppingCart } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
@@ -8,19 +9,19 @@ import SectionHeader from "@/components/ui/SectionHeader";
 const servicePillars = [
   { title: "ERP Strategy & Transformation", tagline: "Diagnose & Assess", icon: Compass,
     description: "We help organizations design ERP strategies aligned with long-term business growth, operational maturity, and digital transformation goals." },
-  { title: "Odoo Implementation", tagline: "Deploy & Adopt", icon: Rocket,
+  { title: "Odoo Implementation", href: "/odoo-implementation", tagline: "Deploy & Adopt", icon: Rocket,
     description: "End-to-end Odoo ERP implementation services designed to align technology with operational workflows." },
-  { title: "ERP Rescue & Recovery", tagline: "Stabilize & Recover", icon: LifeBuoy,
+  { title: "ERP Rescue & Recovery", href: "/odoo-rescue", tagline: "Stabilize & Recover", icon: LifeBuoy,
     description: "This pillar extends the flagship ERP Rescue Program™ and focuses on stabilizing underperforming ERP systems." },
-  { title: "Development & Customization", tagline: "Tailored Solutions", icon: Code2,
+  { title: "Development & Customization", href: "/odoo-customization", tagline: "Tailored Solutions", icon: Code2,
     description: "We build scalable ERP customizations that enhance business functionality while preserving long-term system maintainability." },
-  { title: "ERP Integration Services", tagline: "Connect Your Stack", icon: Plug,
+  { title: "ERP Integration Services", href: "/odoo-integration", tagline: "Connect Your Stack", icon: Plug,
     description: "Modern ERP environments depend on seamless system integration. We build robust integration ecosystems." },
   { title: "Data, BI & Analytics", tagline: "Real-Time Reporting", icon: BarChart3,
     description: "ERP systems generate massive operational data. We transform that data into decision-ready intelligence." },
   { title: "AI-Driven Intelligence", tagline: "Predict & Automate", icon: BrainCircuit,
     description: "We integrate AI models into ERP systems to enable predictive decision-making and operational optimization." },
-  { title: "Managed Services (AMS)", tagline: "Ongoing Partnership", icon: Headphones,
+  { title: "Managed Services (AMS)", href: "/odoo-support", tagline: "Ongoing Partnership", icon: Headphones,
     description: "We provide long-term ERP support that ensures systems remain stable, secure, and continuously improving." },
   { title: "Cloud & DevOps", tagline: "Speed & Scale", icon: Cloud,
     description: "Modern ERP systems require scalable cloud infrastructure. We design and manage ERP environments on leading cloud platforms." },
@@ -61,6 +62,11 @@ export default function ServicePillars() {
                   <div className="mb-1 text-[11px] font-bold uppercase tracking-[0.14em] text-[#0EA5E9]">{p.tagline}</div>
                   <h3 className="mb-2 text-lg font-bold text-[#003D82]">{p.title}</h3>
                   <p className="text-[15px] leading-relaxed text-[#64748B]">{p.description}</p>
+                  {"href" in p && p.href && (
+                    <Link href={p.href} className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-[#003D82] hover:underline">
+                      Learn more <span aria-hidden="true">→</span>
+                    </Link>
+                  )}
                 </div>
               </motion.article>
             );

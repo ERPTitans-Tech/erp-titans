@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { locations } from "@/lib/locations";
+import { odooServices } from "@/lib/odoo-services";
 
 export default function Footer() {
   return (
@@ -72,6 +73,14 @@ export default function Footer() {
 
         {/* Locations */}
         <div className="pb-8 mb-8 border-b border-gray-100">
+          <h4 className="font-semibold text-brand-text mb-4 text-sm">Odoo Services</h4>
+          <div className="flex flex-wrap gap-x-6 gap-y-2 mb-8">
+            {odooServices.map((o) => (
+              <Link key={o.slug} href={`/${o.slug}`} className="text-brand-text-muted hover:text-brand-primary transition-colors text-sm">
+                {o.name}
+              </Link>
+            ))}
+          </div>
           <h4 className="font-semibold text-brand-text mb-4 text-sm">Odoo Partner Locations</h4>
           <div className="flex flex-wrap gap-x-6 gap-y-2">
             {locations.map((l) => (

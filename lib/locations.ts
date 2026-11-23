@@ -64,6 +64,10 @@ export const locations: Location[] = [
         title: "Alberta-specific know-how",
         text: "GST-only sales tax, AGLC requirements for cannabis and liquor, and the cross-border trade many Calgary firms do with Montana and the wider US are all configured in from the start.",
       },
+      {
+        title: "Regulated-industry depth",
+        text: "We've delivered Odoo for a licensed cannabis producer with Certificate of Analysis workflows and Health Canada CTLS reporting built in, the kind of compliance work generic implementers leave to spreadsheets.",
+      },
     ],
     odooSetup: [
       "Canadian chart of accounts and GST configuration for Alberta, with fiscal positions for sales into HST and PST provinces",
@@ -93,6 +97,18 @@ export const locations: Location[] = [
       {
         q: "Can you fix an Odoo implementation another partner started?",
         a: "Yes. ERP recovery is our specialty. We audit the existing setup, stabilize what's broken, clean up data and customizations, and get the system delivering the results it was bought for.",
+      },
+      {
+        q: "What should we look for in a Calgary Odoo partner?",
+        a: "Look for an official Odoo partner with proof of delivery in your industry, senior consultants on your project rather than juniors, a standard-first approach that limits custom code, a clear plan for data migration, and support on your time zone after go-live. We're happy to walk you through how we handle each of these.",
+      },
+      {
+        q: "Do you provide Odoo support in Calgary after go-live?",
+        a: "Yes. We offer ongoing Odoo support and managed services from Calgary, covering help desk, fixes, upgrades, monitoring and continuous improvement.",
+      },
+      {
+        q: "Should we choose Odoo Enterprise or Community?",
+        a: "Most growing Calgary businesses benefit from Odoo Enterprise for its accounting, manufacturing, barcode and quality apps and official support. We'll recommend the right edition and hosting during discovery based on your needs.",
       },
     ],
   },

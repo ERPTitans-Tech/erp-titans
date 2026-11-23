@@ -5,6 +5,7 @@ import CTA from "@/components/home/CTA";
 import JsonLd from "@/components/seo/JsonLd";
 import { SITE_URL, ORG_ID } from "@/lib/seo";
 import { locations, type Location } from "@/lib/locations";
+import { odooServices } from "@/lib/odoo-services";
 
 export default function LocationPage({ loc }: { loc: Location }) {
   const url = `${SITE_URL}/${loc.slug}`;
@@ -138,6 +139,18 @@ export default function LocationPage({ loc }: { loc: Location }) {
       {/* Related locations */}
       <section className="py-12 bg-white border-t border-[#E2E8F0]">
         <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-lg font-bold text-[#0F172A] mb-4">Odoo services in {loc.place}</h2>
+          <div className="flex flex-wrap gap-3 mb-8">
+            {odooServices.map((o) => (
+              <Link
+                key={o.slug}
+                href={`/${o.slug}`}
+                className="inline-flex items-center gap-1.5 rounded-lg bg-[#F8FAFC] px-4 py-2 text-sm font-semibold text-[#003D82] ring-1 ring-[#E2E8F0] hover:ring-[#003D82]/40"
+              >
+                {o.name}
+              </Link>
+            ))}
+          </div>
           <h2 className="text-lg font-bold text-[#0F172A] mb-4">We also work with businesses in</h2>
           <div className="flex flex-wrap gap-3">
             {related.map((r) => (

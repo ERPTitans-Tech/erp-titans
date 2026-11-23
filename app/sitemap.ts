@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/seo";
 import { locations } from "@/lib/locations";
 import { caseStudies } from "@/lib/case-studies";
+import { odooServices } from "@/lib/odoo-services";
 
 // Generated at build time, so new pages and case studies are always included.
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -18,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     page("/odoo", 0.95),
     page("/odoo-partner-calgary", 0.95),
     page("/services", 0.9),
+    ...odooServices.map((o) => page(`/${o.slug}`, 0.9)),
     page("/locations", 0.8),
     ...locations.filter((l) => l.slug !== "odoo-partner-calgary").map((l) => page(`/${l.slug}`, l.kind === "Country" ? 0.85 : 0.8)),
     page("/case-studies", 0.8, "weekly"),
