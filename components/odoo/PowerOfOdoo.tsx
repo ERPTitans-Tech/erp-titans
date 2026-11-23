@@ -1,16 +1,17 @@
 import Image from "next/image";
 
 export default function PowerOfOdoo() {
+  // Official Odoo app icons (odoo.com/page/brand-assets), used unmodified.
   const modules = [
-    { name: "CRM", icon: "/odoo-icons/crm.png" },
-    { name: "Sales", icon: "/odoo-icons/sale.png" },
-    { name: "Inventory", icon: "/odoo-icons/inventory.png" },
-    { name: "Manufacturing", icon: "/odoo-icons/manufacturing.png" },
-    { name: "Accounting", icon: "/odoo-icons/accounting.png" },
-    { name: "Purchase", icon: "/odoo-icons/purchase.png" },
-    { name: "Projects", icon: "/odoo-icons/projects.png" },
-    { name: "POS", icon: "/odoo-icons/pos.png" },
-    { name: "eCommerce", icon: "/odoo-icons/ecommerce.png" },
+    { name: "CRM", icon: "/odoo-icons/svg/crm.svg" },
+    { name: "Sales", icon: "/odoo-icons/svg/sale_management.svg" },
+    { name: "Inventory", icon: "/odoo-icons/svg/stock.svg" },
+    { name: "Manufacturing", icon: "/odoo-icons/svg/mrp.svg" },
+    { name: "Accounting", icon: "/odoo-icons/svg/accountant.svg" },
+    { name: "Purchase", icon: "/odoo-icons/svg/purchase.svg" },
+    { name: "Project", icon: "/odoo-icons/svg/project.svg" },
+    { name: "Point of Sale", icon: "/odoo-icons/svg/point_of_sale.svg" },
+    { name: "eCommerce", icon: "/odoo-icons/svg/website_sale.svg" },
   ];
 
   return (
@@ -47,8 +48,8 @@ export default function PowerOfOdoo() {
                   key={idx} 
                   className="bg-white rounded-2xl p-6 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-gray-100 hover:shadow-md hover:border-[#003D82]/20 transition-all duration-300 group flex flex-col items-center justify-center text-center hover:-translate-y-1"
                 >
-                  <div className="w-12 h-12 bg-[#003D82]/5 text-[#003D82] rounded-xl flex items-center justify-center mb-4 group-hover:bg-[#003D82] group-hover:text-white transition-colors duration-300">
-                    <Image src={mod.icon} alt={`${mod.name} Icon`} width={32} height={32} className="object-contain" />
+                  <div className="w-16 h-16 bg-[#F8FAFC] rounded-2xl flex items-center justify-center mb-4 border border-gray-100 group-hover:scale-110 group-hover:shadow-md transition-all duration-300">
+                    <Image src={mod.icon} alt={`Odoo ${mod.name} app icon`} width={50} height={50} className="w-10 h-10" />
                   </div>
                   <span className="font-semibold text-[#334155] text-sm group-hover:text-[#003D82] transition-colors">
                     {mod.name}

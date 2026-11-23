@@ -4,12 +4,6 @@ import {
   ArrowRight,
   ChevronRight,
   CheckCircle2,
-  ShoppingCart,
-  Boxes,
-  Factory,
-  Truck,
-  Users,
-  Landmark,
   BarChart3,
   Plug,
   ShieldCheck,
@@ -90,7 +84,8 @@ const ctlsPoints = [
 
 const solution = [
   {
-    icon: ShoppingCart,
+    icon: "/odoo-icons/svg/purchase.svg",
+    app: "Purchase",
     title: "Procure-to-Pay",
     points: [
       "Vendor onboarding with licensing and regulatory document governance",
@@ -101,7 +96,8 @@ const solution = [
     ],
   },
   {
-    icon: Boxes,
+    icon: "/odoo-icons/svg/stock.svg",
+    app: "Inventory",
     title: "Inventory & Traceability",
     points: [
       "Lot, batch and tote tracking with parent-child blend genealogy",
@@ -112,7 +108,8 @@ const solution = [
     ],
   },
   {
-    icon: Factory,
+    icon: "/odoo-icons/svg/mrp.svg",
+    app: "Manufacturing",
     title: "Manufacturing",
     points: [
       "Multi-level BOMs with province-specific packaging and stamp handling",
@@ -123,7 +120,8 @@ const solution = [
     ],
   },
   {
-    icon: Truck,
+    icon: "/odoo-icons/svg/sale_management.svg",
+    app: "Sales",
     title: "Sales & Fulfillment",
     points: [
       "Order intake from provincial distributors and authorized channels",
@@ -134,7 +132,8 @@ const solution = [
     ],
   },
   {
-    icon: Users,
+    icon: "/odoo-icons/svg/crm.svg",
+    app: "CRM",
     title: "CRM & Field Sales",
     points: [
       "Store visit planning, reminders and standardized visit checklists",
@@ -145,7 +144,8 @@ const solution = [
     ],
   },
   {
-    icon: Landmark,
+    icon: "/odoo-icons/svg/accountant.svg",
+    app: "Accounting",
     title: "Accounting & Finance",
     points: [
       "Chart of accounts, fiscal structure and automated operational postings",
@@ -155,6 +155,18 @@ const solution = [
       "Bank feeds and reconciliation, fixed assets, accruals and a full audit trail",
     ],
   },
+];
+
+// Official Odoo app icons (odoo.com/page/brand-assets), used unmodified.
+const odooApps = [
+  { name: "Purchase", icon: "/odoo-icons/svg/purchase.svg" },
+  { name: "Inventory", icon: "/odoo-icons/svg/stock.svg" },
+  { name: "Barcode", icon: "/odoo-icons/svg/stock_barcode.svg" },
+  { name: "Quality", icon: "/odoo-icons/svg/quality_control.svg" },
+  { name: "Manufacturing", icon: "/odoo-icons/svg/mrp.svg" },
+  { name: "Sales", icon: "/odoo-icons/svg/sale_management.svg" },
+  { name: "CRM", icon: "/odoo-icons/svg/crm.svg" },
+  { name: "Accounting", icon: "/odoo-icons/svg/accountant.svg" },
 ];
 
 const integrations = [
@@ -462,16 +474,40 @@ export default function LaniakeaBrandsCaseStudyPage() {
             </p>
           </div>
 
+          <div className="mb-12 rounded-[24px] bg-white border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] px-6 py-6 md:px-8">
+            <div className="flex flex-col lg:flex-row lg:items-center gap-6">
+              <div className="lg:w-56 shrink-0">
+                <div className="text-xs font-bold uppercase tracking-[0.15em] text-[#94A3B8] mb-1">Built on</div>
+                <div className="text-lg font-extrabold text-[#0F172A]">Odoo apps in this implementation</div>
+              </div>
+              <div className="grid grid-cols-4 sm:grid-cols-8 gap-3 flex-1">
+                {odooApps.map((a) => (
+                  <div key={a.name} className="flex flex-col items-center gap-2 text-center">
+                    <span className="w-14 h-14 rounded-2xl bg-[#F8FAFC] border border-gray-100 flex items-center justify-center hover:-translate-y-0.5 transition-transform">
+                      <Image src={a.icon} alt={`Odoo ${a.name} app icon`} width={50} height={50} className="w-9 h-9" />
+                    </span>
+                    <span className="text-[12px] font-semibold text-[#475569]">{a.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {solution.map(({ icon: Icon, title, points }) => (
+            {solution.map(({ icon, app, title, points }) => (
               <div
                 key={title}
                 className="bg-white rounded-[24px] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 hover:-translate-y-0.5 transition-transform duration-300"
               >
-                <div className="w-12 h-12 rounded-xl bg-[#003D82] flex items-center justify-center text-white mb-5">
-                  <Icon size={24} />
+                <div className="flex items-center gap-4 mb-5">
+                  <span className="w-14 h-14 rounded-2xl bg-[#F8FAFC] border border-gray-100 flex items-center justify-center shrink-0">
+                    <Image src={icon} alt={`Odoo ${app} app icon`} width={50} height={50} className="w-9 h-9" />
+                  </span>
+                  <div>
+                    <h3 className="text-xl font-bold text-[#003D82] leading-tight">{title}</h3>
+                    <span className="text-xs font-semibold uppercase tracking-wider text-[#94A3B8]">Odoo {app}</span>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-[#003D82] mb-4">{title}</h3>
                 <ul className="space-y-3">
                   {points.map((p) => (
                     <li key={p} className="flex gap-2.5 text-[15px] text-[#475569] leading-snug">
