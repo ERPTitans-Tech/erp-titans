@@ -2,8 +2,9 @@ import { FileText } from "lucide-react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | ERP Titans",
+  title: "Terms of Service",
   description: "Terms of Service for ERP Titans website and services.",
+  alternates: { canonical: "/terms-of-service" },
 };
 
 export default function TermsOfServicePage() {

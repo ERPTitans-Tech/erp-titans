@@ -6,6 +6,11 @@ import WhyERP from "@/components/home/WhyERP";
 import Outcomes from "@/components/home/Outcomes";
 import CTA from "@/components/home/CTA";
 
+export const metadata = {
+  title: { absolute: "Odoo Partner in Calgary, Canada & USA | ERP Titans" },
+  alternates: { canonical: "/" },
+};
+
 export default function Home() {
   return (
     <>

@@ -21,10 +21,10 @@ import {
 } from "@/components/case-studies/CannabisInteractive";
 
 export const metadata = {
-  title: "Case Study: Odoo ERP for a Top-Tier Cannabis Brand | ERP Titans",
+  title: "Case Study: Odoo ERP for a Top-Tier Cannabis Brand",
   description:
     "How ERP Titans delivered a full-cycle Odoo ERP for a top-tier Canadian cannabis brand leading in 1 g and 0.4 g pre-rolls, covering seed-to-sale traceability, COA management, CTLS reporting, manufacturing, sales, accounting and Power BI.",
-  alternates: { canonical: "https://erptitans.com/case-studies/top-tier-cannabis-brand" },
+  alternates: { canonical: "/case-studies/top-tier-cannabis-brand" },
 };
 
 const facts = [

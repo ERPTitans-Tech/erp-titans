@@ -2,8 +2,9 @@ import { Shield } from "lucide-react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | ERP Titans",
+  title: "Privacy Policy",
   description: "Privacy Policy explaining how ERP Titans collects, uses, discloses, and safeguards your information.",
+  alternates: { canonical: "/privacy-policy" },
 };
 
 export default function PrivacyPolicyPage() {

@@ -5,8 +5,10 @@ import ErpRescueProgram from "@/components/services/ErpRescueProgram";
 import CTA from "@/components/home/CTA";
 
 export const metadata = {
-  title: "Services | ERP Titans",
-  description: "Comprehensive ERP Lifecycle Support for SMEs globally.",
+  title: "Odoo & ERP Services | Implementation, Rescue, Integration & Support",
+  description:
+    "End-to-end Odoo and ERP services: strategy, Odoo implementation, ERP rescue and recovery, customization, integrations, BI and analytics, AI, managed support, cloud and digital commerce.",
+  alternates: { canonical: "/services" },
 };
 
 export default function ServicesPage() {

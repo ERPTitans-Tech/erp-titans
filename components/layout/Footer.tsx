@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { locations } from "@/lib/locations";
 
 export default function Footer() {
   return (
@@ -63,7 +64,7 @@ export default function Footer() {
               </li>
               <li>
                 <span className="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1">Location</span>
-                <span className="text-brand-text-muted text-sm">Canada<br />(Serving Globally)</span>
+                <span className="text-brand-text-muted text-sm">Calgary, Alberta, Canada<br />(Serving Canada &amp; USA)</span>
               </li>
             </ul>
           </div>
@@ -71,19 +72,15 @@ export default function Footer() {
 
         {/* Locations */}
         <div className="pb-8 mb-8 border-b border-gray-100">
-          <h4 className="font-semibold text-brand-text mb-4 text-sm">Also Serving</h4>
+          <h4 className="font-semibold text-brand-text mb-4 text-sm">Odoo Partner Locations</h4>
           <div className="flex flex-wrap gap-x-6 gap-y-2">
-            <Link href="/odoo-implementation-alberta" className="text-brand-text-muted hover:text-brand-primary transition-colors text-sm">
-              Odoo Implementation in Alberta
-            </Link>
-            <Link href="/erp-consulting-british-columbia" className="text-brand-text-muted hover:text-brand-primary transition-colors text-sm">
-              ERP Consulting in British Columbia
-            </Link>
-            <Link href="/odoo-partner-texas" className="text-brand-text-muted hover:text-brand-primary transition-colors text-sm">
-              Odoo Partner in Texas
-            </Link>
-            <Link href="/odoo-partner-california" className="text-brand-text-muted hover:text-brand-primary transition-colors text-sm">
-              Odoo Partner in California
+            {locations.map((l) => (
+              <Link key={l.slug} href={`/${l.slug}`} className="text-brand-text-muted hover:text-brand-primary transition-colors text-sm">
+                Odoo Partner in {l.place === "the USA" ? "the USA" : l.place}
+              </Link>
+            ))}
+            <Link href="/locations" className="text-[#003D82] font-semibold hover:text-[#003D82]/80 transition-colors text-sm">
+              All locations
             </Link>
           </div>
         </div>

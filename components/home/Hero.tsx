@@ -13,6 +13,10 @@ export default function Hero() {
           <div className="text-left">
 
 
+            <p className="mb-5 inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-[#003D82] shadow-sm ring-1 ring-[#003D82]/10">
+              <span className="h-2 w-2 rounded-full bg-[#21B799]" />
+              Official Odoo Ready Partner · Calgary, Alberta · Serving Canada &amp; USA
+            </p>
             <h1 className="text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] mb-8 text-[#003D82]">
               Fix Your Broken ERP. <br />
               <span className="text-[#003D82]">Scale Your Business.</span>

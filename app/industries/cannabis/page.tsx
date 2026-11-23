@@ -4,8 +4,10 @@ import CannabisFoundation from "@/components/industries/cannabis/CannabisFoundat
 import CTA from "@/components/home/CTA";
 
 export const metadata = {
-  title: "Cannabis Industry ERP | ERP Titans",
-  description: "Specialized ERP recovery and implementation for cannabis producers. We solve regulatory compliance, seed-to-sale tracking, and inventory controls.",
+  title: "Cannabis ERP | Odoo for Licensed Producers, COA & CTLS Reporting",
+  description:
+    "Odoo ERP for licensed cannabis producers: seed-to-sale traceability, Certificate of Analysis management, Health Canada CTLS reporting, excise duty and inventory control.",
+  alternates: { canonical: "/industries/cannabis" },
 };
 
 export default function CannabisPage() {

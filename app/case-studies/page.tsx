@@ -4,10 +4,10 @@ import CTA from "@/components/home/CTA";
 import { caseStudies } from "@/lib/case-studies";
 
 export const metadata = {
-  title: "Case Studies | ERP Titans",
+  title: "Odoo Implementation Case Studies",
   description:
-    "Real Odoo implementation and ERP recovery projects delivered by ERP Titans. See the scope, approach, and capabilities behind our client engagements.",
-  alternates: { canonical: "https://erptitans.com/case-studies" },
+    "Real Odoo implementation and ERP recovery projects delivered by ERP Titans. See the scope, approach and capabilities behind our client engagements.",
+  alternates: { canonical: "/case-studies" },
 };
 
 export default function CaseStudiesPage() {

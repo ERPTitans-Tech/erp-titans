@@ -4,8 +4,10 @@ import RecoveryApproach from "@/components/industries/manufacturing/RecoveryAppr
 import CTA from "@/components/home/CTA";
 
 export const metadata = {
-  title: "Manufacturing Industry ERP | ERP Titans",
-  description: "Specialized ERP recovery and implementation for manufacturers. We solve production planning chaos, inventory gaps, and supply chain disconnects.",
+  title: "Manufacturing ERP | Odoo MRP Implementation for Manufacturers",
+  description:
+    "Odoo manufacturing ERP for SMEs: MRP, work orders, quality control, maintenance and costing, implemented and rescued by an official Odoo Ready Partner.",
+  alternates: { canonical: "/industries/manufacturing" },
 };
 
 export default function ManufacturingPage() {
