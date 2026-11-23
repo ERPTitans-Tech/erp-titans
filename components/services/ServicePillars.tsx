@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Compass, Rocket, LifeBuoy, Code2, Plug, BarChart3, BrainCircuit, Headphones, Cloud, ShoppingCart } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 
@@ -44,7 +44,7 @@ export default function ServicePillars() {
           {servicePillars.map((p, i) => {
             const Icon = p.icon;
             return (
-              <motion.article
+              <m.article
                 key={p.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -68,7 +68,7 @@ export default function ServicePillars() {
                     </Link>
                   )}
                 </div>
-              </motion.article>
+              </m.article>
             );
           })}
         </div>

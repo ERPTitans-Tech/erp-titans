@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { CheckCircle2, ArrowRight, Info, FlaskConical, FileCheck2, BarChart3 } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 
@@ -32,7 +32,7 @@ export default function Outcomes() {
 
         <div className="grid gap-6 lg:grid-cols-[1.25fr_1fr]">
           {/* Before / after chart */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -63,7 +63,7 @@ export default function Outcomes() {
                     }`}
                   >
                     {after === o.k && (
-                      <motion.span
+                      <m.span
                         layoutId="outcomes-toggle"
                         className={`absolute inset-0 rounded-full ${o.k ? "bg-[#003D82]" : "bg-[#64748B]"}`}
                         transition={{ type: "spring", stiffness: 400, damping: 32 }}
@@ -76,36 +76,36 @@ export default function Outcomes() {
             </div>
 
             <div className="space-y-5">
-              {metrics.map((m) => {
-                const v = after ? m.after : m.before;
-                const improved = m.lowerIsBetter ? m.after < m.before : m.after > m.before;
-                const change = m.unit === "%" ? `${Math.abs(m.after - m.before)} pts` : `${Math.round((Math.abs(m.before - m.after) / m.before) * 100)}%`;
+              {metrics.map((row) => {
+                const v = after ? row.after : row.before;
+                const improved = row.lowerIsBetter ? row.after < row.before : row.after > row.before;
+                const change = row.unit === "%" ? `${Math.abs(row.after - row.before)} pts` : `${Math.round((Math.abs(row.before - row.after) / row.before) * 100)}%`;
                 return (
-                  <div key={m.label}>
+                  <div key={row.label}>
                     <div className="mb-2 flex items-baseline justify-between gap-3">
                       <span className="text-sm font-semibold text-[#475569]">
-                        {m.label}
-                        <span className="ml-1.5 text-xs font-medium text-[#94A3B8]">{m.lowerIsBetter ? "(lower is better)" : ""}</span>
+                        {row.label}
+                        <span className="ml-1.5 text-xs font-medium text-[#94A3B8]">{row.lowerIsBetter ? "(lower is better)" : ""}</span>
                       </span>
                       <span className="flex items-center gap-2">
                         {after && improved && (
-                          <motion.span
+                          <m.span
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
                             className="rounded-full bg-[#16A34A]/10 px-2 py-0.5 text-[11px] font-bold text-[#16A34A]"
                           >
-                            {m.lowerIsBetter ? "−" : "+"}
+                            {row.lowerIsBetter ? "−" : "+"}
                             {change}
-                          </motion.span>
+                          </m.span>
                         )}
-                        <span className="text-base font-bold text-[#0F172A]">{fmt(v, m.unit)}</span>
+                        <span className="text-base font-bold text-[#0F172A]">{fmt(v, row.unit)}</span>
                       </span>
                     </div>
                     <div className="h-3 overflow-hidden rounded-full bg-[#F1F5F9]">
-                      <motion.div
+                      <m.div
                         className="h-full rounded-full"
                         initial={false}
-                        animate={{ width: `${(v / m.max) * 100}%`, backgroundColor: after ? "#003D82" : "#94A3B8" }}
+                        animate={{ width: `${(v / row.max) * 100}%`, backgroundColor: after ? "#003D82" : "#94A3B8" }}
                         transition={{ duration: 0.7, ease: "easeOut" }}
                       />
                     </div>
@@ -113,11 +113,11 @@ export default function Outcomes() {
                 );
               })}
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Outcome focus + proof */}
           <div className="flex flex-col gap-6">
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -131,9 +131,9 @@ export default function Outcomes() {
                 <h3 className="text-lg font-bold text-[#0F172A]">100% Outcome Focused</h3>
                 <p className="text-[15px] text-[#64748B]">Every fix is tied to a business goal.</p>
               </div>
-            </motion.div>
+            </m.div>
 
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -171,7 +171,7 @@ export default function Outcomes() {
               >
                 Read the case study <ArrowRight size={16} />
               </Link>
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { TrendingDown, Coins, EyeOff, ArrowDownRight, Info } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 
@@ -61,7 +61,7 @@ function Slider({
         max={max}
         step={step}
         value={value}
-        onChange={(e) => onChange(Number(e.target.value))}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(Number(e.target.value))}
         className="h-2 w-full cursor-pointer appearance-none rounded-full accent-[#003D82]"
         style={{ background: `linear-gradient(to right, #003D82 ${pct}%, #E2E8F0 ${pct}%)` }}
       />
@@ -92,7 +92,7 @@ export default function CostOfInaction() {
 
         <div className="grid gap-6 lg:grid-cols-[1.05fr_1fr]">
           {/* Calculator */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -122,14 +122,14 @@ export default function CostOfInaction() {
                 { label: "Cost / year", value: money(costYear), strong: true },
               ].map((o) => (
                 <div key={o.label} className="px-3 text-center">
-                  <motion.div
+                  <m.div
                     key={o.value}
                     initial={{ opacity: 0.4, y: 4 }}
                     animate={{ opacity: 1, y: 0 }}
                     className={`text-xl font-extrabold tracking-tight sm:text-2xl ${o.strong ? "text-[#DC2626]" : "text-[#0F172A]"}`}
                   >
                     {o.value}
-                  </motion.div>
+                  </m.div>
                   <div className="mt-1 text-[11px] font-bold uppercase tracking-wider text-[#94A3B8]">{o.label}</div>
                 </div>
               ))}
@@ -138,14 +138,14 @@ export default function CostOfInaction() {
               Based on {WORK_WEEKS} working weeks and {FTE_HOURS.toLocaleString("en-US")} hours per full-time role. Workaround time only;
               excludes licence, error and opportunity costs.
             </p>
-          </motion.div>
+          </m.div>
 
           {/* Cost cards */}
           <div className="grid gap-4 sm:grid-cols-2">
             {costs.map((c, i) => {
               const Icon = c.icon;
               return (
-                <motion.div
+                <m.div
                   key={c.title}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -158,7 +158,7 @@ export default function CostOfInaction() {
                   </span>
                   <h3 className="mb-2 text-lg font-bold text-[#0F172A]">{c.title}</h3>
                   <p className="text-[15px] leading-relaxed text-[#64748B]">{c.description}</p>
-                </motion.div>
+                </m.div>
               );
             })}
           </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ShieldCheck, Activity, Globe, Settings2, X, Check } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 
@@ -38,7 +38,7 @@ export default function WhyERP() {
             {features.map((f, i) => {
               const Icon = f.icon;
               return (
-                <motion.div
+                <m.div
                   key={f.title}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -51,13 +51,13 @@ export default function WhyERP() {
                   </span>
                   <h3 className="mb-2 text-lg font-bold text-[#0F172A]">{f.title}</h3>
                   <p className="text-[15px] leading-relaxed text-[#64748B]">{f.description}</p>
-                </motion.div>
+                </m.div>
               );
             })}
           </div>
 
           {/* Comparison */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -91,7 +91,7 @@ export default function WhyERP() {
                         </span>
                         <span className="text-sm font-medium text-[#64748B]">{row.them}</span>
                       </div>
-                      <motion.div
+                      <m.div
                         animate={{ scale: on ? 1.03 : 1 }}
                         transition={{ duration: 0.2 }}
                         className="flex items-center gap-2.5 rounded-xl bg-[#003D82]/[0.06] px-4 py-3.5 ring-1 ring-[#003D82]/20"
@@ -100,13 +100,13 @@ export default function WhyERP() {
                           <Check size={11} strokeWidth={3} className="text-white" />
                         </span>
                         <span className="text-sm font-semibold text-[#0F172A]">{row.us}</span>
-                      </motion.div>
+                      </m.div>
                     </div>
                   </div>
                 );
               })}
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

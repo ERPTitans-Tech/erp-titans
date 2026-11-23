@@ -14,7 +14,7 @@ import {
   startOfDay,
   isSameDay
 } from "date-fns";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Calendar as CalendarIcon } from "lucide-react";
 
 interface BookingCalendarProps {
@@ -110,7 +110,7 @@ export default function BookingCalendar({ selectedDate, onSelectDate }: BookingC
 
       <div className="relative overflow-hidden min-h-[180px]">
         <AnimatePresence initial={false} custom={direction} mode="wait">
-          <motion.div
+          <m.div
             key={currentMonth.toISOString()}
             custom={direction}
             variants={variants}
@@ -164,7 +164,7 @@ export default function BookingCalendar({ selectedDate, onSelectDate }: BookingC
                 })}
               </div>
             ))}
-          </motion.div>
+          </m.div>
         </AnimatePresence>
       </div>
     </div>

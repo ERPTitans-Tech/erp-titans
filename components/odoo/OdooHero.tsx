@@ -73,8 +73,8 @@ export default function OdooHero() {
               <Image
                 src="/logo.png"
                 alt="ERP Titans"
-                width={627}
-                height={517}
+                width={117}
+                height={96}
                 className="h-24 w-auto"
               />
             </div>

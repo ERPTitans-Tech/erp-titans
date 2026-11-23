@@ -3,9 +3,10 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { ArrowRight, Check, Search, Wrench, Zap, TrendingUp, Info } from "lucide-react";
 import { officesFor } from "@/lib/offices";
+import Flag from "@/components/ui/Flag";
 
 const NAVY = "#003D82";
 const SKY = "#0EA5E9";
@@ -76,10 +77,23 @@ export default function Hero({ isCA = false }: { isCA?: boolean }) {
       <div className="relative mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
           {/* Copy */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <p className="mb-5 inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-xs font-semibold sm:text-sm text-[#003D82] shadow-sm ring-1 ring-[#003D82]/10">
+          <m.div initial={false} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <p className="mb-5 inline-flex flex-wrap items-center gap-x-2 gap-y-1 rounded-full bg-white px-4 py-1.5 text-xs font-semibold sm:text-sm text-[#003D82] shadow-sm ring-1 ring-[#003D82]/10">
               <span className="h-2 w-2 shrink-0 rounded-full bg-[#21B799]" />
-              Official Odoo Ready Partner · {offices.short} · {offices.serving}
+              <span>Official Odoo Ready Partner</span>
+              {offices.pill.map((o) => (
+                <span key={o.label} className="inline-flex items-center gap-1.5 whitespace-nowrap">
+                  <span className="text-[#CBD5E1]">·</span>
+                  <Flag country={o.country} />
+                  {o.label}
+                </span>
+              ))}
+              {offices.serving && (
+                <span className="whitespace-nowrap">
+                  <span className="mr-1.5 text-[#CBD5E1]">·</span>
+                  {offices.serving}
+                </span>
+              )}
             </p>
             <h1 className="text-4xl font-extrabold leading-[1.1] tracking-tight text-[#003D82] sm:text-5xl lg:text-[58px]">
               Fix Your Broken ERP. <br />
@@ -115,11 +129,11 @@ export default function Hero({ isCA = false }: { isCA?: boolean }) {
                 </span>
               ))}
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Interactive recovery framework */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
+          <m.div
+            initial={false}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.15 }}
             className="rounded-[28px] bg-white p-7 shadow-[0_20px_50px_rgba(0,61,130,0.10)] ring-1 ring-[#E2E8F0] sm:p-8"
@@ -168,7 +182,7 @@ export default function Hero({ isCA = false }: { isCA?: boolean }) {
 
             {/* Progress line */}
             <div className="mt-4 h-1 w-full overflow-hidden rounded-full bg-[#F1F5F9]">
-              <motion.div
+              <m.div
                 className="h-full rounded-full bg-gradient-to-r from-[#003D82] via-[#0EA5E9] to-[#16A34A]"
                 animate={{ width: `${((active + 1) / stages.length) * 100}%` }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
@@ -180,7 +194,7 @@ export default function Hero({ isCA = false }: { isCA?: boolean }) {
               <div className="relative mx-auto h-[150px] w-[150px]">
                 <svg viewBox="0 0 140 140" className="h-full w-full -rotate-90">
                   <circle cx="70" cy="70" r={R} fill="none" stroke="#F1F5F9" strokeWidth="12" />
-                  <motion.circle
+                  <m.circle
                     cx="70"
                     cy="70"
                     r={R}
@@ -194,8 +208,8 @@ export default function Hero({ isCA = false }: { isCA?: boolean }) {
                   />
                 </svg>
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <AnimatePresence mode="wait">
-                    <motion.span
+                  <AnimatePresence mode="wait" initial={false}>
+                    <m.span
                       key={stage.score}
                       initial={{ opacity: 0, y: 6 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -203,7 +217,7 @@ export default function Hero({ isCA = false }: { isCA?: boolean }) {
                       className="text-4xl font-extrabold tracking-tight text-[#0F172A]"
                     >
                       {stage.score}
-                    </motion.span>
+                    </m.span>
                   </AnimatePresence>
                   <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#94A3B8]">ERP health</span>
                 </div>
@@ -217,7 +231,7 @@ export default function Hero({ isCA = false }: { isCA?: boolean }) {
                       <span className="text-[#0F172A]">{v}%</span>
                     </div>
                     <div className="h-2 overflow-hidden rounded-full bg-[#F1F5F9]">
-                      <motion.div
+                      <m.div
                         className="h-full rounded-full"
                         style={{ backgroundColor: NAVY }}
                         animate={{ width: `${v}%` }}
@@ -229,8 +243,8 @@ export default function Hero({ isCA = false }: { isCA?: boolean }) {
               </div>
             </div>
 
-            <AnimatePresence mode="wait">
-              <motion.div
+            <AnimatePresence mode="wait" initial={false}>
+              <m.div
                 key={stage.key}
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -245,14 +259,14 @@ export default function Hero({ isCA = false }: { isCA?: boolean }) {
                   <span className="font-bold text-[#0F172A]">{stage.key}: </span>
                   {stage.text}
                 </p>
-              </motion.div>
+              </m.div>
             </AnimatePresence>
-          </motion.div>
+          </m.div>
         </div>
 
         {/* Proof strip */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
+        <m.div
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.35 }}
           className="mt-14 grid items-center gap-6 rounded-[24px] bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] ring-1 ring-[#E2E8F0] md:grid-cols-[auto_1fr_auto] md:gap-10 md:px-8"
@@ -280,7 +294,7 @@ export default function Hero({ isCA = false }: { isCA?: boolean }) {
             Odoo go-live case study
             <ArrowRight size={15} />
           </Link>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

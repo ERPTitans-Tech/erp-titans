@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { 
   MessageSquare, 
   Calendar, 
@@ -124,7 +124,7 @@ export default function ContactForm() {
               {/* MESSAGE FORM */}
               {/* ====================================================== */}
               {activeTab === "message" && (
-                <motion.div
+                <m.div
                   key="message"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -133,7 +133,7 @@ export default function ContactForm() {
                   className="bg-white rounded-[24px] p-8 md:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100"
                 >
                   {isSuccess ? (
-                    <motion.div
+                    <m.div
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
                       className="flex flex-col items-center justify-center text-center py-24"
@@ -148,9 +148,9 @@ export default function ContactForm() {
                         Thank you for reaching out.<br/>
                         Our team will contact you soon.
                       </p>
-                    </motion.div>
+                    </m.div>
                   ) : (
-                    <motion.div
+                    <m.div
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                     >
@@ -272,9 +272,9 @@ export default function ContactForm() {
                       </button>
                     </div>
                   </form>
-                  </motion.div>
+                  </m.div>
                   )}
-                </motion.div>
+                </m.div>
               )}
 
 
@@ -282,7 +282,7 @@ export default function ContactForm() {
               {/* MEETING FORM */}
               {/* ====================================================== */}
               {activeTab === "meeting" && (
-                <motion.div
+                <m.div
                   key="meeting"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -291,7 +291,7 @@ export default function ContactForm() {
                   className="bg-white rounded-[24px] p-8 shadow-[0_4px_24px_rgba(0,0,0,0.04)] border border-gray-100"
                 >
                   {isBookingSuccess ? (
-                    <motion.div
+                    <m.div
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
                       className="flex flex-col items-center justify-center text-center py-20"
@@ -306,7 +306,7 @@ export default function ContactForm() {
                         Thank you for scheduling your ERP Health Audit.<br/>
                         Check your email for the Microsoft Teams link!
                       </p>
-                    </motion.div>
+                    </m.div>
                   ) : (
                     <>
                       <h3 className="text-[22px] font-bold text-[#003D82] mb-8">Book Your ERP Health Audit</h3>
@@ -332,7 +332,7 @@ export default function ContactForm() {
                       />
                     </>
                   )}
-                </motion.div>
+                </m.div>
               )}
             </AnimatePresence>
           </div>

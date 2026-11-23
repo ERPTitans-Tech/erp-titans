@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { BookOpen, Shield, Sparkles, TrendingUp, Earth, Plus, MapPin } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 
@@ -29,7 +29,7 @@ export default function AboutIntro({ isCA = false }: { isCA?: boolean }) {
         </div>
         <div className="relative max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <m.div initial={false} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
               <span className="mb-5 inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-[#003D82] shadow-sm ring-1 ring-[#003D82]/10">
                 <span className="h-2 w-2 rounded-full bg-[#21B799]" />
                 About ERP Titans
@@ -44,16 +44,16 @@ export default function AboutIntro({ isCA = false }: { isCA?: boolean }) {
               <p className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#475569]">
                 <MapPin size={16} className="text-[#003D82]" /> {isCA ? "Based in Calgary, Alberta · Serving Canada, the USA and beyond" : "Offices in Calgary, Alberta and Austin, Texas · Serving the USA, Canada and beyond"}
               </p>
-            </motion.div>
+            </m.div>
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.96 }}
+            <m.div
+              initial={false}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7, delay: 0.15 }}
               className="hidden flex-col items-stretch rounded-[28px] bg-white px-10 py-8 shadow-[0_20px_50px_rgba(0,61,130,0.10)] ring-1 ring-[#E2E8F0] lg:flex"
             >
               <div className="flex h-24 items-center justify-center">
-                <Image src="/logo.png" alt="ERP Titans" width={627} height={517} className="h-20 w-auto" />
+                <Image src="/logo.png" alt="ERP Titans" width={97} height={80} className="h-20 w-auto" />
               </div>
               <div className="my-4 flex items-center gap-4" aria-hidden="true">
                 <span className="h-px flex-1 bg-[#E2E8F0]" />
@@ -65,7 +65,7 @@ export default function AboutIntro({ isCA = false }: { isCA?: boolean }) {
               <div className="flex h-24 items-center justify-center">
                 <Image src="/odoo-ready-partner-tight.svg" alt="Odoo Ready Partner" width={416} height={202} className="h-16 w-auto" />
               </div>
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </section>
@@ -75,7 +75,7 @@ export default function AboutIntro({ isCA = false }: { isCA?: boolean }) {
         <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader n={1} label="Who we are" title="Built to fix what others couldn't" />
           <div className="grid items-stretch gap-8 lg:grid-cols-[1fr_1.2fr]">
-            <motion.div
+            <m.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -93,13 +93,13 @@ export default function AboutIntro({ isCA = false }: { isCA?: boolean }) {
                   <p key={p.slice(0, 30)}>{p}</p>
                 ))}
               </div>
-            </motion.div>
+            </m.div>
 
             <div className="grid gap-5 sm:grid-cols-2">
               {values.map((v, i) => {
                 const Icon = v.icon;
                 return (
-                  <motion.div
+                  <m.div
                     key={v.title}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -112,7 +112,7 @@ export default function AboutIntro({ isCA = false }: { isCA?: boolean }) {
                     </span>
                     <h3 className="mb-2 text-[17px] font-bold text-[#0F172A]">{v.title}</h3>
                     <p className="text-[15px] leading-relaxed text-[#64748B]">{v.description}</p>
-                  </motion.div>
+                  </m.div>
                 );
               })}
             </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Link from "next/link";
 
 interface CTAProps {
@@ -27,7 +27,7 @@ export default function CTA({
       <div className="absolute bottom-0 left-0 w-[400px] max-w-full h-[400px] bg-[#003D82]/10 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/3 pointer-events-none"></div>
 
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-        <motion.div
+        <m.div
           initial={{ opacity: 1, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -50,7 +50,7 @@ export default function CTA({
               </Link>
             )}
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
@@ -72,7 +72,7 @@ export default function Navbar() {
               <Image
                 src="/logo.png"
                 alt="ERP Titans"
-                width={180}
+                width={51}
                 height={42}
                 className="h-[36px] md:h-[42px] w-auto object-contain"
                 priority
@@ -102,7 +102,7 @@ export default function Navbar() {
                       {link.name}
                       <ChevronDown size={14} className={`transition-transform duration-300 ${desktopOpen === link.name ? 'rotate-180' : ''}`} />
                       {isActive && (
-                        <motion.div
+                        <m.div
                           layoutId="desktop-navbar-underline"
                           className="absolute left-0 -bottom-1 h-[2px] w-full bg-[#003D82] rounded-full"
                           transition={{ type: "spring", stiffness: 350, damping: 30 }}
@@ -112,7 +112,7 @@ export default function Navbar() {
                     
                     <AnimatePresence>
                       {desktopOpen === link.name && (
-                        <motion.div
+                        <m.div
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: 10 }}
@@ -150,7 +150,7 @@ export default function Navbar() {
                               )
                             ))}
                           </div>
-                        </motion.div>
+                        </m.div>
                       )}
                     </AnimatePresence>
                   </div>
@@ -169,7 +169,7 @@ export default function Navbar() {
                 >
                   {link.name}
                   {isActive && (
-                    <motion.div
+                    <m.div
                       layoutId="desktop-navbar-underline"
                       className="absolute left-0 -bottom-1 h-[2px] w-full bg-[#003D82] rounded-full"
                       transition={{ type: "spring", stiffness: 350, damping: 30 }}
@@ -201,7 +201,7 @@ export default function Navbar() {
 
         <AnimatePresence>
           {mobileMenuOpen && (
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: -10, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.98 }}
@@ -226,7 +226,7 @@ export default function Navbar() {
                           <span className="flex items-center">{link.name}</span>
                           <ChevronDown size={18} className={`transition-transform duration-300 ${mobileOpen === link.name ? 'rotate-180' : ''}`} />
                           {isActive && (
-                            <motion.div
+                            <m.div
                               layoutId="mobile-navbar-indicator"
                               className="absolute left-0 top-1/2 -translate-y-1/2 h-1/2 w-[3px] bg-[#003D82] rounded-r-full"
                               transition={{ type: "spring", stiffness: 350, damping: 30 }}
@@ -236,7 +236,7 @@ export default function Navbar() {
                         
                         <AnimatePresence>
                           {mobileOpen === link.name && (
-                            <motion.div
+                            <m.div
                               initial={{ height: 0, opacity: 0 }}
                               animate={{ height: "auto", opacity: 1 }}
                               exit={{ height: 0, opacity: 0 }}
@@ -254,7 +254,7 @@ export default function Navbar() {
                                   </Link>
                                 ))}
                               </div>
-                            </motion.div>
+                            </m.div>
                           )}
                         </AnimatePresence>
                       </div>
@@ -274,7 +274,7 @@ export default function Navbar() {
                     >
                       {link.name}
                       {isActive && (
-                        <motion.div
+                        <m.div
                           layoutId="mobile-navbar-indicator"
                           className="absolute left-0 top-1/2 -translate-y-1/2 h-1/2 w-[3px] bg-[#003D82] rounded-r-full"
                           transition={{ type: "spring", stiffness: 350, damping: 30 }}
@@ -293,7 +293,7 @@ export default function Navbar() {
                   </Link>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
       </header>

@@ -40,7 +40,7 @@ export const industries: Record<IndustryKey, Industry> = {
     h1: ["Seed-to-Sale", "Redefined."],
     intro:
       "Specialized ERP recovery for cannabis producers struggling with regulatory compliance, seed-to-sale tracking, and inventory controls.",
-    image: "/cannabis.png",
+    image: "/cannabis.webp",
     imageAlt: "Cannabis ERP Solutions",
     stat: { value: "100%", label: "Audit Ready", icon: ShieldCheck },
     challenges: {
@@ -85,7 +85,7 @@ export const industries: Record<IndustryKey, Industry> = {
     h1: ["Streamline Your", "Supply Chain."],
     intro:
       "Specialized ERP recovery for distributors struggling with multi-warehouse operations, order fulfillment, and logistics coordination.",
-    image: "/distribution.png",
+    image: "/distribution.webp",
     imageAlt: "Distribution ERP Solutions",
     stat: { value: "99.9%", label: "Stock Accuracy", icon: Package },
     challenges: {
@@ -130,7 +130,7 @@ export const industries: Record<IndustryKey, Industry> = {
     h1: ["Precision ERP for", "Modern Factories."],
     intro:
       "Specialized ERP recovery for manufacturers struggling with production planning, inventory management, and supply chain visibility. We fix what others couldn't.",
-    image: "/manufacturing.png",
+    image: "/manufacturing.webp",
     imageAlt: "Manufacturing ERP Solutions",
     stat: { value: "35%", label: "Efficiency Boost", icon: BarChart2 },
     challenges: {

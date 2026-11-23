@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getSite } from "@/lib/site";
 import { officesFor } from "@/lib/offices";
+import Flag from "@/components/ui/Flag";
 import Image from "next/image";
 import { locations } from "@/lib/locations";
 import { odooServices } from "@/lib/odoo-services";
@@ -19,7 +20,7 @@ export default async function Footer() {
                 <Image
                   src="/logo.png"
                   alt="ERP Titans"
-                  width={140}
+                  width={85}
                   height={70}
                   className="h-[55px] md:h-[70px] w-auto object-contain"
                 />
@@ -68,7 +69,15 @@ export default async function Footer() {
               </li>
               <li>
                 <span className="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1">{offices.footer.length > 1 ? "Offices" : "Location"}</span>
-                <span className="text-brand-text-muted text-sm">{offices.footer.map((o) => (<span key={o} className="block">{o}</span>))}<span className="block">({offices.serving})</span></span>
+                <span className="text-brand-text-muted text-sm">
+                  {offices.footer.map((o) => (
+                    <span key={o.label} className="mb-1 flex items-center gap-2">
+                      <Flag country={o.country} />
+                      {o.label}
+                    </span>
+                  ))}
+                  <span className="block">(Serving Canada &amp; USA)</span>
+                </span>
               </li>
             </ul>
           </div>

@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/home/Navbar";
 import Footer from "@/components/layout/Footer";
+import MotionProvider from "@/components/providers/MotionProvider";
 import JsonLd from "@/components/seo/JsonLd";
 import { organizationSchemaFor, websiteSchema } from "@/lib/seo";
 import { getSite } from "@/lib/site";
@@ -71,11 +72,13 @@ export default async function RootLayout({
       <body className="min-h-screen bg-brand-bg text-brand-text font-sans flex flex-col overflow-x-hidden w-full relative">
         <JsonLd data={[organizationSchemaFor(site.isCA), websiteSchema]} />
         <Toaster position="bottom-right" />
-        <Navbar />
-        <main className="flex-grow">
-          {children}
-        </main>
-        <Footer />
+        <MotionProvider>
+          <Navbar />
+          <main className="flex-grow">
+            {children}
+          </main>
+          <Footer />
+        </MotionProvider>
       </body>
     </html>
   );

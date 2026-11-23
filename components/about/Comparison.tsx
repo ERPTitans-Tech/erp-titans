@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { XCircle, CheckCircle2 } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 
@@ -31,7 +31,7 @@ export default function Comparison() {
         />
 
         <div className="mx-auto grid max-w-5xl items-stretch gap-6 md:grid-cols-2">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -55,9 +55,9 @@ export default function Comparison() {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -82,7 +82,7 @@ export default function Comparison() {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

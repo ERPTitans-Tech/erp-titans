@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { CheckCircle, Sparkles, Workflow } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 
@@ -25,7 +25,7 @@ export default function WhyChooseUs() {
           {reasons.map((r, i) => {
             const Icon = r.icon;
             return (
-              <motion.div
+              <m.div
                 key={r.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -41,7 +41,7 @@ export default function WhyChooseUs() {
                 <div className="mb-5 h-px w-12 bg-[#E2E8F0]" />
                 <h3 className="mb-2 text-lg font-bold text-[#0F172A]">{r.title}</h3>
                 <p className="text-[15px] leading-relaxed text-[#64748B]">{r.description}</p>
-              </motion.div>
+              </m.div>
             );
           })}
         </div>

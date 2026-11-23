@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ArrowRight, Check, Compass, Rocket, LifeBuoy, TrendingUp } from "lucide-react";
 
 const lifecycle = [
@@ -23,7 +23,7 @@ export default function ServicesHero() {
 
       <div className="relative max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+          <m.div initial={false} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <span className="mb-5 inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-[#003D82] shadow-sm ring-1 ring-[#003D82]/10">
               <span className="h-2 w-2 rounded-full bg-[#21B799]" />
               Odoo &amp; ERP Services · Official Odoo Ready Partner
@@ -68,11 +68,11 @@ export default function ServicesHero() {
                 </span>
               ))}
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Lifecycle journey */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
+          <m.div
+            initial={false}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.15 }}
             className="rounded-[28px] bg-white p-8 shadow-[0_20px_50px_rgba(0,61,130,0.10)] ring-1 ring-[#E2E8F0]"
@@ -86,9 +86,9 @@ export default function ServicesHero() {
               {lifecycle.map((s, i) => {
                 const Icon = s.icon;
                 return (
-                  <motion.li
+                  <m.li
                     key={s.label}
-                    initial={{ opacity: 0, x: 16 }}
+                    initial={false}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.35 + i * 0.12 }}
                     className="relative flex items-center gap-5 rounded-2xl bg-[#F8FAFC] p-4 ring-1 ring-[#E2E8F0]"
@@ -101,11 +101,11 @@ export default function ServicesHero() {
                       <span className="text-sm text-[#64748B]">{s.desc}</span>
                     </span>
                     <span className="text-sm font-bold text-[#CBD5E1]">{String(i + 1).padStart(2, "0")}</span>
-                  </motion.li>
+                  </m.li>
                 );
               })}
             </ol>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ArrowRight, CheckCircle2, ChevronRight, Quote } from "lucide-react";
 import CTA from "@/components/home/CTA";
 import SectionHeader from "@/components/ui/SectionHeader";
@@ -38,7 +38,7 @@ export default function IndustryPage({ industry }: { industry: IndustryKey }) {
           </nav>
 
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <m.div initial={false} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
               <span className="mb-5 inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-[#003D82] shadow-sm ring-1 ring-[#003D82]/10">
                 <span className="h-2 w-2 rounded-full bg-[#21B799]" />
                 {d.name} ERP · Official Odoo Partner
@@ -74,10 +74,10 @@ export default function IndustryPage({ industry }: { industry: IndustryKey }) {
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </m.div>
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.96 }}
+            <m.div
+              initial={false}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.15 }}
               className="relative"
@@ -85,8 +85,8 @@ export default function IndustryPage({ industry }: { industry: IndustryKey }) {
               <div className="relative h-[380px] w-full overflow-hidden rounded-[32px] shadow-[0_20px_50px_-12px_rgba(0,61,130,0.25)] lg:h-[460px]">
                 <Image src={d.image} alt={d.imageAlt} fill priority className="object-cover" sizes="(min-width: 1024px) 600px, 100vw" />
               </div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
+              <m.div
+                initial={false}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
                 className="absolute -bottom-6 left-6 flex items-center gap-4 rounded-[20px] bg-white px-6 py-4 shadow-[0_20px_40px_-10px_rgba(15,23,42,0.2)]"
@@ -98,8 +98,8 @@ export default function IndustryPage({ industry }: { industry: IndustryKey }) {
                   <span className="block text-[28px] font-extrabold leading-none text-[#003D82]">{d.stat.value}</span>
                   <span className="text-[11px] font-bold uppercase tracking-wider text-[#64748B]">{d.stat.label}</span>
                 </span>
-              </motion.div>
-            </motion.div>
+              </m.div>
+            </m.div>
           </div>
         </div>
       </section>
@@ -112,7 +112,7 @@ export default function IndustryPage({ industry }: { industry: IndustryKey }) {
             {d.challenges.items.map((c, i) => {
               const Icon = c.icon;
               return (
-                <motion.div
+                <m.div
                   key={c.title}
                   {...fadeUp}
                   transition={{ duration: 0.45, delay: i * 0.06 }}
@@ -124,7 +124,7 @@ export default function IndustryPage({ industry }: { industry: IndustryKey }) {
                   </span>
                   <h3 className="mb-2 text-[17px] font-bold text-[#0F172A]">{c.title}</h3>
                   <p className="text-[15px] leading-relaxed text-[#64748B]">{c.description}</p>
-                </motion.div>
+                </m.div>
               );
             })}
           </div>
@@ -139,7 +139,7 @@ export default function IndustryPage({ industry }: { industry: IndustryKey }) {
           {d.solution.cards && (
             <div className={`grid gap-6 sm:grid-cols-2 ${d.solution.cards.length === 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"}`}>
               {d.solution.cards.map((c, i) => (
-                <motion.div
+                <m.div
                   key={c.title}
                   {...fadeUp}
                   transition={{ duration: 0.45, delay: i * 0.08 }}
@@ -154,7 +154,7 @@ export default function IndustryPage({ industry }: { industry: IndustryKey }) {
                       </li>
                     ))}
                   </ul>
-                </motion.div>
+                </m.div>
               ))}
             </div>
           )}
@@ -228,7 +228,7 @@ export default function IndustryPage({ industry }: { industry: IndustryKey }) {
           />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {d.odooApps.map((a, i) => (
-              <motion.div
+              <m.div
                 key={a.name}
                 {...fadeUp}
                 transition={{ duration: 0.4, delay: i * 0.05 }}
@@ -241,7 +241,7 @@ export default function IndustryPage({ industry }: { industry: IndustryKey }) {
                   <span className="block font-bold text-[#0F172A]">Odoo {a.name}</span>
                   <span className="text-[14px] text-[#64748B]">{a.use}</span>
                 </span>
-              </motion.div>
+              </m.div>
             ))}
           </div>
 

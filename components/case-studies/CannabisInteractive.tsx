@@ -8,7 +8,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence, useInView } from "framer-motion";
+import { m, AnimatePresence, useInView } from "framer-motion";
 import { CheckCircle2, FlaskConical, Lock, Unlock, Truck, FileSpreadsheet, GitMerge, Factory, PackageCheck, RotateCcw, Info, BarChart3 } from "lucide-react";
 
 const NAVY = "#003D82";
@@ -194,18 +194,18 @@ function StepVisual({ step }: { step: string }) {
             <Eyebrow color="#64748B">Incoming lot</Eyebrow>
             <div className="font-bold text-[#0F172A]">BIO-2611-04</div>
           </div>
-          <motion.span
+          <m.span
             initial={{ backgroundColor: "#FEF3C7", color: "#B45309" }}
             animate={{ backgroundColor: "#DCFCE7", color: "#15803D" }}
             transition={{ delay: 2.6, duration: 0.4 }}
             className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[12px] font-semibold"
           >
             <Lock size={12} /> Quarantine → Released
-          </motion.span>
+          </m.span>
         </div>
         <div className="grid grid-cols-2 gap-2">
           {tests.map((t, i) => (
-            <motion.div
+            <m.div
               key={t}
               initial={{ opacity: 0.35 }}
               animate={{ opacity: 1 }}
@@ -213,10 +213,10 @@ function StepVisual({ step }: { step: string }) {
               className="flex items-center justify-between rounded-xl bg-[#F8FAFC] px-3 py-2 text-[13px] font-medium text-[#334155]"
             >
               {t}
-              <motion.span initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.4 + i * 0.35, type: "spring" }}>
+              <m.span initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.4 + i * 0.35, type: "spring" }}>
                 <CheckCircle2 size={15} className="text-[#16A34A]" />
-              </motion.span>
-            </motion.div>
+              </m.span>
+            </m.div>
           ))}
         </div>
       </div>
@@ -233,7 +233,7 @@ function StepVisual({ step }: { step: string }) {
       <svg viewBox="0 0 420 220" className="w-full max-w-md" role="img" aria-label="Illustration of lots merging into a blend lot">
         {sources.map((s, i) => (
           <g key={s.label}>
-            <motion.path
+            <m.path
               d={`M124,${s.y} C220,${s.y} 220,110 298,110`}
               fill="none"
               stroke={SKY}
@@ -247,11 +247,11 @@ function StepVisual({ step }: { step: string }) {
             <text x="68" y={s.y + 4.5} textAnchor="middle" fill="#0F172A" fontSize="12.5" fontWeight="600" fontFamily="Inter, sans-serif">{s.label}</text>
           </g>
         ))}
-        <motion.g initial={{ opacity: 0, scale: 0.85 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 1.2 }} style={{ transformOrigin: "354px 110px" }}>
+        <m.g initial={{ opacity: 0, scale: 0.85 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 1.2 }} style={{ transformOrigin: "354px 110px" }}>
           <rect x="298" y="82" width="112" height="56" rx="16" fill={NAVY} />
           <text x="354" y="106" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily="Inter, sans-serif">Blend 0187</text>
           <text x="354" y="124" textAnchor="middle" fill="#BAE6FD" fontSize="10.5" fontWeight="600" fontFamily="Inter, sans-serif">3 parent lots</text>
-        </motion.g>
+        </m.g>
       </svg>
     );
   }
@@ -272,7 +272,7 @@ function StepVisual({ step }: { step: string }) {
         <text x="220" y="197.5" textAnchor="middle" fill="#fff" fontSize="12" fontWeight="700" fontFamily="Inter, sans-serif">Warehouse</text>
         {provinces.map((p, i) => (
           <g key={p.code}>
-            <motion.path
+            <m.path
               d={`M220,174 Q${(220 + p.x) / 2},${Math.min(p.y, 174) - 30} ${p.x},${p.y + 18}`}
               fill="none"
               stroke={SKY}
@@ -283,10 +283,10 @@ function StepVisual({ step }: { step: string }) {
               animate={{ pathLength: 1 }}
               transition={{ delay: 0.15 * i, duration: 0.8 }}
             />
-            <motion.g initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 + 0.15 * i }}>
+            <m.g initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 + 0.15 * i }}>
               <circle cx={p.x} cy={p.y} r="20" fill="#fff" stroke="#E2E8F0" />
               <text x={p.x} y={p.y + 4.5} textAnchor="middle" fill={NAVY} fontSize="13" fontWeight="800" fontFamily="Inter, sans-serif">{p.code}</text>
-            </motion.g>
+            </m.g>
           </g>
         ))}
       </svg>
@@ -309,7 +309,7 @@ function StepVisual({ step }: { step: string }) {
           <div key={r} className="flex items-center gap-3">
             <span className="w-44 shrink-0 text-[13px] font-medium text-[#334155]">{r}</span>
             <div className="h-2 flex-1 overflow-hidden rounded-full bg-[#EEF2F7]">
-              <motion.div
+              <m.div
                 className="h-full rounded-full"
                 style={{ background: `linear-gradient(90deg, ${NAVY}, ${SKY})` }}
                 initial={{ width: "0%" }}
@@ -320,9 +320,9 @@ function StepVisual({ step }: { step: string }) {
           </div>
         ))}
       </div>
-      <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.9 }} className="mt-4 flex items-center gap-2 text-sm font-semibold text-[#16A34A]">
+      <m.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.9 }} className="mt-4 flex items-center gap-2 text-sm font-semibold text-[#16A34A]">
         <PackageCheck size={16} /> Generated from posted transactions, ready to upload
-      </motion.div>
+      </m.div>
     </div>
   );
 }
@@ -345,7 +345,7 @@ function ProduceVisual() {
             </span>
           </div>
           <div className="h-2.5 overflow-hidden rounded-full bg-[#EEF2F7]">
-            <motion.div className="h-full rounded-full" style={{ backgroundColor: l.color }} initial={{ width: 0 }} animate={{ width: `${l.pct}%` }} transition={{ duration: 2.2, ease: "easeOut" }} />
+            <m.div className="h-full rounded-full" style={{ backgroundColor: l.color }} initial={{ width: 0 }} animate={{ width: `${l.pct}%` }} transition={{ duration: 2.2, ease: "easeOut" }} />
           </div>
           <div className="mt-2 flex justify-between text-[12px] font-medium text-[#64748B]">
             <span className="inline-flex items-center gap-1"><CheckCircle2 size={13} className="text-[#16A34A]" /> QC checkpoints</span>
@@ -396,11 +396,11 @@ export function DataFlowStepper() {
                 </div>
                 <AnimatePresence initial={false}>
                   {on && (
-                    <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
+                    <m.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
                       <p className="pl-12 pt-2 text-[15px] leading-relaxed text-[#475569]">{s.text}</p>
                       <div className="ml-12 mt-3 h-1 overflow-hidden rounded-full bg-[#E2E8F0]">
                         {!paused && inView && (
-                          <motion.div
+                          <m.div
                             key={`bar-${active}`}
                             className="h-full rounded-full"
                             style={{ background: `linear-gradient(90deg, ${NAVY}, ${SKY})` }}
@@ -410,7 +410,7 @@ export function DataFlowStepper() {
                           />
                         )}
                       </div>
-                    </motion.div>
+                    </m.div>
                   )}
                 </AnimatePresence>
               </button>
@@ -431,7 +431,7 @@ export function DataFlowStepper() {
         </div>
         <div className="relative flex flex-1 items-center justify-center">
           <AnimatePresence mode="wait">
-            <motion.div
+            <m.div
               key={steps[active].key}
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -440,7 +440,7 @@ export function DataFlowStepper() {
               className="flex w-full justify-center"
             >
               <StepVisual step={steps[active].key} />
-            </motion.div>
+            </m.div>
           </AnimatePresence>
         </div>
       </div>
@@ -498,9 +498,9 @@ export function CoaLiveCheck() {
             <li key={t.test} className="flex items-center justify-between px-6 py-3 text-[14px]">
               <span className="font-medium text-[#334155]">{t.test}</span>
               {ok ? (
-                <motion.span initial={{ opacity: 0, x: 8 }} animate={{ opacity: 1, x: 0 }} className="inline-flex items-center gap-1.5 font-semibold text-[#16A34A]">
+                <m.span initial={{ opacity: 0, x: 8 }} animate={{ opacity: 1, x: 0 }} className="inline-flex items-center gap-1.5 font-semibold text-[#16A34A]">
                   <CheckCircle2 size={16} /> {t.result}
-                </motion.span>
+                </m.span>
               ) : (
                 <span className={`text-[12.5px] font-medium ${checking ? "text-[#0EA5E9]" : "text-[#CBD5E1]"}`}>{checking ? "Checking…" : "Pending"}</span>
               )}
@@ -596,7 +596,7 @@ export function CtlsWaterfall() {
           return (
             <g key={b.label} onMouseEnter={() => setHover(i)} onMouseLeave={() => setHover(null)} className="cursor-pointer">
               <rect x={i * 70 + 10} y="0" width="50" height={H} fill="transparent" />
-              <motion.rect
+              <m.rect
                 x={i * 70 + 13}
                 width="44"
                 rx="10"
@@ -686,7 +686,7 @@ export function ProductionMix({ className = "" }: { className?: string }) {
               const width = show === "both" ? 18 : 30;
               const x = show === "both" ? i * 52 + 7 + j * 20 : i * 52 + 11;
               return (
-                <motion.rect
+                <m.rect
                   key={s.key}
                   rx="6"
                   fill={s.color}
@@ -774,13 +774,13 @@ export function DashboardTabs({ className = "" }: { className?: string }) {
           <line key={g} x1="0" x2={W} y1={H - g * H} y2={H - g * H} stroke="#EEF2F7" />
         ))}
         <AnimatePresence mode="wait">
-          <motion.g key={tab} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }}>
+          <m.g key={tab} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }}>
             <path d={area} fill="url(#dashFill)" />
-            <motion.path d={line} fill="none" stroke={NAVY} strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.8 }} />
+            <m.path d={line} fill="none" stroke={NAVY} strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.8 }} />
             {pts.map(([x, y], i) => (
               <circle key={i} cx={x} cy={y} r={i === pts.length - 1 ? 5 : 3} fill={i === pts.length - 1 ? SKY : "#fff"} stroke={NAVY} strokeWidth="2" />
             ))}
-          </motion.g>
+          </m.g>
         </AnimatePresence>
       </svg>
     </div>

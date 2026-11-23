@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Wallet, Settings2, ShieldCheck } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 
@@ -25,7 +25,7 @@ export default function WhoWeServe() {
           {audiences.map((a, i) => {
             const Icon = a.icon;
             return (
-              <motion.div
+              <m.div
                 key={a.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -39,7 +39,7 @@ export default function WhoWeServe() {
                 <span className="mb-3 rounded-full bg-[#EFF6FF] px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-[#003D82]">{a.tag}</span>
                 <h3 className="mb-2 text-xl font-bold text-[#0F172A]">{a.title}</h3>
                 <p className="leading-relaxed text-[#64748B]">{a.description}</p>
-              </motion.div>
+              </m.div>
             );
           })}
         </div>

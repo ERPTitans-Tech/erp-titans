@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { FileSpreadsheet, Clock, Users, PackageX, GitMerge, Settings, Check, ArrowRight, MousePointerClick } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 
@@ -67,7 +67,7 @@ export default function Challenges() {
               const Icon = s.icon;
               const on = picked.includes(i);
               return (
-                <motion.button
+                <m.button
                   key={s.title}
                   type="button"
                   aria-pressed={on}
@@ -94,7 +94,7 @@ export default function Challenges() {
                   </span>
                   <h3 className="mb-2 text-lg font-bold text-[#0F172A]">{s.title}</h3>
                   <p className="text-[15px] leading-relaxed text-[#64748B]">{s.description}</p>
-                </motion.button>
+                </m.button>
               );
             })}
           </div>
@@ -117,7 +117,7 @@ export default function Challenges() {
               {/* Segmented meter */}
               <div className="mt-5 grid grid-cols-6 gap-1.5">
                 {symptoms.map((_, i) => (
-                  <motion.span
+                  <m.span
                     key={i}
                     className="h-2.5 rounded-full"
                     animate={{ backgroundColor: i < picked.length ? v.color : "#F1F5F9" }}
@@ -131,7 +131,7 @@ export default function Challenges() {
               </div>
 
               <AnimatePresence mode="wait">
-                <motion.div
+                <m.div
                   key={v.label}
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -149,7 +149,7 @@ export default function Challenges() {
                       {v.cta} <ArrowRight size={15} />
                     </Link>
                   )}
-                </motion.div>
+                </m.div>
               </AnimatePresence>
 
               <Link

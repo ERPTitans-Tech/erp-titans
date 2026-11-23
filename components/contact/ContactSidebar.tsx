@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Mail, MapPin, Clock, CheckCircle2 } from "lucide-react";
 
 interface ContactSidebarProps {
@@ -9,9 +9,9 @@ interface ContactSidebarProps {
 
 export default function ContactSidebar({ activeTab }: ContactSidebarProps) {
   return (
-    <motion.div 
+    <m.div 
       className="lg:col-span-4 lg:pl-10 xl:pl-14"
-      initial={{ opacity: 0, x: -20 }}
+      initial={false}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5 }}
     >
@@ -83,6 +83,6 @@ export default function ContactSidebar({ activeTab }: ContactSidebarProps) {
         </ul>
       </div>
       </div>
-    </motion.div>
+    </m.div>
   );
 }

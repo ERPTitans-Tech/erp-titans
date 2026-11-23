@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { Stethoscope, Search, Map, TrendingUp, Check, ArrowRight, ArrowLeft } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 
@@ -51,7 +51,7 @@ export default function RecoveryProcess() {
         {/* Stepper */}
         <div className="relative mx-auto max-w-5xl">
           <div className="absolute left-[12.5%] right-[12.5%] top-8 hidden h-[3px] rounded-full bg-[#E2E8F0] md:block" aria-hidden="true">
-            <motion.div
+            <m.div
               className="h-full rounded-full bg-gradient-to-r from-[#003D82] via-[#0EA5E9] to-[#16A34A]"
               animate={{ width: `${(active / (steps.length - 1)) * 100}%` }}
               transition={{ duration: 0.6, ease: "easeOut" }}
@@ -98,7 +98,7 @@ export default function RecoveryProcess() {
         {/* Detail panel */}
         <div className="mx-auto mt-12 max-w-5xl">
           <AnimatePresence mode="wait">
-            <motion.div
+            <m.div
               key={step.title}
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
@@ -140,7 +140,7 @@ export default function RecoveryProcess() {
                 <span className="text-xs font-bold uppercase tracking-[0.14em] text-[#94A3B8]">What you get</span>
                 <ul className="mt-4 space-y-3">
                   {step.deliverables.map((d, i) => (
-                    <motion.li
+                    <m.li
                       key={d}
                       initial={{ opacity: 0, x: 10 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -151,7 +151,7 @@ export default function RecoveryProcess() {
                         <Check size={12} strokeWidth={3} className="text-[#16A34A]" />
                       </span>
                       {d}
-                    </motion.li>
+                    </m.li>
                   ))}
                 </ul>
                 <div className="mt-6 border-t border-[#F1F5F9] pt-5">
@@ -160,7 +160,7 @@ export default function RecoveryProcess() {
                     <span className="text-[#003D82]">{((active + 1) / steps.length) * 100}%</span>
                   </div>
                   <div className="h-2 overflow-hidden rounded-full bg-[#F1F5F9]">
-                    <motion.div
+                    <m.div
                       className="h-full rounded-full bg-[#003D82]"
                       initial={false}
                       animate={{ width: `${((active + 1) / steps.length) * 100}%` }}
@@ -169,7 +169,7 @@ export default function RecoveryProcess() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           </AnimatePresence>
         </div>
       </div>

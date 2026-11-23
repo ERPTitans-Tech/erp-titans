@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ArrowRight, Check, Shield, UserCheck, Globe, Layers, TrendingUp } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 
@@ -22,7 +22,7 @@ export default function ErpRescueProgram() {
 
         <div className="grid items-stretch gap-8 lg:grid-cols-2">
           {/* Rescue program */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -50,7 +50,7 @@ export default function ErpRescueProgram() {
             >
               Request Recovery Audit <ArrowRight size={18} />
             </Link>
-          </motion.div>
+          </m.div>
 
           {/* Why ERP Titans */}
           <div className="flex flex-col rounded-[28px] bg-[#F8FAFC] p-8 ring-1 ring-[#E2E8F0] sm:p-10">
@@ -63,7 +63,7 @@ export default function ErpRescueProgram() {
               {differentiators.map((c, i) => {
                 const Icon = c.icon;
                 return (
-                  <motion.div
+                  <m.div
                     key={c.title}
                     initial={{ opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -76,7 +76,7 @@ export default function ErpRescueProgram() {
                     </span>
                     <h4 className="mb-1 font-bold text-[#0F172A]">{c.title}</h4>
                     <p className="text-sm leading-relaxed text-[#64748B]">{c.desc}</p>
-                  </motion.div>
+                  </m.div>
                 );
               })}
             </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { User, ArrowRight, Loader2 } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -59,8 +59,8 @@ export default function BookingForm({ disabled, selectedDate, selectedTime, onSu
       {/* Divider */}
       <div className="w-full h-px bg-gray-100 my-8"></div>
       
-      <motion.div
-        initial={{ opacity: 0 }}
+      <m.div
+        initial={false}
         animate={{ opacity: 1 }}
       >
           <div className="flex items-center gap-2 mb-6">
@@ -140,7 +140,7 @@ export default function BookingForm({ disabled, selectedDate, selectedTime, onSu
               </button>
             </div>
           </form>
-        </motion.div>
+        </m.div>
     </div>
   );
 }
