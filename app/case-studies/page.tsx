@@ -70,9 +70,9 @@ export default function CaseStudiesPage() {
                     </div>
                   </div>
 
-                  <div className="flex lg:flex-col gap-6 lg:gap-5 lg:pl-10 lg:border-l lg:border-gray-100">
+                  <div className="grid grid-cols-3 gap-4 sm:flex sm:gap-6 lg:flex-col lg:gap-5 lg:pl-10 lg:border-l lg:border-gray-100">
                     {cs.stats.map((s) => (
-                      <div key={s.label} className="min-w-[90px]">
+                      <div key={s.label} className="min-w-0 sm:min-w-[90px]">
                         <div className="text-3xl md:text-4xl font-extrabold text-[#003D82] leading-none">
                           {s.value}
                         </div>
