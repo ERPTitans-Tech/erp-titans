@@ -3,7 +3,7 @@ import Comparison from "@/components/about/Comparison";
 import WhoWeServe from "@/components/about/WhoWeServe";
 import AboutCTA from "@/components/about/AboutCTA";
 
-import { alternatesFor } from "@/lib/site";
+import { alternatesFor, getSite } from "@/lib/site";
 export const metadata = {
   title: "About Us | Calgary-Based Odoo Partner & ERP Recovery Specialists",
   description:
@@ -11,10 +11,11 @@ export const metadata = {
   alternates: alternatesFor("/about"),
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const { isCA } = await getSite();
   return (
     <div className="flex flex-col min-h-screen">
-      <AboutIntro />
+      <AboutIntro isCA={isCA} />
       <Comparison />
       <WhoWeServe />
       <AboutCTA />

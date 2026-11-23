@@ -51,6 +51,20 @@ export const organizationSchema = {
   ],
 };
 
+// The .com (US) site also lists the Austin, Texas office.
+export function organizationSchemaFor(isCA: boolean) {
+  if (isCA) return organizationSchema;
+  return {
+    ...organizationSchema,
+    description:
+      "ERP Titans is an official Odoo Ready Partner with offices in Calgary, Alberta and Austin, Texas, providing Odoo ERP implementation, migration, customization, support and ERP recovery for businesses across the United States and Canada.",
+    address: [
+      organizationSchema.address,
+      { "@type": "PostalAddress", addressLocality: "Austin", addressRegion: "TX", addressCountry: "US" },
+    ],
+  };
+}
+
 export const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",

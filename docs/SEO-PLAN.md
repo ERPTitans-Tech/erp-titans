@@ -10,8 +10,8 @@
 - **Fix:** submit the site to Google Search Console and request indexing (section 3, "Do today"). Without this, Google may take weeks to discover the new pages on its own.
 - **"odoo implementation" with no location** is one of the most competitive Odoo searches in North America: odoo.com itself, large Gold partners and directories hold those spots. Realistic path: win the specific searches first (Calgary, Alberta, "Odoo rescue", "QuickBooks to Odoo Canada", cannabis ERP), then climb the broad terms as reviews, links and listings build up.
 - **Domains:** two regional sites from one codebase. **https://erptitans.ca is the Canadian site (en-CA)** and **https://erptitans.com is the US / international site (en-US, default)**. Each is canonical to itself and lists the other as an hreflang alternate, so Google shows .ca to Canadian searchers and .com elsewhere, without treating them as duplicates. Each domain has its own sitemap and robots.txt. www.erptitans.com redirects to erptitans.com.
-- **Location mismatch:** the Odoo partner listing (copied by directories such as ERPResearch) says **Austin, TX**; the website now says **Calgary, Alberta**. Google ranks local businesses on consistent name/address/phone everywhere. **Decide the official HQ and make every listing match.**
-- **Client confidentiality:** the Odoo partner listing still names the cannabis client as a reference. Update it in the Odoo partner portal if the client must stay confidential.
+- **Offices:** Calgary, Alberta and Austin, Texas. erptitans.ca shows Calgary; erptitans.com shows both Calgary and Austin (site text, footer and structured data). The Odoo partner listing (Austin, TX) is consistent with the .com site.
+- **Odoo partner listing:** naming the cannabis client there is fine (confirmed); only the ERP Titans website keeps the client anonymous.
 
 ---
 
@@ -80,9 +80,9 @@ Footer links to every service and location page; location pages link to all serv
 - [ ] **Bing Webmaster Tools:** *Import from Google Search Console* (Bing also powers Copilot and parts of ChatGPT search).
 
 ### Do this week
-- [ ] **Decide the official HQ** (Calgary vs Austin) and make the website, Odoo partner listing, Google Business Profile and directories match exactly: same business name, address, phone.
-- [ ] **Odoo partner portal:** update location/description (mention *Calgary, Alberta* if that's HQ), website link, industries, and replace any named confidential client references.
-- [ ] **Google Business Profile:** create and verify "ERP Titans" at the official address. Primary category: *Software company* (or *Business management consultant*). Add services (Odoo implementation, migration, support, rescue), service areas (Calgary, Alberta, Canada, USA), hours, real team/office photos, and the website link. **Single biggest factor for Calgary searches.**
+- [ ] **Keep office details consistent:** same business name, city and phone on the website, Odoo partner listing, Google Business Profile and directories (Calgary for Canadian listings; Calgary + Austin where US listings allow it).
+- [ ] **Odoo partner portal:** make sure the description mentions both Calgary and Austin and links to the website.
+- [ ] **Google Business Profile:** create and verify "ERP Titans" at the official address. Primary category: *Software company* (or *Business management consultant*). Add services (Odoo implementation, migration, support, rescue), service areas (Calgary, Alberta, Canada, USA), hours, real team/office photos, and the website link. **Single biggest factor for Calgary searches.** Create a profile only for the Calgary office: Google's rules don't allow profiles for virtual offices, and a profile found to be at a virtual address can be suspended. For Austin, use the website, the Odoo listing and directories instead.
 
 ### Do this month
 - [ ] **Directory profiles with reviews:** Clutch, GoodFirms, ERPResearch, ERP Pilot, LinkedIn company page. Same name, address, phone everywhere.
@@ -115,6 +115,5 @@ Footer links to every service and location page; location pages link to all serv
 ---
 
 ## 5. Open items to confirm
-- Official HQ: Calgary or Austin? Street address and phone, if they can be public (then added to the website and structured data).
-- Remove named client references from the Odoo partner listing if confidentiality applies.
-- Merge GitHub pull request #1 (security update for Next.js; critical vulnerabilities).
+- Street address and phone for each office, if they can be public (then added to the website and structured data).
+- Next.js security update (Hostinger pull request #1): applied on main on Nov 23, 2026 (Next.js 16.4.1, nodemailer 9.1.1). The pull request can be closed.

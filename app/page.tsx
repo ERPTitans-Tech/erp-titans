@@ -6,16 +6,17 @@ import WhyERP from "@/components/home/WhyERP";
 import Outcomes from "@/components/home/Outcomes";
 import CTA from "@/components/home/CTA";
 
-import { alternatesFor } from "@/lib/site";
+import { alternatesFor, getSite } from "@/lib/site";
 export const metadata = {
   title: { absolute: "Odoo Partner in Calgary, Canada & USA | ERP Titans" },
   alternates: alternatesFor("/"),
 };
 
-export default function Home() {
+export default async function Home() {
+  const { isCA } = await getSite();
   return (
     <>
-      <Hero />
+      <Hero isCA={isCA} />
       <Challenges />
       <CostOfInaction />
       <RecoveryProcess />

@@ -1,9 +1,12 @@
 import Link from "next/link";
+import { getSite } from "@/lib/site";
+import { officesFor } from "@/lib/offices";
 import Image from "next/image";
 import { locations } from "@/lib/locations";
 import { odooServices } from "@/lib/odoo-services";
 
-export default function Footer() {
+export default async function Footer() {
+  const offices = officesFor((await getSite()).isCA);
   return (
     <footer className="bg-brand-bg pt-20 pb-10 border-t border-gray-100" id="contact">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -64,8 +67,8 @@ export default function Footer() {
                 <a href="mailto:sales@erptitans.com" className="text-brand-text hover:text-brand-primary transition-colors text-sm font-medium">sales@erptitans.com</a>
               </li>
               <li>
-                <span className="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1">Location</span>
-                <span className="text-brand-text-muted text-sm">Calgary, Alberta, Canada<br />(Serving Canada &amp; USA)</span>
+                <span className="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-1">{offices.footer.length > 1 ? "Offices" : "Location"}</span>
+                <span className="text-brand-text-muted text-sm">{offices.footer.map((o) => (<span key={o} className="block">{o}</span>))}<span className="block">({offices.serving})</span></span>
               </li>
             </ul>
           </div>

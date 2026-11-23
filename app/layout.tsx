@@ -4,7 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/home/Navbar";
 import Footer from "@/components/layout/Footer";
 import JsonLd from "@/components/seo/JsonLd";
-import { organizationSchema, websiteSchema } from "@/lib/seo";
+import { organizationSchemaFor, websiteSchema } from "@/lib/seo";
 import { getSite } from "@/lib/site";
 
 const inter = Inter({
@@ -21,8 +21,9 @@ export async function generateMetadata(): Promise<Metadata> {
       default: "Odoo Partner in Calgary, Canada & USA | ERP Titans",
       template: "%s | ERP Titans",
     },
-    description:
-      "ERP Titans is an official Odoo Ready Partner based in Calgary, Alberta. Odoo ERP implementation, migration, customization, support and ERP recovery for manufacturers, distributors and SMEs across Canada and the USA.",
+    description: site.isCA
+      ? "ERP Titans is an official Odoo Ready Partner based in Calgary, Alberta. Odoo ERP implementation, migration, customization, support and ERP recovery for manufacturers, distributors and SMEs across Canada and the USA."
+      : "ERP Titans is an official Odoo Ready Partner with offices in Calgary, Alberta and Austin, Texas. Odoo ERP implementation, migration, customization, support and ERP recovery for manufacturers, distributors and SMEs across the USA and Canada.",
     applicationName: "ERP Titans",
     keywords: [
       "Odoo partner",
@@ -68,7 +69,7 @@ export default async function RootLayout({
   return (
     <html lang={site.lang} className={`${inter.variable} scroll-smooth antialiased overflow-x-hidden`}>
       <body className="min-h-screen bg-brand-bg text-brand-text font-sans flex flex-col overflow-x-hidden w-full relative">
-        <JsonLd data={[organizationSchema, websiteSchema]} />
+        <JsonLd data={[organizationSchemaFor(site.isCA), websiteSchema]} />
         <Toaster position="bottom-right" />
         <Navbar />
         <main className="flex-grow">

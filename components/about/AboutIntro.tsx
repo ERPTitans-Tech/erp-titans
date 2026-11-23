@@ -18,7 +18,7 @@ const story = [
   "We decided to do things differently. We focus exclusively on ERP recovery, fixing broken implementations and helping companies scale.",
 ];
 
-export default function AboutIntro() {
+export default function AboutIntro({ isCA = false }: { isCA?: boolean }) {
   return (
     <>
       {/* ───────── Hero ───────── */}
@@ -42,7 +42,7 @@ export default function AboutIntro() {
                 broken implementations and build scalable foundations for SME growth.
               </p>
               <p className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#475569]">
-                <MapPin size={16} className="text-[#003D82]" /> Based in Calgary, Alberta · Serving Canada, the USA and beyond
+                <MapPin size={16} className="text-[#003D82]" /> {isCA ? "Based in Calgary, Alberta · Serving Canada, the USA and beyond" : "Offices in Calgary, Alberta and Austin, Texas · Serving the USA, Canada and beyond"}
               </p>
             </motion.div>
 
