@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, ChevronDown, Leaf } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -128,8 +128,8 @@ export default function Navbar() {
                                   onClick={() => setDesktopOpen(null)}
                                   className="group flex items-center gap-4 px-4 py-3 rounded-xl border border-gray-100 hover:border-[#003D82]/30 hover:bg-[#F8FAFC] transition-all duration-200 hover:translate-x-1"
                                 >
-                                  <span className="w-11 h-11 shrink-0 rounded-xl bg-green-50 border border-green-100 flex items-center justify-center">
-                                    <Leaf size={22} className="text-[#16A34A]" />
+                                  <span className="shrink-0 rounded-md bg-[#0B1220] px-2 py-1 font-mono text-[10px] font-semibold uppercase tracking-wider text-[#4ADE80]">
+                                    Case 01
                                   </span>
                                   <span className="flex flex-col">
                                     <span className="font-semibold text-[#0F172A] group-hover:text-[#003D82] whitespace-nowrap">{sublink.name}</span>
@@ -250,7 +250,6 @@ export default function Navbar() {
                                     className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-[#003D82] text-[#475569] hover:text-white font-medium transition-all duration-200"
                                     onClick={() => setMobileMenuOpen(false)}
                                   >
-                                    {sublink.featured && <Leaf size={18} className="shrink-0" />}
                                     {sublink.name}
                                   </Link>
                                 ))}

@@ -6,15 +6,19 @@ import {
   CheckCircle2,
   BarChart3,
   Plug,
-  ShieldCheck,
-  Target,
   FileCheck2,
   FileSpreadsheet,
-  GitBranch,
-  Leaf,
 } from "lucide-react";
 import CTA from "@/components/home/CTA";
-import { CoaMockup, CtlsMockup, GenealogyFlow, DashboardMockup } from "@/components/case-studies/CannabisCaseStudyVisuals";
+import {
+  HeroDataGraph,
+  DataFlowStepper,
+  CoaLiveCheck,
+  CtlsWaterfall,
+  ProductionMix,
+  DashboardTabs,
+  IllustrativeBadge,
+} from "@/components/case-studies/CannabisInteractive";
 
 export const metadata = {
   title: "Case Study: Odoo ERP for a Top-Tier Cannabis Brand | ERP Titans",
@@ -232,8 +236,14 @@ const outcomes = [
   "Production efficiency, COGS and WIP visible to leadership in Power BI",
 ];
 
-function Eyebrow({ children }: { children: string }) {
-  return <p className="text-sm font-bold uppercase tracking-[0.15em] text-[#16A34A] mb-3">{children}</p>;
+function SectionLabel({ n, children, dark = false }: { n: string; children: string; dark?: boolean }) {
+  return (
+    <div className="mb-4 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.2em]">
+      <span className={`rounded px-1.5 py-0.5 ${dark ? "bg-[#4ADE80] text-[#0B1220]" : "bg-[#0B1220] text-white"}`}>{n}</span>
+      <span className={dark ? "text-slate-400" : "text-[#64748B]"}>{children}</span>
+      <span className={`h-px w-16 ${dark ? "bg-white/15" : "bg-[#CBD5E1]"}`} />
+    </div>
+  );
 }
 
 export default function TopTierCannabisCaseStudyPage() {
@@ -285,15 +295,8 @@ export default function TopTierCannabisCaseStudyPage() {
             </div>
 
             {/* Client card */}
-            <div className="rounded-[24px] overflow-hidden shadow-[0_20px_50px_rgba(15,23,42,0.18)] border border-gray-100">
-              <div className="relative bg-gradient-to-br from-[#003D82] via-[#0F2A52] to-[#0B1220] px-8 py-10 flex flex-col items-center justify-center text-center">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_30%,rgba(34,197,94,0.22),transparent_60%)]" />
-                <span className="relative w-20 h-20 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center mb-4">
-                  <Leaf size={40} className="text-[#86EFAC]" />
-                </span>
-                <div className="relative text-xl font-extrabold text-white">Top-Tier Cannabis Brand</div>
-                <div className="relative text-sm font-medium text-white/70 mt-1">Leading 1 g &amp; 0.4 g pre-rolls · Canada</div>
-              </div>
+            <div className="rounded-[24px] overflow-hidden shadow-[0_20px_50px_rgba(15,23,42,0.22)] border border-gray-100 bg-white">
+              <HeroDataGraph />
               <div className="bg-white p-7">
                 <h2 className="text-sm font-bold uppercase tracking-[0.15em] text-[#64748B] mb-5">At a Glance</h2>
                 <dl className="space-y-3.5">
@@ -322,6 +325,14 @@ export default function TopTierCannabisCaseStudyPage() {
               </div>
             ))}
           </div>
+
+          <div className="mt-6 flex flex-col gap-3 rounded-2xl border border-amber-200 bg-amber-50/70 px-5 py-4 sm:flex-row sm:items-center">
+            <IllustrativeBadge />
+            <p className="text-sm leading-relaxed text-[#78350F]">
+              The interactive charts, dashboards and sample records on this page are illustrations built to show how
+              the system works. They use made-up sample values and are not the client&apos;s data.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -329,7 +340,7 @@ export default function TopTierCannabisCaseStudyPage() {
       <section className="py-20 lg:py-24 bg-white border-t border-[#E2E8F0]">
         <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-12">
-            <Eyebrow>The Challenge</Eyebrow>
+            <SectionLabel n="01">The challenge</SectionLabel>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] leading-tight mb-5">
               Regulated, multi-brand and multi-province
             </h2>
@@ -355,10 +366,7 @@ export default function TopTierCannabisCaseStudyPage() {
       <section className="py-20 lg:py-24 bg-[#F8FAFC]">
         <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-14">
-            <div className="flex items-center gap-2 mb-3">
-              <ShieldCheck className="text-[#16A34A]" size={20} />
-              <p className="text-sm font-bold uppercase tracking-[0.15em] text-[#16A34A]">Compliance, Built In</p>
-            </div>
+            <SectionLabel n="02">Compliance, built in</SectionLabel>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] leading-tight mb-5">
               Where cannabis ERP projects are won or lost
             </h2>
@@ -391,7 +399,7 @@ export default function TopTierCannabisCaseStudyPage() {
                 ))}
               </ul>
             </div>
-            <CoaMockup />
+            <CoaLiveCheck />
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -418,29 +426,27 @@ export default function TopTierCannabisCaseStudyPage() {
               </ul>
             </div>
             <div className="lg:order-1">
-              <CtlsMockup />
+              <CtlsWaterfall />
             </div>
           </div>
         </div>
       </section>
 
-      {/* ───────── Traceability ───────── */}
-      <section className="py-20 lg:py-24 bg-white border-t border-[#E2E8F0]">
-        <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-10">
-            <div className="flex items-center gap-2 mb-3">
-              <GitBranch className="text-[#16A34A]" size={20} />
-              <p className="text-sm font-bold uppercase tracking-[0.15em] text-[#16A34A]">Seed-to-Sale</p>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] leading-tight mb-5">
-              Lot by lot, from vendor to distributor
+      {/* ───────── Data flow (dark, interactive) ───────── */}
+      <section className="relative overflow-hidden bg-[#0B1220] py-20 lg:py-28">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_80%_20%,rgba(34,197,94,0.12),transparent_55%),radial-gradient(ellipse_at_10%_90%,rgba(0,61,130,0.35),transparent_55%)]" />
+        <div className="relative max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 max-w-3xl">
+            <SectionLabel n="03" dark>Seed-to-sale, step by step</SectionLabel>
+            <h2 className="text-3xl md:text-[44px] font-extrabold leading-[1.1] text-white">
+              From vendor lot <span className="text-slate-500">to</span> CTLS report.
             </h2>
-            <p className="text-lg text-[#64748B] leading-relaxed">
-              Every movement carries its lot identity forward, including blends, so the full genealogy of any unit on
-              a provincial shelf is always one lookup away.
+            <p className="mt-5 text-lg leading-relaxed text-slate-400">
+              Every movement carries its lot identity forward, so the full genealogy of any pre-roll on a provincial
+              shelf is one lookup away, and month-end reporting writes itself. Click a step, or let it play.
             </p>
           </div>
-          <GenealogyFlow />
+          <DataFlowStepper />
         </div>
       </section>
 
@@ -448,7 +454,7 @@ export default function TopTierCannabisCaseStudyPage() {
       <section className="py-20 lg:py-24 bg-[#F8FAFC]">
         <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-12">
-            <Eyebrow>What We Built</Eyebrow>
+            <SectionLabel n="04">What we built</SectionLabel>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] leading-tight mb-5">
               Six business areas on one integrated platform
             </h2>
@@ -508,6 +514,9 @@ export default function TopTierCannabisCaseStudyPage() {
 
       {/* ───────── Integrations + Analytics ───────── */}
       <section className="py-20 lg:py-24 bg-white border-t border-[#E2E8F0]">
+        <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionLabel n="05">Integrations &amp; analytics</SectionLabel>
+        </div>
         <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 lg:gap-16">
           <div>
             <div className="flex items-center gap-3 mb-4">
@@ -537,8 +546,11 @@ export default function TopTierCannabisCaseStudyPage() {
               A dedicated analytics layer connected directly to the Odoo.sh database gives leadership decision-ready
               reporting across manufacturing, finance, compliance and sales.
             </p>
+            <div className="mb-6">
+              <DashboardTabs />
+            </div>
             <div className="mb-8">
-              <DashboardMockup />
+              <ProductionMix />
             </div>
             <div className="grid sm:grid-cols-2 gap-3">
               {reports.map((r) => (
@@ -559,7 +571,7 @@ export default function TopTierCannabisCaseStudyPage() {
       <section className="py-20 lg:py-24 bg-[#F8FAFC]">
         <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-12">
-            <Eyebrow>How We Delivered</Eyebrow>
+            <SectionLabel n="06">How we delivered</SectionLabel>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] leading-tight mb-5">
               11 agile sprints, live on November 1
             </h2>
@@ -605,10 +617,7 @@ export default function TopTierCannabisCaseStudyPage() {
         <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-[1fr_1.3fr] gap-12 lg:gap-16 items-start">
             <div>
-              <div className="flex items-center gap-3 mb-3">
-                <Target className="text-[#16A34A]" size={22} />
-                <p className="text-sm font-bold uppercase tracking-[0.15em] text-[#16A34A]">The Result</p>
-              </div>
+              <SectionLabel n="07">The result</SectionLabel>
               <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] leading-tight mb-5">
                 Every brand, one source of truth
               </h2>
