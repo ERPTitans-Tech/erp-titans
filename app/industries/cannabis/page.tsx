@@ -1,7 +1,4 @@
-import CannabisHero from "@/components/industries/cannabis/CannabisHero";
-import CannabisChallenges from "@/components/industries/cannabis/CannabisChallenges";
-import CannabisFoundation from "@/components/industries/cannabis/CannabisFoundation";
-import CTA from "@/components/home/CTA";
+import IndustryPage from "@/components/industries/IndustryPage";
 
 export const metadata = {
   title: "Cannabis ERP | Odoo for Licensed Producers, COA & CTLS Reporting",
@@ -11,12 +8,5 @@ export const metadata = {
 };
 
 export default function CannabisPage() {
-  return (
-    <div className="flex flex-col min-h-screen">
-      <CannabisHero />
-      <CannabisChallenges />
-      <CannabisFoundation />
-      <CTA />
-    </div>
-  );
+  return <IndustryPage industry="cannabis" />;
 }

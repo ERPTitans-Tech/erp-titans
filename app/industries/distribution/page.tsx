@@ -1,7 +1,4 @@
-import DistributionHero from "@/components/industries/distribution/DistributionHero";
-import DistributionChallenges from "@/components/industries/distribution/DistributionChallenges";
-import DistributionSolutions from "@/components/industries/distribution/DistributionSolutions";
-import CTA from "@/components/home/CTA";
+import IndustryPage from "@/components/industries/IndustryPage";
 
 export const metadata = {
   title: "Distribution & Logistics ERP | Odoo Inventory & Warehouse",
@@ -11,12 +8,5 @@ export const metadata = {
 };
 
 export default function DistributionPage() {
-  return (
-    <div className="flex flex-col min-h-screen">
-      <DistributionHero />
-      <DistributionChallenges />
-      <DistributionSolutions />
-      <CTA />
-    </div>
-  );
+  return <IndustryPage industry="distribution" />;
 }

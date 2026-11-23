@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: loc.title,
   description: loc.description,
   alternates: { canonical: "/odoo-partner-calgary" },
-  openGraph: { title: loc.title, description: loc.description, url: "/odoo-partner-calgary" },
+  openGraph: { title: loc.title, description: loc.description, url: "/odoo-partner-calgary", images: ["/opengraph-image"] },
 };
 
 export default function OdooPartnerCalgaryPage() {

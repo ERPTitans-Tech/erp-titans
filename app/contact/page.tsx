@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
-  title: "Contact ERP Titans | Book a Free Odoo Consultation",
+  title: "Contact Us | Book a Free Odoo Consultation",
   description:
     "Talk to ERP Titans, a Calgary-based official Odoo Ready Partner. Book a free Odoo consultation or ERP health audit for your business in Canada or the USA.",
   alternates: { canonical: "/contact" },

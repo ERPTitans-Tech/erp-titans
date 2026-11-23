@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { XCircle, CheckCircle2 } from "lucide-react";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 const genericPoints = [
   "We do ERP implementation",
@@ -12,81 +13,76 @@ const genericPoints = [
 
 const specialistPoints = [
   "We fix broken ERP implementations",
-  "Specialized in Manufacturing & Distribution",
+  "Specialized in Manufacturing, Distribution & Cannabis",
   "Match systems to business, not vice versa",
   "Expertise is our competitive edge",
 ];
 
 export default function Comparison() {
   return (
-    <section className="py-14 lg:py-16 bg-white relative">
-      <div className="max-w-[1200px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="text-center mb-10 max-w-3xl mx-auto">
+    <section className="border-t border-[#E2E8F0] bg-[#F8FAFC] py-20 lg:py-24">
+      <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionHeader
+          n={2}
+          label="How we're different"
+          title="Specialists vs. Generic Implementers"
+          text="There's a world of difference in the results."
+          align="center"
+        />
 
-          <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] mb-3 tracking-tight">
-            How We&apos;re Different
-          </h2>
-          <p className="text-base md:text-lg text-[#64748B] leading-relaxed">
-            Specialists vs. Generic Implementers. There&apos;s a world of difference in the results.
-          </p>
-        </div>
-
-        {/* Two Column Layout */}
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 items-stretch">
-          
-          {/* Left Card: Generic */}
+        <div className="mx-auto grid max-w-5xl items-stretch gap-6 md:grid-cols-2">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6 }}
-            className="bg-[#F8FAFC] rounded-[32px] p-6 md:p-8 border border-gray-200 flex flex-col"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="flex flex-col rounded-[24px] bg-white p-8 ring-1 ring-[#E2E8F0]"
           >
-            <div className="flex items-center gap-4 mb-6 pb-6 border-b border-gray-200">
-              <div className="w-12 h-12 rounded-full bg-red-50 text-red-500 flex items-center justify-center shrink-0">
-                <XCircle size={24} />
+            <div className="mb-6 flex items-center gap-3">
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100 text-slate-400">
+                <XCircle size={22} />
+              </span>
+              <div>
+                <div className="text-xs font-bold uppercase tracking-[0.14em] text-[#94A3B8]">The usual approach</div>
+                <h3 className="text-xl font-bold text-[#475569]">Generic Implementers</h3>
               </div>
-              <h3 className="text-xl font-bold text-[#334155]">Generic Implementers</h3>
             </div>
-            <ul className="space-y-4 flex-grow">
-              {genericPoints.map((point, idx) => (
-                <li key={idx} className="flex items-start gap-4 text-[#64748B] text-base font-medium">
-                  <span className="text-red-400 mt-0.5 shrink-0">✕</span>
-                  {point}
+            <ul className="space-y-4">
+              {genericPoints.map((p) => (
+                <li key={p} className="flex items-start gap-3 text-[16px] text-[#64748B]">
+                  <XCircle size={19} className="mt-0.5 shrink-0 text-slate-300" />
+                  {p}
                 </li>
               ))}
             </ul>
           </motion.div>
 
-          {/* Right Card: Specialists */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative bg-gradient-to-br from-[#0F172A] to-[#1E293B] rounded-[32px] p-6 md:p-8 border border-[#334155] shadow-2xl overflow-hidden hover:-translate-y-1 hover:shadow-[#003D82]/20 transition-all duration-500 flex flex-col"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="relative flex flex-col overflow-hidden rounded-[24px] bg-white p-8 shadow-[0_20px_50px_rgba(0,61,130,0.12)] ring-2 ring-[#003D82]"
           >
-            {/* Soft decorative background shape */}
-            <div className="absolute -inset-24 bg-[#003D82]/10 rounded-full blur-[80px] pointer-events-none" />
-
-            <div className="relative z-10 flex items-center gap-4 mb-6 pb-6 border-b border-[#334155]">
-              <div className="w-12 h-12 rounded-full bg-[#003D82]/20 text-[#003D82] flex items-center justify-center shrink-0 border border-[#003D82]/30">
-                <CheckCircle2 size={24} />
+            <span className="absolute right-6 top-6 rounded-full bg-[#003D82] px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-white">ERP Titans</span>
+            <div className="mb-6 flex items-center gap-3">
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#003D82] text-white">
+                <CheckCircle2 size={22} />
+              </span>
+              <div>
+                <div className="text-xs font-bold uppercase tracking-[0.14em] text-[#0EA5E9]">Our approach</div>
+                <h3 className="text-xl font-bold text-[#003D82]">ERP Specialists</h3>
               </div>
-              <h3 className="text-xl font-bold text-white">ERP Titans</h3>
             </div>
-            <ul className="relative z-10 space-y-4 flex-grow">
-              {specialistPoints.map((point, idx) => (
-                <li key={idx} className="flex items-start gap-4 text-[#E2E8F0] text-base font-medium">
-                  <CheckCircle2 size={20} className="text-[#003D82] mt-0.5 shrink-0" />
-                  {point}
+            <ul className="space-y-4">
+              {specialistPoints.map((p) => (
+                <li key={p} className="flex items-start gap-3 text-[16px] font-semibold text-[#0F172A]">
+                  <CheckCircle2 size={19} className="mt-0.5 shrink-0 text-[#16A34A]" />
+                  {p}
                 </li>
               ))}
             </ul>
           </motion.div>
-
         </div>
       </div>
     </section>

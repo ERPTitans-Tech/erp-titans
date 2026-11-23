@@ -1,121 +1,124 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { BookOpen, Shield, Sparkles, TrendingUp, Earth } from "lucide-react";
+import { BookOpen, Shield, Sparkles, TrendingUp, Earth, Plus, MapPin } from "lucide-react";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 const values = [
-  {
-    title: "Trust Over Cost",
-    description: "Relationships built on transparency, not just price.",
-    icon: Shield,
-  },
-  {
-    title: "Specialization",
-    description: "Deep focus on recovery, not being everything to everyone.",
-    icon: Sparkles,
-  },
-  {
-    title: "Results First",
-    description: "We measure success by real business outcomes.",
-    icon: TrendingUp,
-  },
-  {
-    title: "Global Reach",
-    description: "Canadian-based expertise with the infrastructure to serve you anywhere.",
-    icon: Earth,
-  },
+  { title: "Trust Over Cost", description: "Relationships built on transparency, not just price.", icon: Shield },
+  { title: "Specialization", description: "Deep focus on recovery, not being everything to everyone.", icon: Sparkles },
+  { title: "Results First", description: "We measure success by real business outcomes.", icon: TrendingUp },
+  { title: "Global Reach", description: "Canadian-based expertise with the infrastructure to serve you anywhere.", icon: Earth },
+];
+
+const story = [
+  "ERP Titans was founded with a clear mission: to help SMEs recover from failed ERP implementations and unlock the true value of their systems.",
+  "We've seen too many companies burnt by generic ERP implementers who promised the world but delivered systems that didn't match their business needs.",
+  "We decided to do things differently. We focus exclusively on ERP recovery, fixing broken implementations and helping companies scale.",
 ];
 
 export default function AboutIntro() {
   return (
-    <section className="pt-24 pb-16 lg:pt-32 lg:pb-20 bg-[#F8FAFC] relative overflow-hidden">
-      <div className="max-w-[1200px] max-w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Compact Hero Section */}
-        <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-20">
-
-          <motion.h1
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl font-extrabold text-[#003D82] mb-6 tracking-tight leading-tight"
-          >
-            We Are ERP Recovery <br className="hidden md:block" /> Specialists
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-lg md:text-xl text-[#64748B] leading-relaxed"
-          >
-            We bridge the gap between business reality and ERP capability. Our team of senior consultants, developers, and architects fix broken implementations and build scalable foundations for SME growth.
-          </motion.p>
+    <>
+      {/* ───────── Hero ───────── */}
+      <section className="relative overflow-hidden bg-[#F8FAFC] pt-32 lg:pt-36 pb-20 lg:pb-24">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute -top-[20%] -left-[10%] h-[50%] w-[50%] rounded-full bg-sky-100/50 blur-[120px]" />
+          <div className="absolute top-[30%] -right-[10%] h-[40%] w-[40%] rounded-full bg-blue-50/70 blur-[100px]" />
         </div>
-
-        {/* Two Column Layout: Story (40%) + Values (60%) */}
-        <div className="flex flex-col lg:flex-row gap-10 lg:gap-12">
-          
-          {/* Left: Our Story Card */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="lg:w-[40%] bg-white rounded-[24px] p-8 md:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 border-l-4 border-l-[#003D82] flex flex-col"
-          >
-            <div className="flex items-center gap-3 mb-8">
-              <BookOpen className="text-[#003D82]" size={26} strokeWidth={2.5} />
-              <h2 className="text-2xl font-bold text-[#003D82]">Our Story</h2>
-            </div>
-            
-            <div className="space-y-6 text-[#64748B] text-[15px] leading-relaxed flex-grow">
-              <p>
-                ERP Titans was founded with a clear mission: to help SMEs recover from failed ERP implementations and unlock the true value of their systems.
+        <div className="relative max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid items-center gap-12 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+              <span className="mb-5 inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-[#003D82] shadow-sm ring-1 ring-[#003D82]/10">
+                <span className="h-2 w-2 rounded-full bg-[#21B799]" />
+                About ERP Titans
+              </span>
+              <h1 className="text-4xl md:text-5xl lg:text-[54px] font-extrabold tracking-tight leading-[1.1] text-[#003D82]">
+                We Are ERP Recovery <br className="hidden md:block" /> Specialists
+              </h1>
+              <p className="mt-6 max-w-2xl text-lg md:text-xl leading-relaxed text-[#475569]">
+                We bridge the gap between business reality and ERP capability. Our team of senior consultants, developers, and architects fix
+                broken implementations and build scalable foundations for SME growth.
               </p>
-              <p>
-                We&apos;ve seen too many companies burnt by generic ERP implementers who promised the world but delivered systems that didn&apos;t match their business needs.
+              <p className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#475569]">
+                <MapPin size={16} className="text-[#003D82]" /> Based in Calgary, Alberta · Serving Canada, the USA and beyond
               </p>
-              <p>
-                We decided to do things differently. We focus exclusively on ERP recovery, fixing broken implementations and helping companies scale.
-              </p>
-            </div>
-          </motion.div>
+            </motion.div>
 
-          {/* Right: Core Values Grid */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="lg:w-[60%] flex flex-col"
-          >
-            <h2 className="text-2xl font-bold text-[#003D82] mb-8 text-center lg:text-left">Our Core Values</h2>
-            
-            <div className="grid sm:grid-cols-2 gap-6 flex-grow">
-              {values.map((val, idx) => (
-                <div
-                  key={idx}
-                  className="bg-white rounded-[24px] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:-translate-y-1 hover:shadow-[0_15px_40px_rgb(0,0,0,0.08)] border border-transparent hover:border-[#003D82]/20 transition-all duration-300 relative overflow-hidden flex flex-col items-center text-center group"
-                >
-                  {/* Top blue border accent */}
-                  <div className="absolute top-0 left-0 w-full h-1.5 bg-[#003D82]" />
-                  
-                  <div className="w-14 h-14 rounded-full bg-[#003D82]/5 text-[#003D82] flex items-center justify-center mb-5 group-hover:scale-110 group-hover:bg-[#003D82] group-hover:text-white transition-all duration-300">
-                    <val.icon size={24} strokeWidth={1.5} />
-                  </div>
-                  
-                  <h3 className="text-[17px] font-bold text-[#0F172A] mb-3">
-                    {val.title}
-                  </h3>
-                  
-                  <p className="text-[#64748B] text-[14px] leading-relaxed">
-                    {val.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.15 }}
+              className="hidden flex-col items-stretch rounded-[28px] bg-white px-10 py-8 shadow-[0_20px_50px_rgba(0,61,130,0.10)] ring-1 ring-[#E2E8F0] lg:flex"
+            >
+              <div className="flex h-24 items-center justify-center">
+                <Image src="/logo.png" alt="ERP Titans" width={627} height={517} className="h-20 w-auto" />
+              </div>
+              <div className="my-4 flex items-center gap-4" aria-hidden="true">
+                <span className="h-px flex-1 bg-[#E2E8F0]" />
+                <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[#E2E8F0] bg-[#F8FAFC] text-[#003D82]">
+                  <Plus size={20} strokeWidth={2.5} />
+                </span>
+                <span className="h-px flex-1 bg-[#E2E8F0]" />
+              </div>
+              <div className="flex h-24 items-center justify-center">
+                <Image src="/odoo-ready-partner-tight.svg" alt="Odoo Ready Partner" width={416} height={202} className="h-16 w-auto" />
+              </div>
+            </motion.div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* ───────── Story + values ───────── */}
+      <section className="border-t border-[#E2E8F0] bg-white py-20 lg:py-24">
+        <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeader n={1} label="Who we are" title="Built to fix what others couldn't" />
+          <div className="grid items-stretch gap-8 lg:grid-cols-[1fr_1.2fr]">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.55 }}
+              className="flex flex-col rounded-[24px] bg-gradient-to-br from-[#003D82] to-[#0B5CAD] p-8 text-white sm:p-10"
+            >
+              <div className="mb-6 flex items-center gap-3">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/15">
+                  <BookOpen size={22} />
+                </span>
+                <h3 className="text-2xl font-bold">Our Story</h3>
+              </div>
+              <div className="space-y-5 text-[16px] leading-relaxed text-blue-100">
+                {story.map((p) => (
+                  <p key={p.slice(0, 30)}>{p}</p>
+                ))}
+              </div>
+            </motion.div>
+
+            <div className="grid gap-5 sm:grid-cols-2">
+              {values.map((v, i) => {
+                const Icon = v.icon;
+                return (
+                  <motion.div
+                    key={v.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.45, delay: i * 0.08 }}
+                    className="group rounded-[24px] bg-[#F8FAFC] p-7 ring-1 ring-[#E2E8F0] transition-all hover:-translate-y-1 hover:bg-white hover:shadow-[0_12px_30px_rgba(0,61,130,0.08)]"
+                  >
+                    <span className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-white text-[#003D82] ring-1 ring-[#E2E8F0] transition-colors group-hover:bg-[#003D82] group-hover:text-white">
+                      <Icon size={22} />
+                    </span>
+                    <h3 className="mb-2 text-[17px] font-bold text-[#0F172A]">{v.title}</h3>
+                    <p className="text-[15px] leading-relaxed text-[#64748B]">{v.description}</p>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

@@ -4,7 +4,7 @@ import WhoWeServe from "@/components/about/WhoWeServe";
 import AboutCTA from "@/components/about/AboutCTA";
 
 export const metadata = {
-  title: "About ERP Titans | Calgary-Based Odoo Partner & ERP Recovery Specialists",
+  title: "About Us | Calgary-Based Odoo Partner & ERP Recovery Specialists",
   description:
     "ERP Titans is a Calgary-based official Odoo Ready Partner and ERP recovery specialist helping SMEs across Canada and the USA implement, fix and scale their ERP systems.",
   alternates: { canonical: "/about" },

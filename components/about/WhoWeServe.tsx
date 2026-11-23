@@ -2,93 +2,47 @@
 
 import { motion } from "framer-motion";
 import { Wallet, Settings2, ShieldCheck } from "lucide-react";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 const audiences = [
-  {
-    icon: Wallet,
-    title: "CFOs & Controllers",
-    description: "Focused on ROI, financial controls, and reporting accuracy.",
-    tag: "Finance Leadership",
-  },
-  {
-    icon: Settings2,
-    title: "COOs & Operations Heads",
-    description: "Focused on efficiency, optimization, and scalable workflows.",
-    tag: "Operations Leadership",
-  },
-  {
-    icon: ShieldCheck,
-    title: "ERP Managers",
-    description: "Responsible for system performance and user adoption across the organization.",
-    tag: "System Ownership",
-  },
+  { icon: Wallet, title: "CFOs & Controllers", description: "Focused on ROI, financial controls, and reporting accuracy.", tag: "Finance Leadership" },
+  { icon: Settings2, title: "COOs & Operations Heads", description: "Focused on efficiency, optimization, and scalable workflows.", tag: "Operations Leadership" },
+  { icon: ShieldCheck, title: "ERP Managers", description: "Responsible for system performance and user adoption across the organization.", tag: "System Ownership" },
 ];
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15 },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
 
 export default function WhoWeServe() {
   return (
-    <section className="py-20 lg:py-24 bg-[#F8FAFC]">
-      <div className="max-w-[1200px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="text-center mb-16 max-w-3xl mx-auto">
-
-          <h2 className="text-3xl md:text-5xl font-extrabold text-[#003D82] mb-6 tracking-tight">
-            Who We Serve Best
-          </h2>
-          <p className="text-lg md:text-xl text-[#64748B] leading-relaxed">
-            We work with SMEs globally that value precision and long-term stability.
-          </p>
+    <section className="border-t border-[#E2E8F0] bg-white py-20 lg:py-24">
+      <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionHeader
+          n={3}
+          label="Who we serve"
+          title="Who We Serve Best"
+          text="We work with SMEs globally that value precision and long-term stability."
+          align="center"
+        />
+        <div className="grid gap-6 md:grid-cols-3">
+          {audiences.map((a, i) => {
+            const Icon = a.icon;
+            return (
+              <motion.div
+                key={a.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="group flex flex-col items-center rounded-[24px] bg-[#F8FAFC] p-8 text-center ring-1 ring-[#E2E8F0] transition-all hover:-translate-y-1 hover:bg-white hover:shadow-[0_12px_30px_rgba(0,61,130,0.08)]"
+              >
+                <span className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-[#003D82] ring-1 ring-[#E2E8F0] transition-colors group-hover:bg-[#003D82] group-hover:text-white">
+                  <Icon size={26} />
+                </span>
+                <span className="mb-3 rounded-full bg-[#EFF6FF] px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-[#003D82]">{a.tag}</span>
+                <h3 className="mb-2 text-xl font-bold text-[#0F172A]">{a.title}</h3>
+                <p className="leading-relaxed text-[#64748B]">{a.description}</p>
+              </motion.div>
+            );
+          })}
         </div>
-
-        {/* Cards Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          className="grid md:grid-cols-3 gap-6 lg:gap-8"
-        >
-          {audiences.map((item, idx) => (
-            <motion.div
-              key={idx}
-              variants={itemVariants}
-              whileHover={{ y: -8 }}
-              className="bg-white rounded-[24px] p-8 md:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] border border-transparent hover:border-[#003D82]/20 transition-all duration-300 relative overflow-hidden"
-            >
-              {/* Blue top border accent */}
-              <div className="absolute top-0 left-0 w-full h-1.5 bg-[#003D82]" />
-              
-              <div className="w-14 h-14 rounded-2xl bg-[#003D82]/5 text-[#003D82] flex items-center justify-center mb-8">
-                <item.icon size={26} strokeWidth={1.5} />
-              </div>
-              
-              <div className="inline-block px-3 py-1 bg-gray-100 text-gray-600 text-xs font-bold rounded-full mb-4">
-                {item.tag}
-              </div>
-              
-              <h3 className="text-xl font-bold text-[#0F172A] mb-3">
-                {item.title}
-              </h3>
-              
-              <p className="text-[#64748B] leading-relaxed font-medium">
-                {item.description}
-              </p>
-            </motion.div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );
