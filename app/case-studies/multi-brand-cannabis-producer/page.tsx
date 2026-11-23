@@ -11,22 +11,21 @@ import {
   FileCheck2,
   FileSpreadsheet,
   GitBranch,
+  Leaf,
 } from "lucide-react";
 import CTA from "@/components/home/CTA";
-import { CoaMockup, CtlsMockup, GenealogyFlow, DashboardMockup } from "@/components/case-studies/LaniakeaVisuals";
+import { CoaMockup, CtlsMockup, GenealogyFlow, DashboardMockup } from "@/components/case-studies/CannabisCaseStudyVisuals";
 
 export const metadata = {
-  title: "Case Study: Laniakea Brands Odoo ERP Implementation | ERP Titans",
+  title: "Case Study: Odoo ERP for a Multi-Brand Licensed Cannabis Producer | ERP Titans",
   description:
-    "How ERP Titans delivered a full-cycle Odoo ERP for Laniakea Brands, parent company of Space Race Cannabis, Beach Bum, Violet Tourist and Shoe String, covering seed-to-sale traceability, COA management, CTLS reporting, manufacturing, sales, accounting and Power BI.",
-  alternates: { canonical: "https://erptitans.com/case-studies/laniakea-brands" },
+    "How ERP Titans delivered a full-cycle Odoo ERP for a multi-brand licensed cannabis producer in Canada, covering seed-to-sale traceability, COA management, CTLS reporting, manufacturing, sales, accounting and Power BI.",
+  alternates: { canonical: "https://erptitans.com/case-studies/multi-brand-cannabis-producer" },
 };
 
-const brands = ["Space Race Cannabis", "Beach Bum", "Violet Tourist", "Shoe String"];
-
 const facts = [
-  { label: "Client", value: "Laniakea Brands" },
-  { label: "Brands", value: "Space Race Cannabis, Beach Bum, Violet Tourist, Shoe String" },
+  { label: "Client", value: "Multi-brand licensed cannabis producer (confidential)" },
+  { label: "Structure", value: "Parent company with a portfolio of consumer brands" },
   { label: "Industry", value: "Licensed cannabis producer: dried flower & pre-rolls" },
   { label: "Headquarters", value: "Alberta, Canada" },
   { label: "Markets", value: "Multi-province distribution across Canada" },
@@ -43,8 +42,8 @@ const stats = [
 
 const challenges = [
   {
-    title: "Four brands, one operation",
-    text: "Space Race Cannabis, Beach Bum, Violet Tourist and Shoe String share facilities, people and compliance obligations, but each carries its own products, SKUs and market presence.",
+    title: "Multiple brands, one operation",
+    text: "The brands share facilities, people and compliance obligations, but each carries its own products, SKUs and market presence.",
   },
   {
     title: "Seed-to-sale traceability",
@@ -125,7 +124,7 @@ const solution = [
     title: "Sales & Fulfillment",
     points: [
       "Order intake from provincial distributors and authorized channels",
-      "Province-specific SKUs, pricing and fulfillment rules across all four brands",
+      "Province-specific SKUs, pricing and fulfillment rules across every brand",
       "Consignment and ownership-based sales with depletion reporting",
       "Allocation, partial shipments and backorder management",
       "Lot-level traceability through the customer network for recalls",
@@ -222,7 +221,7 @@ const phases = [
 ];
 
 const outcomes = [
-  "One integrated system of record for all four brands, from vendor receipt to customer delivery",
+  "One integrated system of record for every brand, from vendor receipt to customer delivery",
   "Every lot tied to its Certificate of Analysis, with nothing released before QC approval",
   "CTLS monthly reporting generated from real transactions instead of spreadsheets",
   "End-to-end lot genealogy, so a recall investigation is a lookup instead of a manual hunt",
@@ -236,7 +235,7 @@ function Eyebrow({ children }: { children: string }) {
   return <p className="text-sm font-bold uppercase tracking-[0.15em] text-[#16A34A] mb-3">{children}</p>;
 }
 
-export default function LaniakeaBrandsCaseStudyPage() {
+export default function MultiBrandCannabisCaseStudyPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* ───────── Hero ───────── */}
@@ -252,7 +251,7 @@ export default function LaniakeaBrandsCaseStudyPage() {
               Case Studies
             </Link>
             <ChevronRight size={14} />
-            <span className="text-[#0F172A]">Laniakea Brands</span>
+            <span className="text-[#0F172A]">Multi-Brand Cannabis Producer</span>
           </nav>
 
           <div className="grid lg:grid-cols-[1.35fr_1fr] gap-12 lg:gap-14 items-start">
@@ -272,9 +271,9 @@ export default function LaniakeaBrandsCaseStudyPage() {
                 One Odoo ERP for a Multi-Brand Licensed Cannabis Producer
               </h1>
               <p className="text-lg md:text-xl text-[#475569] leading-relaxed font-medium max-w-2xl mb-6">
-                Laniakea Brands is the parent company behind four Canadian cannabis brands. The project began as an
-                Odoo implementation for Space Race Cannabis and grew into the operational backbone for the whole
-                Laniakea Brands family once the brands came together under one umbrella.
+                Our client is a Canadian licensed producer and the parent company behind a portfolio of cannabis
+                brands. The project began as an Odoo implementation for one of those brands and grew into the
+                operational backbone for the whole group once the brands came together under one parent company.
               </p>
               <p className="text-[17px] text-[#64748B] leading-relaxed max-w-2xl">
                 It covers procurement, seed-to-sale traceability, Certificate of Analysis management, manufacturing,
@@ -282,33 +281,17 @@ export default function LaniakeaBrandsCaseStudyPage() {
                 Power BI analytics layer on top.
               </p>
 
-              <div className="mt-8">
-                <div className="text-xs font-bold uppercase tracking-[0.15em] text-[#94A3B8] mb-3">The Laniakea Brands family</div>
-                <div className="flex flex-wrap gap-2">
-                  {brands.map((b) => (
-                    <span
-                      key={b}
-                      className="rounded-full bg-white border border-[#E2E8F0] px-4 py-1.5 text-sm font-semibold text-[#334155] shadow-[0_2px_8px_rgba(0,0,0,0.03)]"
-                    >
-                      {b}
-                    </span>
-                  ))}
-                </div>
-              </div>
             </div>
 
             {/* Client card */}
             <div className="rounded-[24px] overflow-hidden shadow-[0_20px_50px_rgba(15,23,42,0.18)] border border-gray-100">
-              <div className="relative bg-gradient-to-br from-[#0B1220] via-[#14213D] to-[#1F2937] px-8 py-8 flex items-center justify-center">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_40%,rgba(251,191,36,0.18),transparent_60%)]" />
-                <Image
-                  src="/case-studies/laniakea/logo-light.png"
-                  alt="Laniakea Brands logo"
-                  width={720}
-                  height={524}
-                  priority
-                  className="relative h-40 w-auto"
-                />
+              <div className="relative bg-gradient-to-br from-[#003D82] via-[#0F2A52] to-[#0B1220] px-8 py-10 flex flex-col items-center justify-center text-center">
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_30%,rgba(34,197,94,0.22),transparent_60%)]" />
+                <span className="relative w-20 h-20 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center mb-4">
+                  <Leaf size={40} className="text-[#86EFAC]" />
+                </span>
+                <div className="relative text-xl font-extrabold text-white">Licensed Cannabis Producer</div>
+                <div className="relative text-sm font-medium text-white/70 mt-1">Multi-brand · Multi-province · Canada</div>
               </div>
               <div className="bg-white p-7">
                 <h2 className="text-sm font-bold uppercase tracking-[0.15em] text-[#64748B] mb-5">At a Glance</h2>
@@ -350,7 +333,7 @@ export default function LaniakeaBrandsCaseStudyPage() {
               Regulated, multi-brand and multi-province
             </h2>
             <p className="text-lg text-[#64748B] leading-relaxed">
-              As a licensed producer selling flower and pre-rolls under four brands into several provincial markets,
+              As a licensed producer selling flower and pre-rolls under several brands into multiple provincial markets,
               the business needed one platform that could carry strict regulatory traceability and reporting without
               slowing down purchasing, production, distribution or finance.
             </p>
@@ -626,20 +609,13 @@ export default function LaniakeaBrandsCaseStudyPage() {
                 <p className="text-sm font-bold uppercase tracking-[0.15em] text-[#16A34A]">The Result</p>
               </div>
               <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] leading-tight mb-5">
-                Four brands, one source of truth
+                Every brand, one source of truth
               </h2>
-              <p className="text-lg text-[#64748B] leading-relaxed mb-8">
-                Since November 1, 2026, Laniakea Brands has run purchasing, production, distribution, field sales,
-                finance and compliance reporting for all four brands on a single integrated platform built to scale
+              <p className="text-lg text-[#64748B] leading-relaxed">
+                Since November 1, 2026, the client has run purchasing, production, distribution, field sales,
+                finance and compliance reporting for every brand on a single integrated platform built to scale
                 with new products, provinces and channels.
               </p>
-              <Image
-                src="/case-studies/laniakea/logo-dark.png"
-                alt="Laniakea Brands"
-                width={720}
-                height={524}
-                className="h-28 w-auto"
-              />
             </div>
 
             <div className="grid sm:grid-cols-2 gap-4">
@@ -658,7 +634,7 @@ export default function LaniakeaBrandsCaseStudyPage() {
               <blockquote className="text-xl text-[#0F172A] font-medium leading-relaxed italic">
                 &quot;QUOTE HERE&quot;
               </blockquote>
-              <figcaption className="mt-5 text-sm font-semibold text-[#64748B]">NAME, TITLE, Laniakea Brands</figcaption>
+              <figcaption className="mt-5 text-sm font-semibold text-[#64748B]">NAME, TITLE</figcaption>
             </figure>
           */}
 

@@ -1,6 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
-import { ArrowRight, MapPin, Briefcase } from "lucide-react";
+import { ArrowRight, MapPin, Briefcase, Leaf } from "lucide-react";
 import CTA from "@/components/home/CTA";
 import { caseStudies } from "@/lib/case-studies";
 
@@ -54,18 +53,11 @@ export default function CaseStudiesPage() {
                       </span>
                     </div>
 
-                    <div className="flex items-center gap-5 mb-4">
-                      {cs.logo && (
-                        <Image src={cs.logo} alt={`${cs.client} logo`} width={720} height={524} className="h-16 w-auto" />
-                      )}
-                      <div>
-                        <h2 className="text-2xl md:text-3xl font-extrabold text-[#003D82] leading-tight">{cs.client}</h2>
-                        {cs.brands && (
-                          <p className="text-sm font-medium text-[#64748B] mt-1">
-                            Parent of {cs.brands.join(", ")}
-                          </p>
-                        )}
-                      </div>
+                    <div className="flex items-center gap-4 mb-4">
+                      <span className="w-14 h-14 rounded-2xl bg-green-50 border border-green-100 flex items-center justify-center shrink-0">
+                        <Leaf size={28} className="text-[#16A34A]" />
+                      </span>
+                      <h2 className="text-2xl md:text-3xl font-extrabold text-[#003D82] leading-tight">{cs.client}</h2>
                     </div>
                     <p className="text-lg font-semibold text-[#0F172A] mb-3">{cs.headline}</p>
                     <p className="text-[#64748B] leading-relaxed mb-6 max-w-3xl">{cs.summary}</p>

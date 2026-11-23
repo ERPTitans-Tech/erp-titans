@@ -1,4 +1,4 @@
-// Illustrative, code-drawn mock-ups for the Laniakea Brands case study.
+// Illustrative, code-drawn mock-ups for the multi-brand cannabis producer case study.
 // They show the *shape* of what was built. All values are sample data,
 // not client data, and each figure is captioned accordingly.
 

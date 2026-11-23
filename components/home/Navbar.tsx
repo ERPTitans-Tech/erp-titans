@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Leaf } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -24,7 +24,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  type SubLink = { name: string; href: string; logo?: string; description?: string };
+  type SubLink = { name: string; href: string; description?: string; featured?: boolean };
   type NavLink = { name: string; href: string; dropdown?: SubLink[] };
 
   const navLinks: NavLink[] = [
@@ -45,10 +45,10 @@ export default function Navbar() {
       dropdown: [
         { name: "All Case Studies", href: "/case-studies" },
         {
-          name: "Laniakea Brands",
-          href: "/case-studies/laniakea-brands",
-          logo: "/case-studies/laniakea/logo-dark.png",
-          description: "Odoo ERP for a licensed cannabis producer",
+          name: "Multi-Brand Cannabis Producer",
+          href: "/case-studies/multi-brand-cannabis-producer",
+          description: "Odoo ERP, COA & CTLS compliance",
+          featured: true,
         },
       ]
     },
@@ -121,15 +121,15 @@ export default function Navbar() {
                         >
                           <div className="bg-white rounded-[24px] p-6 shadow-xl border border-gray-100 flex flex-col gap-2">
                             {link.dropdown.map((sublink) => (
-                              sublink.logo ? (
+                              sublink.featured ? (
                                 <Link
                                   key={sublink.name}
                                   href={sublink.href}
                                   onClick={() => setDesktopOpen(null)}
                                   className="group flex items-center gap-4 px-4 py-3 rounded-xl border border-gray-100 hover:border-[#003D82]/30 hover:bg-[#F8FAFC] transition-all duration-200 hover:translate-x-1"
                                 >
-                                  <span className="w-16 h-12 shrink-0 rounded-lg bg-white flex items-center justify-center">
-                                    <Image src={sublink.logo} alt="" width={64} height={47} className="h-11 w-auto object-contain" />
+                                  <span className="w-11 h-11 shrink-0 rounded-xl bg-green-50 border border-green-100 flex items-center justify-center">
+                                    <Leaf size={22} className="text-[#16A34A]" />
                                   </span>
                                   <span className="flex flex-col">
                                     <span className="font-semibold text-[#0F172A] group-hover:text-[#003D82] whitespace-nowrap">{sublink.name}</span>
@@ -250,11 +250,7 @@ export default function Navbar() {
                                     className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-[#003D82] text-[#475569] hover:text-white font-medium transition-all duration-200"
                                     onClick={() => setMobileMenuOpen(false)}
                                   >
-                                    {sublink.logo && (
-                                      <span className="w-10 h-8 shrink-0 rounded-md bg-white flex items-center justify-center">
-                                        <Image src={sublink.logo} alt="" width={40} height={29} className="h-7 w-auto object-contain" />
-                                      </span>
-                                    )}
+                                    {sublink.featured && <Leaf size={18} className="shrink-0" />}
                                     {sublink.name}
                                   </Link>
                                 ))}
