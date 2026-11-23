@@ -1,37 +1,41 @@
 "use client";
 
-// Interactive, illustrative data visuals for the cannabis case study.
-// Every figure here is SAMPLE DATA drawn in code. None of it is client data,
-// and each visual carries an <IllustrativeBadge /> saying so.
+// Interactive, illustrative data visuals for the cannabis case study, drawn in
+// ERP Titans' own visual language: light panels, brand navy (#003D82), sky and
+// green accents, Inter type and official Odoo app icons.
+// Every figure is SAMPLE DATA. None of it is client data, and each visual
+// carries an <IllustrativeBadge /> saying so.
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { CheckCircle2, FlaskConical, Lock, Unlock, Truck, FileSpreadsheet, GitMerge, Factory, PackageCheck, RotateCcw } from "lucide-react";
+import { CheckCircle2, FlaskConical, Lock, Unlock, Truck, FileSpreadsheet, GitMerge, Factory, PackageCheck, RotateCcw, Info } from "lucide-react";
+
+const NAVY = "#003D82";
+const SKY = "#0EA5E9";
+const GREEN = "#16A34A";
 
 /* ───────────────────────── shared bits ───────────────────────── */
 
-export function IllustrativeBadge({ dark = false, className = "" }: { dark?: boolean; className?: string }) {
+export function IllustrativeBadge({ onDark = false, className = "" }: { onDark?: boolean; className?: string }) {
   return (
     <span
-      className={`inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-md px-2 py-1 font-mono text-[10.5px] font-semibold uppercase tracking-[0.12em] ${
-        dark
-          ? "bg-amber-400/15 text-amber-300 ring-1 ring-amber-300/30"
-          : "bg-amber-50 text-amber-700 ring-1 ring-amber-200"
+      className={`inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border border-dashed px-2.5 py-1 text-[11px] font-semibold ${
+        onDark ? "border-white/40 bg-white/10 text-white" : "border-[#003D82]/30 bg-[#EFF6FF] text-[#003D82]"
       } ${className}`}
     >
-      <span className={`h-1.5 w-1.5 rounded-full ${dark ? "bg-amber-300" : "bg-amber-500"}`} />
-      Illustration · not client data
+      <Info size={12} />
+      Illustrative example · not client data
     </span>
   );
 }
 
-// Deterministic pseudo-random so server and client render the same dots.
-function seeded(seed: number) {
-  let s = seed;
-  return () => {
-    s = (s * 9301 + 49297) % 233280;
-    return s / 233280;
-  };
+function Eyebrow({ children, color = NAVY }: { children: string; color?: string }) {
+  return (
+    <div className="text-[11px] font-bold uppercase tracking-[0.14em]" style={{ color }}>
+      {children}
+    </div>
+  );
 }
 
 function useCountUp(target: number, run: boolean, duration = 1400) {
@@ -51,97 +55,99 @@ function useCountUp(target: number, run: boolean, duration = 1400) {
   return value;
 }
 
-/* ───────────────────────── 1. Hero data graph ───────────────────────── */
+/* ───────────────────────── 1. Hero: Odoo orbit ───────────────────────── */
 
-const graphNodes = [
-  { id: "vendor", label: "Vendor lots", sub: "biomass receipts", x: 88, y: 62 },
-  { id: "lab", label: "Lab COA", sub: "potency · contaminants", x: 312, y: 62 },
-  { id: "floor", label: "Shop floor", sub: "1 g · 0.4 g lines", x: 66, y: 178 },
-  { id: "dist", label: "Distributors", sub: "provincial orders", x: 334, y: 178 },
-  { id: "fin", label: "Finance", sub: "excise · valuation", x: 110, y: 282 },
-  { id: "ctls", label: "Health Canada", sub: "CTLS monthly", x: 290, y: 282 },
+// Positions are percentages of a 400 x 340 canvas, so HTML cards and SVG lines line up.
+const orbitNodes = [
+  { id: "vendor", label: "Vendor lots", icon: "/odoo-icons/svg/purchase.svg", x: 20, y: 17 },
+  { id: "lab", label: "Lab COA", icon: "/odoo-icons/svg/quality_control.svg", x: 80, y: 17 },
+  { id: "floor", label: "Shop floor", icon: "/odoo-icons/svg/mrp.svg", x: 13, y: 52 },
+  { id: "dist", label: "Distributors", icon: "/odoo-icons/svg/sale_management.svg", x: 87, y: 52 },
+  { id: "fin", label: "Finance", icon: "/odoo-icons/svg/accountant.svg", x: 24, y: 86 },
+  { id: "ctls", label: "CTLS report", icon: "", x: 76, y: 86 },
 ];
-const CX = 200;
-const CY = 172;
+const HUB = { x: 50, y: 52 };
 
 export function HeroDataGraph() {
-  const rand = seeded(42);
-  const clouds = graphNodes.flatMap((n, i) =>
-    Array.from({ length: 26 }, (_, k) => {
-      const a = rand() * Math.PI * 2;
-      const r = 4 + rand() * 20;
-      return { key: `${i}-${k}`, x: n.x + Math.cos(a) * r, y: n.y + Math.sin(a) * r * 0.7, o: 0.25 + rand() * 0.5 };
-    })
-  );
+  const W = 400;
+  const H = 340;
+  const px = (p: number) => (p / 100) * W;
+  const py = (p: number) => (p / 100) * H;
 
   return (
-    <div className="relative overflow-hidden rounded-t-[24px] bg-[#0B1220]">
-      {/* blueprint grid */}
-      <div
-        className="absolute inset-0 opacity-[0.18]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(148,163,184,.35) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,.35) 1px, transparent 1px)",
-          backgroundSize: "24px 24px",
-        }}
-      />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_55%,rgba(22,163,74,0.20),transparent_60%)]" />
+    <div className="relative overflow-hidden rounded-t-[24px] bg-gradient-to-b from-[#EFF6FF] via-white to-white">
+      <div className="relative aspect-[400/340] w-full">
+        <svg viewBox={`0 0 ${W} ${H}`} className="absolute inset-0 h-full w-full" aria-hidden="true">
+          {/* orbit rings */}
+          {[70, 118, 166].map((r, i) => (
+            <ellipse key={r} cx={px(HUB.x)} cy={py(HUB.y)} rx={r} ry={r * 0.78} fill="none" stroke={NAVY} strokeOpacity={0.08 + i * 0.02} strokeDasharray={i === 1 ? "4 6" : undefined} />
+          ))}
 
-      <div className="relative px-5 pt-4">
-        <span className="whitespace-nowrap font-mono text-[10.5px] uppercase tracking-[0.18em] text-slate-400">
-          <span className="mr-1.5 inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-[#22C55E] align-middle" />
-          Operations graph
-        </span>
+          {orbitNodes.map((n) => {
+            const out = n.id === "ctls";
+            const d = out
+              ? `M${px(HUB.x)},${py(HUB.y)} L${px(n.x)},${py(n.y)}`
+              : `M${px(n.x)},${py(n.y)} L${px(HUB.x)},${py(HUB.y)}`;
+            return (
+              <g key={n.id}>
+                <path d={d} stroke={out ? GREEN : NAVY} strokeOpacity="0.22" strokeWidth="1.5" />
+                {[0, 1].map((k) => (
+                  <circle key={k} r="3" fill={out ? GREEN : SKY}>
+                    <animateMotion dur="2.6s" begin={`${k * 1.3}s`} repeatCount="indefinite" path={d} />
+                  </circle>
+                ))}
+              </g>
+            );
+          })}
+
+          <circle cx={px(HUB.x)} cy={py(HUB.y)} r="40" fill={SKY} fillOpacity="0.12">
+            <animate attributeName="r" values="38;50;38" dur="3.2s" repeatCount="indefinite" />
+            <animate attributeName="fill-opacity" values=".18;0;.18" dur="3.2s" repeatCount="indefinite" />
+          </circle>
+        </svg>
+
+        {/* hub */}
+        <div className="absolute flex -translate-x-1/2 -translate-y-1/2 flex-col items-center" style={{ left: `${HUB.x}%`, top: `${HUB.y}%` }}>
+          <div className="flex h-[76px] w-[76px] items-center justify-center rounded-full bg-[#003D82] text-[19px] font-extrabold text-white shadow-[0_10px_30px_rgba(0,61,130,0.35)] ring-4 ring-white">
+            Odoo
+          </div>
+        </div>
+        <div
+          className="absolute -translate-x-1/2 whitespace-nowrap rounded-full bg-white px-2.5 py-0.5 text-center text-[10.5px] font-semibold text-[#003D82] shadow-sm ring-1 ring-[#003D82]/10"
+          style={{ left: `${HUB.x}%`, top: `calc(${HUB.y}% + 46px)` }}
+        >
+          One system of record
+        </div>
+
+        {/* department cards */}
+        {orbitNodes.map((n) => (
+          <div
+            key={n.id}
+            className={`absolute flex -translate-x-1/2 -translate-y-1/2 items-center gap-1.5 whitespace-nowrap rounded-xl bg-white px-2 py-1.5 text-[11px] font-semibold shadow-[0_6px_18px_rgba(15,23,42,0.08)] ring-1 ${
+              n.id === "ctls" ? "text-[#166534] ring-green-200" : "text-[#0F172A] ring-[#E2E8F0]"
+            }`}
+            style={{ left: `${n.x}%`, top: `${n.y}%` }}
+          >
+            {n.icon ? (
+              <Image src={n.icon} alt="" width={50} height={50} className="h-5 w-5" />
+            ) : (
+              <span className="flex h-5 w-5 items-center justify-center rounded-md bg-green-50">
+                <FileSpreadsheet size={13} className="text-[#16A34A]" />
+              </span>
+            )}
+            {n.label}
+          </div>
+        ))}
       </div>
 
-      <svg viewBox="0 0 400 330" className="relative block w-full h-auto" role="img" aria-label="Illustration of data sources flowing into Odoo">
-        {graphNodes.map((n) => (
-          <path key={`l-${n.id}`} id={`p-${n.id}`} d={`M${n.x},${n.y} L${CX},${CY}`} stroke="rgba(148,163,184,.25)" strokeWidth="1" strokeDasharray="2 4" />
-        ))}
-
-        {clouds.map((c) => (
-          <circle key={c.key} cx={c.x} cy={c.y} r="1" fill="#CBD5E1" opacity={c.o} />
-        ))}
-
-        {/* flowing particles: towards Odoo, except CTLS which flows outward */}
-        {graphNodes.map((n, i) =>
-          [0, 1, 2].map((k) => (
-            <circle key={`m-${n.id}-${k}`} r="2.2" fill={n.id === "ctls" ? "#FBBF24" : "#4ADE80"}>
-              <animateMotion
-                dur={`${2.4 + (i % 3) * 0.5}s`}
-                begin={`${k * 0.9 + i * 0.2}s`}
-                repeatCount="indefinite"
-                path={n.id === "ctls" ? `M${CX},${CY} L${n.x},${n.y}` : `M${n.x},${n.y} L${CX},${CY}`}
-              />
-            </circle>
-          ))
-        )}
-
-        {/* centre node */}
-        <circle cx={CX} cy={CY} r="30" fill="none" stroke="#22C55E" strokeOpacity=".35">
-          <animate attributeName="r" values="26;38;26" dur="3s" repeatCount="indefinite" />
-          <animate attributeName="stroke-opacity" values=".45;0;.45" dur="3s" repeatCount="indefinite" />
-        </circle>
-        <circle cx={CX} cy={CY} r="24" fill="#003D82" stroke="#4ADE80" strokeWidth="1.5" />
-        <text x={CX} y={CY - 2} textAnchor="middle" fill="#fff" fontSize="11" fontWeight="800" fontFamily="Inter, sans-serif">Odoo</text>
-        <text x={CX} y={CY + 10} textAnchor="middle" fill="#93C5FD" fontSize="6.5" fontFamily="ui-monospace, monospace">SYSTEM OF RECORD</text>
-
-        {graphNodes.map((n) => (
-          <g key={`n-${n.id}`}>
-            <circle cx={n.x} cy={n.y} r="3.5" fill={n.id === "ctls" ? "#FBBF24" : "#E2E8F0"} />
-            <text x={n.x} y={n.y - 30} textAnchor="middle" fill="#F8FAFC" fontSize="10" fontWeight="700" fontFamily="Inter, sans-serif">{n.label}</text>
-            <text x={n.x} y={n.y - 19} textAnchor="middle" fill="#94A3B8" fontSize="7.5" fontFamily="ui-monospace, monospace">{n.sub}</text>
-          </g>
-        ))}
-      </svg>
-      <div className="relative flex justify-end px-4 pb-4 -mt-2">
-        <IllustrativeBadge dark />
+      <div className="flex justify-center px-4 pb-4">
+        <IllustrativeBadge />
       </div>
     </div>
   );
 }
 
-/* ───────────────────────── 2. Data-flow stepper (dark) ───────────────────────── */
+/* ───────────────────────── 2. Data-flow stepper ───────────────────────── */
 
 const steps = [
   {
@@ -176,39 +182,42 @@ const steps = [
   },
 ];
 
+const card = "rounded-2xl bg-white ring-1 ring-[#E2E8F0] shadow-[0_8px_24px_rgba(15,23,42,0.06)]";
+
 function StepVisual({ step }: { step: string }) {
   if (step === "receive") {
     const tests = ["THC / THCA", "CBD / CBDA", "Microbial", "Pesticides", "Heavy metals", "Mycotoxins"];
     return (
-      <div className="w-full max-w-md">
-        <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
-          <div className="mb-4 flex items-center justify-between">
-            <span className="font-mono text-xs text-slate-400">LOT · BIO-2611-04</span>
-            <motion.span
-              initial={{ backgroundColor: "rgba(251,191,36,.15)", color: "#FBBF24" }}
-              animate={{ backgroundColor: "rgba(34,197,94,.15)", color: "#4ADE80" }}
-              transition={{ delay: 2.6, duration: 0.4 }}
-              className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-mono text-[11px] font-semibold"
+      <div className={`w-full max-w-md p-5 ${card}`}>
+        <div className="mb-4 flex items-center justify-between gap-3">
+          <div>
+            <Eyebrow color="#64748B">Incoming lot</Eyebrow>
+            <div className="font-bold text-[#0F172A]">BIO-2611-04</div>
+          </div>
+          <motion.span
+            initial={{ backgroundColor: "#FEF3C7", color: "#B45309" }}
+            animate={{ backgroundColor: "#DCFCE7", color: "#15803D" }}
+            transition={{ delay: 2.6, duration: 0.4 }}
+            className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[12px] font-semibold"
+          >
+            <Lock size={12} /> Quarantine → Released
+          </motion.span>
+        </div>
+        <div className="grid grid-cols-2 gap-2">
+          {tests.map((t, i) => (
+            <motion.div
+              key={t}
+              initial={{ opacity: 0.35 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 + i * 0.35 }}
+              className="flex items-center justify-between rounded-xl bg-[#F8FAFC] px-3 py-2 text-[13px] font-medium text-[#334155]"
             >
-              <Lock size={12} /> QUARANTINE → RELEASED
-            </motion.span>
-          </div>
-          <div className="grid grid-cols-2 gap-2">
-            {tests.map((t, i) => (
-              <motion.div
-                key={t}
-                initial={{ opacity: 0.35 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3 + i * 0.35 }}
-                className="flex items-center justify-between rounded-lg bg-white/[0.04] px-3 py-2 text-[13px] text-slate-200"
-              >
-                {t}
-                <motion.span initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.4 + i * 0.35, type: "spring" }}>
-                  <CheckCircle2 size={15} className="text-[#4ADE80]" />
-                </motion.span>
-              </motion.div>
-            ))}
-          </div>
+              {t}
+              <motion.span initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.4 + i * 0.35, type: "spring" }}>
+                <CheckCircle2 size={15} className="text-[#16A34A]" />
+              </motion.span>
+            </motion.div>
+          ))}
         </div>
       </div>
     );
@@ -216,31 +225,32 @@ function StepVisual({ step }: { step: string }) {
 
   if (step === "blend") {
     const sources = [
-      { y: 40, label: "LOT A-117" },
-      { y: 110, label: "LOT A-121" },
-      { y: 180, label: "LOT B-044" },
+      { y: 40, label: "Lot A-117" },
+      { y: 110, label: "Lot A-121" },
+      { y: 180, label: "Lot B-044" },
     ];
     return (
       <svg viewBox="0 0 420 220" className="w-full max-w-md" role="img" aria-label="Illustration of lots merging into a blend lot">
         {sources.map((s, i) => (
           <g key={s.label}>
             <motion.path
-              d={`M120,${s.y} C220,${s.y} 220,110 300,110`}
+              d={`M124,${s.y} C220,${s.y} 220,110 298,110`}
               fill="none"
-              stroke="#4ADE80"
-              strokeWidth="2"
+              stroke={SKY}
+              strokeWidth="2.5"
+              strokeLinecap="round"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
               transition={{ delay: 0.2 + i * 0.25, duration: 0.9 }}
             />
-            <rect x="12" y={s.y - 16} width="108" height="32" rx="8" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.15)" />
-            <text x="66" y={s.y + 4} textAnchor="middle" fill="#E2E8F0" fontSize="12" fontFamily="ui-monospace, monospace">{s.label}</text>
+            <rect x="12" y={s.y - 17} width="112" height="34" rx="17" fill="#fff" stroke="#E2E8F0" />
+            <text x="68" y={s.y + 4.5} textAnchor="middle" fill="#0F172A" fontSize="12.5" fontWeight="600" fontFamily="Inter, sans-serif">{s.label}</text>
           </g>
         ))}
-        <motion.g initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 1.2 }} style={{ transformOrigin: "355px 110px" }}>
-          <rect x="300" y="84" width="110" height="52" rx="10" fill="#003D82" stroke="#4ADE80" />
-          <text x="355" y="106" textAnchor="middle" fill="#fff" fontSize="12" fontWeight="700" fontFamily="Inter, sans-serif">BLEND-0187</text>
-          <text x="355" y="123" textAnchor="middle" fill="#93C5FD" fontSize="9" fontFamily="ui-monospace, monospace">3 parent lots</text>
+        <motion.g initial={{ opacity: 0, scale: 0.85 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 1.2 }} style={{ transformOrigin: "354px 110px" }}>
+          <rect x="298" y="82" width="112" height="56" rx="16" fill={NAVY} />
+          <text x="354" y="106" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="800" fontFamily="Inter, sans-serif">Blend 0187</text>
+          <text x="354" y="124" textAnchor="middle" fill="#BAE6FD" fontSize="10.5" fontWeight="600" fontFamily="Inter, sans-serif">3 parent lots</text>
         </motion.g>
       </svg>
     );
@@ -250,31 +260,32 @@ function StepVisual({ step }: { step: string }) {
 
   if (step === "ship") {
     const provinces = [
-      { code: "BC", x: 60, y: 60 },
-      { code: "AB", x: 140, y: 150 },
-      { code: "SK", x: 220, y: 60 },
-      { code: "MB", x: 300, y: 150 },
-      { code: "ON", x: 380, y: 60 },
+      { code: "BC", x: 60, y: 56 },
+      { code: "AB", x: 140, y: 140 },
+      { code: "SK", x: 220, y: 56 },
+      { code: "MB", x: 300, y: 140 },
+      { code: "ON", x: 380, y: 56 },
     ];
     return (
       <svg viewBox="0 0 440 220" className="w-full max-w-md" role="img" aria-label="Illustration of shipments to provincial distributors">
-        <rect x="170" y="176" width="100" height="34" rx="8" fill="#003D82" stroke="#4ADE80" />
-        <text x="220" y="197" textAnchor="middle" fill="#fff" fontSize="11" fontWeight="700" fontFamily="Inter, sans-serif">Warehouse</text>
+        <rect x="165" y="174" width="110" height="38" rx="19" fill={NAVY} />
+        <text x="220" y="197.5" textAnchor="middle" fill="#fff" fontSize="12" fontWeight="700" fontFamily="Inter, sans-serif">Warehouse</text>
         {provinces.map((p, i) => (
           <g key={p.code}>
             <motion.path
-              d={`M220,176 Q${(220 + p.x) / 2},${Math.min(p.y, 176) - 30} ${p.x},${p.y + 16}`}
+              d={`M220,174 Q${(220 + p.x) / 2},${Math.min(p.y, 174) - 30} ${p.x},${p.y + 18}`}
               fill="none"
-              stroke="rgba(74,222,128,.6)"
-              strokeWidth="1.5"
-              strokeDasharray="4 4"
+              stroke={SKY}
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeDasharray="1 6"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
               transition={{ delay: 0.15 * i, duration: 0.8 }}
             />
             <motion.g initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 + 0.15 * i }}>
-              <rect x={p.x - 24} y={p.y - 16} width="48" height="32" rx="8" fill="rgba(255,255,255,.07)" stroke="rgba(255,255,255,.2)" />
-              <text x={p.x} y={p.y + 5} textAnchor="middle" fill="#F8FAFC" fontSize="13" fontWeight="800" fontFamily="Inter, sans-serif">{p.code}</text>
+              <circle cx={p.x} cy={p.y} r="20" fill="#fff" stroke="#E2E8F0" />
+              <text x={p.x} y={p.y + 4.5} textAnchor="middle" fill={NAVY} fontSize="13" fontWeight="800" fontFamily="Inter, sans-serif">{p.code}</text>
             </motion.g>
           </g>
         ))}
@@ -285,18 +296,22 @@ function StepVisual({ step }: { step: string }) {
   // report
   const rows = ["Opening inventory", "Additions: production", "Reductions: sales", "Reductions: destruction", "Closing inventory", "Book value"];
   return (
-    <div className="w-full max-w-md rounded-2xl border border-white/10 bg-white/[0.04] p-5">
-      <div className="mb-3 flex items-center justify-between">
-        <span className="font-mono text-xs text-slate-400">CTLS · MONTHLY REPORT</span>
-        <span className="font-mono text-[11px] text-amber-300">DUE BY THE 15TH</span>
+    <div className={`w-full max-w-md p-5 ${card}`}>
+      <div className="mb-4 flex items-center justify-between">
+        <div>
+          <Eyebrow color={GREEN}>Health Canada</Eyebrow>
+          <div className="font-bold text-[#0F172A]">CTLS monthly report</div>
+        </div>
+        <span className="rounded-full bg-[#EFF6FF] px-3 py-1 text-[11.5px] font-semibold text-[#003D82]">Due by the 15th</span>
       </div>
-      <div className="space-y-2">
+      <div className="space-y-2.5">
         {rows.map((r, i) => (
           <div key={r} className="flex items-center gap-3">
-            <span className="w-44 shrink-0 text-[13px] text-slate-300">{r}</span>
-            <div className="h-2 flex-1 overflow-hidden rounded-full bg-white/10">
+            <span className="w-44 shrink-0 text-[13px] font-medium text-[#334155]">{r}</span>
+            <div className="h-2 flex-1 overflow-hidden rounded-full bg-[#EEF2F7]">
               <motion.div
-                className="h-full rounded-full bg-[#4ADE80]"
+                className="h-full rounded-full"
+                style={{ background: `linear-gradient(90deg, ${NAVY}, ${SKY})` }}
                 initial={{ width: "0%" }}
                 animate={{ width: "100%" }}
                 transition={{ delay: 0.2 + i * 0.25, duration: 0.5 }}
@@ -305,12 +320,7 @@ function StepVisual({ step }: { step: string }) {
           </div>
         ))}
       </div>
-      <motion.div
-        initial={{ opacity: 0, y: 6 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.9 }}
-        className="mt-4 flex items-center gap-2 text-sm font-semibold text-[#4ADE80]"
-      >
+      <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.9 }} className="mt-4 flex items-center gap-2 text-sm font-semibold text-[#16A34A]">
         <PackageCheck size={16} /> Generated from posted transactions, ready to upload
       </motion.div>
     </div>
@@ -321,24 +331,24 @@ function ProduceVisual() {
   const a = useCountUp(1840, true, 2200);
   const b = useCountUp(2960, true, 2200);
   const lines = [
-    { name: "1 g pre-roll line", value: a, pct: 74, color: "#4ADE80" },
-    { name: "0.4 g pre-roll line", value: b, pct: 88, color: "#60A5FA" },
+    { name: "1 g pre-roll line", value: a, pct: 74, color: NAVY },
+    { name: "0.4 g pre-roll line", value: b, pct: 88, color: SKY },
   ];
   return (
     <div className="w-full max-w-md space-y-4">
       {lines.map((l) => (
-        <div key={l.name} className="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
+        <div key={l.name} className={`p-5 ${card}`}>
           <div className="mb-3 flex items-baseline justify-between">
-            <span className="text-sm font-semibold text-slate-200">{l.name}</span>
-            <span className="font-mono text-2xl font-bold text-white tabular-nums">
-              {l.value.toLocaleString()} <span className="text-xs text-slate-400">units</span>
+            <span className="text-sm font-semibold text-[#334155]">{l.name}</span>
+            <span className="text-2xl font-extrabold tabular-nums text-[#0F172A]">
+              {l.value.toLocaleString()} <span className="text-xs font-medium text-[#64748B]">units</span>
             </span>
           </div>
-          <div className="h-2 overflow-hidden rounded-full bg-white/10">
+          <div className="h-2.5 overflow-hidden rounded-full bg-[#EEF2F7]">
             <motion.div className="h-full rounded-full" style={{ backgroundColor: l.color }} initial={{ width: 0 }} animate={{ width: `${l.pct}%` }} transition={{ duration: 2.2, ease: "easeOut" }} />
           </div>
-          <div className="mt-2 flex justify-between font-mono text-[11px] text-slate-400">
-            <span>QC checkpoints ✓</span>
+          <div className="mt-2 flex justify-between text-[12px] font-medium text-[#64748B]">
+            <span className="inline-flex items-center gap-1"><CheckCircle2 size={13} className="text-[#16A34A]" /> QC checkpoints</span>
             <span>{l.pct}% of shift target</span>
           </div>
         </div>
@@ -360,8 +370,8 @@ export function DataFlowStepper() {
   }, [active, paused, inView]);
 
   return (
-    <div ref={ref} className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
-      <ol className="space-y-1">
+    <div ref={ref} className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+      <ol className="space-y-2">
         {steps.map((s, i) => {
           const Icon = s.icon;
           const on = i === active;
@@ -370,23 +380,34 @@ export function DataFlowStepper() {
               <button
                 type="button"
                 onClick={() => setActive(i)}
-                className={`group w-full rounded-2xl px-4 py-3.5 text-left transition-colors ${on ? "bg-white/[0.06]" : "hover:bg-white/[0.03]"}`}
                 aria-pressed={on}
+                className={`group w-full rounded-2xl px-4 py-3.5 text-left transition-all ${
+                  on ? "bg-white shadow-[0_8px_24px_rgba(0,61,130,0.10)] ring-1 ring-[#003D82]/15" : "hover:bg-white/70"
+                }`}
               >
                 <div className="flex items-center gap-3">
-                  <span className={`font-mono text-[11px] ${on ? "text-[#4ADE80]" : "text-slate-500"}`}>{String(i + 1).padStart(2, "0")}</span>
-                  <span className={`flex h-8 w-8 items-center justify-center rounded-lg ${on ? "bg-[#4ADE80] text-[#0B1220]" : "bg-white/5 text-slate-400"}`}>
-                    <Icon size={16} />
+                  <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-colors ${on ? "bg-[#003D82] text-white" : "bg-white text-[#64748B] ring-1 ring-[#E2E8F0]"}`}>
+                    <Icon size={17} />
                   </span>
-                  <span className={`text-[17px] font-bold ${on ? "text-white" : "text-slate-400 group-hover:text-slate-200"}`}>{s.title}</span>
+                  <span className={`text-[16.5px] font-bold ${on ? "text-[#003D82]" : "text-[#475569] group-hover:text-[#0F172A]"}`}>
+                    <span className="mr-2 text-[#94A3B8]">{i + 1}.</span>
+                    {s.title}
+                  </span>
                 </div>
                 <AnimatePresence initial={false}>
                   {on && (
                     <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
-                      <p className="pl-[76px] pt-2 text-[15px] leading-relaxed text-slate-300">{s.text}</p>
-                      <div className="ml-[76px] mt-3 h-[2px] overflow-hidden rounded bg-white/10">
+                      <p className="pl-12 pt-2 text-[15px] leading-relaxed text-[#475569]">{s.text}</p>
+                      <div className="ml-12 mt-3 h-1 overflow-hidden rounded-full bg-[#E2E8F0]">
                         {!paused && inView && (
-                          <motion.div key={`bar-${active}`} className="h-full bg-[#4ADE80]" initial={{ width: "0%" }} animate={{ width: "100%" }} transition={{ duration: 6, ease: "linear" }} />
+                          <motion.div
+                            key={`bar-${active}`}
+                            className="h-full rounded-full"
+                            style={{ background: `linear-gradient(90deg, ${NAVY}, ${SKY})` }}
+                            initial={{ width: "0%" }}
+                            animate={{ width: "100%" }}
+                            transition={{ duration: 6, ease: "linear" }}
+                          />
                         )}
                       </div>
                     </motion.div>
@@ -398,20 +419,15 @@ export function DataFlowStepper() {
         })}
       </ol>
 
-      <div className="relative flex min-h-[340px] flex-col rounded-[24px] border border-white/10 bg-[#0F172A]/60 p-6">
-        <div
-          className="pointer-events-none absolute inset-0 rounded-[24px] opacity-[0.12]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(148,163,184,.4) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,.4) 1px, transparent 1px)",
-            backgroundSize: "22px 22px",
-          }}
-        />
-        <div className="relative mb-4 flex items-center justify-between">
-          <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-slate-400">
-            Step {String(active + 1).padStart(2, "0")} / {String(steps.length).padStart(2, "0")}
-          </span>
-          <IllustrativeBadge dark />
+      <div className="relative flex min-h-[360px] flex-col overflow-hidden rounded-[28px] bg-gradient-to-br from-[#DBEAFE] via-[#EFF6FF] to-[#F0FDF4] p-6 ring-1 ring-[#003D82]/10">
+        <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-white/60 blur-2xl" />
+        <div className="relative mb-4 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-1.5">
+            {steps.map((s, i) => (
+              <span key={s.key} className={`h-1.5 rounded-full transition-all ${i === active ? "w-6 bg-[#003D82]" : "w-1.5 bg-[#003D82]/25"}`} />
+            ))}
+          </div>
+          <IllustrativeBadge />
         </div>
         <div className="relative flex flex-1 items-center justify-center">
           <AnimatePresence mode="wait">
@@ -460,48 +476,51 @@ export function CoaLiveCheck() {
   const released = done === coaTests.length;
 
   return (
-    <div ref={ref}>
-      <div className="overflow-hidden rounded-[20px] border border-gray-100 bg-white shadow-[0_20px_50px_rgba(0,61,130,0.10)]">
-        <div className="flex items-center justify-between bg-[#0B1220] px-6 py-4 text-white">
-          <div>
-            <div className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-slate-400">Certificate of Analysis</div>
-            <div className="font-bold">LOT PR-0187 · Pre-roll 0.4 g</div>
-          </div>
-          <IllustrativeBadge dark />
-        </div>
-
-        <ul className="divide-y divide-gray-100">
-          {coaTests.map((t, i) => {
-            const ok = i < done;
-            const checking = i === done && !released;
-            return (
-              <li key={t.test} className="flex items-center justify-between px-6 py-3 text-[14px]">
-                <span className="font-medium text-[#334155]">{t.test}</span>
-                {ok ? (
-                  <motion.span initial={{ opacity: 0, x: 8 }} animate={{ opacity: 1, x: 0 }} className="inline-flex items-center gap-1.5 font-semibold text-[#16A34A]">
-                    <CheckCircle2 size={16} /> {t.result}
-                  </motion.span>
-                ) : (
-                  <span className={`font-mono text-[12px] ${checking ? "text-amber-600" : "text-slate-300"}`}>{checking ? "checking…" : "pending"}</span>
-                )}
-              </li>
-            );
-          })}
-        </ul>
-
-        <div className={`flex items-center justify-between px-6 py-4 transition-colors duration-500 ${released ? "bg-green-50" : "bg-amber-50"}`}>
-          <span className="inline-flex items-center gap-2 text-sm font-semibold text-[#0F172A]">
-            {released ? <Unlock size={15} className="text-[#16A34A]" /> : <Lock size={15} className="text-amber-600" />}
-            {released ? "QC approved · lot released for production" : "Lot held in quarantine"}
+    <div ref={ref} className="overflow-hidden rounded-[24px] bg-white shadow-[0_20px_50px_rgba(0,61,130,0.10)] ring-1 ring-[#E2E8F0]">
+      <div className="flex flex-wrap items-center justify-between gap-3 bg-gradient-to-r from-[#003D82] to-[#0B5CAD] px-6 py-4 text-white">
+        <div className="flex items-center gap-3">
+          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white">
+            <Image src="/odoo-icons/svg/quality_control.svg" alt="" width={50} height={50} className="h-6 w-6" />
           </span>
-          <button
-            type="button"
-            onClick={() => setRun((r) => r + 1)}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-xs font-semibold text-[#003D82] hover:border-[#003D82]/40"
-          >
-            <RotateCcw size={13} /> Replay
-          </button>
+          <div>
+            <div className="text-[11px] font-semibold uppercase tracking-[0.12em] text-sky-200">Certificate of Analysis</div>
+            <div className="font-bold">Lot PR-0187 · Pre-roll 0.4 g</div>
+          </div>
         </div>
+        <IllustrativeBadge onDark />
+      </div>
+
+      <ul className="divide-y divide-[#F1F5F9]">
+        {coaTests.map((t, i) => {
+          const ok = i < done;
+          const checking = i === done && !released;
+          return (
+            <li key={t.test} className="flex items-center justify-between px-6 py-3 text-[14px]">
+              <span className="font-medium text-[#334155]">{t.test}</span>
+              {ok ? (
+                <motion.span initial={{ opacity: 0, x: 8 }} animate={{ opacity: 1, x: 0 }} className="inline-flex items-center gap-1.5 font-semibold text-[#16A34A]">
+                  <CheckCircle2 size={16} /> {t.result}
+                </motion.span>
+              ) : (
+                <span className={`text-[12.5px] font-medium ${checking ? "text-[#0EA5E9]" : "text-[#CBD5E1]"}`}>{checking ? "Checking…" : "Pending"}</span>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+
+      <div className={`flex items-center justify-between px-6 py-4 transition-colors duration-500 ${released ? "bg-green-50" : "bg-[#F8FAFC]"}`}>
+        <span className="inline-flex items-center gap-2 text-sm font-semibold text-[#0F172A]">
+          {released ? <Unlock size={15} className="text-[#16A34A]" /> : <Lock size={15} className="text-[#64748B]" />}
+          {released ? "QC approved · lot released for production" : "Lot held in quarantine"}
+        </span>
+        <button
+          type="button"
+          onClick={() => setRun((r) => r + 1)}
+          className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-[#003D82] ring-1 ring-[#E2E8F0] hover:ring-[#003D82]/40"
+        >
+          <RotateCcw size={13} /> Replay
+        </button>
       </div>
     </div>
   );
@@ -513,7 +532,7 @@ const waterfall = [
   { label: "Opening", value: 11300, kind: "total" as const },
   { label: "Produced", value: 6900, kind: "add" as const },
   { label: "Returns", value: 240, kind: "add" as const },
-  { label: "Sold to distributors", value: -7180, kind: "sub" as const },
+  { label: "Sold", value: -7180, kind: "sub" as const },
   { label: "Destroyed", value: -270, kind: "sub" as const },
   { label: "Closing", value: 10990, kind: "total" as const },
 ];
@@ -541,13 +560,13 @@ export function CtlsWaterfall() {
     }
     return { ...w, lo: Math.min(base, top), hi: Math.max(base, top) };
   });
-  const colors = { total: "#003D82", add: "#16A34A", sub: "#D97706" };
+  const colors = { total: NAVY, add: SKY, sub: "#F97316" };
 
   return (
-    <div ref={ref} className="rounded-[20px] border border-gray-100 bg-white p-6 shadow-[0_20px_50px_rgba(0,61,130,0.10)]">
-      <div className="mb-1 flex items-center justify-between gap-3">
+    <div ref={ref} className="rounded-[24px] bg-white p-6 shadow-[0_20px_50px_rgba(0,61,130,0.10)] ring-1 ring-[#E2E8F0]">
+      <div className="mb-1 flex flex-wrap items-center justify-between gap-3">
         <div>
-          <div className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-[#16A34A]">Health Canada · CTLS</div>
+          <Eyebrow color={GREEN}>Health Canada · CTLS</Eyebrow>
           <div className="font-bold text-[#0F172A]">Monthly reconciliation: pre-rolls (units)</div>
         </div>
         <IllustrativeBadge />
@@ -557,7 +576,7 @@ export function CtlsWaterfall() {
         {hover !== null ? (
           <span>
             {bars[hover].label}:{" "}
-            <span className="font-mono font-bold tabular-nums">
+            <span className="font-bold tabular-nums text-[#003D82]">
               {bars[hover].kind === "sub" ? "−" : bars[hover].kind === "add" ? "+" : ""}
               {Math.abs(bars[hover].value).toLocaleString()}
             </span>
@@ -567,9 +586,9 @@ export function CtlsWaterfall() {
         )}
       </div>
 
-      <svg viewBox={`0 0 ${waterfall.length * 70} ${H + 40}`} className="h-auto w-full" role="img" aria-label="Illustrative CTLS reconciliation waterfall">
+      <svg viewBox={`0 0 ${waterfall.length * 70} ${H + 34}`} className="h-auto w-full" role="img" aria-label="Illustrative CTLS reconciliation waterfall">
         {[0.25, 0.5, 0.75, 1].map((g) => (
-          <line key={g} x1="0" x2={waterfall.length * 70} y1={H - g * H} y2={H - g * H} stroke="#E2E8F0" strokeDasharray="3 4" />
+          <line key={g} x1="0" x2={waterfall.length * 70} y1={H - g * H} y2={H - g * H} stroke="#EEF2F7" />
         ))}
         {bars.map((b, i) => {
           const y = H - scale(b.hi);
@@ -578,27 +597,27 @@ export function CtlsWaterfall() {
             <g key={b.label} onMouseEnter={() => setHover(i)} onMouseLeave={() => setHover(null)} className="cursor-pointer">
               <rect x={i * 70 + 10} y="0" width="50" height={H} fill="transparent" />
               <motion.rect
-                x={i * 70 + 14}
-                width="42"
-                rx="5"
+                x={i * 70 + 13}
+                width="44"
+                rx="10"
                 fill={colors[b.kind]}
-                opacity={hover === null || hover === i ? 1 : 0.35}
+                opacity={hover === null || hover === i ? 1 : 0.3}
                 initial={{ y: H, height: 0 }}
                 animate={inView ? { y, height: h } : { y: H, height: 0 }}
                 transition={{ delay: i * 0.18, duration: 0.6, ease: "easeOut" }}
               />
-              <text x={i * 70 + 35} y={H + 16} textAnchor="middle" fontSize="9.5" fill="#64748B" fontFamily="Inter, sans-serif">
-                {b.label.split(" ")[0]}
+              <text x={i * 70 + 35} y={H + 20} textAnchor="middle" fontSize="11" fontWeight="600" fill="#64748B" fontFamily="Inter, sans-serif">
+                {b.label}
               </text>
             </g>
           );
         })}
       </svg>
 
-      <div className="mt-3 flex flex-wrap gap-4 font-mono text-[11px] text-[#64748B]">
-        <span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm bg-[#003D82]" /> Inventory</span>
-        <span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm bg-[#16A34A]" /> Additions</span>
-        <span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm bg-[#D97706]" /> Reductions</span>
+      <div className="mt-3 flex flex-wrap gap-4 text-[12px] font-medium text-[#64748B]">
+        <span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full" style={{ background: NAVY }} /> Inventory</span>
+        <span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full" style={{ background: SKY }} /> Additions</span>
+        <span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-[#F97316]" /> Reductions</span>
       </div>
     </div>
   );
@@ -619,40 +638,44 @@ export function ProductionMix() {
   const inView = useInView(ref, { once: true, amount: 0.4 });
   const H = 150;
   const series: { key: MixKey; color: string }[] = [
-    { key: "1 g", color: "#003D82" },
-    { key: "0.4 g", color: "#16A34A" },
+    { key: "1 g", color: NAVY },
+    { key: "0.4 g", color: SKY },
   ];
 
   return (
-    <div ref={ref} className="rounded-[20px] border border-gray-100 bg-white p-6 shadow-[0_20px_50px_rgba(0,61,130,0.10)]">
+    <div ref={ref} className="rounded-[24px] bg-white p-6 shadow-[0_20px_50px_rgba(0,61,130,0.10)] ring-1 ring-[#E2E8F0]">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-        <div>
-          <div className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-[#16A34A]">Production · by format</div>
-          <div className="font-bold text-[#0F172A]">Pre-roll output trend (indexed)</div>
+        <div className="flex items-center gap-3">
+          <Image src="/odoo-icons/svg/mrp.svg" alt="" width={50} height={50} className="h-8 w-8" />
+          <div>
+            <Eyebrow>Production by format</Eyebrow>
+            <div className="font-bold text-[#0F172A]">Pre-roll output trend (indexed)</div>
+          </div>
         </div>
         <IllustrativeBadge />
       </div>
 
-      <div className="mb-4 inline-flex rounded-xl bg-[#F1F5F9] p-1">
+      <div className="mb-3 inline-flex rounded-full bg-[#F1F5F9] p-1">
         {(["both", "1 g", "0.4 g"] as const).map((k) => (
           <button
             key={k}
             type="button"
             onClick={() => setShow(k)}
-            className={`rounded-lg px-3.5 py-1.5 text-sm font-semibold transition-colors ${show === k ? "bg-white text-[#003D82] shadow-sm" : "text-[#64748B] hover:text-[#0F172A]"}`}
+            className={`rounded-full px-4 py-1.5 text-sm font-semibold transition-colors ${show === k ? "bg-[#003D82] text-white shadow-sm" : "text-[#64748B] hover:text-[#0F172A]"}`}
           >
             {k === "both" ? "Both formats" : `${k} pre-rolls`}
           </button>
         ))}
       </div>
 
-      <div className="mb-2 flex gap-4 font-mono text-[11px] text-[#64748B]">
-        <span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm bg-[#003D82]" /> 1 g</span>
-        <span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-sm bg-[#16A34A]" /> 0.4 g</span>
+      <div className="mb-2 flex gap-4 text-[12px] font-medium text-[#64748B]">
+        <span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full" style={{ background: NAVY }} /> 1 g</span>
+        <span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full" style={{ background: SKY }} /> 0.4 g</span>
       </div>
+
       <svg viewBox={`0 0 ${weeks.length * 52} ${H + 24}`} className="h-auto w-full" role="img" aria-label="Illustrative production trend by pre-roll format">
         {[0.33, 0.66, 1].map((g) => (
-          <line key={g} x1="0" x2={weeks.length * 52} y1={H - g * H} y2={H - g * H} stroke="#E2E8F0" strokeDasharray="3 4" />
+          <line key={g} x1="0" x2={weeks.length * 52} y1={H - g * H} y2={H - g * H} stroke="#EEF2F7" />
         ))}
         {weeks.map((w, i) => (
           <g key={w}>
@@ -665,7 +688,7 @@ export function ProductionMix() {
               return (
                 <motion.rect
                   key={s.key}
-                  rx="4"
+                  rx="6"
                   fill={s.color}
                   initial={false}
                   animate={{
@@ -679,7 +702,7 @@ export function ProductionMix() {
                 />
               );
             })}
-            <text x={i * 52 + 26} y={H + 16} textAnchor="middle" fontSize="10" fill="#94A3B8" fontFamily="ui-monospace, monospace">{w}</text>
+            <text x={i * 52 + 26} y={H + 17} textAnchor="middle" fontSize="11" fontWeight="600" fill="#94A3B8" fontFamily="Inter, sans-serif">{w}</text>
           </g>
         ))}
       </svg>
@@ -709,15 +732,15 @@ export function DashboardTabs() {
   const area = `${line} L${W},${H} L0,${H} Z`;
 
   return (
-    <div className="rounded-[20px] border border-gray-100 bg-white p-5 shadow-[0_20px_50px_rgba(0,61,130,0.10)]">
+    <div className="rounded-[24px] bg-white p-5 shadow-[0_20px_50px_rgba(0,61,130,0.10)] ring-1 ring-[#E2E8F0]">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-        <div className="inline-flex rounded-xl bg-[#F1F5F9] p-1">
+        <div className="inline-flex rounded-full bg-[#F1F5F9] p-1">
           {(Object.keys(dashTabs) as DashKey[]).map((k) => (
             <button
               key={k}
               type="button"
               onClick={() => setTab(k)}
-              className={`rounded-lg px-3 py-1.5 text-xs font-bold transition-colors ${tab === k ? "bg-[#003D82] text-white" : "text-[#64748B] hover:text-[#0F172A]"}`}
+              className={`rounded-full px-3.5 py-1.5 text-xs font-bold transition-colors ${tab === k ? "bg-[#003D82] text-white" : "text-[#64748B] hover:text-[#0F172A]"}`}
             >
               {k}
             </button>
@@ -727,27 +750,27 @@ export function DashboardTabs() {
       </div>
       <div className="mb-2 flex items-baseline justify-between">
         <span className="text-sm font-semibold text-[#0F172A]">{d.note}</span>
-        <span className="font-mono text-[11px] text-[#94A3B8]">{d.unit}</span>
+        <span className="text-[12px] font-medium text-[#94A3B8]">{d.unit}</span>
       </div>
       <svg viewBox={`-4 -6 ${W + 8} ${H + 12}`} className="h-auto w-full" role="img" aria-label={`Illustrative ${tab} trend`}>
+        <defs>
+          <linearGradient id="dashFill" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stopColor={SKY} stopOpacity="0.25" />
+            <stop offset="100%" stopColor={SKY} stopOpacity="0" />
+          </linearGradient>
+        </defs>
         {[0.25, 0.5, 0.75].map((g) => (
-          <line key={g} x1="0" x2={W} y1={H - g * H} y2={H - g * H} stroke="#E2E8F0" strokeDasharray="3 4" />
+          <line key={g} x1="0" x2={W} y1={H - g * H} y2={H - g * H} stroke="#EEF2F7" />
         ))}
         <AnimatePresence mode="wait">
           <motion.g key={tab} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }}>
             <path d={area} fill="url(#dashFill)" />
-            <motion.path d={line} fill="none" stroke="#003D82" strokeWidth="2.5" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.8 }} />
+            <motion.path d={line} fill="none" stroke={NAVY} strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.8 }} />
             {pts.map(([x, y], i) => (
-              <circle key={i} cx={x} cy={y} r={i === pts.length - 1 ? 4.5 : 2.5} fill={i === pts.length - 1 ? "#16A34A" : "#003D82"} />
+              <circle key={i} cx={x} cy={y} r={i === pts.length - 1 ? 5 : 3} fill={i === pts.length - 1 ? SKY : "#fff"} stroke={NAVY} strokeWidth="2" />
             ))}
           </motion.g>
         </AnimatePresence>
-        <defs>
-          <linearGradient id="dashFill" x1="0" x2="0" y1="0" y2="1">
-            <stop offset="0%" stopColor="#003D82" stopOpacity="0.18" />
-            <stop offset="100%" stopColor="#003D82" stopOpacity="0" />
-          </linearGradient>
-        </defs>
       </svg>
     </div>
   );

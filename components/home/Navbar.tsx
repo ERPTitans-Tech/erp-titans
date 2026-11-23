@@ -128,7 +128,7 @@ export default function Navbar() {
                                   onClick={() => setDesktopOpen(null)}
                                   className="group flex items-center gap-4 px-4 py-3 rounded-xl border border-gray-100 hover:border-[#003D82]/30 hover:bg-[#F8FAFC] transition-all duration-200 hover:translate-x-1"
                                 >
-                                  <span className="shrink-0 rounded-md bg-[#0B1220] px-2 py-1 font-mono text-[10px] font-semibold uppercase tracking-wider text-[#4ADE80]">
+                                  <span className="shrink-0 rounded-full bg-[#EFF6FF] px-2.5 py-1 text-[10.5px] font-bold uppercase tracking-wider text-[#003D82]">
                                     Case 01
                                   </span>
                                   <span className="flex flex-col">
