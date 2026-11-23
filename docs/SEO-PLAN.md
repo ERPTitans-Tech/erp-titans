@@ -9,7 +9,7 @@
 - **Google has indexed only 4 pages, and they're the old versions** (crawled ~5 days ago with the old titles). None of the new SEO work (titles, Calgary page, location and service pages) has been crawled yet, so it cannot rank yet.
 - **Fix:** submit the site to Google Search Console and request indexing (section 3, "Do today"). Without this, Google may take weeks to discover the new pages on its own.
 - **"odoo implementation" with no location** is one of the most competitive Odoo searches in North America: odoo.com itself, large Gold partners and directories hold those spots. Realistic path: win the specific searches first (Calgary, Alberta, "Odoo rescue", "QuickBooks to Odoo Canada", cannabis ERP), then climb the broad terms as reviews, links and listings build up.
-- **Domains:** erptitans.ca was serving an exact copy of the site, and Google saw both www.erptitans.com and erptitans.com. Now fixed in code: **www.erptitans.com, erptitans.ca and www.erptitans.ca all 301-redirect to https://erptitans.com**, so every ranking signal (including the .ca domain's history) consolidates on one site.
+- **Domains:** two regional sites from one codebase. **https://erptitans.ca is the Canadian site (en-CA)** and **https://erptitans.com is the US / international site (en-US, default)**. Each is canonical to itself and lists the other as an hreflang alternate, so Google shows .ca to Canadian searchers and .com elsewhere, without treating them as duplicates. Each domain has its own sitemap and robots.txt. www.erptitans.com redirects to erptitans.com.
 - **Location mismatch:** the Odoo partner listing (copied by directories such as ERPResearch) says **Austin, TX**; the website now says **Calgary, Alberta**. Google ranks local businesses on consistent name/address/phone everywhere. **Decide the official HQ and make every listing match.**
 - **Client confidentiality:** the Odoo partner listing still names the cannabis client as a reference. Update it in the Odoo partner portal if the client must stay confidential.
 
@@ -33,7 +33,7 @@ No one can guarantee the #1 position. Google decides. Local results are based on
 
 ### Technical foundation
 - Keyword-focused title and description on every page (e.g. homepage: "Odoo Partner in Calgary, Canada & USA").
-- Correct canonical URL on every page; www and .ca domains 301-redirect to https://erptitans.com.
+- Two regional sites: erptitans.ca (en-CA) and erptitans.com (en-US), each self-canonical with hreflang alternates; per-domain sitemaps.
 - Structured data (schema.org): ERP Titans as a ProfessionalService in Calgary, AB; Service, FAQPage and Breadcrumb data on every location and service page.
 - Auto-generated `sitemap.xml` and `robots.txt`; default social-share image (LinkedIn, Facebook, X previews).
 - Homepage line: "Official Odoo Ready Partner · Calgary, Alberta · Serving Canada & USA".
@@ -75,7 +75,8 @@ Footer links to every service and location page; location pages link to all serv
 - [ ] **Google Search Console:** go to search.google.com/search-console → *Add property* → **Domain** → `erptitans.com`. Verify with the DNS TXT record (add it in Hostinger → Domains → DNS). Then:
   - *Sitemaps* → submit `https://erptitans.com/sitemap.xml`.
   - *URL Inspection* → paste each priority URL → **Request indexing**: `/`, `/odoo-partner-calgary`, `/odoo-implementation`, `/odoo-rescue`, `/odoo-partner-canada`, `/odoo-partner-usa`, `/odoo`, `/services`.
-- [ ] **Add erptitans.ca as a second Search Console property** (DNS verification in Cloudflare) so Google sees it redirects to .com.
+- [ ] **Add erptitans.ca as a second Search Console property** (Domain property, DNS TXT record in Cloudflare) and submit `https://erptitans.ca/sitemap.xml`. Request indexing for the .ca home and `/odoo-partner-calgary`.
+- [ ] **Cloudflare: redirect www.erptitans.ca → erptitans.ca** (stays on .ca). Cloudflare currently forwards www.erptitans.ca to the server as erptitans.com, so the site can't tell it's the Canadian address. In Cloudflare → erptitans.ca → Rules → Redirect Rules → Create rule: when *Hostname equals www.erptitans.ca*, dynamic redirect to `concat("https://erptitans.ca", http.request.uri.path)`, status 301, preserve query string → Deploy.
 - [ ] **Bing Webmaster Tools:** *Import from Google Search Console* (Bing also powers Copilot and parts of ChatGPT search).
 
 ### Do this week
