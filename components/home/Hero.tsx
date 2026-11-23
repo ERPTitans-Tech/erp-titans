@@ -77,8 +77,8 @@ export default function Hero({ isCA = false }: { isCA?: boolean }) {
         <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
           {/* Copy */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <p className="mb-5 inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-[#003D82] shadow-sm ring-1 ring-[#003D82]/10">
-              <span className="h-2 w-2 rounded-full bg-[#21B799]" />
+            <p className="mb-5 inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-xs font-semibold sm:text-sm text-[#003D82] shadow-sm ring-1 ring-[#003D82]/10">
+              <span className="h-2 w-2 shrink-0 rounded-full bg-[#21B799]" />
               Official Odoo Ready Partner · {offices.short} · {offices.serving}
             </p>
             <h1 className="text-4xl font-extrabold leading-[1.1] tracking-tight text-[#003D82] sm:text-5xl lg:text-[58px]">
@@ -259,7 +259,7 @@ export default function Hero({ isCA = false }: { isCA?: boolean }) {
         >
           <Image src="/odoo-ready-partner-tight.svg" alt="Odoo Ready Partner" width={416} height={202} className="h-14 w-auto" />
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm font-semibold text-[#475569] md:border-l md:border-[#E2E8F0] md:pl-10">
-            <span className="text-xs font-bold uppercase tracking-[0.14em] text-[#94A3B8]">Industries</span>
+            <span className="w-full text-xs font-bold uppercase tracking-[0.14em] text-[#94A3B8] md:w-auto">Industries</span>
             {[
               ["Manufacturing", "/industries/manufacturing"],
               ["Distribution", "/industries/distribution"],

@@ -2,5 +2,5 @@
 export function officesFor(isCA: boolean) {
   return isCA
     ? { short: "Calgary, Alberta", footer: ["Calgary, Alberta, Canada"], serving: "Serving Canada & USA" }
-    : { short: "Calgary, Alberta · Austin, Texas", footer: ["Calgary, Alberta, Canada", "Austin, Texas, USA"], serving: "Serving the USA & Canada" };
+    : { short: "Calgary & Austin", footer: ["Calgary, Alberta, Canada", "Austin, Texas, USA"], serving: "Serving USA & Canada" };
 }
