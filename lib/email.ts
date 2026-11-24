@@ -34,11 +34,13 @@ export async function sendEmail({
   to,
   subject,
   html,
+  replyTo,
   attachments
 }: {
   to: string;
   subject: string;
   html: string;
+  replyTo?: string;
   attachments?: { name: string; contentBytes: string; contentType: string }[];
 }) {
   const user = process.env.OUTLOOK_EMAIL;
@@ -54,6 +56,7 @@ export async function sendEmail({
     to: to,
     subject: subject,
     html: html,
+    ...(replyTo ? { replyTo } : {}),
   };
 
   if (attachments && attachments.length > 0) {

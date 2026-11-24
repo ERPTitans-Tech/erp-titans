@@ -1,47 +1,43 @@
 import { NextResponse } from "next/server";
 import { sendContactEmail } from "@/services/emailService";
+import { clean, isBot, isEmail } from "@/lib/form-guard";
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
+    const body = (await req.json().catch(() => ({}))) as Record<string, unknown>;
 
-    // Basic Validation
-    if (
-      !body.fullName?.trim() ||
-      !body.email?.trim() ||
-      !body.phone?.trim() ||
-      !body.companyName?.trim() ||
-      !body.industry?.trim() ||
-      !body.message?.trim()
-    ) {
-      return NextResponse.json(
-        { success: false, error: "Missing required fields." },
-        { status: 400 }
-      );
+    // Silently accept bot submissions without sending anything.
+    if (isBot(body)) {
+      return NextResponse.json({ success: true, message: "Message sent successfully." }, { status: 200 });
     }
 
-    // Attempt to send email via Azure
-    await sendContactEmail(body);
+    const data = {
+      fullName: clean(body.fullName, 120),
+      email: clean(body.email, 254),
+      phone: clean(body.phone, 40),
+      companyName: clean(body.companyName, 160),
+      industry: clean(body.industry, 60),
+      erpSystem: clean(body.erpSystem, 120),
+      topics: clean(body.topics, 300),
+      message: clean(body.message, 3000, true),
+    };
 
-    return NextResponse.json(
-      { success: true, message: "Message sent successfully." },
-      { status: 200 }
-    );
+    if (!data.fullName || !data.email || !data.phone || !data.companyName || !data.industry || !data.message) {
+      return NextResponse.json({ success: false, error: "Please fill in all required fields." }, { status: 400 });
+    }
+    if (!isEmail(data.email)) {
+      return NextResponse.json({ success: false, error: "Please enter a valid email address." }, { status: 400 });
+    }
+
+    // Delivered to sales@erptitans.com (see services/emailService.ts).
+    await sendContactEmail(data);
+
+    return NextResponse.json({ success: true, message: "Message sent successfully." }, { status: 200 });
   } catch (error: unknown) {
     console.error("Contact Form API Error:", error);
-    
-    // Return detailed error in development mode
-    if (process.env.NODE_ENV !== "production") {
-      const message = error instanceof Error ? error.message : "An unknown error occurred during email dispatch.";
-      return NextResponse.json(
-        { success: false, error: message },
-        { status: 500 }
-      );
-    }
-    
     return NextResponse.json(
-      { success: false, error: "Unable to send message. Please try again." },
-      { status: 500 }
+      { success: false, error: "We couldn't send your message right now. Please try again, or email sales@erptitans.com." },
+      { status: 500 },
     );
   }
 }

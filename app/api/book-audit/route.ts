@@ -1,9 +1,25 @@
 import { NextResponse } from "next/server";
 import { sendAuditBookingEmail } from "@/services/emailService";
+import { clean, isBot, isEmail } from "@/lib/form-guard";
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
+    const raw = (await req.json().catch(() => ({}))) as Record<string, unknown>;
+    if (isBot(raw)) {
+      return NextResponse.json({ success: true, message: "Meeting scheduled successfully." }, { status: 200 });
+    }
+    const body = {
+      fullName: clean(raw.fullName, 120),
+      email: clean(raw.email, 254),
+      phone: clean(raw.phone, 40),
+      companyName: clean(raw.companyName, 160),
+      selectedDate: clean(raw.selectedDate, 40),
+      selectedTime: clean(raw.selectedTime, 20),
+      joinWebUrl: "",
+    };
+    if (body.email && !isEmail(body.email)) {
+      return NextResponse.json({ success: false, error: "Please enter a valid email address." }, { status: 400 });
+    }
 
     // Basic Validation
     if (

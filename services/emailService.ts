@@ -1,7 +1,17 @@
 import * as ics from "ics";
 import { sendEmail } from "@/lib/email";
 
-const NOTIFICATION_EMAIL = process.env.NOTIFICATION_EMAIL || "sales@erptitans.com";
+// Every enquiry and booking is delivered to the sales inbox.
+const NOTIFICATION_EMAIL = "sales@erptitans.com";
+
+// Visitor input is inserted into HTML emails, so escape it.
+const esc = (v: string | undefined | null) =>
+  String(v ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 
 interface ContactFormData {
   fullName: string;
@@ -10,6 +20,7 @@ interface ContactFormData {
   companyName: string;
   industry: string;
   erpSystem?: string;
+  topics?: string;
   message: string;
 }
 
@@ -28,7 +39,7 @@ const generateAdminEmail = (title: string, data: Record<string, string | undefin
     .filter(([, value]) => value)
     .map(([key, value]) => `
       <div style="margin-bottom: 8px;">
-        <span style="font-weight: bold; color: #334155;">${key}:</span> <span style="color: #0F172A;">${value}</span>
+        <span style="font-weight: bold; color: #334155;">${key}:</span> <span style="color: #0F172A;">${esc(value)}</span>
       </div>
     `).join("");
 
@@ -60,7 +71,7 @@ const generateAdminEmail = (title: string, data: Record<string, string | undefin
         ${messageText ? `
           <h3 style="color: #0F3B84; font-size: 16px; margin-bottom: 10px;">Message:</h3>
           <div style="background-color: #F0F9FF; border-left: 4px solid #0F3B84; padding: 15px; border-radius: 4px; font-size: 14px; color: #334155; white-space: pre-wrap;">
-            ${messageText}
+            ${esc(messageText)}
           </div>
         ` : ''}
       </div>
@@ -73,7 +84,7 @@ const generateCustomerConfirmationEmail = (name: string, data: Record<string, st
     .filter(([, value]) => value)
     .map(([key, value]) => `
       <div style="margin-bottom: 8px;">
-        <span style="font-weight: bold; color: #334155;">${key}:</span> <span style="color: #0F172A;">${value}</span>
+        <span style="font-weight: bold; color: #334155;">${key}:</span> <span style="color: #0F172A;">${esc(value)}</span>
       </div>
     `).join("");
 
@@ -84,7 +95,7 @@ const generateCustomerConfirmationEmail = (name: string, data: Record<string, st
       </div>
       
       <div style="border: 1px solid #E2E8F0; border-top: none; padding: 30px; border-radius: 0 0 8px 8px; background-color: #FFFFFF;">
-        <p style="font-size: 14px; margin-top: 0;">Dear ${name},</p>
+        <p style="font-size: 14px; margin-top: 0;">Dear ${esc(name)},</p>
         <p style="font-size: 14px; line-height: 1.6;">
           Thank you for reaching out to <strong>ERP Titans</strong>. We appreciate your interest in our ERP recovery and optimization services.
         </p>
@@ -144,7 +155,7 @@ const generateCustomerAuditEmail = (name: string, dateStr: string, timeStr: stri
 
 <div style="padding:30px;">
 
-<p style="font-size:14px;color:#334155;">Dear ${name},</p>
+<p style="font-size:14px;color:#334155;">Dear ${esc(name)},</p>
 <p style="font-size:14px;color:#334155;line-height:1.6;margin-bottom:25px;">
   Thank you for scheduling a consultation with ERP Titans. We look forward to discussing your ERP requirements with you.
 </p>
@@ -158,9 +169,9 @@ const generateCustomerAuditEmail = (name: string, dateStr: string, timeStr: stri
 <div style="background-color:#f8fafc;padding:25px;border-radius:8px;margin-bottom:20px;color:#334155;font-size:14px;">
   <h3 style="color:#0F3B84;font-size:16px;margin-top:0;margin-bottom:15px;">Meeting Details</h3>
   <div style="margin-bottom:10px;"><strong>Date:</strong> ${dateStr}</div>
-  <div style="margin-bottom:10px;"><strong>Time:</strong> ${timeStr}</div>
-  <div style="margin-bottom:10px;"><strong>Company:</strong> ${company}</div>
-  <div style="margin-bottom:10px;"><strong>Name:</strong> ${name}</div>
+  <div style="margin-bottom:10px;"><strong>Time:</strong> ${esc(timeStr)} MT</div>
+  <div style="margin-bottom:10px;"><strong>Company:</strong> ${esc(company)}</div>
+  <div style="margin-bottom:10px;"><strong>Name:</strong> ${esc(name)}</div>
   <div style="margin-bottom:15px;"><strong>Format:</strong> Microsoft Teams Meeting</div>
   ${joinWebUrl ? `
   <a href="${joinWebUrl}" style="background-color:#2563EB;color:#ffffff;padding:12px 20px;text-decoration:none;border-radius:6px;display:inline-block;font-weight:bold;font-size:14px;">
@@ -253,7 +264,9 @@ export const sendContactEmail = async (data: ContactFormData) => {
       "Company": data.companyName,
       "Industry": data.industry,
       "Current ERP": data.erpSystem || "Not specified",
+      "Interested in": data.topics || "Not specified",
     }, data.message);
+    const urgent = /\burgent\b/i.test(data.message) ? "URGENT · " : "";
 
     const customerHtml = generateCustomerConfirmationEmail(data.fullName.split(' ')[0], {
       "Name": data.fullName,
@@ -263,18 +276,18 @@ export const sendContactEmail = async (data: ContactFormData) => {
       "Industry": data.industry,
     });
 
-    await Promise.all([
-      sendEmail({
-        to: NOTIFICATION_EMAIL,
-        subject: "New ERP Titans Contact Form Submission",
-        html: adminHtml,
-      }),
-      sendEmail({
-        to: data.email,
-        subject: "Thank You for Contacting ERP Titans",
-        html: customerHtml,
-      })
-    ]);
+    // The enquiry must reach sales; the visitor's copy is best-effort (a typo in their address shouldn't fail the form).
+    await sendEmail({
+      to: NOTIFICATION_EMAIL,
+      subject: `${urgent}New enquiry: ${data.companyName} (${data.fullName})`,
+      html: adminHtml,
+      replyTo: data.email,
+    });
+    await sendEmail({
+      to: data.email,
+      subject: "Thank You for Contacting ERP Titans",
+      html: customerHtml,
+    }).catch((err) => console.error("Customer confirmation email failed:", err instanceof Error ? err.message : err));
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
     console.error("OUTLOOK EMAIL SEND ERROR (Contact Form):", message);
@@ -317,19 +330,18 @@ export const sendAuditBookingEmail = async (data: AuditFormData) => {
       contentBytes: Buffer.from(icsContent).toString('base64')
     }] : [];
 
-    await Promise.all([
-      sendEmail({
-        to: NOTIFICATION_EMAIL,
-        subject: "URGENT: New ERP Audit Booking | ERP Titans",
-        html: adminHtml,
-        attachments: attachments
-      }),
-      sendEmail({
-        to: data.email,
-        subject: "Your ERP Health Audit Confirmation",
-        html: customerHtml,
-      })
-    ]);
+    await sendEmail({
+      to: NOTIFICATION_EMAIL,
+      subject: `New ERP Health Audit booking: ${data.companyName}, ${data.selectedDate} ${data.selectedTime} MT`,
+      html: adminHtml,
+      replyTo: data.email,
+      attachments: attachments,
+    });
+    await sendEmail({
+      to: data.email,
+      subject: "Your ERP Health Audit Confirmation",
+      html: customerHtml,
+    }).catch((err) => console.error("Customer booking confirmation failed:", err instanceof Error ? err.message : err));
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
     console.error("OUTLOOK EMAIL SEND ERROR (Audit Booking):", message);
