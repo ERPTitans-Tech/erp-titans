@@ -49,8 +49,8 @@ function useCountUp(target: number, run: boolean, duration = 1400) {
 const orbitNodes = [
   { id: "vendor", label: "Vendor lots", icon: "/odoo-icons/svg/purchase.svg", x: 20, y: 17 },
   { id: "lab", label: "Lab COA", icon: "/odoo-icons/svg/quality_control.svg", x: 80, y: 17 },
-  { id: "floor", label: "Shop floor", icon: "/odoo-icons/svg/mrp.svg", x: 13, y: 52 },
-  { id: "dist", label: "Distributors", icon: "/odoo-icons/svg/sale_management.svg", x: 87, y: 52 },
+  { id: "floor", label: "Shop floor", icon: "/odoo-icons/svg/mrp.svg", x: 14, y: 52 },
+  { id: "dist", label: "Distributors", icon: "/odoo-icons/svg/sale_management.svg", x: 85, y: 52 },
   { id: "fin", label: "Finance", icon: "/odoo-icons/svg/accountant.svg", x: 24, y: 86 },
   { id: "ctls", label: "CTLS report", icon: "", x: 76, y: 86 },
 ];
@@ -98,7 +98,7 @@ export function HeroDataGraph() {
         {/* hub: official Odoo logo file, unmodified, original colours, with its built-in clear space */}
         <div className="absolute -translate-x-1/2 -translate-y-1/2" style={{ left: `${HUB.x}%`, top: `${HUB.y}%` }}>
           <div className="rounded-2xl bg-white px-1 shadow-[0_10px_30px_rgba(0,61,130,0.16)] ring-1 ring-[#E2E8F0]">
-            <Image src="/odoo-icon.svg" alt="Odoo" width={919} height={495} className="h-auto w-[112px] sm:w-[136px]" />
+            <Image src="/odoo-icon.svg" alt="Odoo" width={919} height={495} className="h-auto w-[108px] sm:w-[124px]" />
           </div>
         </div>
         <div
