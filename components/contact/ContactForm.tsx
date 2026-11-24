@@ -16,6 +16,7 @@ import {
   Check,
   ShieldCheck,
   ChevronDown,
+  MapPin,
 } from "lucide-react";
 import toast from "react-hot-toast";
 import Flag from "@/components/ui/Flag";
@@ -390,8 +391,8 @@ export default function ContactForm({ isCA = false }: { isCA?: boolean }) {
                   </span>
                 </li>
                 <li className="flex items-start gap-4">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#EFF6FF]">
-                    <Flag country="ca" />
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#EFF6FF] text-[#003D82]">
+                    <MapPin size={20} />
                   </span>
                   <span>
                     <span className="block text-xs font-bold uppercase tracking-wider text-[#64748B]">
@@ -399,7 +400,7 @@ export default function ContactForm({ isCA = false }: { isCA?: boolean }) {
                     </span>
                     {offices.footer.map((o) => (
                       <span key={o.label} className="flex items-center gap-2 text-[15px] font-semibold text-[#0F172A]">
-                        {offices.footer.length > 1 && <Flag country={o.country} />}
+                        <Flag country={o.country} />
                         {o.label}
                       </span>
                     ))}
@@ -427,10 +428,15 @@ export default function ContactForm({ isCA = false }: { isCA?: boolean }) {
 
             <div className="rounded-[24px] bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] ring-1 ring-[#E2E8F0] sm:p-7">
               <span className="text-sm font-bold uppercase tracking-[0.14em] text-[#003D82]">What happens next</span>
-              <ol className="relative mt-5 space-y-5">
-                <span className="absolute left-[15px] top-3 bottom-3 w-[2px] bg-gradient-to-b from-[#003D82] via-[#0EA5E9] to-[#16A34A]" aria-hidden="true" />
+              <ol className="mt-5 space-y-5">
                 {NEXT_STEPS.map((s, i) => (
                   <li key={s.title} className="relative flex gap-4">
+                    {i < NEXT_STEPS.length - 1 && (
+                      <span
+                        className="absolute left-[15px] top-8 -bottom-5 w-[2px] bg-gradient-to-b from-[#003D82] to-[#0EA5E9]"
+                        aria-hidden="true"
+                      />
+                    )}
                     <span className="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#003D82] text-xs font-bold text-white ring-4 ring-white">
                       {i + 1}
                     </span>

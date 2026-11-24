@@ -129,7 +129,8 @@ export default function BookingCalendar({ selectedDate, onSelectDate }: BookingC
           >
             {cells.map((day, i) => {
               if (!day) return <span key={`e${i}`} />;
-              const past = isBefore(day, today);
+              // Earliest bookable day is the next business day.
+              const past = !isBefore(today, day);
               const isSelected = selectedDate ? isSameDay(selectedDate, day) : false;
               const isToday = isSameDay(day, today);
               return (
