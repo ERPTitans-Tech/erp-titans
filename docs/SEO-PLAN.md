@@ -72,12 +72,16 @@ Footer links to every service and location page; location pages link to all serv
 ## 3. Your action list (off-site: needed to rank first)
 
 ### Do today (30 minutes)
-- [ ] **Google Search Console:** go to search.google.com/search-console → *Add property* → **Domain** → `erptitans.com`. Verify with the DNS TXT record (add it in Hostinger → Domains → DNS). Then:
+- [x] **Google Search Console:** (done Nov 23, 2026: sitemap resubmitted, first indexing requests sent) go to search.google.com/search-console → *Add property* → **Domain** → `erptitans.com`. Verify with the DNS TXT record (add it in Hostinger → Domains → DNS). Then:
   - *Sitemaps* → submit `https://erptitans.com/sitemap.xml`.
   - *URL Inspection* → paste each priority URL → **Request indexing**: `/`, `/odoo-partner-calgary`, `/odoo-implementation`, `/odoo-rescue`, `/odoo-partner-canada`, `/odoo-partner-usa`, `/odoo`, `/services`.
-- [ ] **Add erptitans.ca as a second Search Console property** (Domain property, DNS TXT record in Cloudflare) and submit `https://erptitans.ca/sitemap.xml`. Request indexing for the .ca home and `/odoo-partner-calgary`.
-- [ ] **Cloudflare: redirect www.erptitans.ca → erptitans.ca** (stays on .ca). Cloudflare currently forwards www.erptitans.ca to the server as erptitans.com, so the site can't tell it's the Canadian address. In Cloudflare → erptitans.ca → Rules → Redirect Rules → Create rule: when *Hostname equals www.erptitans.ca*, dynamic redirect to `concat("https://erptitans.ca", http.request.uri.path)`, status 301, preserve query string → Deploy.
+- [x] **Add erptitans.ca as a second Search Console property** (done Nov 23, 2026) (Domain property, DNS TXT record in Cloudflare) and submit `https://erptitans.ca/sitemap.xml`. Request indexing for the .ca home and `/odoo-partner-calgary`.
+- [x] **Cloudflare: redirect www.erptitans.ca → erptitans.ca** (done and tested Nov 23, 2026) (stays on .ca). Cloudflare currently forwards www.erptitans.ca to the server as erptitans.com, so the site can't tell it's the Canadian address. In Cloudflare → erptitans.ca → Rules → Redirect Rules → Create rule: when *Hostname equals www.erptitans.ca*, dynamic redirect to `concat("https://erptitans.ca", http.request.uri.path)`, status 301, preserve query string → Deploy.
 - [ ] **Bing Webmaster Tools:** *Import from Google Search Console* (Bing also powers Copilot and parts of ChatGPT search).
+
+### Next few days
+- [ ] Finish indexing requests (daily limit ~10): remaining .ca pages, then state, industry and service pages.
+- [ ] Check Sitemaps for both properties: status Success, ~30 discovered pages each.
 
 ### Do this week
 - [ ] **Keep business details consistent:** same business name, city and phone on the website, Google Business Profile and directories (Calgary).
