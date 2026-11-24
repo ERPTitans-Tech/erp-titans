@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { sendContactEmail } from "@/services/emailService";
 import { clean, isBot, isEmail } from "@/lib/form-guard";
+import { sendInBackground } from "@/lib/send-later";
 
 export async function POST(req: Request) {
   try {
@@ -29,8 +30,8 @@ export async function POST(req: Request) {
       return NextResponse.json({ success: false, error: "Please enter a valid email address." }, { status: 400 });
     }
 
-    // Delivered to sales@erptitans.com (see services/emailService.ts).
-    await sendContactEmail(data);
+    // Delivered to sales@erptitans.com (see services/emailService.ts), right after we respond.
+    sendInBackground("Contact email", () => sendContactEmail(data));
 
     return NextResponse.json({ success: true, message: "Message sent successfully." }, { status: 200 });
   } catch (error: unknown) {

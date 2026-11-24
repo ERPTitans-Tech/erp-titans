@@ -14,7 +14,10 @@ const getTransporter = () => {
     throw new Error("Missing OUTLOOK_EMAIL or OUTLOOK_PASSWORD in environment variables.");
   }
 
+  // Pooled: keeps the SMTP connection open between submissions, so emails go out faster.
   transporter = nodemailer.createTransport({
+    pool: true,
+    maxConnections: 2,
     host: "smtp-mail.outlook.com",
     port: 587,
     secure: false, // true for 465, false for other ports

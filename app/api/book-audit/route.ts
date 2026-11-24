@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { sendAuditBookingEmail } from "@/services/emailService";
 import { clean, isBot, isEmail } from "@/lib/form-guard";
+import { sendInBackground } from "@/lib/send-later";
 
 export async function POST(req: Request) {
   try {
@@ -50,9 +51,6 @@ export async function POST(req: Request) {
     const month = parsedBaseDate.getMonth();
     const date = parsedBaseDate.getDate();
 
-    console.log("=== TIME PARSING CHECK ===");
-    console.log("Raw Date Received:", body.selectedDate);
-    console.log("Raw Time Received:", body.selectedTime);
 
     let hours = 0;
     let minutes = 0;
@@ -72,9 +70,6 @@ export async function POST(req: Request) {
     if (ampm === "PM" && hours < 12) hours += 12;
     if (ampm === "AM" && hours === 12) hours = 0;
 
-    console.log("Normalized Hours:", hours);
-    console.log("Normalized Minutes:", minutes);
-    console.log("==========================");
 
     const startDate = new Date(year, month, date, hours, minutes);
     if (isNaN(startDate.getTime())) {
@@ -84,21 +79,6 @@ export async function POST(req: Request) {
       );
     }
 
-    const endDate = new Date(startDate.getTime() + 60 * 60 * 1000); // 1 hour
-
-    const startDateTimeStr = startDate.toISOString();
-    const endDateTimeStr = endDate.toISOString();
-    const subject = `ERP Health Audit Consultation for ${body.companyName}`;
-
-    console.log("=== GRAPH API PRE-FLIGHT CHECK ===");
-    console.log("Selected Date:", body.selectedDate);
-    console.log("Selected Time:", body.selectedTime);
-    console.log("Parsed Date object:", startDate);
-    console.log("Generated startDateTime:", startDateTimeStr);
-    console.log("Generated endDateTime:", endDateTimeStr);
-    console.log("Timezone Offset (mins):", startDate.getTimezoneOffset());
-    console.log("Complete Graph request payload:", { subject, startDateTime: startDateTimeStr, endDateTime: endDateTimeStr });
-    console.log("==================================");
 
     // 2. Create the Real Microsoft Teams Meeting
     // ------------------------------------------------------------------------------------------------
@@ -115,7 +95,11 @@ export async function POST(req: Request) {
     }
     
     /*
+    const endDate = new Date(startDate.getTime() + 60 * 60 * 1000); // 1 hour
+    const subject = `ERP Health Audit Consultation for ${body.companyName}`;
     try {
+      joinWebUrl = await createTeamsMeeting(subject, startDate.toISOString(), endDate.toISOString());
+      // (original call below)
       joinWebUrl = await createTeamsMeeting(subject, startDateTimeStr, endDateTimeStr);
     } catch (graphError: any) {
       console.error("Microsoft Graph Error, falling back...", graphError);
@@ -126,7 +110,7 @@ export async function POST(req: Request) {
     body.joinWebUrl = joinWebUrl;
 
     // 3. Send Emails via Outlook (Nodemailer) + iCalendar invites
-    await sendAuditBookingEmail(body);
+    sendInBackground("Audit booking email", () => sendAuditBookingEmail(body));
 
     return NextResponse.json(
       { success: true, message: "Meeting scheduled successfully." },
