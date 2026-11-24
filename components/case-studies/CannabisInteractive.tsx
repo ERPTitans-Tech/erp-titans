@@ -88,16 +88,17 @@ export function HeroDataGraph() {
             );
           })}
 
-          <circle cx={px(HUB.x)} cy={py(HUB.y)} r="40" fill={SKY} fillOpacity="0.12">
-            <animate attributeName="r" values="38;50;38" dur="3.2s" repeatCount="indefinite" />
-            <animate attributeName="fill-opacity" values=".18;0;.18" dur="3.2s" repeatCount="indefinite" />
-          </circle>
+          <ellipse cx={px(HUB.x)} cy={py(HUB.y)} rx="74" ry="44" fill={SKY} fillOpacity="0.12">
+            <animate attributeName="rx" values="72;88;72" dur="3.2s" repeatCount="indefinite" />
+            <animate attributeName="ry" values="42;54;42" dur="3.2s" repeatCount="indefinite" />
+            <animate attributeName="fill-opacity" values=".16;0;.16" dur="3.2s" repeatCount="indefinite" />
+          </ellipse>
         </svg>
 
-        {/* hub */}
-        <div className="absolute flex -translate-x-1/2 -translate-y-1/2 flex-col items-center" style={{ left: `${HUB.x}%`, top: `${HUB.y}%` }}>
-          <div className="flex h-[76px] w-[76px] items-center justify-center rounded-full bg-[#003D82] text-[19px] font-extrabold text-white shadow-[0_10px_30px_rgba(0,61,130,0.35)] ring-4 ring-white">
-            Odoo
+        {/* hub: official Odoo logo file, unmodified, original colours, with its built-in clear space */}
+        <div className="absolute -translate-x-1/2 -translate-y-1/2" style={{ left: `${HUB.x}%`, top: `${HUB.y}%` }}>
+          <div className="rounded-2xl bg-white px-1 shadow-[0_10px_30px_rgba(0,61,130,0.16)] ring-1 ring-[#E2E8F0]">
+            <Image src="/odoo-icon.svg" alt="Odoo" width={919} height={495} className="h-auto w-[112px] sm:w-[136px]" />
           </div>
         </div>
         <div
