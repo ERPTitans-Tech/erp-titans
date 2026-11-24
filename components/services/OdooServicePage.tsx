@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, CheckCircle2, ChevronDown, Target } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import LocationHero from "@/components/locations/LocationHero";
 import CTA from "@/components/home/CTA";
 import JsonLd from "@/components/seo/JsonLd";
@@ -8,6 +8,7 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import { ORG_ID } from "@/lib/seo";
 import { getSite } from "@/lib/site";
 import { odooServices, type OdooService } from "@/lib/odoo-services";
+import Tick from "@/components/ui/Tick";
 
 export default async function OdooServicePage({ s }: { s: OdooService }) {
   const SITE_URL = (await getSite()).base;
@@ -61,12 +62,12 @@ export default async function OdooServicePage({ s }: { s: OdooService }) {
           </div>
           <div className="rounded-[24px] bg-[#F8FAFC] p-7 ring-1 ring-[#E2E8F0]">
             <div className="mb-4 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.14em] text-[#003D82]">
-              <Target size={16} /> Right for you if
+              <span className="h-px w-6 bg-[#003D82]" aria-hidden="true" /> Right for you if
             </div>
             <ul className="space-y-3">
               {s.forWho.map((w) => (
                 <li key={w} className="flex gap-3 text-[15px] font-medium text-[#334155]">
-                  <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-[#16A34A]" /> {w}
+                  <Tick tone="green" className="mt-1" /> {w}
                 </li>
               ))}
             </ul>

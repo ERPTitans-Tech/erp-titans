@@ -2,32 +2,28 @@
 
 import { useState } from "react";
 import { m, AnimatePresence } from "framer-motion";
-import { Stethoscope, Search, Map, TrendingUp, Check, ArrowRight, ArrowLeft } from "lucide-react";
+import { Check, ArrowRight, ArrowLeft } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 
 const steps = [
   {
     title: "ERP Health Audit",
     description: "A comprehensive diagnostic of your current system, processes, and alignment gaps. Low risk, high value.",
-    icon: Stethoscope,
     deliverables: ["System and process diagnostic", "Prioritised list of issues", "Risks and quick wins summary"],
   },
   {
     title: "Root Cause Analysis",
     description: "We don't just patch symptoms. We dig deep to identify exactly why the implementation failed.",
-    icon: Search,
     deliverables: ["Root cause behind each issue", "Data quality review", "Configuration and customization review"],
   },
   {
     title: "Recovery Roadmap",
     description: "A pragmatic, phased action plan to stabilize operations and recover lost value without massive disruption.",
-    icon: Map,
     deliverables: ["Phased recovery plan", "Priority and effort per phase", "Plan to keep operations running"],
   },
   {
     title: "Optimization & Scale",
     description: "Once stabilized, we optimize workflows, reporting, and adoption to finally achieve the promised ROI.",
-    icon: TrendingUp,
     deliverables: ["Workflow and automation fixes", "Reporting your team trusts", "Training and adoption support"],
   },
 ];
@@ -35,7 +31,6 @@ const steps = [
 export default function RecoveryProcess() {
   const [active, setActive] = useState(0);
   const step = steps[active];
-  const Icon = step.icon;
 
   return (
     <section className="border-t border-[#E2E8F0] bg-white py-20 lg:py-24" id="process">
@@ -59,7 +54,6 @@ export default function RecoveryProcess() {
           </div>
           <div className="relative grid grid-cols-2 gap-6 md:grid-cols-4" role="tablist" aria-label="Recovery steps">
             {steps.map((s, i) => {
-              const StepIcon = s.icon;
               const on = i === active;
               const done = i < active;
               return (
@@ -71,22 +65,15 @@ export default function RecoveryProcess() {
                   className="group flex flex-col items-center text-center"
                 >
                   <span
-                    className={`relative flex h-16 w-16 items-center justify-center rounded-2xl ring-4 ring-white transition-all duration-300 ${
+                    className={`relative flex h-16 w-16 items-center justify-center rounded-full text-xl font-extrabold tabular-nums ring-4 ring-white transition-all duration-300 ${
                       on
                         ? "scale-110 bg-[#003D82] text-white shadow-[0_10px_25px_rgba(0,61,130,0.35)]"
                         : done
                         ? "bg-[#EFF6FF] text-[#003D82]"
-                        : "bg-[#F8FAFC] text-[#64748B] group-hover:text-[#003D82]"
+                        : "bg-[#F8FAFC] text-[#94A3B8] ring-[#F8FAFC] group-hover:text-[#003D82]"
                     }`}
                   >
-                    <StepIcon size={24} />
-                    <span
-                      className={`absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full text-[11px] font-bold ring-2 ring-white ${
-                        on || done ? "bg-[#003D82] text-white" : "bg-[#E2E8F0] text-[#64748B]"
-                      }`}
-                    >
-                      {done ? <Check size={12} strokeWidth={3} /> : i + 1}
-                    </span>
+                    {done ? <Check size={22} strokeWidth={3} /> : String(i + 1).padStart(2, "0")}
                   </span>
                   <span className={`mt-4 text-[15px] font-bold transition-colors ${on ? "text-[#003D82]" : "text-[#0F172A]"}`}>{s.title}</span>
                 </button>
@@ -108,9 +95,7 @@ export default function RecoveryProcess() {
             >
               <div>
                 <div className="mb-4 flex items-center gap-3">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#003D82] text-white">
-                    <Icon size={20} />
-                  </span>
+                  <span className="h-px w-8 bg-[#003D82]" aria-hidden="true" />
                   <span className="text-sm font-bold uppercase tracking-[0.14em] text-[#003D82]">
                     Step {String(active + 1).padStart(2, "0")} of {String(steps.length).padStart(2, "0")}
                   </span>

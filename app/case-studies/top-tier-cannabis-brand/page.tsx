@@ -1,16 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import {
-  ArrowRight,
-  ChevronRight,
-  CheckCircle2,
-  BarChart3,
-  Plug,
-  FileCheck2,
-  FileSpreadsheet,
-} from "lucide-react";
+import { ArrowRight, ChevronRight } from "lucide-react";
 import CTA from "@/components/home/CTA";
 import { alternatesFor } from "@/lib/site";
+import Tick from "@/components/ui/Tick";
 import {
   HeroDataGraph,
   DataFlowStepper,
@@ -379,10 +372,8 @@ export default function TopTierCannabisCaseStudyPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-20">
             <div>
-              <div className="flex items-center gap-3 mb-4">
-                <span className="w-11 h-11 rounded-xl bg-[#003D82] text-white flex items-center justify-center">
-                  <FileCheck2 size={22} />
-                </span>
+              <div className="mb-4">
+                <span className="mb-2 block text-xs font-bold uppercase tracking-[0.14em] text-[#0EA5E9]">Health Canada · Lot release</span>
                 <h3 className="text-2xl md:text-[28px] font-extrabold text-[#0F172A]">Certificate of Analysis (COA)</h3>
               </div>
               <p className="text-[16px] text-[#64748B] leading-relaxed mb-6">
@@ -393,7 +384,7 @@ export default function TopTierCannabisCaseStudyPage() {
               <ul className="space-y-3.5">
                 {coaPoints.map((p) => (
                   <li key={p} className="flex gap-3 text-[15px] text-[#334155] leading-relaxed">
-                    <CheckCircle2 size={20} className="text-[#16A34A] shrink-0 mt-0.5" />
+                    <Tick tone="green" className="mt-1" />
                     <span>{p}</span>
                   </li>
                 ))}
@@ -404,10 +395,8 @@ export default function TopTierCannabisCaseStudyPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div className="lg:order-2">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="w-11 h-11 rounded-xl bg-[#003D82] text-white flex items-center justify-center">
-                  <FileSpreadsheet size={22} />
-                </span>
+              <div className="mb-4">
+                <span className="mb-2 block text-xs font-bold uppercase tracking-[0.14em] text-[#0EA5E9]">Health Canada · Monthly</span>
                 <h3 className="text-2xl md:text-[28px] font-extrabold text-[#0F172A]">CTLS Monthly Reporting</h3>
               </div>
               <p className="text-[16px] text-[#64748B] leading-relaxed mb-6">
@@ -419,7 +408,7 @@ export default function TopTierCannabisCaseStudyPage() {
               <ul className="space-y-3.5">
                 {ctlsPoints.map((p) => (
                   <li key={p} className="flex gap-3 text-[15px] text-[#334155] leading-relaxed">
-                    <CheckCircle2 size={20} className="text-[#16A34A] shrink-0 mt-0.5" />
+                    <Tick tone="green" className="mt-1" />
                     <span>{p}</span>
                   </li>
                 ))}
@@ -500,7 +489,7 @@ export default function TopTierCannabisCaseStudyPage() {
                 <ul className="space-y-3">
                   {points.map((p) => (
                     <li key={p} className="flex gap-2.5 text-[15px] text-[#475569] leading-snug">
-                      <CheckCircle2 size={18} className="text-[#16A34A] shrink-0 mt-0.5" />
+                      <Tick tone="green" className="mt-1" />
                       <span>{p}</span>
                     </li>
                   ))}
@@ -519,10 +508,7 @@ export default function TopTierCannabisCaseStudyPage() {
           {/* Row 1: integrations | Power BI + reports delivered */}
           <div className="mt-6 grid grid-cols-1 items-stretch gap-8 lg:grid-cols-2 lg:gap-10">
             <div className="flex flex-col rounded-[24px] bg-[#F8FAFC] p-7 ring-1 ring-[#E2E8F0] sm:p-8">
-              <div className="mb-3 flex items-center gap-3">
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#003D82] text-white">
-                  <Plug size={20} />
-                </span>
+              <div className="mb-3">
                 <h2 className="text-2xl md:text-[28px] font-extrabold text-[#003D82]">Integrations</h2>
               </div>
               <p className="mb-6 text-[#64748B] leading-relaxed">
@@ -540,10 +526,7 @@ export default function TopTierCannabisCaseStudyPage() {
             </div>
 
             <div className="flex flex-col rounded-[24px] bg-[#F8FAFC] p-7 ring-1 ring-[#E2E8F0] sm:p-8">
-              <div className="mb-3 flex items-center gap-3">
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#003D82] text-white">
-                  <BarChart3 size={20} />
-                </span>
+              <div className="mb-3">
                 <h2 className="text-2xl md:text-[28px] font-extrabold text-[#003D82]">Power BI Analytics</h2>
               </div>
               <p className="mb-6 text-[#64748B] leading-relaxed">
@@ -557,7 +540,7 @@ export default function TopTierCannabisCaseStudyPage() {
               <div className="grid grid-cols-1 flex-1 content-between gap-2.5 sm:grid-cols-2">
                 {reports.map((r) => (
                   <div key={r} className="flex items-start gap-2.5 rounded-[12px] bg-white px-3.5 py-2.5 ring-1 ring-[#E2E8F0]">
-                    <CheckCircle2 size={15} className="mt-0.5 shrink-0 text-[#16A34A]" />
+                    <Tick tone="green" className="mt-1" />
                     <span className="text-[13.5px] font-medium leading-snug text-[#334155]">{r}</span>
                   </div>
                 ))}
@@ -637,7 +620,7 @@ export default function TopTierCannabisCaseStudyPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {outcomes.map((o) => (
                 <div key={o} className="flex gap-3 items-start rounded-[16px] bg-[#F8FAFC] border border-gray-100 p-5">
-                  <CheckCircle2 size={20} className="text-[#003D82] shrink-0 mt-0.5" />
+                  <Tick tone="navy" className="mt-1" />
                   <span className="text-[15px] font-medium text-[#334155] leading-relaxed">{o}</span>
                 </div>
               ))}

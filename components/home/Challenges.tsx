@@ -3,16 +3,17 @@
 import { useState } from "react";
 import Link from "next/link";
 import { m, AnimatePresence } from "framer-motion";
-import { FileSpreadsheet, Clock, Users, PackageX, GitMerge, Settings, Check, ArrowRight, MousePointerClick } from "lucide-react";
+import { Check, ArrowRight } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
+import CardIndex from "@/components/ui/CardIndex";
 
 const symptoms = [
-  { title: "Teams Still Using Excel", description: "Employees revert to manual spreadsheets because the ERP is too hard to use or lacks functionality.", icon: FileSpreadsheet },
-  { title: "Reporting Delays", description: "It takes days to assemble reports, meaning decisions are made on outdated or inaccurate data.", icon: Clock },
-  { title: "Poor User Adoption", description: "Staff avoid the system, leading to shadow IT, workarounds, and massive data silos.", icon: Users },
-  { title: "Inventory Inaccuracies", description: "Physical stock doesn't match system records, causing stockouts or excess holding costs.", icon: PackageX },
-  { title: "Process Bottlenecks", description: "Workflows are slower now than before the implementation, destroying operational efficiency.", icon: GitMerge },
-  { title: "Customization Issues", description: "Heavy customizations have made the system brittle, impossible to upgrade, and expensive to maintain.", icon: Settings },
+  { title: "Teams Still Using Excel", description: "Employees revert to manual spreadsheets because the ERP is too hard to use or lacks functionality." },
+  { title: "Reporting Delays", description: "It takes days to assemble reports, meaning decisions are made on outdated or inaccurate data." },
+  { title: "Poor User Adoption", description: "Staff avoid the system, leading to shadow IT, workarounds, and massive data silos." },
+  { title: "Inventory Inaccuracies", description: "Physical stock doesn't match system records, causing stockouts or excess holding costs." },
+  { title: "Process Bottlenecks", description: "Workflows are slower now than before the implementation, destroying operational efficiency." },
+  { title: "Customization Issues", description: "Heavy customizations have made the system brittle, impossible to upgrade, and expensive to maintain." },
 ];
 
 function verdict(n: number) {
@@ -64,7 +65,6 @@ export default function Challenges() {
           {/* Symptom cards */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {symptoms.map((s, i) => {
-              const Icon = s.icon;
               const on = picked.includes(i);
               return (
                 <m.button
@@ -76,7 +76,7 @@ export default function Challenges() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.45, delay: i * 0.05 }}
-                  className={`relative flex flex-col items-start rounded-[24px] p-6 text-left transition-all duration-300 ${
+                  className={`group relative flex flex-col items-start rounded-[24px] p-6 text-left transition-all duration-300 ${
                     on
                       ? "bg-[#EFF6FF] shadow-[0_10px_30px_rgba(0,61,130,0.12)] ring-2 ring-[#003D82]"
                       : "bg-white shadow-[0_8px_30px_rgba(0,0,0,0.04)] ring-1 ring-[#E2E8F0] hover:-translate-y-1 hover:ring-[#003D82]/30"
@@ -89,9 +89,7 @@ export default function Challenges() {
                   >
                     {on && <Check size={13} strokeWidth={3} />}
                   </span>
-                  <span className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#003D82] text-white">
-                    <Icon size={22} />
-                  </span>
+                  <CardIndex n={i + 1} tone="navy" className="mb-5" />
                   <h3 className="mb-2 text-lg font-bold text-[#0F172A]">{s.title}</h3>
                   <p className="text-[15px] leading-relaxed text-[#64748B]">{s.description}</p>
                 </m.button>
@@ -104,9 +102,7 @@ export default function Challenges() {
             <div className="rounded-[28px] bg-white p-7 shadow-[0_20px_50px_rgba(0,61,130,0.10)] ring-1 ring-[#E2E8F0]">
               <div className="mb-6 flex items-center justify-between">
                 <span className="text-sm font-bold uppercase tracking-[0.14em] text-[#003D82]">Your result</span>
-                <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#64748B]">
-                  <MousePointerClick size={14} /> Interactive
-                </span>
+                <span className="text-xs font-semibold text-[#64748B]">Tap the signs that apply</span>
               </div>
 
               <div className="flex items-end gap-2">

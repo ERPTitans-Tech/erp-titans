@@ -2,14 +2,15 @@
 
 import Image from "next/image";
 import { m } from "framer-motion";
-import { BookOpen, Shield, Sparkles, TrendingUp, Earth, Plus, MapPin } from "lucide-react";
+import { Plus, MapPin } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
+import CardIndex from "@/components/ui/CardIndex";
 
 const values = [
-  { title: "Trust Over Cost", description: "Relationships built on transparency, not just price.", icon: Shield },
-  { title: "Specialization", description: "Deep focus on recovery, not being everything to everyone.", icon: Sparkles },
-  { title: "Results First", description: "We measure success by real business outcomes.", icon: TrendingUp },
-  { title: "Global Reach", description: "Canadian-based expertise with the infrastructure to serve you anywhere.", icon: Earth },
+  { title: "Trust Over Cost", description: "Relationships built on transparency, not just price." },
+  { title: "Specialization", description: "Deep focus on recovery, not being everything to everyone." },
+  { title: "Results First", description: "We measure success by real business outcomes." },
+  { title: "Global Reach", description: "Canadian-based expertise with the infrastructure to serve you anywhere." },
 ];
 
 const story = [
@@ -82,11 +83,9 @@ export default function AboutIntro({ isCA = false }: { isCA?: boolean }) {
               transition={{ duration: 0.55 }}
               className="flex flex-col rounded-[24px] bg-gradient-to-br from-[#003D82] to-[#0B5CAD] p-8 text-white sm:p-10"
             >
-              <div className="mb-6 flex items-center gap-3">
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/15">
-                  <BookOpen size={22} />
-                </span>
-                <h3 className="text-2xl font-bold">Our Story</h3>
+              <div className="mb-6">
+                <span className="text-xs font-bold uppercase tracking-[0.16em] text-sky-200">Our story</span>
+                <h3 className="mt-2 text-2xl font-bold">Why ERP Titans exists</h3>
               </div>
               <div className="space-y-5 text-[16px] leading-relaxed text-blue-100">
                 {story.map((p) => (
@@ -97,7 +96,6 @@ export default function AboutIntro({ isCA = false }: { isCA?: boolean }) {
 
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
               {values.map((v, i) => {
-                const Icon = v.icon;
                 return (
                   <m.div
                     key={v.title}
@@ -107,9 +105,7 @@ export default function AboutIntro({ isCA = false }: { isCA?: boolean }) {
                     transition={{ duration: 0.45, delay: i * 0.08 }}
                     className="group rounded-[24px] bg-[#F8FAFC] p-7 ring-1 ring-[#E2E8F0] transition-all hover:-translate-y-1 hover:bg-white hover:shadow-[0_12px_30px_rgba(0,61,130,0.08)]"
                   >
-                    <span className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-white text-[#003D82] ring-1 ring-[#E2E8F0] transition-colors group-hover:bg-[#003D82] group-hover:text-white">
-                      <Icon size={22} />
-                    </span>
+                    <CardIndex n={i + 1} className="mb-5" />
                     <h3 className="mb-2 text-[17px] font-bold text-[#0F172A]">{v.title}</h3>
                     <p className="text-[15px] leading-relaxed text-[#64748B]">{v.description}</p>
                   </m.div>

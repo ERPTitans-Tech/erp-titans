@@ -1,12 +1,6 @@
 // Content for the three industry pages. Wording is carried over from the original
 // pages; the "odooApps" and "proof" blocks are new.
 
-import {
-  AlertCircle, Search, Box, LineChart, ShieldAlert, Trash2,
-  Globe, PackageOpen, Truck, Users, BarChart4, PieChart,
-  Settings, Layers, Link2, ShieldCheck, Puzzle, Package, BarChart2, Zap, Activity,
-  type LucideIcon,
-} from "lucide-react";
 
 export type IndustryKey = "cannabis" | "distribution" | "manufacturing";
 
@@ -17,8 +11,8 @@ export type Industry = {
   intro: string;
   image: string;
   imageAlt: string;
-  stat: { value: string; label: string; icon: LucideIcon };
-  challenges: { heading: string; text: string; items: { icon: LucideIcon; title: string; description: string }[] };
+  stat: { value: string; label: string };
+  challenges: { heading: string; text: string; items: { title: string; description: string }[] };
   solution: {
     heading: string;
     text: string;
@@ -26,7 +20,7 @@ export type Industry = {
     pillars?: string[];
     checklist?: string[];
     quote?: string;
-    highlights: { icon: LucideIcon; title: string; text: string }[];
+    highlights: { title: string; text: string }[];
     highlightsHeading?: string;
   };
   odooApps: { name: string; icon: string; use: string }[];
@@ -42,17 +36,17 @@ export const industries: Record<IndustryKey, Industry> = {
       "Specialized ERP recovery for cannabis producers struggling with regulatory compliance, seed-to-sale tracking, and inventory controls.",
     image: "/cannabis.webp",
     imageAlt: "Cannabis ERP Solutions",
-    stat: { value: "100%", label: "Audit Ready", icon: ShieldCheck },
+    stat: { value: "100%", label: "Audit Ready" },
     challenges: {
       heading: "Regulatory Roadblocks",
       text: "We solve the compliance and operational issues that risk your license and stall growth.",
       items: [
-        { icon: AlertCircle, title: "Compliance Reporting Errors", description: "Struggling with Health Canada & CRA reporting. Inaccurate data leads to audit risks." },
-        { icon: Search, title: "Traceability Gaps", description: "Inability to track strains and batches accurately. Manual tracking is prone to errors." },
-        { icon: Box, title: "Inventory Issues", description: "Lack of integrated tracking across cultivation, processing, and retail stages." },
-        { icon: LineChart, title: "Financial Transparency", description: "Multi-location accounting and taxation complexities make P&L transparency difficult." },
-        { icon: ShieldAlert, title: "Quality Control Hurdles", description: "QC and COA documentation are not integrated into production workflows." },
-        { icon: Trash2, title: "Waste Tracking", description: "Difficulty in documenting waste and by-product reuse as required by mandates." },
+        { title: "Compliance Reporting Errors", description: "Struggling with Health Canada & CRA reporting. Inaccurate data leads to audit risks." },
+        { title: "Traceability Gaps", description: "Inability to track strains and batches accurately. Manual tracking is prone to errors." },
+        { title: "Inventory Issues", description: "Lack of integrated tracking across cultivation, processing, and retail stages." },
+        { title: "Financial Transparency", description: "Multi-location accounting and taxation complexities make P&L transparency difficult." },
+        { title: "Quality Control Hurdles", description: "QC and COA documentation are not integrated into production workflows." },
+        { title: "Waste Tracking", description: "Difficulty in documenting waste and by-product reuse as required by mandates." },
       ],
     },
     solution: {
@@ -87,17 +81,17 @@ export const industries: Record<IndustryKey, Industry> = {
       "Specialized ERP recovery for distributors struggling with multi-warehouse operations, order fulfillment, and logistics coordination.",
     image: "/distribution.webp",
     imageAlt: "Distribution ERP Solutions",
-    stat: { value: "99.9%", label: "Stock Accuracy", icon: Package },
+    stat: { value: "99.9%", label: "Stock Accuracy" },
     challenges: {
       heading: "Distribution Bottlenecks",
       text: "We fix the operational gaps that slow down your fulfillment and hurt customer satisfaction.",
       items: [
-        { icon: Globe, title: "Multi-Warehouse Chaos", description: "Inventory visibility across locations is a nightmare. Stock levels are inaccurate, and transfers are manual." },
-        { icon: PackageOpen, title: "Order Fulfillment Delays", description: "Orders aren't automatically routed. Manual picking and packing processes cause constant errors." },
-        { icon: Truck, title: "Logistics Disconnects", description: "Shipping, tracking, and carrier management aren't integrated. Manual processes create delays." },
-        { icon: Users, title: "Customer Order Visibility", description: "Customers can't track orders in real-time. Your team can't provide accurate status updates." },
-        { icon: BarChart4, title: "Inventory Imbalances", description: "Slow-moving inventory piles up while fast-moving items are out of stock elsewhere." },
-        { icon: PieChart, title: "Reporting Gaps", description: "No visibility into warehouse performance or logistics costs. Decisions are based on guesswork." },
+        { title: "Multi-Warehouse Chaos", description: "Inventory visibility across locations is a nightmare. Stock levels are inaccurate, and transfers are manual." },
+        { title: "Order Fulfillment Delays", description: "Orders aren't automatically routed. Manual picking and packing processes cause constant errors." },
+        { title: "Logistics Disconnects", description: "Shipping, tracking, and carrier management aren't integrated. Manual processes create delays." },
+        { title: "Customer Order Visibility", description: "Customers can't track orders in real-time. Your team can't provide accurate status updates." },
+        { title: "Inventory Imbalances", description: "Slow-moving inventory piles up while fast-moving items are out of stock elsewhere." },
+        { title: "Reporting Gaps", description: "No visibility into warehouse performance or logistics costs. Decisions are based on guesswork." },
       ],
     },
     solution: {
@@ -110,8 +104,8 @@ export const industries: Record<IndustryKey, Industry> = {
       ],
       highlightsHeading: "Why Distributors Choose Us",
       highlights: [
-        { icon: Truck, title: "Operational Focus", text: "We optimize for what matters most: fast fulfillment and accurate inventory." },
-        { icon: Zap, title: "Seamless Integration", text: "Direct carrier system and customer portal integration for real-time updates." },
+        { title: "Operational Focus", text: "We optimize for what matters most: fast fulfillment and accurate inventory." },
+        { title: "Seamless Integration", text: "Direct carrier system and customer portal integration for real-time updates." },
       ],
     },
     odooApps: [
@@ -132,17 +126,17 @@ export const industries: Record<IndustryKey, Industry> = {
       "Specialized ERP recovery for manufacturers struggling with production planning, inventory management, and supply chain visibility. We fix what others couldn't.",
     image: "/manufacturing.webp",
     imageAlt: "Manufacturing ERP Solutions",
-    stat: { value: "35%", label: "Efficiency Boost", icon: BarChart2 },
+    stat: { value: "35%", label: "Efficiency Boost" },
     challenges: {
       heading: "Common Manufacturing Roadblocks",
       text: "We solve the complex problems that drain your ROI and stall production.",
       items: [
-        { icon: Settings, title: "Production Planning Chaos", description: "Your MRP/MPS isn't working, leading to missed deadlines and excess inventory. Teams rely on manual scheduling." },
-        { icon: Layers, title: "Inventory Visibility Gaps", description: "Can't track raw materials, WIP, or finished goods accurately. Constant discrepancies and write-offs." },
-        { icon: Link2, title: "Supply Chain Disconnects", description: "Supplier orders, receiving, and quality checks aren't integrated. Manual processes create delays." },
-        { icon: ShieldCheck, title: "Quality & Compliance", description: "Traceability and quality control workflows aren't properly configured. Regulatory compliance is a nightmare." },
-        { icon: BarChart4, title: "Reporting Blindness", description: "No real-time visibility into production metrics, costs, or performance. Decision-making is reactive." },
-        { icon: Puzzle, title: "Customization Overload", description: "Previous implementation added too many custom modules that conflict with core Odoo functionality." },
+        { title: "Production Planning Chaos", description: "Your MRP/MPS isn't working, leading to missed deadlines and excess inventory. Teams rely on manual scheduling." },
+        { title: "Inventory Visibility Gaps", description: "Can't track raw materials, WIP, or finished goods accurately. Constant discrepancies and write-offs." },
+        { title: "Supply Chain Disconnects", description: "Supplier orders, receiving, and quality checks aren't integrated. Manual processes create delays." },
+        { title: "Quality & Compliance", description: "Traceability and quality control workflows aren't properly configured. Regulatory compliance is a nightmare." },
+        { title: "Reporting Blindness", description: "No real-time visibility into production metrics, costs, or performance. Decision-making is reactive." },
+        { title: "Customization Overload", description: "Previous implementation added too many custom modules that conflict with core Odoo functionality." },
       ],
     },
     solution: {
@@ -155,7 +149,7 @@ export const industries: Record<IndustryKey, Industry> = {
         { title: "Supply Chain", items: ["Supplier Portal", "JIT Inventory", "Automated Receiving"] },
       ],
       highlights: [
-        { icon: Activity, title: "Zero Downtime Recovery", text: "We implement fixes in phases, ensuring your production lines keep moving while we optimize the system." },
+        { title: "Zero Downtime Recovery", text: "We implement fixes in phases, ensuring your production lines keep moving while we optimize the system." },
       ],
     },
     odooApps: [

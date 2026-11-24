@@ -2,13 +2,13 @@
 
 import Link from "next/link";
 import { m } from "framer-motion";
-import { ArrowRight, Check, Compass, Rocket, LifeBuoy, TrendingUp } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 
 const lifecycle = [
-  { icon: Compass, label: "Strategy", desc: "Blueprint & Planning" },
-  { icon: Rocket, label: "Implementation", desc: "Deployment & Training" },
-  { icon: LifeBuoy, label: "Recovery", desc: "Rescue & Optimization" },
-  { icon: TrendingUp, label: "Scale", desc: "Growth & Automation" },
+  { label: "Strategy", desc: "Blueprint & Planning" },
+  { label: "Implementation", desc: "Deployment & Training" },
+  { label: "Recovery", desc: "Rescue & Optimization" },
+  { label: "Scale", desc: "Growth & Automation" },
 ];
 
 const focus = ["ERP Recovery", "Odoo Implementation", "Managed Services", "Digital Transformation"];
@@ -82,9 +82,8 @@ export default function ServicesHero() {
               <span className="text-xs font-semibold text-[#94A3B8]">We cover every stage</span>
             </div>
             <ol className="relative space-y-4">
-              <span className="absolute left-[27px] top-6 bottom-6 w-[2px] bg-gradient-to-b from-[#003D82] via-[#0EA5E9] to-[#16A34A]" aria-hidden="true" />
+              <span className="absolute left-[34px] top-6 bottom-6 w-[2px] bg-gradient-to-b from-[#003D82] via-[#0EA5E9] to-[#16A34A]" aria-hidden="true" />
               {lifecycle.map((s, i) => {
-                const Icon = s.icon;
                 return (
                   <m.li
                     key={s.label}
@@ -93,14 +92,13 @@ export default function ServicesHero() {
                     transition={{ delay: 0.35 + i * 0.12 }}
                     className="relative flex items-center gap-5 rounded-2xl bg-[#F8FAFC] p-4 ring-1 ring-[#E2E8F0]"
                   >
-                    <span className="relative z-10 flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-xl bg-[#003D82] text-white ring-4 ring-white">
-                      <Icon size={18} />
+                    <span className="relative z-10 flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-full bg-[#003D82] text-sm font-bold tabular-nums text-white ring-4 ring-white">
+                      {String(i + 1).padStart(2, "0")}
                     </span>
                     <span className="flex-1">
                       <span className="block font-bold text-[#0F172A]">{s.label}</span>
                       <span className="text-sm text-[#64748B]">{s.desc}</span>
                     </span>
-                    <span className="text-sm font-bold text-[#CBD5E1]">{String(i + 1).padStart(2, "0")}</span>
                   </m.li>
                 );
               })}

@@ -1,13 +1,12 @@
 "use client";
 
 import { m } from "framer-motion";
-import { CheckCircle, Sparkles, Workflow } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 
 const reasons = [
-  { title: "Proven Expertise", description: "Years of experience across industries and ERP platforms.", icon: CheckCircle, stat: "50+", statLabel: "ERP Projects" },
-  { title: "Measurable Results", description: "Tangible business outcomes and ROI-focused delivery.", icon: Sparkles, stat: "Up to 4.8x", statLabel: "ROI" },
-  { title: "Seamless Integration", description: "Services designed to work together harmoniously.", icon: Workflow, stat: "End-to-End", statLabel: "Support" },
+  { title: "Proven Expertise", description: "Years of experience across industries and ERP platforms.", stat: "50+", statLabel: "ERP Projects" },
+  { title: "Measurable Results", description: "Tangible business outcomes and ROI-focused delivery.", stat: "Up to 4.8x", statLabel: "ROI" },
+  { title: "Seamless Integration", description: "Services designed to work together harmoniously.", stat: "End-to-End", statLabel: "Support" },
 ];
 
 export default function WhyChooseUs() {
@@ -23,7 +22,6 @@ export default function WhyChooseUs() {
         />
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {reasons.map((r, i) => {
-            const Icon = r.icon;
             return (
               <m.div
                 key={r.title}
@@ -33,9 +31,6 @@ export default function WhyChooseUs() {
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="flex flex-col items-center rounded-[24px] bg-white p-8 text-center shadow-[0_8px_30px_rgba(0,0,0,0.04)] ring-1 ring-[#E2E8F0]"
               >
-                <span className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#EFF6FF] text-[#003D82]">
-                  <Icon size={22} />
-                </span>
                 <div className="text-4xl font-extrabold tracking-tight text-[#003D82]">{r.stat}</div>
                 <div className="mb-5 mt-1 text-xs font-bold uppercase tracking-[0.14em] text-[#64748B]">{r.statLabel}</div>
                 <div className="mb-5 h-px w-12 bg-[#E2E8F0]" />

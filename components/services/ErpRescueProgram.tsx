@@ -2,16 +2,17 @@
 
 import Link from "next/link";
 import { m } from "framer-motion";
-import { ArrowRight, Check, Shield, UserCheck, Globe, Layers, TrendingUp } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
+import CardIndex from "@/components/ui/CardIndex";
 
 const rescueSteps = ["Root Cause Diagnostic Audit", "Data Integrity Restoration", "Process Realignment", "User Adoption Training"];
 
 const differentiators = [
-  { title: "Senior Lead Only", desc: "No junior consultants. You work with experts.", icon: UserCheck },
-  { title: "Global Delivery", desc: "Supporting clients across North America & Europe.", icon: Globe },
-  { title: "Platform Agnostic", desc: "Odoo experts, but we fix all major ERP ecosystems.", icon: Layers },
-  { title: "Outcome Focused", desc: "We measure success by your business performance.", icon: TrendingUp },
+  { title: "Senior Lead Only", desc: "No junior consultants. You work with experts." },
+  { title: "Global Delivery", desc: "Supporting clients across North America & Europe." },
+  { title: "Platform Agnostic", desc: "Odoo experts, but we fix all major ERP ecosystems." },
+  { title: "Outcome Focused", desc: "We measure success by your business performance." },
 ];
 
 export default function ErpRescueProgram() {
@@ -29,7 +30,6 @@ export default function ErpRescueProgram() {
             transition={{ duration: 0.55 }}
             className="relative flex flex-col overflow-hidden rounded-[28px] bg-gradient-to-br from-[#003D82] via-[#0A4A96] to-[#0B5CAD] p-8 text-white sm:p-10"
           >
-            <Shield className="pointer-events-none absolute -right-10 -top-10 h-56 w-56 -rotate-12 text-white/[0.06]" />
             <h3 className="mb-4 text-3xl font-extrabold tracking-tight">ERP Rescue Program™</h3>
             <p className="mb-8 max-w-lg text-[17px] leading-relaxed text-blue-100">
               Our specialized intervention for organizations with stalled, failed, or underperforming ERP implementations. We don&apos;t just
@@ -61,7 +61,6 @@ export default function ErpRescueProgram() {
             </p>
             <div className="grid grid-cols-1 flex-1 gap-4 sm:grid-cols-2">
               {differentiators.map((c, i) => {
-                const Icon = c.icon;
                 return (
                   <m.div
                     key={c.title}
@@ -69,11 +68,9 @@ export default function ErpRescueProgram() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.45, delay: i * 0.08 }}
-                    className="rounded-2xl bg-white p-5 ring-1 ring-[#E2E8F0]"
+                    className="group rounded-2xl bg-white p-5 ring-1 ring-[#E2E8F0]"
                   >
-                    <span className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-[#EFF6FF] text-[#003D82]">
-                      <Icon size={19} />
-                    </span>
+                    <CardIndex n={i + 1} className="mb-3" />
                     <h4 className="mb-1 font-bold text-[#0F172A]">{c.title}</h4>
                     <p className="text-sm leading-relaxed text-[#64748B]">{c.desc}</p>
                   </m.div>

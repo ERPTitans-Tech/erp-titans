@@ -1,30 +1,27 @@
-import { HeartPulse, GitMerge, Globe2, Target, Factory, CheckCircle2, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import CardIndex from "@/components/ui/CardIndex";
+import Tick from "@/components/ui/Tick";
 
 export default function WhyChooseOdoo() {
   const reasons = [
     {
-      icon: HeartPulse,
       title: "ERP Recovery Specialists",
       description: "Unlike general implementers, we excel at diagnosing and rectifying complex ERP challenges. Our experience in recovering failed ERP projects translates into robust, future-proof Odoo solutions."
     },
     {
-      icon: GitMerge,
       title: "Holistic Business Process Alignment",
       description: "We don't just configure software; we align Odoo with your specific business processes to ensure maximum efficiency and strategic advantage. We focus on optimizing workflows and data integrity."
     },
     {
-      icon: Globe2,
       title: "Canadian Expertise, Global Reach",
       description: "Headquartered in Canada, we combine local understanding with a global delivery capability, serving SMEs across North America and beyond."
     },
     {
-      icon: Target,
       title: "Outcome-Focused Approach",
       description: "Our success is measured by your business outcomes. We prioritize solutions that drive efficiency, reduce costs, and accelerate growth, ensuring a clear return on your Odoo investment."
     },
     {
-      icon: Factory,
       title: "Industry-Specific Solutions",
       description: "We understand that every industry has unique needs. Our team has experience delivering tailored Odoo solutions across diverse sectors.",
       tags: [
@@ -61,7 +58,7 @@ export default function WhyChooseOdoo() {
                 "End-to-End Odoo Services"
               ].map((item, idx) => (
                 <div key={idx} className="flex items-center gap-3">
-                  <CheckCircle2 size={18} className="text-[#003D82]" />
+                  <Tick tone="navy" />
                   <span className="font-semibold text-[#334155]">{item}</span>
                 </div>
               ))}
@@ -96,12 +93,8 @@ export default function WhyChooseOdoo() {
                   key={idx}
                   className={`bg-white rounded-3xl p-6 sm:p-8 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-gray-100 hover:shadow-[0_8px_30px_-4px_rgba(0,61,130,0.1)] transition-all duration-300 group hover:-translate-y-1 hover:border-[#003D82]/20 flex flex-col h-full relative overflow-hidden ${idx === 4 ? 'sm:col-span-2' : ''}`}
                 >
-                  {/* Subtle Background Accent */}
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-[#003D82]/5 rounded-bl-full -mr-8 -mt-8 transition-transform duration-500 group-hover:scale-110" />
 
-                  <div className="w-12 h-12 bg-[#003D82]/5 text-[#003D82] rounded-2xl flex items-center justify-center mb-5 shrink-0 group-hover:bg-[#003D82] group-hover:text-white transition-colors duration-300 relative z-10">
-                    <reason.icon size={24} strokeWidth={1.5} />
-                  </div>
+                  <CardIndex n={idx + 1} className="mb-5 relative z-10" />
                   
                   <h3 className="text-xl font-bold text-[#003D82] mb-3 group-hover:text-[#003D82] transition-colors relative z-10">
                     {reason.title}

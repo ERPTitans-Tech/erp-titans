@@ -1,8 +1,9 @@
 "use client";
 
 import { m } from "framer-motion";
-import { XCircle, CheckCircle2 } from "lucide-react";
+import { XCircle } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
+import Tick from "@/components/ui/Tick";
 
 const genericPoints = [
   "We do ERP implementation",
@@ -38,10 +39,7 @@ export default function Comparison() {
             transition={{ duration: 0.5 }}
             className="flex flex-col rounded-[24px] bg-white p-8 ring-1 ring-[#E2E8F0]"
           >
-            <div className="mb-6 flex items-center gap-3">
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100 text-slate-400">
-                <XCircle size={22} />
-              </span>
+            <div className="mb-6 border-b border-[#F1F5F9] pb-5">
               <div>
                 <div className="text-xs font-bold uppercase tracking-[0.14em] text-[#94A3B8]">The usual approach</div>
                 <h3 className="text-xl font-bold text-[#475569]">Generic Implementers</h3>
@@ -65,10 +63,7 @@ export default function Comparison() {
             className="relative flex flex-col overflow-hidden rounded-[24px] bg-white p-8 shadow-[0_20px_50px_rgba(0,61,130,0.12)] ring-2 ring-[#003D82]"
           >
             <span className="absolute right-6 top-6 rounded-full bg-[#003D82] px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-white">ERP Titans</span>
-            <div className="mb-6 flex items-center gap-3">
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#003D82] text-white">
-                <CheckCircle2 size={22} />
-              </span>
+            <div className="mb-6 border-b border-[#EFF6FF] pb-5">
               <div>
                 <div className="text-xs font-bold uppercase tracking-[0.14em] text-[#0EA5E9]">Our approach</div>
                 <h3 className="text-xl font-bold text-[#003D82]">ERP Specialists</h3>
@@ -77,7 +72,7 @@ export default function Comparison() {
             <ul className="space-y-4">
               {specialistPoints.map((p) => (
                 <li key={p} className="flex items-start gap-3 text-[16px] font-semibold text-[#0F172A]">
-                  <CheckCircle2 size={19} className="mt-0.5 shrink-0 text-[#16A34A]" />
+                  <Tick tone="green" className="mt-1" />
                   {p}
                 </li>
               ))}

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { m } from "framer-motion";
-import { CheckCircle2, ArrowRight, Info, FlaskConical, FileCheck2, BarChart3 } from "lucide-react";
+import { ArrowRight, Info } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 
 // Illustrative before/after picture of a typical recovery. Not client data.
@@ -122,14 +122,12 @@ export default function Outcomes() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: 0.05 }}
-              className="flex items-center gap-5 rounded-[24px] bg-[#F8FAFC] p-6 ring-1 ring-[#E2E8F0]"
+              className="flex items-center gap-6 rounded-[24px] bg-[#003D82] p-6 text-white sm:p-7"
             >
-              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#003D82] text-white">
-                <CheckCircle2 size={26} />
-              </span>
-              <div>
-                <h3 className="text-lg font-bold text-[#0F172A]">100% Outcome Focused</h3>
-                <p className="text-[15px] text-[#64748B]">Every fix is tied to a business goal.</p>
+              <span className="text-5xl font-extrabold leading-none tracking-tight tabular-nums">100%</span>
+              <div className="border-l border-white/25 pl-6">
+                <h3 className="text-lg font-bold">Outcome Focused</h3>
+                <p className="text-[15px] text-white/75">Every fix is tied to a business goal.</p>
               </div>
             </m.div>
 
@@ -150,20 +148,12 @@ export default function Outcomes() {
               <p className="mt-3 text-[15px] leading-relaxed text-[#64748B]">
                 One system of record across sister brands, from production to compliance reporting and leadership dashboards.
               </p>
-              <ul className="mt-5 grid grid-cols-1 gap-2.5 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
-                {[
-                  { icon: FileCheck2, label: "COA tracking" },
-                  { icon: FlaskConical, label: "CTLS reporting" },
-                  { icon: BarChart3, label: "Power BI" },
-                ].map((t) => {
-                  const Icon = t.icon;
-                  return (
-                    <li key={t.label} className="flex items-center gap-2 rounded-xl bg-[#F8FAFC] px-3 py-2.5 text-sm font-semibold text-[#0F172A] ring-1 ring-[#E2E8F0]">
-                      <Icon size={16} className="text-[#003D82]" />
-                      {t.label}
-                    </li>
-                  );
-                })}
+              <ul className="mt-6 grid grid-cols-3 gap-4">
+                {["COA tracking", "CTLS reporting", "Power BI"].map((label) => (
+                  <li key={label} className="border-t-2 border-[#003D82] pt-2.5 text-sm font-semibold text-[#0F172A]">
+                    {label}
+                  </li>
+                ))}
               </ul>
               <Link
                 href="/case-studies/top-tier-cannabis-brand"

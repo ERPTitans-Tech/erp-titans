@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { m, AnimatePresence } from "framer-motion";
-import { ArrowRight, Check, Search, Wrench, Zap, TrendingUp, Info } from "lucide-react";
+import { ArrowRight, Check, Info } from "lucide-react";
 import { officesFor } from "@/lib/offices";
 import Flag from "@/components/ui/Flag";
 
@@ -16,28 +16,24 @@ const GREEN = "#16A34A";
 const stages = [
   {
     key: "Diagnose",
-    icon: Search,
     text: "Identify ERP bottlenecks and implementation failures.",
     score: 38,
     bars: { "Data accuracy": 46, "User adoption": 35, "Automation": 22 },
   },
   {
     key: "Recover",
-    icon: Wrench,
     text: "Fix broken workflows and system inefficiencies.",
     score: 61,
     bars: { "Data accuracy": 72, "User adoption": 58, "Automation": 41 },
   },
   {
     key: "Optimize",
-    icon: Zap,
     text: "Improve reporting, automation, and data integrity.",
     score: 82,
     bars: { "Data accuracy": 90, "User adoption": 78, "Automation": 74 },
   },
   {
     key: "Scale",
-    icon: TrendingUp,
     text: "Build a stable foundation for future growth.",
     score: 94,
     bars: { "Data accuracy": 97, "User adoption": 92, "Automation": 90 },
@@ -151,7 +147,6 @@ export default function Hero({ isCA = false }: { isCA?: boolean }) {
             {/* Stage tabs */}
             <div className="grid grid-cols-4 gap-2" role="tablist" aria-label="Recovery stages">
               {stages.map((s, i) => {
-                const Icon = s.icon;
                 const on = i === active;
                 const done = i < active;
                 return (
@@ -168,11 +163,11 @@ export default function Hero({ isCA = false }: { isCA?: boolean }) {
                     }`}
                   >
                     <span
-                      className={`flex h-9 w-9 items-center justify-center rounded-xl ${
-                        on ? "bg-white/15" : done ? "bg-[#003D82]/10 text-[#003D82]" : "bg-white text-[#64748B] ring-1 ring-[#E2E8F0]"
+                      className={`text-lg font-extrabold leading-none tabular-nums ${
+                        on ? "text-white" : done ? "text-[#003D82]" : "text-[#94A3B8]"
                       }`}
                     >
-                      <Icon size={17} />
+                      {String(i + 1).padStart(2, "0")}
                     </span>
                     {s.key}
                   </button>

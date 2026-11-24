@@ -2,29 +2,26 @@
 
 import { useState } from "react";
 import { m } from "framer-motion";
-import { TrendingDown, Coins, EyeOff, ArrowDownRight, Info } from "lucide-react";
+import { Info } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
+import CardIndex from "@/components/ui/CardIndex";
 
 const costs = [
   {
     title: "Lost Productivity",
     description: "Employees spend hours finding workarounds, entering double data, and fighting the system instead of doing their jobs.",
-    icon: TrendingDown,
   },
   {
     title: "Increased Operational Costs",
     description: "You're paying high licensing fees for a system that isn't delivering value, while operational efficiency plummets.",
-    icon: Coins,
   },
   {
     title: "Poor Visibility",
     description: "Management cannot trust the reports. Financial closes take weeks instead of days, delaying critical decisions.",
-    icon: EyeOff,
   },
   {
     title: "Missed Growth Opportunities",
     description: "Instead of scaling the business, your leadership team is bogged down trying to stabilize basic IT infrastructure.",
-    icon: ArrowDownRight,
   },
 ];
 
@@ -143,7 +140,6 @@ export default function CostOfInaction() {
           {/* Cost cards */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {costs.map((c, i) => {
-              const Icon = c.icon;
               return (
                 <m.div
                   key={c.title}
@@ -153,9 +149,7 @@ export default function CostOfInaction() {
                   transition={{ duration: 0.45, delay: i * 0.08 }}
                   className="group flex flex-col rounded-[24px] bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] ring-1 ring-[#E2E8F0] transition-all duration-300 hover:-translate-y-1 hover:ring-[#DC2626]/30"
                 >
-                  <span className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#FEF2F2] text-[#DC2626] transition-colors group-hover:bg-[#DC2626] group-hover:text-white">
-                    <Icon size={22} />
-                  </span>
+                  <CardIndex n={i + 1} tone="red" className="mb-5" />
                   <h3 className="mb-2 text-lg font-bold text-[#0F172A]">{c.title}</h3>
                   <p className="text-[15px] leading-relaxed text-[#64748B]">{c.description}</p>
                 </m.div>

@@ -4,20 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { m, AnimatePresence } from "framer-motion";
-import {
-  MessageSquare,
-  CalendarCheck,
-  Send,
-  Loader2,
-  CheckCircle2,
-  Mail,
-  Clock,
-  Zap,
-  Check,
-  ShieldCheck,
-  ChevronDown,
-  MapPin,
-} from "lucide-react";
+import { Send, Loader2, CheckCircle2, Check, ChevronDown } from "lucide-react";
 import toast from "react-hot-toast";
 import Flag from "@/components/ui/Flag";
 import { officesFor } from "@/lib/offices";
@@ -132,11 +119,10 @@ export default function ContactForm({ isCA = false }: { isCA?: boolean }) {
               <div className="mb-8 grid grid-cols-2 rounded-full bg-[#F1F5F9] p-1" role="tablist" aria-label="Contact options">
                 {(
                   [
-                    { key: "message", label: "Send a message", short: "Message", icon: MessageSquare },
-                    { key: "meeting", label: "Book an ERP Health Audit", short: "Book an audit", icon: CalendarCheck },
+                    { key: "message", label: "Send a message", short: "Message" },
+                    { key: "meeting", label: "Book an ERP Health Audit", short: "Book an audit" },
                   ] as const
                 ).map((t) => {
-                  const Icon = t.icon;
                   const on = tab === t.key;
                   return (
                     <button
@@ -156,7 +142,6 @@ export default function ContactForm({ isCA = false }: { isCA?: boolean }) {
                           transition={{ type: "spring", stiffness: 420, damping: 34 }}
                         />
                       )}
-                      <Icon size={16} className="relative" />
                       <span className="relative hidden sm:inline">{t.label}</span>
                       <span className="relative sm:hidden">{t.short}</span>
                     </button>
@@ -281,7 +266,6 @@ export default function ContactForm({ isCA = false }: { isCA?: boolean }) {
 
                         <div className="flex flex-col-reverse gap-4 pt-1 sm:flex-row sm:items-center sm:justify-between">
                           <p className="flex items-start gap-2 text-xs leading-relaxed text-[#64748B] sm:max-w-xs">
-                            <ShieldCheck size={16} className="mt-0.5 shrink-0 text-[#16A34A]" />
                             <span>
                               We only use your details to reply to this enquiry. See our{" "}
                               <Link href="/privacy-policy" className="font-semibold text-[#003D82] hover:underline">
@@ -378,26 +362,20 @@ export default function ContactForm({ isCA = false }: { isCA?: boolean }) {
           <aside className="flex flex-col gap-6 lg:order-1">
             <div className="rounded-[24px] bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] ring-1 ring-[#E2E8F0] sm:p-7">
               <span className="text-sm font-bold uppercase tracking-[0.14em] text-[#003D82]">Talk to a specialist</span>
-              <ul className="mt-5 space-y-5">
-                <li className="flex items-start gap-4">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#EFF6FF] text-[#003D82]">
-                    <Mail size={20} />
-                  </span>
-                  <span>
-                    <span className="block text-xs font-bold uppercase tracking-wider text-[#64748B]">Email</span>
-                    <a href="mailto:sales@erptitans.com" className="text-[15px] font-semibold text-[#0F172A] hover:text-[#003D82]">
+              <dl className="mt-5 divide-y divide-[#F1F5F9]">
+                <div className="pb-4">
+                  <dt className="text-xs font-bold uppercase tracking-wider text-[#64748B]">Email</dt>
+                  <dd className="mt-1">
+                    <a href="mailto:sales@erptitans.com" className="text-[17px] font-semibold text-[#0F172A] underline decoration-[#003D82]/25 underline-offset-4 hover:decoration-[#003D82]">
                       sales@erptitans.com
                     </a>
-                  </span>
-                </li>
-                <li className="flex items-start gap-4">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#EFF6FF] text-[#003D82]">
-                    <MapPin size={20} />
-                  </span>
-                  <span>
-                    <span className="block text-xs font-bold uppercase tracking-wider text-[#64748B]">
-                      {offices.footer.length > 1 ? "Where we work" : "Based in"}
-                    </span>
+                  </dd>
+                </div>
+                <div className="py-4">
+                  <dt className="text-xs font-bold uppercase tracking-wider text-[#64748B]">
+                    {offices.footer.length > 1 ? "Where we work" : "Based in"}
+                  </dt>
+                  <dd className="mt-1 space-y-1">
                     {offices.footer.map((o) => (
                       <span key={o.label} className="flex items-center gap-2 text-[15px] font-semibold text-[#0F172A]">
                         <Flag country={o.country} />
@@ -405,21 +383,16 @@ export default function ContactForm({ isCA = false }: { isCA?: boolean }) {
                       </span>
                     ))}
                     {offices.serving && <span className="block text-sm text-[#64748B]">{offices.serving}</span>}
-                  </span>
-                </li>
-                <li className="flex items-start gap-4">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#EFF6FF] text-[#003D82]">
-                    <Clock size={20} />
-                  </span>
-                  <span>
-                    <span className="block text-xs font-bold uppercase tracking-wider text-[#64748B]">Response time</span>
-                    <span className="text-[15px] font-semibold text-[#0F172A]">Within 24 hours</span>
-                    <span className="block text-sm text-[#64748B]">Business days · Mountain Time</span>
-                  </span>
-                </li>
-              </ul>
-              <div className="mt-6 flex items-start gap-3 rounded-2xl bg-[#FEF2F2] p-4 text-sm leading-relaxed text-[#7F1D1D]">
-                <Zap size={18} className="mt-0.5 shrink-0 text-[#DC2626]" />
+                  </dd>
+                </div>
+                <div className="pt-4">
+                  <dt className="text-xs font-bold uppercase tracking-wider text-[#64748B]">Response time</dt>
+                  <dd className="mt-1 text-[15px] font-semibold text-[#0F172A]">
+                    Within 24 hours <span className="font-normal text-[#64748B]">· business days, Mountain Time</span>
+                  </dd>
+                </div>
+              </dl>
+              <div className="mt-6 border-l-2 border-[#DC2626] bg-[#FEF2F2] py-3 pl-4 pr-3 text-sm leading-relaxed text-[#7F1D1D]">
                 <span>
                   ERP down or a go-live in trouble? Put <strong>URGENT</strong> in your message and we&apos;ll prioritise it.
                 </span>

@@ -2,14 +2,15 @@
 
 import { useState } from "react";
 import { m } from "framer-motion";
-import { ShieldCheck, Activity, Globe, Settings2, X, Check } from "lucide-react";
+import { X, Check } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
+import CardIndex from "@/components/ui/CardIndex";
 
 const features = [
-  { title: "Trust-Based Approach", description: "We build relationships with SMEs who value expertise, accountability, and long-term results.", icon: ShieldCheck },
-  { title: "Proven Recovery Track Record", description: "Specialized in fixing broken ERP implementations and recovering lost value.", icon: Activity },
-  { title: "Canadian Expertise, Global Reach", description: "Headquartered in Canada, with the infrastructure to serve clients anywhere.", icon: Globe },
-  { title: "Recovery Focused", description: "We specialize in fixing underperforming ERP systems.", icon: Settings2 },
+  { title: "Trust-Based Approach", description: "We build relationships with SMEs who value expertise, accountability, and long-term results." },
+  { title: "Proven Recovery Track Record", description: "Specialized in fixing broken ERP implementations and recovering lost value." },
+  { title: "Canadian Expertise, Global Reach", description: "Headquartered in Canada, with the infrastructure to serve clients anywhere." },
+  { title: "Recovery Focused", description: "We specialize in fixing underperforming ERP systems." },
 ];
 
 const compare = [
@@ -36,7 +37,6 @@ export default function WhyERP() {
           {/* Feature cards */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {features.map((f, i) => {
-              const Icon = f.icon;
               return (
                 <m.div
                   key={f.title}
@@ -46,9 +46,7 @@ export default function WhyERP() {
                   transition={{ duration: 0.45, delay: i * 0.08 }}
                   className="group rounded-[24px] bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] ring-1 ring-[#E2E8F0] transition-all duration-300 hover:-translate-y-1 hover:ring-[#003D82]/30"
                 >
-                  <span className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#EFF6FF] text-[#003D82] transition-colors group-hover:bg-[#003D82] group-hover:text-white">
-                    <Icon size={22} />
-                  </span>
+                  <CardIndex n={i + 1} tone="navy" className="mb-5" />
                   <h3 className="mb-2 text-lg font-bold text-[#0F172A]">{f.title}</h3>
                   <p className="text-[15px] leading-relaxed text-[#64748B]">{f.description}</p>
                 </m.div>

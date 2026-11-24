@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CheckCircle2, MapPin, ChevronDown, ArrowRight } from "lucide-react";
+import { MapPin, ChevronDown, ArrowRight } from "lucide-react";
 import LocationHero from "@/components/locations/LocationHero";
 import CTA from "@/components/home/CTA";
 import JsonLd from "@/components/seo/JsonLd";
@@ -7,6 +7,7 @@ import { ORG_ID } from "@/lib/seo";
 import { getSite } from "@/lib/site";
 import { locations, type Location } from "@/lib/locations";
 import { odooServices } from "@/lib/odoo-services";
+import Tick from "@/components/ui/Tick";
 
 export default async function LocationPage({ loc }: { loc: Location }) {
   const SITE_URL = (await getSite()).base;
@@ -80,7 +81,7 @@ export default async function LocationPage({ loc }: { loc: Location }) {
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {loc.odooSetup.map((s) => (
               <li key={s} className="flex gap-3 rounded-2xl bg-white border border-[#E2E8F0] p-5 text-[15px] text-[#334155] leading-relaxed">
-                <CheckCircle2 size={20} className="text-[#16A34A] shrink-0 mt-0.5" />
+                <Tick tone="green" className="mt-1" />
                 <span>{s}</span>
               </li>
             ))}
