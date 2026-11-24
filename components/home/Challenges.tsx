@@ -102,7 +102,7 @@ export default function Challenges() {
             <div className="rounded-[28px] bg-white p-7 shadow-[0_20px_50px_rgba(0,61,130,0.10)] ring-1 ring-[#E2E8F0]">
               <div className="mb-6 flex items-center justify-between">
                 <span className="text-sm font-bold uppercase tracking-[0.14em] text-[#003D82]">Your result</span>
-                <span className="text-xs font-semibold text-[#64748B]">Tap the signs that apply</span>
+                <span className="text-xs font-semibold text-[#64748B]">Live score</span>
               </div>
 
               <div className="flex items-end gap-2">
