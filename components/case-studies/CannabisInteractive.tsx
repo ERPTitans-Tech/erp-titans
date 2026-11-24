@@ -4,12 +4,12 @@
 // ERP Titans' own visual language: light panels, brand navy (#003D82), sky and
 // green accents, Inter type and official Odoo app icons.
 // Every figure is SAMPLE DATA. None of it is client data, and each visual
-// carries an <IllustrativeBadge /> saying so.
+// is noted once on the page.
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { m, AnimatePresence, useInView } from "framer-motion";
-import { CheckCircle2, FlaskConical, Lock, Unlock, Truck, FileSpreadsheet, GitMerge, Factory, PackageCheck, RotateCcw, Info, BarChart3 } from "lucide-react";
+import { CheckCircle2, FlaskConical, Lock, Unlock, Truck, FileSpreadsheet, GitMerge, Factory, PackageCheck, RotateCcw, BarChart3 } from "lucide-react";
 
 const NAVY = "#003D82";
 const SKY = "#0EA5E9";
@@ -17,18 +17,6 @@ const GREEN = "#16A34A";
 
 /* ───────────────────────── shared bits ───────────────────────── */
 
-export function IllustrativeBadge({ onDark = false, className = "" }: { onDark?: boolean; className?: string }) {
-  return (
-    <span
-      className={`inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border border-dashed px-2.5 py-1 text-[11px] font-semibold ${
-        onDark ? "border-white/40 bg-white/10 text-white" : "border-[#003D82]/30 bg-[#EFF6FF] text-[#003D82]"
-      } ${className}`}
-    >
-      <Info size={12} />
-      Illustrative example · not client data
-    </span>
-  );
-}
 
 function Eyebrow({ children, color = NAVY }: { children: string; color?: string }) {
   return (
@@ -140,9 +128,6 @@ export function HeroDataGraph() {
         ))}
       </div>
 
-      <div className="flex justify-center px-4 pb-4">
-        <IllustrativeBadge />
-      </div>
     </div>
   );
 }
@@ -427,7 +412,6 @@ export function DataFlowStepper() {
               <span key={s.key} className={`h-1.5 rounded-full transition-all ${i === active ? "w-6 bg-[#003D82]" : "w-1.5 bg-[#003D82]/25"}`} />
             ))}
           </div>
-          <IllustrativeBadge />
         </div>
         <div className="relative flex flex-1 items-center justify-center">
           <AnimatePresence mode="wait">
@@ -487,7 +471,6 @@ export function CoaLiveCheck() {
             <div className="font-bold">Lot PR-0187 · Pre-roll 0.4 g</div>
           </div>
         </div>
-        <IllustrativeBadge onDark />
       </div>
 
       <ul className="divide-y divide-[#F1F5F9]">
@@ -569,7 +552,6 @@ export function CtlsWaterfall() {
           <Eyebrow color={GREEN}>Health Canada · CTLS</Eyebrow>
           <div className="font-bold text-[#0F172A]">Monthly reconciliation: pre-rolls (units)</div>
         </div>
-        <IllustrativeBadge />
       </div>
 
       <div className="mt-2 h-6 text-sm font-medium text-[#334155]">
@@ -652,7 +634,6 @@ export function ProductionMix({ className = "" }: { className?: string }) {
             <div className="font-bold text-[#0F172A]">Pre-roll output trend (indexed)</div>
           </div>
         </div>
-        <IllustrativeBadge />
       </div>
 
       <div className="mb-3 inline-flex rounded-full bg-[#F1F5F9] p-1">
@@ -743,7 +724,6 @@ export function DashboardTabs({ className = "" }: { className?: string }) {
             <div className="font-bold text-[#0F172A]">Leadership dashboard</div>
           </div>
         </div>
-        <IllustrativeBadge />
       </div>
       <div className="mb-3">
         <div className="inline-flex rounded-full bg-[#F1F5F9] p-1">

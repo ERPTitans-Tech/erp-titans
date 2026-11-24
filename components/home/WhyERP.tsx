@@ -1,16 +1,16 @@
 "use client";
 
+import { Ledger, LedgerItem } from "@/components/ui/Ledger";
 import { useState } from "react";
 import { m } from "framer-motion";
 import { X, Check } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
-import CardIndex from "@/components/ui/CardIndex";
 
 const features = [
-  { title: "Trust-Based Approach", description: "We build relationships with SMEs who value expertise, accountability, and long-term results." },
-  { title: "Proven Recovery Track Record", description: "Specialized in fixing broken ERP implementations and recovering lost value." },
-  { title: "Canadian Expertise, Global Reach", description: "Headquartered in Canada, with the infrastructure to serve clients anywhere." },
-  { title: "Recovery Focused", description: "We specialize in fixing underperforming ERP systems." },
+  { kicker: "How we work", title: "Trust-Based Approach", description: "We build relationships with SMEs who value expertise, accountability, and long-term results." },
+  { kicker: "Track record", title: "Proven Recovery Track Record", description: "Specialized in fixing broken ERP implementations and recovering lost value." },
+  { kicker: "Reach", title: "Canadian Expertise, Global Reach", description: "Headquartered in Canada, with the infrastructure to serve clients anywhere." },
+  { kicker: "Focus", title: "Recovery Focused", description: "We specialize in fixing underperforming ERP systems." },
 ];
 
 const compare = [
@@ -34,25 +34,14 @@ export default function WhyERP() {
         />
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1.1fr]">
-          {/* Feature cards */}
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {features.map((f, i) => {
-              return (
-                <m.div
-                  key={f.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.45, delay: i * 0.08 }}
-                  className="group rounded-[24px] bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] ring-1 ring-[#E2E8F0] transition-all duration-300 hover:-translate-y-1 hover:ring-[#003D82]/30"
-                >
-                  <CardIndex n={i + 1} tone="navy" className="mb-5" />
-                  <h3 className="mb-2 text-lg font-bold text-[#0F172A]">{f.title}</h3>
-                  <p className="text-[15px] leading-relaxed text-[#64748B]">{f.description}</p>
-                </m.div>
-              );
-            })}
-          </div>
+          {/* What sets us apart */}
+          <Ledger>
+            {features.map((f) => (
+              <LedgerItem key={f.title} kicker={f.kicker} title={f.title}>
+                {f.description}
+              </LedgerItem>
+            ))}
+          </Ledger>
 
           {/* Comparison */}
           <m.div

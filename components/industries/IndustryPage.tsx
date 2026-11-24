@@ -1,5 +1,6 @@
 "use client";
 
+import { Ledger, LedgerItem } from "@/components/ui/Ledger";
 import Link from "next/link";
 import Image from "next/image";
 import { m } from "framer-motion";
@@ -7,7 +8,6 @@ import { ArrowRight, ChevronRight, Quote } from "lucide-react";
 import CTA from "@/components/home/CTA";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { industries, type IndustryKey } from "@/lib/industries";
-import CardIndex from "@/components/ui/CardIndex";
 import Tick from "@/components/ui/Tick";
 
 const fadeUp = {
@@ -106,22 +106,13 @@ export default function IndustryPage({ industry }: { industry: IndustryKey }) {
       <section className="border-t border-[#E2E8F0] bg-white py-20 lg:py-24">
         <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader n={1} label="The challenge" title={d.challenges.heading} text={d.challenges.text} />
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {d.challenges.items.map((c, i) => {
-              return (
-                <m.div
-                  key={c.title}
-                  {...fadeUp}
-                  transition={{ duration: 0.45, delay: i * 0.06 }}
-                  className="group relative rounded-[20px] bg-[#F8FAFC] p-7 ring-1 ring-[#E2E8F0] transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-[0_12px_30px_rgba(0,61,130,0.08)]"
-                >
-                  <CardIndex n={i + 1} className="mb-5" />
-                  <h3 className="mb-2 text-[17px] font-bold text-[#0F172A]">{c.title}</h3>
-                  <p className="text-[15px] leading-relaxed text-[#64748B]">{c.description}</p>
-                </m.div>
-              );
-            })}
-          </div>
+          <Ledger cols={3}>
+            {d.challenges.items.map((c) => (
+              <LedgerItem key={c.title} title={c.title}>
+                {c.description}
+              </LedgerItem>
+            ))}
+          </Ledger>
         </div>
       </section>
 
@@ -189,10 +180,10 @@ export default function IndustryPage({ industry }: { industry: IndustryKey }) {
             <div className="mt-10">
               {d.solution.highlightsHeading && <h3 className="mb-5 text-xl font-extrabold text-[#0F172A]">{d.solution.highlightsHeading}</h3>}
               <div className={`grid grid-cols-1 gap-6 ${d.solution.highlights.length > 1 ?"md:grid-cols-2" : ""}`}>
-                {d.solution.highlights.map((h, i) => {
+                {d.solution.highlights.map((h) => {
                   return (
                     <div key={h.title} className="group rounded-[20px] bg-gradient-to-r from-[#003D82] to-[#0B5CAD] p-7 text-white">
-                      <CardIndex n={i + 1} tone="light" className="mb-4" />
+                      <span className="mb-4 block h-[3px] w-10 rounded-full bg-white/60" aria-hidden="true" />
                       <div>
                         <h4 className="mb-1.5 text-lg font-bold">{h.title}</h4>
                         <p className="text-[15px] leading-relaxed text-blue-100">{h.text}</p>

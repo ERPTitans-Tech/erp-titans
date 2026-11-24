@@ -1,6 +1,5 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import CardIndex from "@/components/ui/CardIndex";
 import Tick from "@/components/ui/Tick";
 
 export default function WhyChooseOdoo() {
@@ -94,7 +93,7 @@ export default function WhyChooseOdoo() {
                   className={`bg-white rounded-3xl p-6 sm:p-8 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-gray-100 hover:shadow-[0_8px_30px_-4px_rgba(0,61,130,0.1)] transition-all duration-300 group hover:-translate-y-1 hover:border-[#003D82]/20 flex flex-col h-full relative overflow-hidden ${idx === 4 ? 'sm:col-span-2' : ''}`}
                 >
 
-                  <CardIndex n={idx + 1} className="mb-5 relative z-10" />
+                  <span className="relative z-10 mb-5 block h-[3px] w-10 rounded-full bg-[#003D82] transition-all duration-300 group-hover:w-16" aria-hidden="true" />
                   
                   <h3 className="text-xl font-bold text-[#003D82] mb-3 group-hover:text-[#003D82] transition-colors relative z-10">
                     {reason.title}

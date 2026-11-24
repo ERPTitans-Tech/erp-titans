@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { m } from "framer-motion";
-import { ArrowRight, Info } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 
 // Illustrative before/after picture of a typical recovery. Not client data.
@@ -42,11 +42,6 @@ export default function Outcomes() {
             <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
               <div>
                 <span className="text-sm font-bold uppercase tracking-[0.14em] text-[#003D82]">Recovery scorecard</span>
-                <div className="mt-2">
-                  <span className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-dashed border-[#003D82]/30 bg-[#EFF6FF] px-2.5 py-1 text-[11px] font-semibold text-[#003D82]">
-                    <Info size={12} /> Illustrative example · not client data
-                  </span>
-                </div>
               </div>
               <div className="inline-flex rounded-full bg-[#F1F5F9] p-1" role="tablist" aria-label="Before or after recovery">
                 {[
@@ -113,6 +108,7 @@ export default function Outcomes() {
                 );
               })}
             </div>
+            <p className="mt-6 text-xs text-[#64748B]">Typical results shown for illustration.</p>
           </m.div>
 
           {/* Outcome focus + proof */}

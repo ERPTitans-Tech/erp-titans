@@ -1,16 +1,16 @@
 "use client";
 
+import { Ledger, LedgerItem } from "@/components/ui/Ledger";
 import Image from "next/image";
 import { m } from "framer-motion";
 import { Plus, MapPin } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
-import CardIndex from "@/components/ui/CardIndex";
 
 const values = [
-  { title: "Trust Over Cost", description: "Relationships built on transparency, not just price." },
-  { title: "Specialization", description: "Deep focus on recovery, not being everything to everyone." },
-  { title: "Results First", description: "We measure success by real business outcomes." },
-  { title: "Global Reach", description: "Canadian-based expertise with the infrastructure to serve you anywhere." },
+  { kicker: "Relationships", title: "Trust Over Cost", description: "Relationships built on transparency, not just price." },
+  { kicker: "Expertise", title: "Specialization", description: "Deep focus on recovery, not being everything to everyone." },
+  { kicker: "Outcomes", title: "Results First", description: "We measure success by real business outcomes." },
+  { kicker: "Reach", title: "Global Reach", description: "Canadian-based expertise with the infrastructure to serve you anywhere." },
 ];
 
 const story = [
@@ -94,24 +94,13 @@ export default function AboutIntro({ isCA = false }: { isCA?: boolean }) {
               </div>
             </m.div>
 
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-              {values.map((v, i) => {
-                return (
-                  <m.div
-                    key={v.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.45, delay: i * 0.08 }}
-                    className="group rounded-[24px] bg-[#F8FAFC] p-7 ring-1 ring-[#E2E8F0] transition-all hover:-translate-y-1 hover:bg-white hover:shadow-[0_12px_30px_rgba(0,61,130,0.08)]"
-                  >
-                    <CardIndex n={i + 1} className="mb-5" />
-                    <h3 className="mb-2 text-[17px] font-bold text-[#0F172A]">{v.title}</h3>
-                    <p className="text-[15px] leading-relaxed text-[#64748B]">{v.description}</p>
-                  </m.div>
-                );
-              })}
-            </div>
+            <Ledger>
+              {values.map((v) => (
+                <LedgerItem key={v.title} kicker={v.kicker} title={v.title}>
+                  {v.description}
+                </LedgerItem>
+              ))}
+            </Ledger>
           </div>
         </div>
       </section>

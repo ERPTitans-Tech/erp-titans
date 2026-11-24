@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { m } from "framer-motion";
 import SectionHeader from "@/components/ui/SectionHeader";
-import CardIndex from "@/components/ui/CardIndex";
 
 // Taglines and icons matched to each pillar (the originals had drifted out of order).
 const servicePillars = [
@@ -49,10 +48,10 @@ export default function ServicePillars() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.45, delay: (i % 2) * 0.08 }}
-                className="group flex gap-5 rounded-[20px] bg-[#F8FAFC] p-6 ring-1 ring-[#E2E8F0] transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-[0_12px_30px_rgba(0,61,130,0.08)]"
+                className="group relative flex gap-5 rounded-[20px] bg-[#F8FAFC] p-6 ring-1 ring-[#E2E8F0] transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-[0_12px_30px_rgba(0,61,130,0.08)]"
               >
+                <span className="absolute left-0 top-7 h-8 w-[3px] origin-top scale-y-0 rounded-r-full bg-[#003D82] transition-transform duration-300 group-hover:scale-y-100" aria-hidden="true" />
                 <div>
-                  <CardIndex n={i + 1} className="mb-4" />
                   <div className="mb-1 text-[11px] font-bold uppercase tracking-[0.14em] text-[#0EA5E9]">{p.tagline}</div>
                   <h3 className="mb-2 text-lg font-bold text-[#003D82]">{p.title}</h3>
                   <p className="text-[15px] leading-relaxed text-[#64748B]">{p.description}</p>

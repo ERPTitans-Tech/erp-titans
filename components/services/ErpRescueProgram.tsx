@@ -1,18 +1,18 @@
 "use client";
 
+import { Ledger, LedgerItem } from "@/components/ui/Ledger";
 import Link from "next/link";
 import { m } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
-import CardIndex from "@/components/ui/CardIndex";
 
 const rescueSteps = ["Root Cause Diagnostic Audit", "Data Integrity Restoration", "Process Realignment", "User Adoption Training"];
 
 const differentiators = [
-  { title: "Senior Lead Only", desc: "No junior consultants. You work with experts." },
-  { title: "Global Delivery", desc: "Supporting clients across North America & Europe." },
-  { title: "Platform Agnostic", desc: "Odoo experts, but we fix all major ERP ecosystems." },
-  { title: "Outcome Focused", desc: "We measure success by your business performance." },
+  { kicker: "People", title: "Senior Lead Only", desc: "No junior consultants. You work with experts." },
+  { kicker: "Reach", title: "Global Delivery", desc: "Supporting clients across North America & Europe." },
+  { kicker: "Platforms", title: "Platform Agnostic", desc: "Odoo experts, but we fix all major ERP ecosystems." },
+  { kicker: "Results", title: "Outcome Focused", desc: "We measure success by your business performance." },
 ];
 
 export default function ErpRescueProgram() {
@@ -59,24 +59,13 @@ export default function ErpRescueProgram() {
               Most ERP failures aren&apos;t software problems. They&apos;re execution problems. We combine deep technical knowledge of Odoo and
               other platforms with senior-level business process expertise.
             </p>
-            <div className="grid grid-cols-1 flex-1 gap-4 sm:grid-cols-2">
-              {differentiators.map((c, i) => {
-                return (
-                  <m.div
-                    key={c.title}
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.45, delay: i * 0.08 }}
-                    className="group rounded-2xl bg-white p-5 ring-1 ring-[#E2E8F0]"
-                  >
-                    <CardIndex n={i + 1} className="mb-3" />
-                    <h4 className="mb-1 font-bold text-[#0F172A]">{c.title}</h4>
-                    <p className="text-sm leading-relaxed text-[#64748B]">{c.desc}</p>
-                  </m.div>
-                );
-              })}
-            </div>
+            <Ledger className="flex-1">
+              {differentiators.map((c) => (
+                <LedgerItem key={c.title} kicker={c.kicker} title={c.title}>
+                  {c.desc}
+                </LedgerItem>
+              ))}
+            </Ledger>
           </div>
         </div>
       </div>

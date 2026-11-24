@@ -5,7 +5,6 @@ import Link from "next/link";
 import { m, AnimatePresence } from "framer-motion";
 import { Check, ArrowRight } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
-import CardIndex from "@/components/ui/CardIndex";
 
 const symptoms = [
   { title: "Teams Still Using Excel", description: "Employees revert to manual spreadsheets because the ERP is too hard to use or lacks functionality." },
@@ -76,7 +75,7 @@ export default function Challenges() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.45, delay: i * 0.05 }}
-                  className={`group relative flex flex-col items-start rounded-[24px] p-6 text-left transition-all duration-300 ${
+                  className={`group relative flex flex-col items-start overflow-hidden rounded-[24px] p-6 text-left transition-all duration-300 ${
                     on
                       ? "bg-[#EFF6FF] shadow-[0_10px_30px_rgba(0,61,130,0.12)] ring-2 ring-[#003D82]"
                       : "bg-white shadow-[0_8px_30px_rgba(0,0,0,0.04)] ring-1 ring-[#E2E8F0] hover:-translate-y-1 hover:ring-[#003D82]/30"
@@ -89,8 +88,11 @@ export default function Challenges() {
                   >
                     {on && <Check size={13} strokeWidth={3} />}
                   </span>
-                  <CardIndex n={i + 1} tone="navy" className="mb-5" />
-                  <h3 className="mb-2 text-lg font-bold text-[#0F172A]">{s.title}</h3>
+                  <span
+                    className={`absolute inset-x-6 bottom-0 h-[3px] origin-left rounded-t-full bg-[#003D82] transition-transform duration-300 ${on ? "scale-x-100" : "scale-x-0"}`}
+                    aria-hidden="true"
+                  />
+                  <h3 className="mb-2 pr-8 text-lg font-bold text-[#0F172A]">{s.title}</h3>
                   <p className="text-[15px] leading-relaxed text-[#64748B]">{s.description}</p>
                 </m.button>
               );

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { m, AnimatePresence } from "framer-motion";
-import { ArrowRight, Check, Info } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { officesFor } from "@/lib/offices";
 import Flag from "@/components/ui/Flag";
 
@@ -139,9 +139,6 @@ export default function Hero({ isCA = false }: { isCA?: boolean }) {
                 <span className="text-sm font-bold uppercase tracking-[0.14em] text-[#003D82]">ERP Recovery Framework</span>
                 <p className="mt-1 text-sm text-[#64748B]">Our proven methodology for system optimization</p>
               </div>
-              <span className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border border-dashed border-[#003D82]/30 bg-[#EFF6FF] px-2.5 py-1 text-[11px] font-semibold text-[#003D82]">
-                <Info size={12} /> Illustrative
-              </span>
             </div>
 
             {/* Stage tabs */}

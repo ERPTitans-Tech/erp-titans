@@ -11,7 +11,6 @@ import {
   CtlsWaterfall,
   ProductionMix,
   DashboardTabs,
-  IllustrativeBadge,
 } from "@/components/case-studies/CannabisInteractive";
 
 export const metadata = {
@@ -319,13 +318,9 @@ export default function TopTierCannabisCaseStudyPage() {
             ))}
           </div>
 
-          <div className="mt-6 flex flex-col gap-3 rounded-2xl border border-dashed border-[#003D82]/25 bg-[#EFF6FF] px-5 py-4 sm:flex-row sm:items-center">
-            <IllustrativeBadge />
-            <p className="text-sm leading-relaxed text-[#1E3A5F]">
-              The interactive charts, dashboards and sample records on this page are illustrations built to show how
-              the system works. They use made-up sample values and are not the client&apos;s data.
-            </p>
-          </div>
+          <p className="mt-6 border-l-2 border-[#003D82]/30 pl-4 text-sm leading-relaxed text-[#64748B]">
+            Charts, dashboards and sample records on this page are illustrations of how the system works, using sample values rather than client data.
+          </p>
         </div>
       </section>
 

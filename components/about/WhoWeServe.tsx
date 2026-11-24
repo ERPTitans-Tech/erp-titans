@@ -2,7 +2,6 @@
 
 import { m } from "framer-motion";
 import SectionHeader from "@/components/ui/SectionHeader";
-import CardIndex from "@/components/ui/CardIndex";
 
 const audiences = [
   { title: "CFOs & Controllers", description: "Focused on ROI, financial controls, and reporting accuracy.", tag: "Finance Leadership" },
@@ -32,7 +31,6 @@ export default function WhoWeServe() {
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="group flex flex-col items-center rounded-[24px] bg-[#F8FAFC] p-8 text-center ring-1 ring-[#E2E8F0] transition-all hover:-translate-y-1 hover:bg-white hover:shadow-[0_12px_30px_rgba(0,61,130,0.08)]"
               >
-                <CardIndex n={i + 1} className="mb-5" />
                 <span className="mb-3 rounded-full bg-[#EFF6FF] px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-[#003D82]">{a.tag}</span>
                 <h3 className="mb-2 text-xl font-bold text-[#0F172A]">{a.title}</h3>
                 <p className="leading-relaxed text-[#64748B]">{a.description}</p>

@@ -1,25 +1,28 @@
 "use client";
 
+import { Ledger, LedgerItem } from "@/components/ui/Ledger";
 import { useState } from "react";
 import { m } from "framer-motion";
-import { Info } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
-import CardIndex from "@/components/ui/CardIndex";
 
 const costs = [
   {
+    kicker: "Time",
     title: "Lost Productivity",
     description: "Employees spend hours finding workarounds, entering double data, and fighting the system instead of doing their jobs.",
   },
   {
+    kicker: "Money",
     title: "Increased Operational Costs",
     description: "You're paying high licensing fees for a system that isn't delivering value, while operational efficiency plummets.",
   },
   {
+    kicker: "Insight",
     title: "Poor Visibility",
     description: "Management cannot trust the reports. Financial closes take weeks instead of days, delaying critical decisions.",
   },
   {
+    kicker: "Growth",
     title: "Missed Growth Opportunities",
     description: "Instead of scaling the business, your leadership team is bogged down trying to stabilize basic IT infrastructure.",
   },
@@ -101,9 +104,6 @@ export default function CostOfInaction() {
                 <span className="text-sm font-bold uppercase tracking-[0.14em] text-[#003D82]">Workaround cost estimator</span>
                 <p className="mt-1 text-sm text-[#64748B]">Move the sliders to match your business.</p>
               </div>
-              <span className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border border-dashed border-[#003D82]/30 bg-[#EFF6FF] px-2.5 py-1 text-[11px] font-semibold text-[#003D82]">
-                <Info size={12} /> Illustrative estimate
-              </span>
             </div>
 
             <div className="space-y-6">
@@ -137,25 +137,14 @@ export default function CostOfInaction() {
             </p>
           </m.div>
 
-          {/* Cost cards */}
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {costs.map((c, i) => {
-              return (
-                <m.div
-                  key={c.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.45, delay: i * 0.08 }}
-                  className="group flex flex-col rounded-[24px] bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] ring-1 ring-[#E2E8F0] transition-all duration-300 hover:-translate-y-1 hover:ring-[#DC2626]/30"
-                >
-                  <CardIndex n={i + 1} tone="red" className="mb-5" />
-                  <h3 className="mb-2 text-lg font-bold text-[#0F172A]">{c.title}</h3>
-                  <p className="text-[15px] leading-relaxed text-[#64748B]">{c.description}</p>
-                </m.div>
-              );
-            })}
-          </div>
+          {/* What it costs */}
+          <Ledger>
+            {costs.map((c) => (
+              <LedgerItem key={c.title} kicker={c.kicker} title={c.title} tone="red">
+                {c.description}
+              </LedgerItem>
+            ))}
+          </Ledger>
         </div>
       </div>
     </section>
