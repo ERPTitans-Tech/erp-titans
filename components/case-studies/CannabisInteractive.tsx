@@ -766,3 +766,234 @@ export function DashboardTabs({ className = "" }: { className?: string }) {
     </div>
   );
 }
+
+/* ────────────────────────────────────────────────────────────────────────────
+ * How we delivered: five phases, auto-playing. The Odoo apps below fill in as
+ * each phase brings them into the platform (dashed = planned, solid = built,
+ * green = live). No dates or sprint counts by design.
+ * ──────────────────────────────────────────────────────────────────────────── */
+
+const PHASE_MS = 5200;
+
+const DELIVERY = [
+  {
+    short: "Understand & Design",
+    title: "Understand & Design",
+    text: "We started by understanding the business, its operational challenges and key processes. This helped shape the solution around procurement, inventory, manufacturing, distribution and financial operations.",
+    focus: ["Business discovery", "Process alignment", "Solution design"],
+  },
+  {
+    short: "Establish the Foundation",
+    title: "Establish the Foundation",
+    text: "We brought procurement, vendor management, receiving, quality checks, COA tracking and inventory management together, establishing the foundation for controlled stock movements and lot traceability.",
+    focus: ["Procurement", "Vendor management", "Receiving", "Quality checks", "COA tracking", "Inventory & lots"],
+  },
+  {
+    short: "Connect Manufacturing",
+    title: "Connect Manufacturing & Operations",
+    text: "We connected production planning, BOMs, work orders, material consumption, WIP tracking, packaging and finished goods, linking manufacturing activities with inventory.",
+    focus: ["Production planning", "BOMs", "Work orders", "Material consumption", "WIP tracking", "Packaging & finished goods"],
+  },
+  {
+    short: "Integrate the Lifecycle",
+    title: "Integrate the Business Lifecycle",
+    text: "We extended the platform across sales, distribution, consignment, accounting and compliance-related reporting, connecting operational transactions with financial and management visibility.",
+    focus: ["Sales", "Distribution", "Consignment", "Accounting", "Compliance reporting"],
+  },
+  {
+    short: "Launch & Stabilize",
+    title: "Validate, Launch & Stabilize",
+    text: "We brought the integrated workflows through system testing and business-user validation before production launch, followed by dedicated hypercare to support users and stabilize day-to-day operations.",
+    focus: ["System testing", "Business-user validation", "Production launch", "Hypercare"],
+  },
+];
+
+// Phase (0-based) in which each app joins the platform.
+const BUILD = [
+  { name: "Purchase", icon: "purchase", from: 1 },
+  { name: "Quality", icon: "quality_control", from: 1 },
+  { name: "Inventory", icon: "stock", from: 1 },
+  { name: "Manufacturing", icon: "mrp", from: 2 },
+  { name: "Sales", icon: "sale_management", from: 3 },
+  { name: "CRM", icon: "crm", from: 3 },
+  { name: "Accounting", icon: "accountant", from: 3 },
+];
+
+export function DeliveryPhases() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { amount: 0.35 });
+  const [active, setActive] = useState(0);
+  const [hovered, setHovered] = useState(false);
+  const [stopped, setStopped] = useState(false);
+  const [reduced, setReduced] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setReduced(mq.matches);
+  }, []);
+
+  const playing = inView && !hovered && !stopped && !reduced;
+
+  useEffect(() => {
+    if (!playing) return;
+    const id = setTimeout(() => setActive((a) => (a + 1) % DELIVERY.length), PHASE_MS);
+    return () => clearTimeout(id);
+  }, [playing, active]);
+
+  const phase = DELIVERY[active];
+  const live = active === DELIVERY.length - 1;
+
+  return (
+    <div
+      ref={ref}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="overflow-hidden rounded-[28px] bg-white shadow-[0_20px_50px_rgba(0,61,130,0.10)] ring-1 ring-[#E2E8F0]"
+    >
+      <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr]">
+        {/* Phase list */}
+        <div className="border-b border-[#E2E8F0] bg-[#F8FAFC] p-4 sm:p-6 lg:border-b-0 lg:border-r">
+          <div className="mb-4 flex items-center justify-between px-2">
+            <Eyebrow>Delivery path</Eyebrow>
+            <button
+              type="button"
+              onClick={() => setStopped((s) => !s)}
+              aria-label={stopped ? "Play the walkthrough" : "Pause the walkthrough"}
+              className="rounded-full px-3 py-1 text-xs font-bold text-[#003D82] ring-1 ring-[#003D82]/20 transition-colors hover:bg-white"
+            >
+              {stopped ? "Play" : "Pause"}
+            </button>
+          </div>
+          <ol className="grid grid-cols-5 gap-1.5 lg:grid-cols-1 lg:gap-1" role="tablist" aria-label="Delivery phases">
+            {DELIVERY.map((p, i) => {
+              const on = i === active;
+              const done = i < active;
+              return (
+                <li key={p.title}>
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={on}
+                    onClick={() => {
+                      setActive(i);
+                      setStopped(true);
+                    }}
+                    className={`relative flex w-full flex-col items-center gap-1 overflow-hidden rounded-2xl px-2 py-3 text-center transition-all lg:flex-row lg:items-center lg:gap-4 lg:px-4 lg:py-3.5 lg:text-left ${
+                      on ? "bg-white shadow-[0_6px_20px_rgba(0,61,130,0.10)] ring-1 ring-[#E2E8F0]" : "hover:bg-white/70"
+                    }`}
+                  >
+                    <span
+                      className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-extrabold tabular-nums transition-colors ${
+                        on
+                          ? i === DELIVERY.length - 1
+                            ? "bg-[#16A34A] text-white"
+                            : "bg-[#003D82] text-white"
+                          : done
+                          ? "bg-[#003D82]/10 text-[#003D82]"
+                          : "bg-white text-[#94A3B8] ring-1 ring-[#E2E8F0]"
+                      }`}
+                    >
+                      {done ? <CheckCircle2 size={16} /> : i + 1}
+                    </span>
+                    <span className={`hidden text-[15px] font-bold leading-snug lg:block ${on ? "text-[#0F172A]" : "text-[#475569]"}`}>
+                      {p.short}
+                    </span>
+                    {/* Auto-play progress */}
+                    {on && (
+                      <span className="absolute inset-x-3 bottom-0 h-[3px] overflow-hidden rounded-full bg-[#E2E8F0] lg:inset-x-4">
+                        <m.span
+                          key={`${active}-${playing}`}
+                          className={`block h-full rounded-full ${i === DELIVERY.length - 1 ? "bg-[#16A34A]" : "bg-[#003D82]"}`}
+                          initial={{ width: "0%" }}
+                          animate={{ width: playing ? "100%" : "0%" }}
+                          transition={{ duration: playing ? PHASE_MS / 1000 : 0, ease: "linear" }}
+                        />
+                      </span>
+                    )}
+                  </button>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
+
+        {/* Active phase */}
+        <div className="flex flex-col p-6 sm:p-8 lg:p-10">
+          <AnimatePresence mode="wait" initial={false}>
+            <m.div
+              key={phase.title}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.35 }}
+            >
+              <div className={`text-xs font-bold uppercase tracking-[0.16em] ${live ? "text-[#16A34A]" : "text-[#0284C7]"}`}>
+                Phase {active + 1} of {DELIVERY.length}
+              </div>
+              <h3 className="mt-2 text-2xl font-extrabold tracking-tight text-[#003D82] sm:text-3xl">{phase.title}</h3>
+              <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[#475569] sm:text-[17px]">{phase.text}</p>
+              <ul className="mt-6 flex flex-wrap gap-2">
+                {phase.focus.map((f, i) => (
+                  <m.li
+                    key={f}
+                    initial={{ opacity: 0, scale: 0.92 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.12 + i * 0.06 }}
+                    className={`rounded-full px-3.5 py-1.5 text-sm font-semibold ${
+                      live ? "bg-[#16A34A]/10 text-[#166534]" : "bg-[#EFF6FF] text-[#003D82]"
+                    }`}
+                  >
+                    {f}
+                  </m.li>
+                ))}
+              </ul>
+            </m.div>
+          </AnimatePresence>
+
+          {/* Platform build-up */}
+          <div className="mt-auto pt-8">
+            <div className="mb-3 flex items-center justify-between gap-3">
+              <span className="text-xs font-bold uppercase tracking-[0.14em] text-[#64748B]">Platform build-up</span>
+              <span className={`text-xs font-semibold ${live ? "text-[#16A34A]" : "text-[#64748B]"}`}>
+                {active === 0 ? "Blueprint" : live ? "Live and stable" : "In progress"}
+              </span>
+            </div>
+            <div className="grid grid-cols-4 gap-2 sm:grid-cols-7">
+              {BUILD.map((b) => {
+                const built = active >= b.from;
+                const isNew = active === b.from;
+                return (
+                  <div
+                    key={b.name}
+                    className={`relative flex flex-col items-center gap-1.5 rounded-2xl px-1 py-3 transition-all duration-500 ${
+                      live
+                        ? "bg-[#F0FDF4] ring-1 ring-[#16A34A]/30"
+                        : built
+                        ? `bg-white ring-1 ${isNew ? "ring-[#003D82]/40 shadow-[0_6px_18px_rgba(0,61,130,0.12)]" : "ring-[#E2E8F0]"}`
+                        : "border border-dashed border-[#CBD5E1] bg-transparent"
+                    }`}
+                  >
+                    <Image
+                      src={`/odoo-icons/svg/${b.icon}.svg`}
+                      alt=""
+                      width={32}
+                      height={32}
+                      className={`h-8 w-8 transition-all duration-500 ${built ? "" : "opacity-30 grayscale"}`}
+                    />
+                    <span className={`text-[11px] font-semibold ${built ? "text-[#0F172A]" : "text-[#94A3B8]"}`}>{b.name}</span>
+                    {live && (
+                      <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#16A34A] text-white">
+                        <CheckCircle2 size={10} />
+                      </span>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

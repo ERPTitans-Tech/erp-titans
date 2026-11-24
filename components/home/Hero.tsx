@@ -285,7 +285,7 @@ export default function Hero({ isCA = false }: { isCA?: boolean }) {
             <span className="rounded-full bg-[#003D82] px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider text-white group-hover:bg-white group-hover:text-[#003D82]">
               New
             </span>
-            Odoo go-live case study
+            Cannabis ERP case study
             <ArrowRight size={15} />
           </Link>
         </m.div>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, MapPin, Briefcase } from "lucide-react";
 import CTA from "@/components/home/CTA";
 import { caseStudies } from "@/lib/case-studies";
@@ -70,17 +71,16 @@ export default function CaseStudiesPage() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-3 gap-4 sm:flex sm:gap-6 lg:flex-col lg:gap-5 lg:pl-10 lg:border-l lg:border-gray-100">
-                    {cs.stats.map((s) => (
-                      <div key={s.label} className="min-w-0 sm:min-w-[90px]">
-                        <div className="text-3xl md:text-4xl font-extrabold text-[#003D82] leading-none">
-                          {s.value}
+                  <div className="lg:border-l lg:border-gray-100 lg:pl-10">
+                    <div className="mb-3 text-xs font-bold uppercase tracking-[0.14em] text-[#64748B]">Built on Odoo</div>
+                    <div className="grid grid-cols-6 gap-3 lg:grid-cols-3">
+                      {cs.apps.map((a) => (
+                        <div key={a.name} className="flex flex-col items-center gap-1" title={a.name}>
+                          <Image src={`/odoo-icons/svg/${a.icon}.svg`} alt={a.name} width={40} height={40} className="h-10 w-10" />
+                          <span className="hidden text-[11px] font-semibold text-[#64748B] sm:block">{a.name}</span>
                         </div>
-                        <div className="text-xs font-semibold uppercase tracking-wider text-[#64748B] mt-1">
-                          {s.label}
-                        </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
                 </div>
 

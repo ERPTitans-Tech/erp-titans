@@ -11,7 +11,7 @@ export type CaseStudySummary = {
   headline: string;
   summary: string;
   tags: string[];
-  stats: { value: string; label: string }[];
+  apps: { name: string; icon: string }[];
 };
 
 export const caseStudies: CaseStudySummary[] = [
@@ -23,12 +23,15 @@ export const caseStudies: CaseStudySummary[] = [
     engagement: "Full-Cycle Odoo Implementation",
     headline: "End-to-end Odoo ERP for a leader in 1 g and 0.4 g pre-rolls",
     summary:
-      "A fully integrated Odoo ERP for a top-tier Canadian cannabis brand and its sister brands, covering procurement, seed-to-sale traceability, Certificate of Analysis management, manufacturing, consignment sales, field CRM, cannabis-compliant accounting and Health Canada CTLS reporting, with Power BI analytics on top. Live since November 1, 2026.",
+      "A fully integrated Odoo ERP for a top-tier Canadian cannabis brand and its sister brands, covering procurement, seed-to-sale traceability, Certificate of Analysis management, manufacturing, consignment sales, field CRM, cannabis-compliant accounting and Health Canada CTLS reporting, with Power BI analytics on top.",
     tags: ["Odoo", "Cannabis", "COA Management", "CTLS Reporting", "Lot Traceability", "Power BI"],
-    stats: [
-      { value: "6", label: "Core business areas" },
-      { value: "11", label: "Agile sprints" },
-      { value: "13", label: "Power BI reports" },
+    apps: [
+      { name: "Purchase", icon: "purchase" },
+      { name: "Quality", icon: "quality_control" },
+      { name: "Inventory", icon: "stock" },
+      { name: "Manufacturing", icon: "mrp" },
+      { name: "Sales", icon: "sale_management" },
+      { name: "Accounting", icon: "accountant" },
     ],
   },
 ];

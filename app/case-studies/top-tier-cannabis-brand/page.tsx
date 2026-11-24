@@ -10,6 +10,7 @@ import {
   CoaLiveCheck,
   CtlsWaterfall,
   ProductionMix,
+  DeliveryPhases,
   DashboardTabs,
 } from "@/components/case-studies/CannabisInteractive";
 
@@ -28,14 +29,6 @@ const facts = [
   { label: "Headquarters", value: "Alberta, Canada" },
   { label: "Markets", value: "Multi-province distribution across Canada" },
   { label: "Platform", value: "Odoo on Odoo.sh + Power BI" },
-  { label: "Go-live", value: "November 1, 2026" },
-];
-
-const stats = [
-  { value: "6", label: "Core business areas unified" },
-  { value: "11", label: "Agile delivery sprints" },
-  { value: "13", label: "Power BI reports & dashboards" },
-  { value: "Nov 1", label: "Live in production, 2026" },
 ];
 
 const challenges = [
@@ -133,11 +126,10 @@ const solution = [
     app: "CRM",
     title: "CRM & Field Sales",
     points: [
-      "Store visit planning, reminders and standardized visit checklists",
-      "Visit prioritization based on frequency and inactivity",
-      "Store master data with licensing attributes and status",
-      "Promotional and care-package tracking with photo evidence",
-      "Rep performance dashboards with role-based security",
+      "Account and store visit planning with follow-up reminders",
+      "Customer records with licensing details and status",
+      "Field activity logging from any device",
+      "Sales pipeline and rep performance dashboards",
     ],
   },
   {
@@ -190,34 +182,6 @@ const reports = [
   "Procurement & biomass inventory",
 ];
 
-const phases = [
-  {
-    when: "May 2026",
-    title: "Solution Finalization",
-    text: "Discovery, solution design walkthrough and formal solution sign-off before any configuration began.",
-  },
-  {
-    when: "Jun 2026",
-    title: "Procurement & Inventory Foundation",
-    text: "Product, vendor and procurement master data; receiving, QC and COA workflows; lot, tote and biomass traceability.",
-  },
-  {
-    when: "Jul – Aug 2026",
-    title: "Manufacturing, Consignment & Sales",
-    text: "Manufacturing architecture and BOM validation, consignment workflows, and sales ordering with pick-pack-ship execution.",
-  },
-  {
-    when: "Sep – Oct 2026",
-    title: "CRM, Accounting, Compliance Reporting & Testing",
-    text: "CRM, labeling, ShipStation, accounting and excise logic, CTLS reporting and Power BI, followed by integration testing and a thorough UAT cycle. We extended this phase so every workflow was validated end to end before cutover.",
-  },
-  {
-    when: "Nov 1, 2026",
-    title: "Go-Live & Hypercare",
-    text: "Open-transaction and GL balance migration, a controlled production go-live, and a dedicated hypercare period with extended accounting support through the first month-end close.",
-  },
-];
-
 const outcomes = [
   "One integrated system of record for every brand, from vendor receipt to customer delivery",
   "Every lot tied to its Certificate of Analysis, with nothing released before QC approval",
@@ -267,7 +231,7 @@ export default function TopTierCannabisCaseStudyPage() {
                   Odoo Implementation
                 </span>
                 <span className="inline-flex items-center rounded-full bg-amber-50 text-amber-700 px-3 py-1 text-xs font-bold uppercase tracking-wider">
-                  Live since Nov 2026
+                  Live in production
                 </span>
               </div>
               <h1 className="text-[36px] md:text-[52px] font-[800] text-[#003D82] tracking-tight leading-[1.08] mb-6">
@@ -301,21 +265,6 @@ export default function TopTierCannabisCaseStudyPage() {
                 </dl>
               </div>
             </div>
-          </div>
-
-          {/* Stat strip */}
-          <div className="mt-14 grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {stats.map((s) => (
-              <div
-                key={s.label}
-                className="bg-white rounded-[16px] border border-gray-100 shadow-[0_4px_15px_rgba(0,0,0,0.03)] px-6 py-6 text-center"
-              >
-                <div className="text-4xl md:text-5xl font-extrabold text-[#003D82] leading-none">{s.value}</div>
-                <div className="text-xs md:text-sm font-semibold uppercase tracking-wider text-[#64748B] mt-2">
-                  {s.label}
-                </div>
-              </div>
-            ))}
           </div>
 
           <p className="mt-6 border-l-2 border-[#003D82]/30 pl-4 text-sm leading-relaxed text-[#64748B]">
@@ -361,7 +310,7 @@ export default function TopTierCannabisCaseStudyPage() {
             <p className="text-lg text-[#64748B] leading-relaxed">
               Configuring modules is the easy part. What makes an ERP work for a licensed producer is whether lab
               results and federal reporting live inside the system or around it. Here, both were designed into the
-              workflows from the first sprint rather than left for spreadsheets after go-live.
+              workflows from the start rather than left for spreadsheets after launch.
             </p>
           </div>
 
@@ -557,29 +506,15 @@ export default function TopTierCannabisCaseStudyPage() {
           <div className="max-w-3xl mb-12">
             <SectionLabel n="6">How we delivered</SectionLabel>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] leading-tight mb-5">
-              11 agile sprints, live on November 1
+              Built layer by layer, launched with confidence
             </h2>
             <p className="text-lg text-[#64748B] leading-relaxed">
-              Every sprint ended with a live demo, business-user validation and formal sign-off. Weekly governance
-              calls, a maintained risk register and a structured change-request process kept scope under control,
-              and we gave final testing the time it needed rather than rushing cutover.
+              We delivered the platform in five phases, each building on the last and validated with the people who
+              use it, then stayed alongside the team after launch.
             </p>
           </div>
 
-          <ol className="relative border-l-2 border-[#CBD5E1] ml-3 space-y-10">
-            {phases.map((p, i) => (
-              <li key={p.title} className="pl-8 relative">
-                <span
-                  className={`absolute -left-[11px] top-1 w-5 h-5 rounded-full ring-4 ring-[#F8FAFC] ${
-                    i === phases.length - 1 ? "bg-[#16A34A]" : "bg-[#003D82]"
-                  }`}
-                />
-                <div className="text-xs font-bold uppercase tracking-[0.15em] text-[#16A34A] mb-1">{p.when}</div>
-                <h3 className="text-xl font-bold text-[#0F172A] mb-2">{p.title}</h3>
-                <p className="text-[15px] text-[#64748B] leading-relaxed max-w-3xl">{p.text}</p>
-              </li>
-            ))}
-          </ol>
+          <DeliveryPhases />
 
           <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
@@ -606,7 +541,7 @@ export default function TopTierCannabisCaseStudyPage() {
                 Every brand, one source of truth
               </h2>
               <p className="text-lg text-[#64748B] leading-relaxed">
-                Since November 1, 2026, the client has run purchasing, production, distribution, field sales,
+                Today, the client runs purchasing, production, distribution, field sales,
                 finance and compliance reporting for every brand on a single integrated platform built to scale
                 with new products, provinces and channels.
               </p>
