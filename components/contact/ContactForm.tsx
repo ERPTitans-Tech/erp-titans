@@ -98,15 +98,17 @@ export default function ContactForm({ isCA = false }: { isCA?: boolean }) {
 
       <div className="relative mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="mx-auto mb-12 max-w-3xl text-center">
-          <p className="mb-5 inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-xs font-semibold text-[#003D82] shadow-sm ring-1 ring-[#003D82]/10 sm:text-sm">
-            <span className="h-2 w-2 shrink-0 rounded-full bg-[#21B799]" />
-            Contact · Free consultation<span className="hidden sm:inline"> · Official Odoo Ready Partner</span>
-          </p>
-          <h1 className="text-4xl font-extrabold leading-[1.1] tracking-tight text-[#003D82] sm:text-5xl lg:text-[54px]">
-            How Can We Help?
-          </h1>
-          <p className="mt-5 text-lg leading-relaxed text-[#475569] sm:text-xl">
+        <div className="mb-12 grid grid-cols-1 gap-x-16 gap-y-5 lg:grid-cols-2 lg:items-end">
+          <div>
+            <p className="mb-5 inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-xs font-semibold text-[#003D82] shadow-sm ring-1 ring-[#003D82]/10 sm:text-sm">
+              <span className="h-2 w-2 shrink-0 rounded-full bg-[#21B799]" />
+              Contact · Free consultation<span className="hidden sm:inline"> · Official Odoo Ready Partner</span>
+            </p>
+            <h1 className="text-4xl font-extrabold leading-[1.1] tracking-tight text-[#003D82] sm:text-5xl lg:text-[54px]">
+              How Can We Help?
+            </h1>
+          </div>
+          <p className="text-lg leading-relaxed text-[#475569] sm:text-xl">
             Whether you have a quick question or need a deep-dive audit of your ERP system, our specialists are ready to assist.
           </p>
         </div>
