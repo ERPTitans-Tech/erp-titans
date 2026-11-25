@@ -572,8 +572,16 @@ const waterfall = [
 
 export function CtlsWaterfall() {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.4 });
+  const inView = useInView(ref, { amount: 0.4 });
   const [hover, setHover] = useState<number | null>(null);
+  const [cycle, setCycle] = useState(0);
+
+  // rebuild the waterfall every few seconds while it is on screen (paused while hovering a bar)
+  useEffect(() => {
+    if (!inView || hover !== null) return;
+    const t = setTimeout(() => setCycle((c) => c + 1), 7000);
+    return () => clearTimeout(t);
+  }, [inView, hover, cycle]);
 
   const max = 18500;
   const H = 200;
@@ -618,7 +626,7 @@ export function CtlsWaterfall() {
         )}
       </div>
 
-      <svg viewBox={`0 0 ${waterfall.length * 70} ${H + 34}`} className="h-auto w-full" role="img" aria-label="Illustrative CTLS reconciliation waterfall">
+      <svg key={cycle} viewBox={`0 0 ${waterfall.length * 70} ${H + 34}`} className="h-auto w-full" role="img" aria-label="Illustrative CTLS reconciliation waterfall">
         {[0.25, 0.5, 0.75, 1].map((g) => (
           <line key={g} x1="0" x2={waterfall.length * 70} y1={H - g * H} y2={H - g * H} stroke="#EEF2F7" />
         ))}
