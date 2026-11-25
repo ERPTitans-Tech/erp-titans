@@ -1,10 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import LocationHero from "@/components/locations/LocationHero";
 import CTA from "@/components/home/CTA";
 import JsonLd from "@/components/seo/JsonLd";
 import SectionHeader from "@/components/ui/SectionHeader";
+import FaqSplit from "@/components/ui/FaqSplit";
 import { ORG_ID } from "@/lib/seo";
 import { getSite } from "@/lib/site";
 import { odooServices, type OdooService } from "@/lib/odoo-services";
@@ -119,19 +120,13 @@ export default async function OdooServicePage({ s }: { s: OdooService }) {
 
       {/* FAQ */}
       <section className="border-t border-[#E2E8F0] bg-[#F8FAFC] py-16 md:py-20">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <SectionHeader n={3} label="FAQ" title={`${s.name}: frequently asked questions`} align="center" />
-          <div className="space-y-3">
-            {s.faqs.map((f) => (
-              <details key={f.q} className="group rounded-2xl border border-[#E2E8F0] bg-white p-5 open:shadow-sm">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-bold text-[#0F172A]">
-                  {f.q}
-                  <ChevronDown size={18} className="shrink-0 text-[#003D82] transition-transform group-open:rotate-180" />
-                </summary>
-                <p className="mt-3 text-[15px] leading-relaxed text-[#475569]">{f.a}</p>
-              </details>
-            ))}
-          </div>
+        <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
+          <FaqSplit
+            n={3}
+            title={`${s.name}: frequently asked questions`}
+            intro="Straight answers to what clients ask us most before they start."
+            faqs={s.faqs}
+          />
         </div>
       </section>
 

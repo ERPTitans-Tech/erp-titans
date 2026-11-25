@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MapPin, ChevronDown, ArrowRight } from "lucide-react";
+import { MapPin, ArrowRight } from "lucide-react";
 import LocationHero from "@/components/locations/LocationHero";
 import CTA from "@/components/home/CTA";
 import JsonLd from "@/components/seo/JsonLd";
@@ -8,6 +8,7 @@ import { getSite } from "@/lib/site";
 import { locations, type Location } from "@/lib/locations";
 import { odooServices } from "@/lib/odoo-services";
 import Tick from "@/components/ui/Tick";
+import FaqSplit from "@/components/ui/FaqSplit";
 
 export default async function LocationPage({ loc }: { loc: Location }) {
   const SITE_URL = (await getSite()).base;
@@ -127,21 +128,12 @@ export default async function LocationPage({ loc }: { loc: Location }) {
 
       {/* FAQ */}
       <section className="py-16 md:py-20 bg-[#F8FAFC] border-t border-[#E2E8F0]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl md:text-3xl font-extrabold text-[#003D82] mb-8 text-center">
-            Odoo in {loc.place}: frequently asked questions
-          </h2>
-          <div className="space-y-3">
-            {loc.faqs.map((f) => (
-              <details key={f.q} className="group rounded-2xl border border-[#E2E8F0] bg-white p-5 open:shadow-sm">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-bold text-[#0F172A]">
-                  {f.q}
-                  <ChevronDown size={18} className="shrink-0 text-[#003D82] transition-transform group-open:rotate-180" />
-                </summary>
-                <p className="mt-3 text-[15px] leading-relaxed text-[#475569]">{f.a}</p>
-              </details>
-            ))}
-          </div>
+        <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
+          <FaqSplit
+            title={`Odoo in ${loc.place}: frequently asked questions`}
+            intro={`What ${loc.place} businesses usually ask before starting an Odoo project with us.`}
+            faqs={loc.faqs}
+          />
         </div>
       </section>
 

@@ -48,8 +48,8 @@ export default async function ContactPage() {
 
       <section className="border-t border-[#E2E8F0] bg-white py-20 lg:py-24">
         <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
-          <SectionHeader label="Before you reach out" title="Common Questions" align="center" />
-          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 md:grid-cols-2">
+          <SectionHeader label="Before you reach out" title="Common Questions" text="Quick answers to what people usually ask before getting in touch. Still unsure? Send us a message above." />
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {FAQS.map((f) => (
               <details
                 key={f.q}

@@ -17,14 +17,16 @@ export default function CaseStudiesPage() {
     <div className="flex flex-col min-h-screen">
       {/* Hero */}
       <section className="pt-32 lg:pt-36 pb-12 lg:pb-16 bg-[#F8FAFC]">
-        <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-sm font-bold uppercase tracking-[0.15em] text-[#16A34A] mb-4">
-            Client Success Stories
-          </p>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-[#003D82] tracking-tight leading-tight mb-6">
-            Case Studies
-          </h1>
-          <p className="text-lg md:text-xl text-[#64748B] leading-relaxed max-w-3xl mx-auto">
+        <div className="max-w-[1280px] max-w-full mx-auto grid grid-cols-1 gap-x-16 gap-y-6 px-4 sm:px-6 lg:grid-cols-2 lg:items-end lg:px-8">
+          <div>
+            <p className="text-sm font-bold uppercase tracking-[0.15em] text-[#16A34A] mb-4">
+              Client Success Stories
+            </p>
+            <h1 className="text-4xl md:text-5xl font-extrabold text-[#003D82] tracking-tight leading-tight">
+              Case Studies
+            </h1>
+          </div>
+          <p className="text-lg md:text-xl text-[#64748B] leading-relaxed">
             A look at the systems we&apos;ve designed and delivered: what the business needed, what we built,
             and how we got it live.
           </p>

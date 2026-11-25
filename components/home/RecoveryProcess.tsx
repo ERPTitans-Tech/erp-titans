@@ -44,7 +44,7 @@ export default function RecoveryProcess() {
         />
 
         {/* Stepper */}
-        <div className="relative mx-auto max-w-5xl">
+        <div className="relative">
           <div className="absolute left-[12.5%] right-[12.5%] top-8 hidden h-[3px] rounded-full bg-[#E2E8F0] md:block" aria-hidden="true">
             <m.div
               className="h-full rounded-full bg-gradient-to-r from-[#003D82] via-[#0EA5E9] to-[#16A34A]"
@@ -83,7 +83,7 @@ export default function RecoveryProcess() {
         </div>
 
         {/* Detail panel */}
-        <div className="mx-auto mt-12 max-w-5xl">
+        <div className="mt-12">
           <AnimatePresence mode="wait">
             <m.div
               key={step.title}

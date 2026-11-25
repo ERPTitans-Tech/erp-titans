@@ -37,8 +37,8 @@ export default function OdooServices() {
   return (
     <section className="pt-10 lg:pt-14 pb-10 lg:pb-14 bg-white relative">
       <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#003D82] mb-6">
+        <div className="mb-12 grid grid-cols-1 gap-x-16 gap-y-4 lg:grid-cols-2 lg:items-end">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#003D82]">
             Our <span className="text-[#003D82]">Odoo Services</span>
           </h2>
           <p className="text-lg text-[#475569]">
