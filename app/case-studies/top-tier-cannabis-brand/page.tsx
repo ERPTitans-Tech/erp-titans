@@ -159,27 +159,18 @@ const odooApps = [
 ];
 
 const integrations = [
-  { name: "ShipStation", text: "Third-party logistics connectivity for synchronized shipment and inventory movement." },
-  { name: "Bank Feeds", text: "Automated bank statement import and reconciliation." },
-  { name: "Gmail", text: "Native email sync for CRM communication workflows." },
-  { name: "PO Webhook API", text: "JSON-based webhook endpoint for inbound purchase order entries." },
-  { name: "Power BI", text: "Direct Odoo.sh database integration powering the analytics layer." },
+  { name: "Logistics", text: "Shipments and stock movements stay in step with third-party warehouses." },
+  { name: "Banking", text: "Bank activity flows in automatically for faster reconciliation." },
+  { name: "Email", text: "Customer conversations stay attached to the right records." },
+  { name: "Order intake", text: "Incoming orders arrive in Odoo without manual re-entry." },
+  { name: "Analytics", text: "A secure live connection feeds the reporting layer." },
 ];
 
-const reports = [
-  "OEE, capacity, waste % & scheduled vs. actual",
-  "Employee-level labor productivity",
-  "Machine & work center efficiency",
-  "Pre-roll format, case & vault movement",
-  "Manufacturing sample analytics",
-  "Revenue recognition",
-  "Cost of goods sold (COGS)",
-  "Work-in-progress (WIP)",
-  "Batch / lot traceability",
-  "Destruction log & write-offs",
-  "Sales by SKU, channel & province (retail)",
-  "Sales by SKU, channel & province (B2B)",
-  "Procurement & biomass inventory",
+const reportAreas = [
+  { area: "Operations", items: ["Production performance", "Labour & equipment efficiency"] },
+  { area: "Finance", items: ["Revenue & margin", "Costing & work in progress"] },
+  { area: "Compliance", items: ["Lot traceability", "Losses & write-offs"] },
+  { area: "Commercial", items: ["Sales by product, channel & region", "Purchasing & inventory"] },
 ];
 
 const outcomes = [
@@ -456,8 +447,8 @@ export default function TopTierCannabisCaseStudyPage() {
                 <h2 className="text-2xl md:text-[28px] font-extrabold text-[#003D82]">Integrations</h2>
               </div>
               <p className="mb-6 text-[#64748B] leading-relaxed">
-                Odoo was connected to the logistics, banking, communication and analytics tools the team already relied
-                on, so data moves automatically instead of being re-keyed.
+                Odoo was connected to the tools the team already relied on, so data moves automatically instead of being
+                re-keyed.
               </p>
               <div className="flex flex-1 flex-col justify-between gap-3">
                 {integrations.map((i) => (
@@ -474,18 +465,21 @@ export default function TopTierCannabisCaseStudyPage() {
                 <h2 className="text-2xl md:text-[28px] font-extrabold text-[#003D82]">Power BI Analytics</h2>
               </div>
               <p className="mb-6 text-[#64748B] leading-relaxed">
-                A dedicated analytics layer connected directly to the Odoo.sh database gives leadership decision-ready
-                reporting across manufacturing, finance, compliance and sales.
+                A reporting layer connected to Odoo gives leadership one trusted view of operations, finance,
+                compliance and sales, without exporting a single spreadsheet.
               </p>
-              <div className="mb-3 flex items-center justify-between">
-                <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#003D82]">Reports &amp; dashboards delivered</span>
-                <span className="rounded-full bg-white px-2.5 py-0.5 text-[12px] font-bold text-[#003D82] ring-1 ring-[#E2E8F0]">{reports.length}</span>
-              </div>
-              <div className="grid grid-cols-1 flex-1 content-between gap-2.5 sm:grid-cols-2">
-                {reports.map((r) => (
-                  <div key={r} className="flex items-start gap-2.5 rounded-[12px] bg-white px-3.5 py-2.5 ring-1 ring-[#E2E8F0]">
-                    <Tick tone="green" className="mt-1" />
-                    <span className="text-[13.5px] font-medium leading-snug text-[#334155]">{r}</span>
+              <div className="grid flex-1 grid-cols-1 gap-3 sm:grid-cols-2">
+                {reportAreas.map((r) => (
+                  <div key={r.area} className="flex flex-col rounded-[16px] bg-white p-4 ring-1 ring-[#E2E8F0]">
+                    <span className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.14em] text-[#0EA5E9]">{r.area}</span>
+                    <ul className="space-y-2">
+                      {r.items.map((it) => (
+                        <li key={it} className="flex items-start gap-2.5 text-[14px] font-medium leading-snug text-[#334155]">
+                          <Tick tone="green" className="mt-1" />
+                          <span>{it}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 ))}
               </div>
