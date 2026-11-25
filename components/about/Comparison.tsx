@@ -27,7 +27,7 @@ export default function Comparison() {
           n={2}
           label="How we're different"
           title="Specialists vs. Generic Implementers"
-          text="There's a world of difference in the results."
+          text="There's a world of difference in the results. Generalists install software and move on; specialists fix the processes, data and adoption behind it."
           align="center"
         />
 

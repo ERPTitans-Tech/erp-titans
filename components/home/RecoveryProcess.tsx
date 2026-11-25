@@ -91,9 +91,9 @@ export default function RecoveryProcess() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -14 }}
               transition={{ duration: 0.3 }}
-              className="grid grid-cols-1 gap-8 rounded-[28px] bg-[#F8FAFC] p-7 ring-1 ring-[#E2E8F0] sm:p-10 md:grid-cols-[1.2fr_1fr]"
+              className="grid grid-cols-1 gap-8 rounded-[28px] bg-[#F8FAFC] p-7 ring-1 ring-[#E2E8F0] sm:p-10 md:grid-cols-2"
             >
-              <div>
+              <div className="flex flex-col">
                 <div className="mb-4 flex items-center gap-3">
                   <span className="h-px w-8 bg-[#003D82]" aria-hidden="true" />
                   <span className="text-sm font-bold uppercase tracking-[0.14em] text-[#003D82]">
@@ -102,7 +102,7 @@ export default function RecoveryProcess() {
                 </div>
                 <h3 className="text-2xl font-extrabold tracking-tight text-[#0F172A] md:text-3xl">{step.title}</h3>
                 <p className="mt-4 text-lg leading-relaxed text-[#475569]">{step.description}</p>
-                <div className="mt-7 flex gap-3">
+                <div className="mt-7 flex gap-3 md:mt-auto md:pt-7">
                   <button
                     onClick={() => setActive((a) => Math.max(0, a - 1))}
                     disabled={active === 0}
