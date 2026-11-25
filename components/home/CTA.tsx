@@ -31,7 +31,7 @@ export default function CTA({
           initial={{ opacity: 1, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid grid-cols-1 items-center gap-8 lg:grid-cols-[1fr_auto] lg:gap-16"
+          className="grid grid-cols-1 items-center gap-8 lg:grid-cols-[1fr_auto] lg:gap-20"
         >
           <div>
             <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 text-white">
@@ -42,7 +42,7 @@ export default function CTA({
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-end">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:flex-col lg:justify-end">
             <Link href={primaryButtonLink} className="bg-[#003D82] text-white hover:bg-[#003D82]/90 px-8 py-4 rounded-sm font-medium transition-colors shadow-lg text-center">
               {primaryButtonText}
             </Link>
