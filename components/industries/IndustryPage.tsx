@@ -182,12 +182,25 @@ export default function IndustryPage({ industry }: { industry: IndustryKey }) {
               <div className={`grid grid-cols-1 gap-6 ${d.solution.highlights.length > 1 ?"md:grid-cols-2" : ""}`}>
                 {d.solution.highlights.map((h) => {
                   return (
-                    <div key={h.title} className="group rounded-[20px] bg-gradient-to-r from-[#003D82] to-[#0B5CAD] p-7 text-white">
-                      <span className="mb-4 block h-[3px] w-10 rounded-full bg-white/60" aria-hidden="true" />
+                    <div
+                      key={h.title}
+                      className={`group rounded-[20px] bg-gradient-to-r from-[#003D82] to-[#0B5CAD] p-7 text-white ${
+                        d.solution.highlights.length === 1 ? "md:flex md:items-center md:justify-between md:gap-10" : ""
+                      }`}
+                    >
                       <div>
+                        <span className="mb-4 block h-[3px] w-10 rounded-full bg-white/60" aria-hidden="true" />
                         <h4 className="mb-1.5 text-lg font-bold">{h.title}</h4>
                         <p className="text-[15px] leading-relaxed text-blue-100">{h.text}</p>
                       </div>
+                      {d.solution.highlights.length === 1 && (
+                        <Link
+                          href="/contact"
+                          className="mt-5 inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#003D82] transition-all hover:gap-3 md:mt-0"
+                        >
+                          Plan a phased recovery <ArrowRight size={16} />
+                        </Link>
+                      )}
                     </div>
                   );
                 })}
