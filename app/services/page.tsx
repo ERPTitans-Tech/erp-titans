@@ -61,7 +61,7 @@ export default function ServicesPage() {
       <ErpRescueProgram />
       <section className="border-t border-[#E2E8F0] bg-white py-20 lg:py-24">
         <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
-          <FaqSplit n={6} title="Questions we hear before every project" intro="Straight answers on where to start, how pricing works and what happens after launch." faqs={faqs} />
+          <FaqSplit n={7} title="Questions we hear before every project" intro="Straight answers on where to start, how pricing works and what happens after launch." faqs={faqs} />
         </div>
       </section>
       <CTA />

@@ -19,7 +19,7 @@ export default function ErpRescueProgram() {
   return (
     <section className="border-t border-[#E2E8F0] bg-[#F8FAFC] py-20 lg:py-24">
       <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeader n={3} label="Flagship program" title="When an ERP project needs rescuing" />
+        <SectionHeader n={6} label="Flagship program" title="When an ERP project needs rescuing" text="Recovery is where we made our name. If your system is live but not delivering, this is the program built for it." />
 
         <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-2">
           {/* Rescue program */}

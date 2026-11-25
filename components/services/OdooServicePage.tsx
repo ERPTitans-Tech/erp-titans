@@ -10,11 +10,15 @@ import { ORG_ID } from "@/lib/seo";
 import { getSite } from "@/lib/site";
 import { odooServices, type OdooService } from "@/lib/odoo-services";
 import Tick from "@/components/ui/Tick";
+import { ServiceShift, ServiceJourney } from "@/components/services/ServiceDetail";
+import { serviceExtras } from "@/lib/odoo-service-extras";
 
 export default async function OdooServicePage({ s }: { s: OdooService }) {
   const SITE_URL = (await getSite()).base;
   const url = `${SITE_URL}/${s.slug}`;
   const related = odooServices.filter((x) => x.slug !== s.slug);
+  const x = serviceExtras[s.slug];
+  const journey = s.process.map((p, i) => ({ ...p, get: x?.steps[i]?.get ?? "", you: x?.steps[i]?.you ?? "" }));
 
   const schema = [
     {
@@ -86,13 +90,15 @@ export default async function OdooServicePage({ s }: { s: OdooService }) {
         </div>
       </section>
 
+      {x && <ServiceShift n={1} name={s.name} photo={x.photo} shift={x.shift} />}
+
       {/* What's included */}
-      <section className="border-t border-[#E2E8F0] bg-[#F8FAFC] py-16 md:py-20">
+      <section className="border-t border-[#E2E8F0] bg-white py-16 md:py-20">
         <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeader n={1} label="What's included" title={`${s.name}: scope of work`} text="Everything below is covered in the engagement, scoped to your processes and delivered by the same team from start to finish." />
+          <SectionHeader n={2} label="What's included" title={`${s.name}: scope of work`} text="Everything below is covered in the engagement, scoped to your processes and delivered by the same team from start to finish." />
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {s.includes.map((i) => (
-              <div key={i.title} className="rounded-[20px] bg-white p-6 ring-1 ring-[#E2E8F0]">
+              <div key={i.title} className="rounded-[20px] bg-[#F8FAFC] p-6 ring-1 ring-[#E2E8F0]">
                 <div className="mb-3 h-1 w-10 rounded-full bg-gradient-to-r from-[#003D82] to-[#0EA5E9]" />
                 <h3 className="mb-1.5 text-lg font-bold text-[#003D82]">{i.title}</h3>
                 <p className="text-[15px] leading-relaxed text-[#64748B]">{i.text}</p>
@@ -103,26 +109,34 @@ export default async function OdooServicePage({ s }: { s: OdooService }) {
       </section>
 
       {/* Process */}
-      <section className="border-t border-[#E2E8F0] bg-white py-16 md:py-20">
+      <section className="border-t border-[#E2E8F0] bg-[#F8FAFC] py-16 md:py-20">
         <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeader n={2} label="How it works" title="Our process" text="A clear, staged approach with sign-off at every step, so you always know what is happening, what comes next and what it costs." />
-          <ol className={`grid grid-cols-1 gap-5 sm:grid-cols-2 ${s.process.length === 5 ?"lg:grid-cols-5" : "lg:grid-cols-4"}`}>
-            {s.process.map((p, i) => (
-              <li key={p.title} className="relative rounded-[20px] bg-[#F8FAFC] p-6 ring-1 ring-[#E2E8F0]">
-                <span className="mb-4 flex h-9 w-9 items-center justify-center rounded-full bg-[#003D82] text-sm font-bold text-white">{i + 1}</span>
-                <h3 className="mb-1.5 font-bold text-[#0F172A]">{p.title}</h3>
-                <p className="text-[14.5px] leading-relaxed text-[#64748B]">{p.text}</p>
-              </li>
-            ))}
-          </ol>
+          <SectionHeader n={3} label="How it works" title="Our process, step by step" text="Each step has a clear hand-over: what you get from us, and the little we need from your team to keep things moving." />
+          <ServiceJourney steps={journey} />
+
+          {x?.proof && (
+            <Link
+              href="/case-studies/top-tier-cannabis-brand"
+              className="group mt-8 flex flex-col gap-5 rounded-[24px] bg-white p-6 ring-1 ring-[#E2E8F0] transition-shadow hover:shadow-[0_16px_40px_rgba(0,61,130,0.10)] sm:p-7 md:flex-row md:items-center md:justify-between"
+            >
+              <div>
+                <div className="mb-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-[#16A34A]">Proof in production</div>
+                <div className="text-lg font-extrabold text-[#003D82]">A full Odoo ERP for a top-tier Canadian cannabis brand</div>
+                <p className="mt-1 text-[15px] text-[#64748B]">Procurement, traceability, manufacturing, sales, accounting and Health Canada reporting on one platform.</p>
+              </div>
+              <span className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#003D82] px-6 py-3 text-sm font-semibold text-white transition-all group-hover:gap-3">
+                Read the case study <ArrowRight size={16} />
+              </span>
+            </Link>
+          )}
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="border-t border-[#E2E8F0] bg-[#F8FAFC] py-16 md:py-20">
+      <section className="border-t border-[#E2E8F0] bg-white py-16 md:py-20">
         <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
           <FaqSplit
-            n={3}
+            n={4}
             title={`${s.name}: frequently asked questions`}
             intro="Straight answers to what clients ask us most before they start."
             faqs={s.faqs}
@@ -131,23 +145,33 @@ export default async function OdooServicePage({ s }: { s: OdooService }) {
       </section>
 
       {/* Related */}
-      <section className="border-t border-[#E2E8F0] bg-white py-12">
-        <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="mb-4 text-lg font-bold text-[#0F172A]">More Odoo services</h2>
-          <div className="mb-8 flex flex-wrap gap-3">
-            {related.map((r) => (
-              <Link key={r.slug} href={`/${r.slug}`} className="inline-flex items-center gap-1.5 rounded-lg border border-[#E2E8F0] px-4 py-2 text-sm font-semibold text-[#003D82] hover:border-[#003D82]/40 hover:bg-[#F8FAFC]">
-                {r.name} <ArrowRight size={14} />
-              </Link>
-            ))}
+      <section className="border-t border-[#E2E8F0] bg-[#F8FAFC] py-12">
+        <div className="max-w-[85rem] mx-auto grid grid-cols-1 gap-10 px-4 sm:px-6 lg:grid-cols-[1.6fr_1fr] lg:gap-16 lg:px-8">
+          <div>
+            <h2 className="mb-4 text-lg font-bold text-[#0F172A]">More Odoo services</h2>
+            <div className="flex flex-wrap gap-3">
+              {related.map((r) => (
+                <Link key={r.slug} href={`/${r.slug}`} className="inline-flex items-center gap-1.5 rounded-lg border border-[#E2E8F0] bg-white px-4 py-2 text-sm font-semibold text-[#003D82] hover:border-[#003D82]/40">
+                  {r.name} <ArrowRight size={14} />
+                </Link>
+              ))}
+            </div>
           </div>
-          <h2 className="mb-4 text-lg font-bold text-[#0F172A]">Where we deliver</h2>
-          <div className="flex flex-wrap gap-3 text-sm font-semibold">
-            <Link href="/odoo-partner-calgary" className="text-[#003D82] hover:underline">Odoo partner in Calgary</Link>
-            <Link href="/odoo-implementation-alberta" className="text-[#003D82] hover:underline">Alberta</Link>
-            <Link href="/odoo-partner-canada" className="text-[#003D82] hover:underline">Canada</Link>
-            <Link href="/odoo-partner-usa" className="text-[#003D82] hover:underline">USA</Link>
-            <Link href="/locations" className="text-[#64748B] hover:text-[#003D82]">All locations</Link>
+          <div>
+            <h2 className="mb-4 text-lg font-bold text-[#0F172A]">Where we deliver</h2>
+            <div className="flex flex-wrap gap-3">
+              {[
+                { href: "/odoo-partner-calgary", l: "Calgary" },
+                { href: "/odoo-implementation-alberta", l: "Alberta" },
+                { href: "/odoo-partner-canada", l: "Canada" },
+                { href: "/odoo-partner-usa", l: "USA" },
+                { href: "/locations", l: "All locations" },
+              ].map((l) => (
+                <Link key={l.href} href={l.href} className="inline-flex items-center rounded-lg border border-[#E2E8F0] bg-white px-4 py-2 text-sm font-semibold text-[#003D82] hover:border-[#003D82]/40">
+                  {l.l}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </section>
