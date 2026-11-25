@@ -130,6 +130,7 @@ const solution = [
       "Customer records with licensing details and status",
       "Field activity logging from any device",
       "Sales pipeline and rep performance dashboards",
+      "Territory and account segmentation by region",
     ],
   },
   {
@@ -147,6 +148,17 @@ const solution = [
 ];
 
 // Official Odoo app icons (odoo.com/page/brand-assets), used unmodified.
+const heroScope = [
+  "Procurement & vendor compliance",
+  "Seed-to-sale traceability",
+  "Lab results (COA) by lot",
+  "Manufacturing & quality",
+  "Distribution & consignment",
+  "Field sales CRM",
+  "Cannabis-ready accounting",
+  "Health Canada CTLS reporting",
+];
+
 const odooApps = [
   { name: "Purchase", icon: "/odoo-icons/svg/purchase.svg" },
   { name: "Inventory", icon: "/odoo-icons/svg/stock.svg" },
@@ -233,12 +245,32 @@ export default function TopTierCannabisCaseStudyPage() {
                 alongside sister brands under one parent company. The project began as an Odoo implementation for one of those brands and grew into the
                 operational backbone for the whole group once the brands came together under one parent company.
               </p>
-              <p className="text-[17px] text-[#64748B] leading-relaxed max-w-2xl">
-                It covers procurement, seed-to-sale traceability, Certificate of Analysis management, manufacturing,
-                consignment sales, field CRM, cannabis-compliant accounting and Health Canada CTLS reporting, with a
-                Power BI analytics layer on top.
-              </p>
+              <div className="rounded-[20px] bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.05)] ring-1 ring-[#E2E8F0]">
+                <div className="mb-4 text-[11px] font-bold uppercase tracking-[0.14em] text-[#0EA5E9]">What the platform covers</div>
+                <ul className="grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2">
+                  {heroScope.map((x) => (
+                    <li key={x} className="flex items-start gap-2.5 text-[15px] font-medium leading-snug text-[#334155]">
+                      <Tick tone="green" className="mt-0.5" />
+                      <span>{x}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-[#003D82] px-6 py-3.5 font-semibold text-white hover:bg-[#002B5C] transition-colors"
+                >
+                  Discuss a similar project <ArrowRight size={17} />
+                </Link>
+                <Link
+                  href="/industries/cannabis"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 font-semibold text-[#003D82] ring-1 ring-[#CBD5E1] hover:ring-[#94A3B8] transition-colors"
+                >
+                  Cannabis ERP expertise
+                </Link>
+              </div>
             </div>
 
             {/* Client card */}
@@ -528,8 +560,8 @@ export default function TopTierCannabisCaseStudyPage() {
       {/* ───────── Outcomes ───────── */}
       <section className="py-20 lg:py-24 bg-white border-t border-[#E2E8F0]">
         <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-12 lg:gap-16 items-start">
-            <div>
+          <div>
+            <div className="mb-10 max-w-3xl">
               <SectionLabel n="7">The result</SectionLabel>
               <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] leading-tight mb-5">
                 Every brand, one source of truth
@@ -541,7 +573,7 @@ export default function TopTierCannabisCaseStudyPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {outcomes.map((o) => (
                 <div key={o} className="flex gap-3 items-start rounded-[16px] bg-[#F8FAFC] border border-gray-100 p-5">
                   <Tick tone="navy" className="mt-1" />

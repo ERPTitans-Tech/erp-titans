@@ -34,19 +34,21 @@ export default function LocationsPage() {
           {groups.map((g) => (
             <div key={g.title}>
               <h2 className="text-2xl font-extrabold text-[#003D82] mb-6">{g.title}</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                {g.items.map((l) => (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                {g.items.map((l, i) => (
                   <Link
                     key={l.slug}
                     href={`/${l.slug}`}
-                    className="group rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] p-6 hover:border-[#003D82]/40 hover:shadow-md transition-all"
+                    className={`group flex flex-col rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] p-6 hover:border-[#003D82]/40 hover:shadow-md transition-all ${
+                      g.items.length % 2 === 1 && i === 0 ? "sm:col-span-2" : ""
+                    }`}
                   >
                     <div className="flex items-center gap-2 text-sm font-semibold text-[#64748B] mb-2">
                       <MapPin size={15} className="text-[#003D82]" /> {l.placeFull}
                     </div>
                     <h3 className="text-lg font-bold text-[#003D82] mb-2">{l.h1}</h3>
                     <p className="text-sm text-[#64748B] leading-relaxed mb-4">{l.description.split(". ")[0]}.</p>
-                    <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#003D82] group-hover:gap-2.5 transition-all">
+                    <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-[#003D82] group-hover:gap-2.5 transition-all">
                       View page <ArrowRight size={15} />
                     </span>
                   </Link>

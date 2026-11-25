@@ -52,15 +52,19 @@ export default async function LocationPage({ loc }: { loc: Location }) {
       <JsonLd data={schema} />
       <LocationHero h1={loc.h1} subtitle={loc.subtitle} checklist={loc.checklist} />
 
-      {/* Intro + local context */}
+      {/* Intro + local context: paragraphs side by side, then an equal-height row of local points (no empty columns) */}
       <section className="py-16 md:py-20 bg-white">
-        <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16">
-          <div className="space-y-5 text-[#475569] text-lg leading-relaxed">
+        <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-6 text-[#475569] text-lg leading-relaxed lg:grid-cols-2 lg:gap-12">
             {loc.intro.map((p) => (
               <p key={p.slice(0, 40)}>{p}</p>
             ))}
           </div>
-          <div className="space-y-4">
+          <div
+            className={`mt-10 grid grid-cols-1 gap-4 ${
+              loc.localPoints.length === 4 ? "sm:grid-cols-2 lg:grid-cols-4" : "md:grid-cols-3"
+            }`}
+          >
             {loc.localPoints.map((pt) => (
               <div key={pt.title} className="rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] p-6">
                 <h2 className="text-lg font-bold text-[#003D82] mb-1.5">{pt.title}</h2>
