@@ -62,7 +62,7 @@ export default async function LocationPage({ loc }: { loc: Location }) {
           </div>
           <div
             className={`mt-10 grid grid-cols-1 gap-4 ${
-              loc.localPoints.length === 4 ? "sm:grid-cols-2 lg:grid-cols-4" : "md:grid-cols-3"
+              loc.localPoints.length === 4 ? "sm:grid-cols-2 xl:grid-cols-4" : "md:grid-cols-3"
             }`}
           >
             {loc.localPoints.map((pt) => (

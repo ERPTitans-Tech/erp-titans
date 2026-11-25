@@ -405,7 +405,7 @@ export function DataFlowStepper() {
         })}
       </ol>
 
-      <div className="relative flex min-h-[360px] flex-col overflow-hidden rounded-[28px] bg-gradient-to-br from-[#DBEAFE] via-[#EFF6FF] to-[#F0FDF4] p-6 ring-1 ring-[#003D82]/10">
+      <div className="relative flex min-h-[300px] flex-col overflow-hidden rounded-[28px] bg-gradient-to-br from-[#DBEAFE] via-[#EFF6FF] to-[#F0FDF4] p-6 ring-1 ring-[#003D82]/10">
         <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-white/60 blur-2xl" />
         <div className="relative mb-4 flex items-center justify-between gap-3">
           <div className="flex items-center gap-1.5">
@@ -427,6 +427,30 @@ export function DataFlowStepper() {
               <StepVisual step={steps[active].key} />
             </m.div>
           </AnimatePresence>
+        </div>
+
+        {/* lot identity trail: fills the stage and shows the genealogy building up */}
+        <div className="relative mt-5 rounded-2xl bg-white/80 p-3.5 ring-1 ring-[#003D82]/10 backdrop-blur-sm">
+          <div className="mb-2.5 text-[10.5px] font-bold uppercase tracking-[0.14em] text-[#64748B]">Lot identity, carried forward</div>
+          <div className="grid grid-cols-5 gap-1.5">
+            {["Vendor lot", "Blend lot", "Finished lot", "Shipment", "CTLS line"].map((t, i) => {
+              const done = i <= active;
+              return (
+                <div
+                  key={t}
+                  className={`rounded-lg px-1.5 py-2 text-center text-[11px] font-semibold leading-tight transition-colors duration-500 sm:text-[12px] ${
+                    i === active
+                      ? "bg-[#003D82] text-white"
+                      : done
+                        ? "bg-[#DCFCE7] text-[#166534]"
+                        : "bg-[#F1F5F9] text-[#94A3B8]"
+                  }`}
+                >
+                  {t}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>

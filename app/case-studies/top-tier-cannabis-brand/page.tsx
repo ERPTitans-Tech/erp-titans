@@ -224,8 +224,8 @@ export default function TopTierCannabisCaseStudyPage() {
             <span className="text-[#0F172A]">Top-Tier Cannabis Brand</span>
           </nav>
 
-          <div className="grid grid-cols-1 lg:grid-cols-[1.35fr_1fr] gap-12 lg:gap-14 items-start">
-            <div>
+          <div className="grid grid-cols-1 lg:grid-cols-[1.35fr_1fr] gap-12 lg:gap-14">
+            <div className="flex flex-col">
               <div className="flex flex-wrap gap-2 mb-6">
                 <span className="inline-flex items-center rounded-full bg-green-50 text-[#16A34A] px-3 py-1 text-xs font-bold uppercase tracking-wider">
                   Cannabis
@@ -247,7 +247,7 @@ export default function TopTierCannabisCaseStudyPage() {
               </p>
               <div className="rounded-[20px] bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.05)] ring-1 ring-[#E2E8F0]">
                 <div className="mb-4 text-[11px] font-bold uppercase tracking-[0.14em] text-[#0EA5E9]">What the platform covers</div>
-                <ul className="grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2">
+                <ul className="grid grid-cols-1 gap-x-6 gap-y-3.5 sm:grid-cols-2">
                   {heroScope.map((x) => (
                     <li key={x} className="flex items-start gap-2.5 text-[15px] font-medium leading-snug text-[#334155]">
                       <Tick tone="green" className="mt-0.5" />
@@ -255,9 +255,17 @@ export default function TopTierCannabisCaseStudyPage() {
                     </li>
                   ))}
                 </ul>
+                <div className="mt-5 flex flex-wrap items-center gap-2 border-t border-[#E2E8F0] pt-5">
+                  <span className="mr-1 text-[11px] font-bold uppercase tracking-[0.14em] text-[#94A3B8]">Built on Odoo</span>
+                  {odooApps.map((a) => (
+                    <span key={a.name} title={a.name} className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#F8FAFC] ring-1 ring-[#E2E8F0]">
+                      <Image src={a.icon} alt={`Odoo ${a.name}`} width={50} height={50} className="h-5 w-5" />
+                    </span>
+                  ))}
+                </div>
               </div>
 
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row lg:mt-auto lg:pt-8">
                 <Link
                   href="/contact"
                   className="inline-flex items-center justify-center gap-2 rounded-full bg-[#003D82] px-6 py-3.5 font-semibold text-white hover:bg-[#002B5C] transition-colors"
