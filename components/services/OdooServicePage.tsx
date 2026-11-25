@@ -55,12 +55,22 @@ export default async function OdooServicePage({ s }: { s: OdooService }) {
       {/* Intro + who it's for */}
       <section className="border-t border-[#E2E8F0] bg-white py-16 md:py-20">
         <div className="max-w-[85rem] mx-auto grid grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-2 xl:grid-cols-[1.2fr_1fr] lg:gap-16 lg:px-8">
-          <div className="space-y-5 text-lg leading-relaxed text-[#475569]">
+          <div className="flex flex-col justify-center space-y-5 text-lg leading-relaxed text-[#475569]">
             {s.intro.map((p) => (
               <p key={p.slice(0, 40)}>{p}</p>
             ))}
+            {s.odooApps && (
+              <div className="flex flex-wrap items-center gap-2 pt-1">
+                <span className="mr-1 text-xs font-bold uppercase tracking-[0.14em] text-[#94A3B8]">Odoo apps</span>
+                {s.odooApps.map((a) => (
+                  <span key={a} className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#F8FAFC] ring-1 ring-[#E2E8F0]">
+                    <Image src={`/odoo-icons/svg/${a}.svg`} alt="" width={50} height={50} className="h-5 w-5" />
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
-          <div className="rounded-[24px] bg-[#F8FAFC] p-7 ring-1 ring-[#E2E8F0]">
+          <div className="flex flex-col justify-center rounded-[24px] bg-[#F8FAFC] p-7 ring-1 ring-[#E2E8F0]">
             <div className="mb-4 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.14em] text-[#003D82]">
               <span className="h-px w-6 bg-[#003D82]" aria-hidden="true" /> Right for you if
             </div>
@@ -71,16 +81,6 @@ export default async function OdooServicePage({ s }: { s: OdooService }) {
                 </li>
               ))}
             </ul>
-            {s.odooApps && (
-              <div className="mt-6 flex flex-wrap items-center gap-2 border-t border-[#E2E8F0] pt-5">
-                <span className="mr-1 text-xs font-bold uppercase tracking-[0.14em] text-[#94A3B8]">Odoo apps</span>
-                {s.odooApps.map((a) => (
-                  <span key={a} className="flex h-9 w-9 items-center justify-center rounded-xl bg-white ring-1 ring-[#E2E8F0]">
-                    <Image src={`/odoo-icons/svg/${a}.svg`} alt="" width={50} height={50} className="h-5 w-5" />
-                  </span>
-                ))}
-              </div>
-            )}
           </div>
         </div>
       </section>

@@ -34,9 +34,9 @@ export function LedgerItem({
   const color = tone === "red" ? "text-[#DC2626]" : tone === "sky" ? "text-[#0284C7]" : "text-[#003D82]";
   const bar = tone === "red" ? "bg-[#DC2626]" : tone === "sky" ? "bg-[#0EA5E9]" : "bg-[#003D82]";
   return (
-    <div className={`group relative bg-white p-7 transition-colors duration-300 hover:bg-[#F8FAFC] sm:p-8 ${className}`}>
+    <div className={`group relative flex flex-col justify-center bg-white p-7 transition-colors duration-300 hover:bg-[#F8FAFC] sm:p-8 ${className}`}>
       <span
-        className={`absolute left-0 top-8 h-6 w-[3px] origin-top scale-y-0 rounded-r-full transition-transform duration-300 group-hover:scale-y-100 ${bar}`}
+        className={`absolute left-0 top-1/2 -mt-3 h-6 w-[3px] origin-top scale-y-0 rounded-r-full transition-transform duration-300 group-hover:scale-y-100 ${bar}`}
         aria-hidden="true"
       />
       {kicker && <div className={`mb-3 text-[11px] font-bold uppercase tracking-[0.16em] ${color}`}>{kicker}</div>}

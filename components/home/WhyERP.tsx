@@ -7,10 +7,10 @@ import { X, Check } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 
 const features = [
-  { kicker: "How we work", title: "Trust-Based Approach", description: "We build relationships with SMEs who value expertise, accountability, and long-term results." },
-  { kicker: "Track record", title: "Proven Recovery Track Record", description: "Specialized in fixing broken ERP implementations and recovering lost value." },
-  { kicker: "Reach", title: "Canadian Expertise, Global Reach", description: "Headquartered in Canada, with the infrastructure to serve clients anywhere." },
-  { kicker: "Focus", title: "Recovery Focused", description: "We specialize in fixing underperforming ERP systems." },
+  { kicker: "How we work", title: "Trust-Based Approach", description: "We build lasting relationships with SMEs who value expertise, accountability and results that hold up long after go-live." },
+  { kicker: "Track record", title: "Proven Recovery Track Record", description: "Specialized in fixing broken ERP implementations, stabilizing operations and recovering the value the original project promised." },
+  { kicker: "Reach", title: "Canadian Expertise, Global Reach", description: "Headquartered in Calgary, with the team and delivery model to serve clients across Canada and the United States." },
+  { kicker: "Focus", title: "Recovery Focused", description: "We specialize in turning underperforming ERP systems into platforms your team actually trusts and uses every day." },
 ];
 
 const compare = [

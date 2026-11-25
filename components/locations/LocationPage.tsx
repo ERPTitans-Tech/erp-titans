@@ -55,9 +55,9 @@ export default async function LocationPage({ loc }: { loc: Location }) {
       {/* Intro + local context: paragraphs side by side, then an equal-height row of local points (no empty columns) */}
       <section className="py-16 md:py-20 bg-white">
         <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-6 text-[#475569] text-lg leading-relaxed lg:grid-cols-2 lg:gap-12">
+          <div className="text-[#475569] text-lg leading-relaxed lg:columns-2 lg:gap-12">
             {loc.intro.map((p) => (
-              <p key={p.slice(0, 40)}>{p}</p>
+              <p key={p.slice(0, 40)} className="mb-5 last:mb-0">{p}</p>
             ))}
           </div>
           <div

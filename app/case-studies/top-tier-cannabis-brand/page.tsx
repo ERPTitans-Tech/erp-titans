@@ -282,9 +282,9 @@ export default function TopTierCannabisCaseStudyPage() {
             </div>
 
             {/* Client card */}
-            <div className="rounded-[24px] overflow-hidden shadow-[0_20px_50px_rgba(15,23,42,0.22)] border border-gray-100 bg-white">
+            <div className="flex flex-col rounded-[24px] overflow-hidden shadow-[0_20px_50px_rgba(15,23,42,0.22)] border border-gray-100 bg-white">
               <HeroDataGraph />
-              <div className="bg-white p-7">
+              <div className="flex flex-1 flex-col justify-center bg-white p-7">
                 <h2 className="text-sm font-bold uppercase tracking-[0.15em] text-[#64748B] mb-5">At a Glance</h2>
                 <dl className="space-y-3.5">
                   {facts.map((f) => (

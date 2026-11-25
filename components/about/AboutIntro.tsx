@@ -7,10 +7,10 @@ import { Plus, MapPin } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 
 const values = [
-  { kicker: "Relationships", title: "Trust Over Cost", description: "Relationships built on transparency, not just price." },
-  { kicker: "Expertise", title: "Specialization", description: "Deep focus on recovery, not being everything to everyone." },
-  { kicker: "Outcomes", title: "Results First", description: "We measure success by real business outcomes." },
-  { kicker: "Reach", title: "Global Reach", description: "Canadian-based expertise with the infrastructure to serve you anywhere." },
+  { kicker: "Relationships", title: "Trust Over Cost", description: "Relationships built on transparency and honest advice, not on the lowest quote." },
+  { kicker: "Expertise", title: "Specialization", description: "Deep focus on ERP recovery and Odoo, instead of trying to be everything to everyone." },
+  { kicker: "Outcomes", title: "Results First", description: "We measure success by real business outcomes, not by hours billed or modules installed." },
+  { kicker: "Reach", title: "Global Reach", description: "Calgary-based expertise with the delivery model to serve you across Canada and the USA." },
 ];
 
 const story = [
