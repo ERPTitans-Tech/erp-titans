@@ -78,10 +78,12 @@ export default async function LocationPage({ loc }: { loc: Location }) {
       {/* Odoo setup */}
       <section className="py-16 md:py-20 bg-[#F8FAFC] border-t border-[#E2E8F0]">
         <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl md:text-3xl font-extrabold text-[#003D82] mb-3">How we set up Odoo for {loc.place}</h2>
-          <p className="text-lg text-[#64748B] mb-8 max-w-3xl">
+          <div className="mb-8 grid grid-cols-1 gap-x-16 gap-y-3 lg:grid-cols-2 lg:items-end">
+          <h2 className="text-2xl md:text-3xl font-extrabold text-[#003D82]">How we set up Odoo for {loc.place}</h2>
+          <p className="text-lg text-[#64748B]">
             Every implementation starts with your processes, but these are the {loc.country === "Canada" ? "Canadian" : "US"} and local requirements we build in from day one.
           </p>
+          </div>
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {loc.odooSetup.map((s) => (
               <li key={s} className="flex gap-3 rounded-2xl bg-white border border-[#E2E8F0] p-5 text-[15px] text-[#334155] leading-relaxed">

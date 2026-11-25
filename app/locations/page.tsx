@@ -20,9 +20,9 @@ export default function LocationsPage() {
   return (
     <div className="flex flex-col min-h-screen">
       <section className="pt-32 lg:pt-36 pb-12 bg-[#F8FAFC]">
-        <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight text-[#003D82] mb-6">Where we work</h1>
-          <p className="text-lg text-[#475569] leading-relaxed max-w-3xl">
+        <div className="max-w-[85rem] mx-auto grid grid-cols-1 gap-x-16 gap-y-6 px-4 sm:px-6 lg:grid-cols-2 lg:items-end lg:px-8">
+          <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight text-[#003D82]">Where we work</h1>
+          <p className="text-lg text-[#475569] leading-relaxed">
             ERP Titans is an official Odoo Ready Partner headquartered in Calgary, Alberta. We deliver Odoo
             implementation, migration, support and ERP recovery on site in Calgary and remotely across Canada and the
             United States.

@@ -307,11 +307,13 @@ export default function TopTierCannabisCaseStudyPage() {
       {/* ───────── Challenge ───────── */}
       <section className="py-20 lg:py-24 bg-white border-t border-[#E2E8F0]">
         <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-12">
+          <div className="mb-12 grid grid-cols-1 gap-x-16 gap-y-4 lg:grid-cols-2 lg:items-end">
+            <div>
             <SectionLabel n="1">The challenge</SectionLabel>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] leading-tight mb-5">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] leading-tight">
               Regulated, multi-brand and multi-province
             </h2>
+            </div>
             <p className="text-lg text-[#64748B] leading-relaxed">
               As a licensed producer selling flower and pre-rolls under several brands into multiple provincial markets,
               the business needed one platform that could carry strict regulatory traceability and reporting without
@@ -333,11 +335,13 @@ export default function TopTierCannabisCaseStudyPage() {
       {/* ───────── Compliance spotlight: COA ───────── */}
       <section className="py-20 lg:py-24 bg-[#F8FAFC]">
         <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-14">
+          <div className="mb-12 grid grid-cols-1 gap-x-16 gap-y-4 lg:grid-cols-2 lg:items-end">
+            <div>
             <SectionLabel n="2">Compliance, built in</SectionLabel>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] leading-tight mb-5">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] leading-tight">
               Where cannabis ERP projects are won or lost
             </h2>
+            </div>
             <p className="text-lg text-[#64748B] leading-relaxed">
               Configuring modules is the easy part. What makes an ERP work for a licensed producer is whether lab
               results and federal reporting live inside the system or around it. Here, both were designed into the
@@ -399,11 +403,13 @@ export default function TopTierCannabisCaseStudyPage() {
       {/* ───────── Data flow (interactive) ───────── */}
       <section className="relative overflow-hidden bg-gradient-to-b from-[#F8FAFC] to-[#EFF6FF] py-20 lg:py-24 border-t border-[#E2E8F0]">
         <div className="relative max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 max-w-3xl">
+          <div className="mb-12 grid grid-cols-1 gap-x-16 gap-y-4 lg:grid-cols-2 lg:items-end">
+            <div>
             <SectionLabel n="3">Seed-to-sale, step by step</SectionLabel>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] leading-tight mb-5">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] leading-tight">
               From vendor lot to CTLS report
             </h2>
+            </div>
             <p className="text-lg text-[#64748B] leading-relaxed">
               Every movement carries its lot identity forward, so the full genealogy of any pre-roll on a provincial
               shelf is one lookup away, and month-end reporting writes itself. Click a step, or let it play.
@@ -416,11 +422,13 @@ export default function TopTierCannabisCaseStudyPage() {
       {/* ───────── Solution ───────── */}
       <section className="py-20 lg:py-24 bg-[#F8FAFC]">
         <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-12">
+          <div className="mb-12 grid grid-cols-1 gap-x-16 gap-y-4 lg:grid-cols-2 lg:items-end">
+            <div>
             <SectionLabel n="4">What we built</SectionLabel>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] leading-tight mb-5">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] leading-tight">
               Six business areas on one integrated platform
             </h2>
+            </div>
             <p className="text-lg text-[#64748B] leading-relaxed">
               Each area was configured and extended around how the business actually operates, with traceability and
               compliance designed into every workflow from day one.
@@ -537,11 +545,13 @@ export default function TopTierCannabisCaseStudyPage() {
       {/* ───────── Delivery approach ───────── */}
       <section className="py-20 lg:py-24 bg-[#F8FAFC]">
         <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-12">
+          <div className="mb-12 grid grid-cols-1 gap-x-16 gap-y-4 lg:grid-cols-2 lg:items-end">
+            <div>
             <SectionLabel n="6">How we delivered</SectionLabel>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] leading-tight mb-5">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] leading-tight">
               Built layer by layer, launched with confidence
             </h2>
+            </div>
             <p className="text-lg text-[#64748B] leading-relaxed">
               We delivered the platform in five phases, each building on the last and validated with the people who
               use it, then stayed alongside the team after launch.
@@ -569,11 +579,13 @@ export default function TopTierCannabisCaseStudyPage() {
       <section className="py-20 lg:py-24 bg-white border-t border-[#E2E8F0]">
         <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
           <div>
-            <div className="mb-10 max-w-3xl">
+            <div className="mb-12 grid grid-cols-1 gap-x-16 gap-y-4 lg:grid-cols-2 lg:items-end">
+              <div>
               <SectionLabel n="7">The result</SectionLabel>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] leading-tight mb-5">
+              <h2 className="text-3xl md:text-4xl font-extrabold text-[#003D82] leading-tight">
                 Every brand, one source of truth
               </h2>
+              </div>
               <p className="text-lg text-[#64748B] leading-relaxed">
                 Today, the client runs purchasing, production, distribution, field sales,
                 finance and compliance reporting for every brand on a single integrated platform built to scale
