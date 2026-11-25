@@ -99,7 +99,10 @@ export default async function LocationPage({ loc }: { loc: Location }) {
       {/* Industries + cities */}
       <section className="py-16 md:py-20 bg-white">
         <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl md:text-3xl font-extrabold text-[#003D82] mb-8">Industries we serve in {loc.place}</h2>
+          <div className="mb-8 grid grid-cols-1 gap-x-16 gap-y-3 lg:grid-cols-2 lg:items-end">
+            <h2 className="text-2xl md:text-3xl font-extrabold text-[#003D82]">Industries we serve in {loc.place}</h2>
+            <p className="text-lg text-[#64748B]">Odoo configured for how each sector actually runs, from the shop floor and warehouse to compliance and finance.</p>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-14">
             {loc.industries.map((i) => (
               <Link

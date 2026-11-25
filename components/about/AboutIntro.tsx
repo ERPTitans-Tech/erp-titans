@@ -74,7 +74,7 @@ export default function AboutIntro({ isCA = false }: { isCA?: boolean }) {
       {/* ───────── Story + values ───────── */}
       <section className="border-t border-[#E2E8F0] bg-white py-20 lg:py-24">
         <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeader n={1} label="Who we are" title="Built to fix what others couldn't" />
+          <SectionHeader n={1} label="Who we are" title="Built to fix what others couldn't" text="ERP Titans was founded to rescue the projects other implementers left behind, and that recovery mindset now shapes every Odoo implementation we deliver." />
           <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-[1fr_1.2fr]">
             <m.div
               initial={{ opacity: 0, x: -20 }}

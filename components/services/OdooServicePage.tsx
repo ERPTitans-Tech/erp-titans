@@ -89,7 +89,7 @@ export default async function OdooServicePage({ s }: { s: OdooService }) {
       {/* What's included */}
       <section className="border-t border-[#E2E8F0] bg-[#F8FAFC] py-16 md:py-20">
         <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeader n={1} label="What's included" title={`${s.name}: scope of work`} />
+          <SectionHeader n={1} label="What's included" title={`${s.name}: scope of work`} text="Everything below is covered in the engagement, scoped to your processes and delivered by the same team from start to finish." />
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {s.includes.map((i) => (
               <div key={i.title} className="rounded-[20px] bg-white p-6 ring-1 ring-[#E2E8F0]">
@@ -105,7 +105,7 @@ export default async function OdooServicePage({ s }: { s: OdooService }) {
       {/* Process */}
       <section className="border-t border-[#E2E8F0] bg-white py-16 md:py-20">
         <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeader n={2} label="How it works" title="Our process" />
+          <SectionHeader n={2} label="How it works" title="Our process" text="A clear, staged approach with sign-off at every step, so you always know what is happening, what comes next and what it costs." />
           <ol className={`grid grid-cols-1 gap-5 sm:grid-cols-2 ${s.process.length === 5 ?"lg:grid-cols-5" : "lg:grid-cols-4"}`}>
             {s.process.map((p, i) => (
               <li key={p.title} className="relative rounded-[20px] bg-[#F8FAFC] p-6 ring-1 ring-[#E2E8F0]">
