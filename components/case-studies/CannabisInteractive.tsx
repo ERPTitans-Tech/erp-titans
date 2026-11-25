@@ -343,6 +343,14 @@ function ProduceVisual() {
   );
 }
 
+const recorded: Record<string, string> = {
+  receive: "Vendor lot, quarantine status and the linked COA",
+  blend: "Input lots, the new blend lot and its yield",
+  produce: "Work order, finished lot and every QC checkpoint",
+  ship: "Delivery, customer and the exact lots shipped",
+  report: "Monthly additions, reductions and closing values",
+};
+
 export function DataFlowStepper() {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -428,6 +436,19 @@ export function DataFlowStepper() {
             </m.div>
           </AnimatePresence>
         </div>
+
+        <AnimatePresence mode="wait">
+          <m.p
+            key={`rec-${steps[active].key}`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="relative mt-5 text-center text-[13.5px] text-[#475569]"
+          >
+            <span className="font-semibold text-[#003D82]">Recorded in Odoo: </span>
+            {recorded[steps[active].key]}
+          </m.p>
+        </AnimatePresence>
 
         {/* lot identity trail: fills the stage and shows the genealogy building up */}
         <div className="relative mt-5 rounded-2xl bg-white/80 p-3.5 ring-1 ring-[#003D82]/10 backdrop-blur-sm">

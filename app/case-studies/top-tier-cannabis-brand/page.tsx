@@ -127,8 +127,8 @@ const solution = [
     title: "CRM & Field Sales",
     points: [
       "Account and store visit planning with follow-up reminders",
-      "Customer records with licensing details and status",
-      "Field activity logging from any device",
+      "Customer records with licensing details, status and account history",
+      "Field activity and visit notes logged from any device",
       "Sales pipeline and rep performance dashboards",
       "Territory and account segmentation by region",
     ],
