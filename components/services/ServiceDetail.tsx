@@ -5,9 +5,9 @@
 //  - ServiceJourney: an auto-playing process walkthrough showing what each step delivers
 //    and what it needs from the client
 
-import { useEffect, useRef, useState } from "react";
-import { m, AnimatePresence, useInView, useReducedMotion } from "framer-motion";
-import { Pause, Play } from "lucide-react";
+import { m, AnimatePresence } from "framer-motion";
+import { useCycle } from "@/lib/hooks/useCycle";
+import CycleControls from "@/components/ui/CycleControls";
 import Photo from "@/components/ui/Photo";
 import Tick from "@/components/ui/Tick";
 import { SectionLabel } from "@/components/ui/SectionHeader";
@@ -15,33 +15,25 @@ import { SectionLabel } from "@/components/ui/SectionHeader";
 export function ServiceShift({
   n,
   name,
+  title,
   photo,
   shift,
+  bg = "bg-white",
 }: {
   n: number;
   name: string;
+  title?: string;
   photo: { id: string; alt: string; caption: string };
   shift: { before: string; after: string }[];
+  bg?: string;
 }) {
-  const [after, setAfter] = useState(true);
-  const [auto, setAuto] = useState(true);
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { amount: 0.5 });
-  const reduce = useReducedMotion();
-
-  useEffect(() => {
-    if (!auto || !inView || reduce) return;
-    const t = setTimeout(() => setAfter((a) => !a), after ? 4200 : 2600);
-    return () => clearTimeout(t);
-  }, [after, auto, inView, reduce]);
-
-  const pick = (v: boolean) => {
-    setAfter(v);
-    setAuto(false);
-  };
+  // index 1 = "after", 0 = "before"; loops forever, a click just jumps and the loop continues
+  const c = useCycle(2, 3600, { amount: 0.5 });
+  const after = c.active === 1;
+  const pick = (v: boolean) => c.go(v ? 1 : 0);
 
   return (
-    <section className="border-t border-[#E2E8F0] bg-white py-16 md:py-20">
+    <section className={`border-t border-[#E2E8F0] ${bg} py-16 md:py-20`}>
       <div className="mx-auto grid max-w-[85rem] grid-cols-1 items-stretch gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-14 lg:px-8">
         <figure className="relative min-h-[300px] overflow-hidden rounded-[28px] lg:min-h-full">
           <Photo id={photo.id} alt={photo.alt} className="absolute inset-0 h-full w-full object-cover" sizes="(min-width: 1024px) 640px, 100vw" />
@@ -50,11 +42,12 @@ export function ServiceShift({
           </figcaption>
         </figure>
 
-        <div ref={ref} className="flex flex-col">
+        <div ref={c.ref} {...c.hoverProps} className="flex flex-col">
           <SectionLabel n={n}>What changes</SectionLabel>
-          <h2 className="text-2xl md:text-3xl font-extrabold leading-tight text-[#003D82]">What {name.toLowerCase()} changes for your team</h2>
+          <h2 className="text-2xl md:text-3xl font-extrabold leading-tight text-[#003D82]">{title ?? `What ${name.toLowerCase()} changes for your team`}</h2>
 
-          <div className="mt-6 inline-flex self-start rounded-full bg-[#F1F5F9] p-1" role="tablist" aria-label="Before or after">
+          <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
+          <div className="inline-flex rounded-full bg-[#F1F5F9] p-1" role="tablist" aria-label="Before or after">
             {[
               { v: false, l: "Before" },
               { v: true, l: "With ERP Titans" },
@@ -72,6 +65,8 @@ export function ServiceShift({
                 {o.l}
               </button>
             ))}
+          </div>
+          <CycleControls playing={c.playing} onToggle={c.toggle} onPrev={c.prev} onNext={c.next} label="before and after view" />
           </div>
 
           <ul className="mt-6 flex flex-1 flex-col justify-between gap-3">
@@ -115,39 +110,21 @@ export function ServiceJourney({
 }: {
   steps: { title: string; text: string; get: string; you: string }[];
 }) {
-  const [active, setActive] = useState(0);
-  const [playing, setPlaying] = useState(true);
-  const [hover, setHover] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { amount: 0.4 });
-  const reduce = useReducedMotion();
-  const running = playing && !hover && inView && !reduce;
+  const c = useCycle(steps.length, 5000);
+  const active = c.active;
+  const running = c.running;
   const s = steps[active];
-
-  useEffect(() => {
-    if (!running) return;
-    const t = setTimeout(() => setActive((a) => (a + 1) % steps.length), 5000);
-    return () => clearTimeout(t);
-  }, [active, running, steps.length]);
 
   return (
     <div
-      ref={ref}
+      ref={c.ref}
+      {...c.hoverProps}
       className="grid grid-cols-1 overflow-hidden rounded-[28px] bg-white ring-1 ring-[#E2E8F0] shadow-[0_8px_30px_rgba(0,0,0,0.04)] lg:grid-cols-[0.9fr_1.1fr]"
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
     >
       <div className="border-b border-[#E2E8F0] bg-[#F8FAFC] p-4 sm:p-5 lg:border-b-0 lg:border-r">
         <div className="mb-3 flex items-center justify-between px-2">
           <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#64748B]">Step {active + 1} of {steps.length}</span>
-          <button
-            type="button"
-            onClick={() => setPlaying((p) => !p)}
-            className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1 text-xs font-semibold text-[#003D82] ring-1 ring-[#E2E8F0]"
-            aria-label={playing ? "Pause walkthrough" : "Play walkthrough"}
-          >
-            {playing ? <Pause size={12} /> : <Play size={12} />} {playing ? "Pause" : "Play"}
-          </button>
+          <CycleControls playing={c.playing} onToggle={c.toggle} onPrev={c.prev} onNext={c.next} label="process walkthrough" />
         </div>
         <ol className="space-y-1.5" role="tablist" aria-label="Process steps">
           {steps.map((st, i) => {
@@ -159,10 +136,7 @@ export function ServiceJourney({
                   type="button"
                   role="tab"
                   aria-selected={on}
-                  onClick={() => {
-                    setActive(i);
-                    setPlaying(false);
-                  }}
+                  onClick={() => c.go(i)}
                   className={`relative flex w-full items-center gap-3 overflow-hidden rounded-xl px-3 py-3 text-left transition-all ${
                     on ? "bg-white shadow-[0_6px_18px_rgba(0,61,130,0.10)] ring-1 ring-[#003D82]/15" : "hover:bg-white/70"
                   }`}
@@ -177,7 +151,7 @@ export function ServiceJourney({
                   <span className={`font-bold ${on ? "text-[#003D82]" : "text-[#334155]"}`}>{st.title}</span>
                   {on && running && (
                     <m.span
-                      key={`p-${active}`}
+                      key={c.cycleKey}
                       className="absolute bottom-0 left-0 h-[2px] bg-[#0EA5E9]"
                       initial={{ width: "0%" }}
                       animate={{ width: "100%" }}

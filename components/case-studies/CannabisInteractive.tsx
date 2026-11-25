@@ -8,6 +8,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { useCycle } from "@/lib/hooks/useCycle";
+import CycleControls from "@/components/ui/CycleControls";
 import { m, AnimatePresence, useInView } from "framer-motion";
 import { CheckCircle2, FlaskConical, Lock, Unlock, Truck, FileSpreadsheet, GitMerge, Factory, PackageCheck, RotateCcw, BarChart3 } from "lucide-react";
 
@@ -352,19 +354,13 @@ const recorded: Record<string, string> = {
 };
 
 export function DataFlowStepper() {
-  const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { amount: 0.4 });
-
-  useEffect(() => {
-    if (paused || !inView) return;
-    const t = setTimeout(() => setActive((a) => (a + 1) % steps.length), 6000);
-    return () => clearTimeout(t);
-  }, [active, paused, inView]);
+  const c = useCycle(steps.length, 6000, { amount: 0.4 });
+  const active = c.active;
+  const paused = !c.running;
+  const inView = true;
 
   return (
-    <div ref={ref} className="grid grid-cols-1 gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+    <div ref={c.ref} {...c.hoverProps} className="grid grid-cols-1 gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12">
       <ol className="space-y-2">
         {steps.map((s, i) => {
           const Icon = s.icon;
@@ -373,7 +369,7 @@ export function DataFlowStepper() {
             <li key={s.key}>
               <button
                 type="button"
-                onClick={() => setActive(i)}
+                onClick={() => c.go(i)}
                 aria-pressed={on}
                 className={`group w-full rounded-2xl px-4 py-3.5 text-left transition-all ${
                   on ? "bg-white shadow-[0_8px_24px_rgba(0,61,130,0.10)] ring-1 ring-[#003D82]/15" : "hover:bg-white/70"
@@ -395,7 +391,7 @@ export function DataFlowStepper() {
                       <div className="ml-12 mt-3 h-1 overflow-hidden rounded-full bg-[#E2E8F0]">
                         {!paused && inView && (
                           <m.div
-                            key={`bar-${active}`}
+                            key={`bar-${c.cycleKey}`}
                             className="h-full rounded-full"
                             style={{ background: `linear-gradient(90deg, ${NAVY}, ${SKY})` }}
                             initial={{ width: "0%" }}
@@ -415,12 +411,13 @@ export function DataFlowStepper() {
 
       <div className="relative flex min-h-[300px] flex-col overflow-hidden rounded-[28px] bg-gradient-to-br from-[#DBEAFE] via-[#EFF6FF] to-[#F0FDF4] p-6 ring-1 ring-[#003D82]/10">
         <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-white/60 blur-2xl" />
-        <div className="relative mb-4 flex items-center justify-between gap-3">
+        <div className="relative mb-4 flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-1.5">
             {steps.map((s, i) => (
               <span key={s.key} className={`h-1.5 rounded-full transition-all ${i === active ? "w-6 bg-[#003D82]" : "w-1.5 bg-[#003D82]/25"}`} />
             ))}
           </div>
+          <CycleControls playing={c.playing} onToggle={c.toggle} onPrev={c.prev} onNext={c.next} label="seed-to-sale walkthrough" />
         </div>
         <div className="relative flex flex-1 items-center justify-center">
           <AnimatePresence mode="wait">
@@ -492,7 +489,7 @@ const coaTests = [
 
 export function CoaLiveCheck() {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.4 });
+  const inView = useInView(ref, { amount: 0.4 });
   const [done, setDone] = useState(0);
   const [run, setRun] = useState(0);
 
@@ -504,6 +501,13 @@ export function CoaLiveCheck() {
   }, [inView, run]);
 
   const released = done === coaTests.length;
+
+  // once released, hold the result for a moment, then run the checks again (loops while visible)
+  useEffect(() => {
+    if (!released || !inView) return;
+    const t = setTimeout(() => setRun((r) => r + 1), 3500);
+    return () => clearTimeout(t);
+  }, [released, inView]);
 
   return (
     <div ref={ref} className="overflow-hidden rounded-[24px] bg-white shadow-[0_20px_50px_rgba(0,61,130,0.10)] ring-1 ring-[#E2E8F0]">
@@ -661,8 +665,10 @@ const mix = {
 type MixKey = keyof typeof mix;
 
 export function ProductionMix({ className = "" }: { className?: string }) {
-  const [show, setShow] = useState<"both" | MixKey>("both");
-  const ref = useRef<HTMLDivElement>(null);
+  const views = ["both", "1 g", "0.4 g"] as const;
+  const c = useCycle(views.length, 4000, { amount: 0.4 });
+  const show: "both" | MixKey = views[c.active];
+  const ref = c.ref;
   const inView = useInView(ref, { once: true, amount: 0.4 });
   const H = 150;
   const series: { key: MixKey; color: string }[] = [
@@ -671,7 +677,7 @@ export function ProductionMix({ className = "" }: { className?: string }) {
   ];
 
   return (
-    <div ref={ref} className={`flex flex-col rounded-[24px] bg-white p-6 shadow-[0_20px_50px_rgba(0,61,130,0.10)] ring-1 ring-[#E2E8F0] ${className}`}>
+    <div ref={ref} {...c.hoverProps} className={`flex flex-col rounded-[24px] bg-white p-6 shadow-[0_20px_50px_rgba(0,61,130,0.10)] ring-1 ring-[#E2E8F0] ${className}`}>
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
           <Image src="/odoo-icons/svg/mrp.svg" alt="" width={50} height={50} className="h-8 w-8" />
@@ -680,6 +686,7 @@ export function ProductionMix({ className = "" }: { className?: string }) {
             <div className="font-bold text-[#0F172A]">Pre-roll output trend (indexed)</div>
           </div>
         </div>
+        <CycleControls playing={c.playing} onToggle={c.toggle} onPrev={c.prev} onNext={c.next} label="production chart" />
       </div>
 
       <div className="mb-3 inline-flex rounded-full bg-[#F1F5F9] p-1">
@@ -687,7 +694,7 @@ export function ProductionMix({ className = "" }: { className?: string }) {
           <button
             key={k}
             type="button"
-            onClick={() => setShow(k)}
+            onClick={() => c.go(views.indexOf(k))}
             className={`rounded-full px-4 py-1.5 text-sm font-semibold transition-colors ${show === k ? "bg-[#003D82] text-white shadow-sm" : "text-[#64748B] hover:text-[#0F172A]"}`}
           >
             {k === "both" ? "Both formats" : `${k} pre-rolls`}
@@ -748,7 +755,9 @@ const dashTabs = {
 type DashKey = keyof typeof dashTabs;
 
 export function DashboardTabs({ className = "" }: { className?: string }) {
-  const [tab, setTab] = useState<DashKey>("OEE");
+  const keys = Object.keys(dashTabs) as DashKey[];
+  const c = useCycle(keys.length, 4200, { amount: 0.4 });
+  const tab = keys[c.active];
   const d = dashTabs[tab];
   const W = 360;
   const H = 130;
@@ -759,7 +768,7 @@ export function DashboardTabs({ className = "" }: { className?: string }) {
   const area = `${line} L${W},${H} L0,${H} Z`;
 
   return (
-    <div className={`flex flex-col rounded-[24px] bg-white p-6 shadow-[0_20px_50px_rgba(0,61,130,0.10)] ring-1 ring-[#E2E8F0] ${className}`}>
+    <div ref={c.ref} {...c.hoverProps} className={`flex flex-col rounded-[24px] bg-white p-6 shadow-[0_20px_50px_rgba(0,61,130,0.10)] ring-1 ring-[#E2E8F0] ${className}`}>
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
           <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#003D82] text-white">
@@ -770,6 +779,7 @@ export function DashboardTabs({ className = "" }: { className?: string }) {
             <div className="font-bold text-[#0F172A]">Leadership dashboard</div>
           </div>
         </div>
+        <CycleControls playing={c.playing} onToggle={c.toggle} onPrev={c.prev} onNext={c.next} label="dashboard" />
       </div>
       <div className="mb-3">
         <div className="inline-flex rounded-full bg-[#F1F5F9] p-1">
@@ -777,7 +787,7 @@ export function DashboardTabs({ className = "" }: { className?: string }) {
             <button
               key={k}
               type="button"
-              onClick={() => setTab(k)}
+              onClick={() => c.go(keys.indexOf(k))}
               className={`rounded-full px-3.5 py-1.5 text-xs font-bold transition-colors ${tab === k ? "bg-[#003D82] text-white" : "text-[#64748B] hover:text-[#0F172A]"}`}
             >
               {k}
@@ -866,35 +876,17 @@ const BUILD = [
 ];
 
 export function DeliveryPhases() {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { amount: 0.35 });
-  const [active, setActive] = useState(0);
-  const [hovered, setHovered] = useState(false);
-  const [stopped, setStopped] = useState(false);
-  const [reduced, setReduced] = useState(false);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setReduced(mq.matches);
-  }, []);
-
-  const playing = inView && !hovered && !stopped && !reduced;
-
-  useEffect(() => {
-    if (!playing) return;
-    const id = setTimeout(() => setActive((a) => (a + 1) % DELIVERY.length), PHASE_MS);
-    return () => clearTimeout(id);
-  }, [playing, active]);
+  const c = useCycle(DELIVERY.length, PHASE_MS);
+  const active = c.active;
+  const playing = c.running;
 
   const phase = DELIVERY[active];
   const live = active === DELIVERY.length - 1;
 
   return (
     <div
-      ref={ref}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      ref={c.ref}
+      {...c.hoverProps}
       className="overflow-hidden rounded-[28px] bg-white shadow-[0_20px_50px_rgba(0,61,130,0.10)] ring-1 ring-[#E2E8F0]"
     >
       <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr]">
@@ -902,14 +894,7 @@ export function DeliveryPhases() {
         <div className="border-b border-[#E2E8F0] bg-[#F8FAFC] p-4 sm:p-6 lg:border-b-0 lg:border-r">
           <div className="mb-4 flex items-center justify-between px-2">
             <Eyebrow>Delivery path</Eyebrow>
-            <button
-              type="button"
-              onClick={() => setStopped((s) => !s)}
-              aria-label={stopped ? "Play the walkthrough" : "Pause the walkthrough"}
-              className="rounded-full px-3 py-1 text-xs font-bold text-[#003D82] ring-1 ring-[#003D82]/20 transition-colors hover:bg-white"
-            >
-              {stopped ? "Play" : "Pause"}
-            </button>
+<CycleControls playing={c.playing} onToggle={c.toggle} onPrev={c.prev} onNext={c.next} label="delivery walkthrough" />
           </div>
           <ol className="grid grid-cols-5 gap-1.5 lg:grid-cols-1 lg:gap-1" role="tablist" aria-label="Delivery phases">
             {DELIVERY.map((p, i) => {
@@ -921,10 +906,7 @@ export function DeliveryPhases() {
                     type="button"
                     role="tab"
                     aria-selected={on}
-                    onClick={() => {
-                      setActive(i);
-                      setStopped(true);
-                    }}
+                    onClick={() => c.go(i)}
                     className={`relative flex w-full flex-col items-center gap-1 overflow-hidden rounded-2xl px-2 py-3 text-center transition-all lg:flex-row lg:items-center lg:gap-4 lg:px-4 lg:py-3.5 lg:text-left ${
                       on ? "bg-white shadow-[0_6px_20px_rgba(0,61,130,0.10)] ring-1 ring-[#E2E8F0]" : "hover:bg-white/70"
                     }`}
@@ -949,7 +931,7 @@ export function DeliveryPhases() {
                     {on && (
                       <span className="absolute inset-x-3 bottom-0 h-[3px] overflow-hidden rounded-full bg-[#E2E8F0] lg:inset-x-4">
                         <m.span
-                          key={`${active}-${playing}`}
+                          key={`${c.cycleKey}-${playing}`}
                           className={`block h-full rounded-full ${i === DELIVERY.length - 1 ? "bg-[#16A34A]" : "bg-[#003D82]"}`}
                           initial={{ width: "0%" }}
                           animate={{ width: playing ? "100%" : "0%" }}

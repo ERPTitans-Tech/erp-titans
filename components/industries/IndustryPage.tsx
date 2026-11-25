@@ -10,6 +10,11 @@ import CTA from "@/components/home/CTA";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { industries, type IndustryKey } from "@/lib/industries";
 import Tick from "@/components/ui/Tick";
+import IndustryFlow from "@/components/industries/IndustryFlow";
+import { ServiceShift } from "@/components/services/ServiceDetail";
+import FaqSplit from "@/components/ui/FaqSplit";
+import JsonLd from "@/components/seo/JsonLd";
+import { industryExtras } from "@/lib/industry-extras";
 
 const fadeUp = {
   initial: { opacity: 0, y: 20 },
@@ -19,10 +24,17 @@ const fadeUp = {
 
 export default function IndustryPage({ industry }: { industry: IndustryKey }) {
   const d = industries[industry];
+  const x = industryExtras[industry];
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: x.faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+  };
   const others = (Object.keys(industries) as IndustryKey[]).filter((k) => k !== industry);
 
   return (
     <div className="flex flex-col min-h-screen">
+      <JsonLd data={faqSchema} />
       {/* ───────── Hero ───────── */}
       <section className="relative overflow-hidden bg-[#F8FAFC] pt-32 lg:pt-36 pb-20 lg:pb-24">
         <div className="pointer-events-none absolute inset-0">
@@ -117,10 +129,33 @@ export default function IndustryPage({ industry }: { industry: IndustryKey }) {
         </div>
       </section>
 
-      {/* ───────── Solution ───────── */}
+      {/* ───────── Core flow (auto-playing) ───────── */}
       <section className="border-t border-[#E2E8F0] bg-[#F8FAFC] py-20 lg:py-24">
         <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeader n={2} label="How we fix it" title={d.solution.heading} text={d.solution.text} />
+          <SectionHeader n={2} label="How it runs in Odoo" title={x.flowTitle} text={x.flowText} />
+          <IndustryFlow steps={x.flow} />
+
+          <div className="mt-8 grid grid-cols-1 items-center gap-5 rounded-[24px] bg-white p-6 ring-1 ring-[#E2E8F0] sm:p-7 lg:grid-cols-[280px_1fr] lg:gap-10">
+            <div>
+              <div className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#16A34A]">Live in your dashboards</div>
+              <div className="mt-1 text-lg font-extrabold text-[#003D82]">What leadership can finally see</div>
+            </div>
+            <ul className="flex flex-wrap gap-2.5">
+              {x.kpis.map((k) => (
+                <li key={k} className="inline-flex items-center gap-2 rounded-full bg-[#F8FAFC] px-4 py-2 text-[14px] font-semibold text-[#334155] ring-1 ring-[#E2E8F0]">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#0EA5E9]" aria-hidden="true" />
+                  {k}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* ───────── Solution ───────── */}
+      <section className="border-t border-[#E2E8F0] bg-white py-20 lg:py-24">
+        <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeader n={3} label="How we fix it" title={d.solution.heading} text={d.solution.text} />
 
           {d.solution.cards && (
             <div className={`grid grid-cols-1 gap-6 sm:grid-cols-2 ${d.solution.cards.length === 4 ?"lg:grid-cols-4" : "lg:grid-cols-3"}`}>
@@ -129,7 +164,7 @@ export default function IndustryPage({ industry }: { industry: IndustryKey }) {
                   key={c.title}
                   {...fadeUp}
                   transition={{ duration: 0.45, delay: i * 0.08 }}
-                  className="rounded-[20px] bg-white p-7 shadow-[0_8px_30px_rgba(0,0,0,0.04)] ring-1 ring-[#E2E8F0]"
+                  className="rounded-[20px] bg-[#F8FAFC] p-7 ring-1 ring-[#E2E8F0]"
                 >
                   <div className="mb-4 h-1 w-10 rounded-full bg-gradient-to-r from-[#003D82] to-[#0EA5E9]" />
                   <h3 className="mb-4 text-lg font-bold text-[#003D82]">{c.title}</h3>
@@ -211,11 +246,13 @@ export default function IndustryPage({ industry }: { industry: IndustryKey }) {
         </div>
       </section>
 
+      <ServiceShift n={4} name={d.name} title="What changes after the project" photo={x.photo} shift={x.shift} bg="bg-[#F8FAFC]" />
+
       {/* ───────── Odoo apps ───────── */}
       <section className="border-t border-[#E2E8F0] bg-white py-20 lg:py-24">
         <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
-            n={3}
+            n={5}
             label="Built on Odoo"
             title={`The Odoo apps behind ${d.name.toLowerCase()} ERP`}
             text="As an official Odoo Ready Partner, we configure these apps around how your business actually runs, then extend them only where it adds real value."
@@ -267,6 +304,13 @@ export default function IndustryPage({ industry }: { industry: IndustryKey }) {
             <Link href="/odoo-partner-canada" className="font-semibold text-[#003D82] hover:underline">Canada</Link>
             <Link href="/odoo-partner-usa" className="font-semibold text-[#003D82] hover:underline">USA</Link>
           </div>
+        </div>
+      </section>
+
+      {/* ───────── FAQ ───────── */}
+      <section className="border-t border-[#E2E8F0] bg-[#F8FAFC] py-20 lg:py-24">
+        <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+          <FaqSplit n={6} title={`${d.name} ERP: frequently asked questions`} intro={`What ${d.name.toLowerCase()} businesses usually ask before an Odoo project.`} faqs={x.faqs} />
         </div>
       </section>
 

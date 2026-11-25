@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCycle } from "@/lib/hooks/useCycle";
 import Link from "next/link";
 import { m } from "framer-motion";
 import { ArrowRight } from "lucide-react";
@@ -18,7 +18,8 @@ const metrics = [
 const fmt = (v: number, unit: string) => (unit === "%" ? `${v}%` : `${v} ${unit}`);
 
 export default function Outcomes() {
-  const [after, setAfter] = useState(true);
+  const c = useCycle(2, 3800, { amount: 0.4 });
+  const after = c.active === 0;
 
   return (
     <section className="border-t border-[#E2E8F0] bg-white py-20 lg:py-24" id="outcomes">
@@ -33,6 +34,8 @@ export default function Outcomes() {
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.25fr_1fr]">
           {/* Before / after chart */}
           <m.div
+            ref={c.ref}
+            {...c.hoverProps}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -42,6 +45,9 @@ export default function Outcomes() {
             <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
               <div>
                 <span className="text-sm font-bold uppercase tracking-[0.14em] text-[#003D82]">Recovery scorecard</span>
+                <button type="button" onClick={c.toggle} className="ml-3 text-xs font-semibold text-[#64748B] underline-offset-2 hover:text-[#003D82] hover:underline" aria-label={c.playing ? "Pause the scorecard" : "Play the scorecard"}>
+                  {c.playing ? "Pause" : "Play"}
+                </button>
               </div>
               <div className="inline-flex rounded-full bg-[#F1F5F9] p-1" role="tablist" aria-label="Before or after recovery">
                 {[
@@ -52,7 +58,7 @@ export default function Outcomes() {
                     key={o.label}
                     role="tab"
                     aria-selected={after === o.k}
-                    onClick={() => setAfter(o.k)}
+                    onClick={() => c.go(o.k ? 0 : 1)}
                     className={`relative rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
                       after === o.k ? "text-white" : "text-[#475569] hover:text-[#0F172A]"
                     }`}

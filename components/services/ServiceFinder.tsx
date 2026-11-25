@@ -3,9 +3,10 @@
 // "Where are you today?" — visitors pick their situation and see which service fits,
 // what the first weeks look like and where to go next. Cycles gently until someone clicks.
 
-import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { m, AnimatePresence, useInView, useReducedMotion } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
+import { useCycle } from "@/lib/hooks/useCycle";
+import CycleControls from "@/components/ui/CycleControls";
 import { ArrowRight } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 import Tick from "@/components/ui/Tick";
@@ -81,18 +82,9 @@ const situations: Situation[] = [
 ];
 
 export default function ServiceFinder() {
-  const [active, setActive] = useState(0);
-  const [auto, setAuto] = useState(true);
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { amount: 0.4 });
-  const reduce = useReducedMotion();
+  const c = useCycle(situations.length, 5200);
+  const active = c.active;
   const s = situations[active];
-
-  useEffect(() => {
-    if (!auto || !inView || reduce) return;
-    const t = setTimeout(() => setActive((a) => (a + 1) % situations.length), 5200);
-    return () => clearTimeout(t);
-  }, [active, auto, inView, reduce]);
 
   return (
     <section id="start" className="scroll-mt-24 border-t border-[#E2E8F0] bg-white py-20 lg:py-24">
@@ -104,7 +96,7 @@ export default function ServiceFinder() {
           text="Pick the situation that sounds most like yours. We'll show you the service that fits, and what the first few weeks with us look like."
         />
 
-        <div ref={ref} className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1.35fr] lg:gap-8">
+        <div ref={c.ref} {...c.hoverProps} className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1.35fr] lg:gap-8">
           <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-1" role="tablist" aria-label="Your situation">
             {situations.map((x, i) => {
               const on = i === active;
@@ -114,10 +106,7 @@ export default function ServiceFinder() {
                   type="button"
                   role="tab"
                   aria-selected={on}
-                  onClick={() => {
-                    setActive(i);
-                    setAuto(false);
-                  }}
+                  onClick={() => c.go(i)}
                   className={`relative overflow-hidden rounded-2xl px-5 py-4 text-left text-[15.5px] font-semibold transition-all ${
                     on
                       ? "bg-[#003D82] text-white shadow-[0_10px_24px_rgba(0,61,130,0.22)]"
@@ -125,9 +114,9 @@ export default function ServiceFinder() {
                   }`}
                 >
                   {x.label}
-                  {on && auto && inView && !reduce && (
+                  {on && c.running && (
                     <m.span
-                      key={`bar-${active}`}
+                      key={c.cycleKey}
                       className="absolute bottom-0 left-0 h-[3px] bg-[#0EA5E9]"
                       initial={{ width: "0%" }}
                       animate={{ width: "100%" }}
@@ -139,7 +128,11 @@ export default function ServiceFinder() {
             })}
           </div>
 
-          <div className="relative overflow-hidden rounded-[28px] bg-gradient-to-br from-[#EFF6FF] via-white to-[#F0FDF4] p-6 ring-1 ring-[#003D82]/10 sm:p-8">
+          <div className="relative flex flex-col overflow-hidden rounded-[28px] bg-gradient-to-br from-[#EFF6FF] via-white to-[#F0FDF4] p-6 ring-1 ring-[#003D82]/10 sm:p-8">
+            <div className="mb-5 flex items-center justify-between gap-3">
+              <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#64748B]">Situation {active + 1} of {situations.length}</span>
+              <CycleControls playing={c.playing} onToggle={c.toggle} onPrev={c.prev} onNext={c.next} label="service finder" />
+            </div>
             <AnimatePresence mode="wait">
               <m.div
                 key={s.key}
@@ -147,7 +140,7 @@ export default function ServiceFinder() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3 }}
-                className="flex h-full flex-col"
+                className="flex flex-1 flex-col"
               >
                 <p className="border-l-2 border-[#0EA5E9] pl-4 text-[17px] italic leading-relaxed text-[#334155]">&ldquo;{s.quote}&rdquo;</p>
 

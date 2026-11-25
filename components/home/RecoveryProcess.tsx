@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useCycle } from "@/lib/hooks/useCycle";
 import { m, AnimatePresence } from "framer-motion";
-import { Check, ArrowRight, ArrowLeft } from "lucide-react";
+import { Check, ArrowRight, ArrowLeft, Pause, Play } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 
 const steps = [
@@ -29,12 +29,13 @@ const steps = [
 ];
 
 export default function RecoveryProcess() {
-  const [active, setActive] = useState(0);
+  const c = useCycle(steps.length, 4500);
+  const active = c.active;
   const step = steps[active];
 
   return (
     <section className="border-t border-[#E2E8F0] bg-white py-20 lg:py-24" id="process">
-      <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
+      <div ref={c.ref} {...c.hoverProps} className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
         <SectionHeader
           n={3}
           label="Our process"
@@ -61,7 +62,7 @@ export default function RecoveryProcess() {
                   key={s.title}
                   role="tab"
                   aria-selected={on}
-                  onClick={() => setActive(i)}
+                  onClick={() => c.go(i)}
                   className="group flex flex-col items-center text-center"
                 >
                   <span
@@ -104,19 +105,24 @@ export default function RecoveryProcess() {
                 <p className="mt-4 text-lg leading-relaxed text-[#475569]">{step.description}</p>
                 <div className="mt-7 flex gap-3 md:mt-auto md:pt-7">
                   <button
-                    onClick={() => setActive((a) => Math.max(0, a - 1))}
-                    disabled={active === 0}
+                    onClick={c.prev}
                     aria-label="Previous step"
                     className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-[#003D82] ring-1 ring-[#E2E8F0] transition-all hover:ring-[#003D82]/40 disabled:opacity-40"
                   >
                     <ArrowLeft size={18} />
                   </button>
                   <button
-                    onClick={() => setActive((a) => Math.min(steps.length - 1, a + 1))}
-                    disabled={active === steps.length - 1}
+                    onClick={c.next}
                     className="inline-flex items-center gap-2 rounded-full bg-[#003D82] px-6 text-sm font-semibold text-white transition-all hover:bg-[#003D82]/90 disabled:opacity-40"
                   >
                     Next step <ArrowRight size={16} />
+                  </button>
+                  <button
+                    onClick={c.toggle}
+                    aria-label={c.playing ? "Pause the recovery steps" : "Play the recovery steps"}
+                    className="inline-flex h-11 items-center gap-1.5 rounded-full bg-white px-4 text-sm font-semibold text-[#003D82] ring-1 ring-[#E2E8F0] transition-all hover:ring-[#003D82]/40"
+                  >
+                    {c.playing ? <Pause size={14} /> : <Play size={14} />} {c.playing ? "Pause" : "Play"}
                   </button>
                 </div>
               </div>

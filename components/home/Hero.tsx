@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCycle } from "@/lib/hooks/useCycle";
+import CycleControls from "@/components/ui/CycleControls";
 import Link from "next/link";
 import Image from "next/image";
 import { m, AnimatePresence } from "framer-motion";
@@ -51,14 +52,8 @@ function scoreColor(score: number) {
 
 export default function Hero({ isCA = false }: { isCA?: boolean }) {
   const offices = officesFor(isCA);
-  const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
-
-  useEffect(() => {
-    if (paused) return;
-    const id = setInterval(() => setActive((a) => (a + 1) % stages.length), 3200);
-    return () => clearInterval(id);
-  }, [paused]);
+  const c = useCycle(stages.length, 3200, { amount: 0.2 });
+  const active = c.active;
 
   const stage = stages[active];
   const color = scoreColor(stage.score);
@@ -129,16 +124,19 @@ export default function Hero({ isCA = false }: { isCA?: boolean }) {
 
           {/* Interactive recovery framework */}
           <m.div
+            ref={c.ref}
+            {...c.hoverProps}
             initial={false}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.15 }}
             className="rounded-[28px] bg-white p-7 shadow-[0_20px_50px_rgba(0,61,130,0.10)] ring-1 ring-[#E2E8F0] sm:p-8"
           >
-            <div className="mb-6 flex items-start justify-between gap-4">
+            <div className="mb-6 flex flex-wrap items-start justify-between gap-4">
               <div>
                 <span className="text-sm font-bold uppercase tracking-[0.14em] text-[#003D82]">ERP Recovery Framework</span>
                 <p className="mt-1 text-sm text-[#64748B]">Our proven methodology for system optimization</p>
               </div>
+              <CycleControls playing={c.playing} onToggle={c.toggle} onPrev={c.prev} onNext={c.next} label="recovery framework" className="shrink-0" />
             </div>
 
             {/* Stage tabs */}
@@ -151,10 +149,7 @@ export default function Hero({ isCA = false }: { isCA?: boolean }) {
                     key={s.key}
                     role="tab"
                     aria-selected={on}
-                    onClick={() => {
-                      setActive(i);
-                      setPaused(true);
-                    }}
+                    onClick={() => c.go(i)}
                     className={`group flex flex-col items-center gap-2 rounded-2xl px-1 py-3 text-xs font-bold transition-all ${
                       on ? "bg-[#003D82] text-white shadow-md" : "bg-[#F8FAFC] text-[#475569] ring-1 ring-[#E2E8F0] hover:ring-[#003D82]/30"
                     }`}
