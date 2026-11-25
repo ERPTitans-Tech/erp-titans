@@ -250,7 +250,7 @@ export default function ContactForm({ isCA = false }: { isCA?: boolean }) {
                             id="c-message"
                             name="message"
                             required
-                            rows={5}
+                            rows={8}
                             maxLength={3000}
                             onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setMessageLen(e.target.value.length)}
                             placeholder="Tell us about your current ERP challenges, timeline and goals. Add URGENT for a stalled or failing system."
