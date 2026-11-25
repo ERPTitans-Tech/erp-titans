@@ -3,6 +3,7 @@
 import { Ledger, LedgerItem } from "@/components/ui/Ledger";
 import Link from "next/link";
 import Image from "next/image";
+import Photo from "@/components/ui/Photo";
 import { m } from "framer-motion";
 import { ArrowRight, ChevronRight, Quote } from "lucide-react";
 import CTA from "@/components/home/CTA";
@@ -84,7 +85,7 @@ export default function IndustryPage({ industry }: { industry: IndustryKey }) {
               className="relative"
             >
               <div className="relative h-[380px] w-full overflow-hidden rounded-[32px] shadow-[0_20px_50px_-12px_rgba(0,61,130,0.25)] lg:h-[460px]">
-                <Image src={d.image} alt={d.imageAlt} fill priority className="object-cover" sizes="(min-width: 1024px) 600px, 100vw" />
+                <Photo id={d.image} alt={d.imageAlt} priority className="absolute inset-0 h-full w-full object-cover" sizes="(min-width: 1024px) 600px, 100vw" />
               </div>
               <m.div
                 initial={false}

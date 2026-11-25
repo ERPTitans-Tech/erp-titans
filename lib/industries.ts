@@ -34,8 +34,8 @@ export const industries: Record<IndustryKey, Industry> = {
     h1: ["Seed-to-Sale", "Redefined."],
     intro:
       "Specialized ERP recovery for cannabis producers struggling with regulatory compliance, seed-to-sale tracking, and inventory controls.",
-    image: "/cannabis.webp",
-    imageAlt: "Cannabis ERP Solutions",
+    image: "1591754060004-f91c95f5cf05",
+    imageAlt: "Rows of cannabis plants growing in a commercial greenhouse",
     stat: { value: "100%", label: "Audit Ready" },
     challenges: {
       heading: "Regulatory Roadblocks",
@@ -79,8 +79,8 @@ export const industries: Record<IndustryKey, Industry> = {
     h1: ["Streamline Your", "Supply Chain."],
     intro:
       "Specialized ERP recovery for distributors struggling with multi-warehouse operations, order fulfillment, and logistics coordination.",
-    image: "/distribution.webp",
-    imageAlt: "Distribution ERP Solutions",
+    image: "1664382953403-fc1ac77073a0",
+    imageAlt: "Warehouse staff checking stock along a racking aisle",
     stat: { value: "99.9%", label: "Stock Accuracy" },
     challenges: {
       heading: "Distribution Bottlenecks",
@@ -124,8 +124,8 @@ export const industries: Record<IndustryKey, Industry> = {
     h1: ["Precision ERP for", "Modern Factories."],
     intro:
       "Specialized ERP recovery for manufacturers struggling with production planning, inventory management, and supply chain visibility. We fix what others couldn't.",
-    image: "/manufacturing.webp",
-    imageAlt: "Manufacturing ERP Solutions",
+    image: "1581092334651-ddf26d9a09d0",
+    imageAlt: "Engineer reviewing production data on a tablet on the factory floor",
     stat: { value: "35%", label: "Efficiency Boost" },
     challenges: {
       heading: "Common Manufacturing Roadblocks",

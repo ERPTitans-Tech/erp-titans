@@ -29,26 +29,19 @@ export default function ServicesHero() {
               Odoo &amp; ERP Services · Official Odoo Ready Partner
             </span>
             <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-extrabold tracking-tight leading-[1.1] text-[#003D82]">
-              Comprehensive ERP <br className="hidden sm:block" />
-              Lifecycle Support
+              Odoo &amp; ERP services, <br className="hidden sm:block" />
+              from first plan to long-term support
             </h1>
             <p className="mt-6 text-xl font-medium leading-relaxed text-[#475569]">
-              From Strategy to Recovery to Scale; We own the entire ERP journey for SMEs globally.
+              Whether you are choosing an ERP, fixing one that went wrong or scaling one that works, one senior team stays accountable from strategy through recovery to growth.
             </p>
-
-            <figure className="mt-8 rounded-2xl border-l-4 border-[#0EA5E9] bg-white p-5 shadow-sm ring-1 ring-[#E2E8F0]">
-              <blockquote className="text-[16px] italic leading-relaxed text-[#334155]">
-                &quot;End-to-End ERP Services Built for Stability, Scalability, and Strategic Growth. Whether you&apos;re implementing Odoo
-                for the first time or fixing a broken deployment, we ensure measurable business outcomes.&quot;
-              </blockquote>
-            </figure>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <a
-                href="#pillars"
+                href="#start"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-[#003D82] px-8 py-3.5 text-[15px] font-semibold text-white shadow-[0_4px_14px_0_rgba(0,61,130,0.39)] transition-all hover:bg-[#003D82]/90"
               >
-                Explore Services
+                Find the right service
               </a>
               <Link
                 href="/contact"

@@ -11,10 +11,10 @@ const reasons = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="border-t border-[#E2E8F0] bg-[#F8FAFC] py-20 lg:py-24">
+    <section className="border-t border-[#E2E8F0] bg-white py-20 lg:py-24">
       <div className="max-w-[1280px] max-w-full mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
-          n={2}
+          n={5}
           label="Why ERP Titans"
           title="Why Clients Choose ERP Titans"
           text="Deep ERP expertise, measurable outcomes, and long-term business partnerships."

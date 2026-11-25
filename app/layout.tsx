@@ -69,6 +69,9 @@ export default async function RootLayout({
   const site = await getSite();
   return (
     <html lang={site.lang} className={`${inter.variable} scroll-smooth antialiased overflow-x-hidden`}>
+      <head>
+        <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="" />
+      </head>
       <body className="min-h-screen bg-brand-bg text-brand-text font-sans flex flex-col overflow-x-hidden w-full relative">
         <JsonLd data={[organizationSchemaFor(site.isCA), websiteSchema]} />
         <Toaster position="bottom-right" />
