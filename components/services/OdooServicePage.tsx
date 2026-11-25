@@ -54,7 +54,7 @@ export default async function OdooServicePage({ s }: { s: OdooService }) {
 
       {/* Intro + who it's for */}
       <section className="border-t border-[#E2E8F0] bg-white py-16 md:py-20">
-        <div className="max-w-[85rem] mx-auto grid grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-2 xl:grid-cols-[1.2fr_1fr] lg:gap-16 lg:px-8">
+        <div className="max-w-[85rem] mx-auto grid grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-[1.35fr_1fr] xl:grid-cols-[1.2fr_1fr] lg:gap-16 lg:px-8">
           <div className="flex flex-col justify-center space-y-5 text-lg leading-relaxed text-[#475569]">
             {s.intro.map((p) => (
               <p key={p.slice(0, 40)}>{p}</p>
