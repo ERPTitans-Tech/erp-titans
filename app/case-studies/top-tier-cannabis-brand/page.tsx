@@ -179,10 +179,10 @@ const integrations = [
 ];
 
 const reportAreas = [
-  { area: "Operations", items: ["Production performance", "Labour & equipment efficiency"] },
-  { area: "Finance", items: ["Revenue & margin", "Costing & work in progress"] },
-  { area: "Compliance", items: ["Lot traceability", "Losses & write-offs"] },
-  { area: "Commercial", items: ["Sales by product, channel & region", "Purchasing & inventory"] },
+  { area: "Operations", items: ["Production performance", "Labour & equipment efficiency", "Yield & waste"] },
+  { area: "Finance", items: ["Revenue & margin", "Costing & work in progress", "Cash & receivables"] },
+  { area: "Compliance", items: ["Lot traceability", "Losses & write-offs", "Monthly regulatory summary"] },
+  { area: "Commercial", items: ["Sales by product, channel & region", "Purchasing & inventory", "Customer trends"] },
 ];
 
 const outcomes = [
