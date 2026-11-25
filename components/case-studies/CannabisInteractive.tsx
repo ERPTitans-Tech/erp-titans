@@ -174,7 +174,7 @@ function StepVisual({ step }: { step: string }) {
   if (step === "receive") {
     const tests = ["THC / THCA", "CBD / CBDA", "Microbial", "Pesticides", "Heavy metals", "Mycotoxins"];
     return (
-      <div className={`w-full max-w-md p-5 ${card}`}>
+      <div className={`w-full max-w-lg p-5 ${card}`}>
         <div className="mb-4 flex items-center justify-between gap-3">
           <div>
             <Eyebrow color="#64748B">Incoming lot</Eyebrow>
@@ -216,7 +216,7 @@ function StepVisual({ step }: { step: string }) {
       { y: 180, label: "Lot B-044" },
     ];
     return (
-      <svg viewBox="0 0 420 220" className="w-full max-w-md" role="img" aria-label="Illustration of lots merging into a blend lot">
+      <svg viewBox="0 0 420 220" className="w-full max-w-lg" role="img" aria-label="Illustration of lots merging into a blend lot">
         {sources.map((s, i) => (
           <g key={s.label}>
             <m.path
@@ -253,7 +253,7 @@ function StepVisual({ step }: { step: string }) {
       { code: "ON", x: 380, y: 56 },
     ];
     return (
-      <svg viewBox="0 0 440 220" className="w-full max-w-md" role="img" aria-label="Illustration of shipments to provincial distributors">
+      <svg viewBox="0 0 440 220" className="w-full max-w-lg" role="img" aria-label="Illustration of shipments to provincial distributors">
         <rect x="165" y="174" width="110" height="38" rx="19" fill={NAVY} />
         <text x="220" y="197.5" textAnchor="middle" fill="#fff" fontSize="12" fontWeight="700" fontFamily="Inter, sans-serif">Warehouse</text>
         {provinces.map((p, i) => (
@@ -282,7 +282,7 @@ function StepVisual({ step }: { step: string }) {
   // report
   const rows = ["Opening inventory", "Additions: production", "Reductions: sales", "Reductions: destruction", "Closing inventory", "Book value"];
   return (
-    <div className={`w-full max-w-md p-5 ${card}`}>
+    <div className={`w-full max-w-lg p-5 ${card}`}>
       <div className="mb-4 flex items-center justify-between">
         <div>
           <Eyebrow color={GREEN}>Health Canada</Eyebrow>
@@ -321,7 +321,7 @@ function ProduceVisual() {
     { name: "0.4 g pre-roll line", value: b, pct: 88, color: SKY },
   ];
   return (
-    <div className="w-full max-w-md space-y-4">
+    <div className="w-full max-w-lg space-y-4">
       {lines.map((l) => (
         <div key={l.name} className={`p-5 ${card}`}>
           <div className="mb-3 flex items-baseline justify-between">

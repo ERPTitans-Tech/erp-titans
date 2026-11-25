@@ -224,7 +224,7 @@ export default function TopTierCannabisCaseStudyPage() {
             <span className="text-[#0F172A]">Top-Tier Cannabis Brand</span>
           </nav>
 
-          <div className="grid grid-cols-1 lg:grid-cols-[1.35fr_1fr] gap-12 lg:gap-14">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] xl:grid-cols-[1.35fr_1fr] gap-12 lg:gap-14">
             <div className="flex flex-col">
               <div className="flex flex-wrap gap-2 mb-6">
                 <span className="inline-flex items-center rounded-full bg-green-50 text-[#16A34A] px-3 py-1 text-xs font-bold uppercase tracking-wider">
@@ -255,7 +255,7 @@ export default function TopTierCannabisCaseStudyPage() {
                     </li>
                   ))}
                 </ul>
-                <div className="mt-5 flex flex-wrap items-center gap-2 border-t border-[#E2E8F0] pt-5">
+                <div className="mt-5 flex flex-wrap items-center gap-2 border-t border-[#E2E8F0] pt-5 lg:hidden xl:flex">
                   <span className="mr-1 text-[11px] font-bold uppercase tracking-[0.14em] text-[#94A3B8]">Built on Odoo</span>
                   {odooApps.map((a) => (
                     <span key={a.name} title={a.name} className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#F8FAFC] ring-1 ring-[#E2E8F0]">
@@ -446,7 +446,7 @@ export default function TopTierCannabisCaseStudyPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {solution.map(({ icon, app, title, points }) => (
               <div
                 key={title}

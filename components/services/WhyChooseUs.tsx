@@ -31,7 +31,7 @@ export default function WhyChooseUs() {
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="flex flex-col items-center rounded-[24px] bg-white p-8 text-center shadow-[0_8px_30px_rgba(0,0,0,0.04)] ring-1 ring-[#E2E8F0]"
               >
-                <div className="text-4xl font-extrabold tracking-tight text-[#003D82]">{r.stat}</div>
+                <div className="whitespace-nowrap text-3xl font-extrabold tracking-tight text-[#003D82] lg:text-4xl">{r.stat}</div>
                 <div className="mb-5 mt-1 text-xs font-bold uppercase tracking-[0.14em] text-[#64748B]">{r.statLabel}</div>
                 <div className="mb-5 h-px w-12 bg-[#E2E8F0]" />
                 <h3 className="mb-2 text-lg font-bold text-[#0F172A]">{r.title}</h3>

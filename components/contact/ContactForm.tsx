@@ -111,7 +111,7 @@ export default function ContactForm({ isCA = false }: { isCA?: boolean }) {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-[1fr_1.6fr] lg:gap-8">
+        <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-[1.15fr_1.6fr] xl:grid-cols-[1fr_1.6fr] lg:gap-8">
           {/* Form card (first on mobile) */}
           <div ref={cardRef} className="scroll-mt-28 lg:order-2">
             <div className="rounded-[28px] bg-white p-6 shadow-[0_20px_50px_rgba(0,61,130,0.10)] ring-1 ring-[#E2E8F0] sm:p-8 lg:p-10">
